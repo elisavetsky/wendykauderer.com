@@ -1,0 +1,21 @@
+---
+---
+<button class="flex relative cursor-pointer">
+   <span class="patties w-14 h-11"></span>
+</button>
+
+<style>
+   .patties::before {
+      @apply top-5
+   }
+   
+   .patties::after {
+      @apply bottom-4 right-1.5
+   }
+
+   .patties::before,
+   .patties::after {
+      content: '';
+      @apply absolute h-[2px] w-10 bg-gray-900
+   }
+</style>

@@ -1,0 +1,11 @@
+---
+import Burger from "./Burger.astro";
+import Navigation from "./Navigation.astro";
+import Logo from "./Logo.astro";
+---
+
+<header class="p-4 md:p-6 m-auto max-w-7xl flex justify-between items-center">
+   <Logo />
+   <Navigation client:load />
+   <Burger client:load />
+</header>

@@ -20,9 +20,24 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# vscode
-**/.vscode/
-.vscode
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# VSCode
+*.code-workspace
+.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
 
 # nova
 .nova
