@@ -1,14 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeaturedArtwork from '../components/FeaturedArtwork.astro';
 import Card from '../components/Card.astro';
 ---
 
-<Layout title="Wendy Kauderer - Artist">
-	<Header />
-	<main class="p-3 md:p-5 m-auto max-w-screen-2xl">
+<BaseLayout title="Wendy Kauderer - Artist">
+	<main class="p-4 md:px-5 m-auto max-w-screen-2xl">
+
+		<FeaturedArtwork />
+
 		<ul role="list" class="link-card-grid">
-			<Card
+			<!-- <Card
 				href=""
 				title="These"
 				body="ARE"
@@ -22,10 +24,10 @@ import Card from '../components/Card.astro';
 				href=""
 				title="Cards"
 				body="CARDS"
-			/>
+			/> -->
 		</ul>
 	</main>
-</Layout>
+</BaseLayout>
 
 <style>
 	main {

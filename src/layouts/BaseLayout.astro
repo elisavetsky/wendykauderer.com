@@ -1,0 +1,65 @@
+--- 
+// Expose site configuration for CMS
+import * as SitewideConfig from "../configuration/SitewideConfig.md";
+
+import Header from '../components/Header.astro';
+import Footer from "../components/Footer.astro";
+
+// import css
+import '../styles/main.css'
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="">
+	<head>
+		<!-- Global meta tags -->
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<!-- Esssential meta tags -->
+		<title>{title}</title>
+		<meta name="description" content={SitewideConfig.frontmatter.site_description}>
+
+		<link
+			rel="preload"
+			href="/fonts/James-Arthur-Regular/james-arthur-regular.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin=""
+		/>
+
+		<link
+			rel="preload"
+			href="/fonts/Southampton/southampton.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin=""
+		/>
+	</head>
+	<body class="dark:bg-slate-800 transition">
+		<Header />
+		<slot />
+		<Footer />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--accent: 136, 58, 234;
+		--accent-light: 224, 204, 250;
+		--accent-dark: 49, 10, 101;
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background: #ffffff;
+		background-size: 224px;
+	}
+	code {
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+</style>

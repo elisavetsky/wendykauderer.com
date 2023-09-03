@@ -1,0 +1,26 @@
+---
+// Expose site configuration for CMS
+import { frontmatter } from "../configuration/SitewideConfig.md";
+const featuredTitle = frontmatter.homepage_featured_section_title;
+
+// import components
+import SectionTitle from "./SectionTitle.astro";
+
+const allArtwork = await Astro.glob("../pages/artwork/*.md");
+const featuredArtwork = allArtwork.filter((artwork) => artwork.frontmatter.featured === true)
+
+console.log(featuredArtwork)
+---
+
+<SectionTitle title={featuredTitle} />
+<div class="prose dark:prose-invert dark:prose-p:text-gray-100">
+   {
+      featuredArtwork.map(({frontmatter}) => {
+         return (
+            <h1>{frontmatter.title}</h1>
+            <p>INSERT PICTURE HERE</p>
+            <p>{frontmatter.description}</p>
+         )
+      })
+   }
+</div>

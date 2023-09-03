@@ -1,21 +1,19 @@
 ---
+
+const { fontName } = Astro.props;
+console.log(fontName)
 ---
 
-<div class="logo-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+<a href="/" class="font-jamesarthur flex items-center leading-10 text-xs sm:text-sm">
    Wendy Kauderer
-</div>
+</a>
+
+<!-- <a href="/" class="logo-text flex items-center mt-3 text-3xl sm:text-4xl sm:mt-4 md:text-5xl">
+   Wendy Kauderer
+</a> -->
 
 <style>
-   @font-face {
-      font-family: 'Seascape';
-      src: url('/fonts/seascape.woff2') format('woff2'),
-      url('/fonts/seascape.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-   }
-
    .logo-text {
       font-family: 'Seascape', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      font-size: 500px;
    }
 </style>

@@ -1,16 +1,32 @@
 ---
+// Import packages
+import slugify from '@sindresorhus/slugify';
 
+// Expose site configuration for CMS
+import { frontmatter } from "../configuration/SitewideConfig.md";
+const sections = frontmatter.sections;
+
+// import components
+import ThemeToggle from './ThemeToggle.jsx';
 ---
 
-<nav>
-   <ul>
-      <!-- { 
-         pageList.map({page} => {
+<nav aria-label="Main menu" id="main-menu" class="hidden text-lg font-light h-full mt-7 md:m-0 md:flex md:items-center md:h-10">
+   <noscript>
+      <ul>
+         
+      </ul>
+   </noscript>
+
+   <ul class="flex flex-col justify-between gap-1 leading-loose mb-4 md:flex-row md:mb-0 md:pr-12">
+      { 
+         sections?.map(({title}) => {
             return (
-            <li>{page.title}</li>
+               <li class="md:pr-12 last:pr-0">
+                  <a href={`/${slugify(title)}`}>{title}</a>
+               </li>
             )
          })
-      } -->
-      
+      }
    </ul>
+   <ThemeToggle client:only />
 </nav>

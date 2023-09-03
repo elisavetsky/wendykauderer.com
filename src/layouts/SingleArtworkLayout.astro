@@ -1,3 +1,9 @@
 ---
-import Layout from "./Layout.astro";
+import BaseLayout from "./BaseLayout.astro";
+
+const props = Astro.props
 ---
+
+<BaseLayout title={`Wendy Kauderer - ${props.title}`}>
+
+</BaseLayout>
