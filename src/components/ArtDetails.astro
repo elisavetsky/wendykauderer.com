@@ -1,0 +1,20 @@
+---
+import { humanDate } from "../utils/textTools.js";
+
+// import components
+import Tag from "./Tag.astro";
+
+const { date, tags } = Astro.props;
+---
+
+<div class="text-sm font-sans flex flex-col sm:flex-row">
+   <time datetime={date} class="py-1 mr-4 mb-3 flex-shrink-0">{humanDate(date)}</time>
+   <span class="text-sm py-1 mr-4 hidden sm:block">―</span>
+   <div class="flex flex-wrap py-0.5">
+      {
+         tags.map((tag) => {
+            return <Tag title={tag} />
+         })
+      }
+   </div>
+</div>

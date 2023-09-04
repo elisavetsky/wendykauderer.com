@@ -1,28 +1,41 @@
 ---
+// Astro
+import { getCollection } from "astro:content";
+
 // Expose site configuration for CMS
 import { frontmatter } from "../configuration/SitewideConfig.md";
 const featuredTitle = frontmatter.homepage_featured_section_title;
 
 // import components
+import { Image } from 'astro:assets';
 import SectionTitle from "./SectionTitle.astro";
+import ArtDetails from "./ArtDetails.astro";
 
 // import utils
 import { truncateTextToPeriod } from "../utils/textTools.js";
 
 // import Featured Artwork
-const allArtwork = await Astro.glob("../pages/artwork/*.md");
-const featuredArtwork = allArtwork.filter((artwork) => artwork.frontmatter.featured === true);
+const featuredArtwork = await getCollection('artwork', ({data}) => {
+   // prevent draft posts from showing in feature
+   return data.draft !== true && data.featured === true;
+});
+// const allArtwork = await Astro.glob("../pages/artwork/*.md");
+// const featuredArtwork = allArtwork.filter((artwork) => artwork.data.featured === true);
 ---
 
 <SectionTitle title={featuredTitle} />
 <div class="prose dark:prose-invert dark:prose-p:text-gray-100">
    {
-      featuredArtwork.map(({frontmatter}) => {
+      featuredArtwork.map((entry) => {
+
          return (
-            <article>
-               <h1 class="sm:text-5xl md:text-6xl">{frontmatter.title}</h1>
-               <p>INSERT PICTURE HERE</p>
-               <p>{truncateTextToPeriod(frontmatter.description)}</p>
+            <article class="mb-16 last-of-type:mb-0">
+               <h1 class="mb-2 text-4xl sm:text-5xl md:text-6xl md:mb-3">{entry.data.title}</h1>
+               <ArtDetails date={entry.data.date} tags={entry.data.tags} />
+               <a href={`${entry.collection}/${entry.slug}`}>
+                  <Image src={entry.data.images[0].image} alt={entry.data.images[0].image_alt} class="shadow-xl rounded-md" />
+               </a>
+               <p>{truncateTextToPeriod(entry.data.description)}</p>
             </article>
          )
       })

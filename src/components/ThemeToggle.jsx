@@ -43,7 +43,7 @@ export default function ThemeToggle() {
          
          {/* <Within /> */}
          <button
-            className={`theme-toggle ${darkTheme ? "theme-toggle--toggled" : ""} flex items-center text-xl mr-1.5 p-1.5 rounded-full transition-all hover:bg-slate-200 dark:hover:bg-slate-600`}
+            className={`theme-toggle ${!darkTheme ? "theme-toggle--toggled" : ""} flex items-center text-xl mr-1.5 p-1.5 rounded-full transition-all hover:bg-slate-200 dark:hover:bg-slate-600`}
             onClick={handleClick}
             type="button"
             title="Toggle theme"

@@ -1,0 +1,14 @@
+---
+// import bio markdown
+import { getEntry } from "astro:content";
+const bio = await getEntry("bio", "bio");
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout pageTitle="Bio">
+   <article class="prose dark:prose-invert">
+      <h1>{bio.data.heading}</h1>
+      <p>{bio.data.body}</p>
+   </article>
+</BaseLayout>

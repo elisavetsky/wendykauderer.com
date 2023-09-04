@@ -1,13 +1,11 @@
 ---
-// Expose site configuration for CMS
-import * as SitewideConfig from "../../configuration/SitewideConfig.md";
-
+// import layout
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const works = await Astro.glob("./*.md");
 ---
 
-<BaseLayout title={`${SitewideConfig.frontmatter.site_name} - Works`}>
+<BaseLayout pageTitle="Artwork">
    <h1>My artwork</h1>
 
    <ul>

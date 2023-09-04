@@ -4,4 +4,16 @@ function truncateTextToPeriod(text, sentences) {
    return output;
 }
 
-export { truncateTextToPeriod }
+function humanDate(date) {
+   const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+   }
+
+   const readableDate = new Date(date).toLocaleDateString(undefined, options);
+
+   return readableDate;
+}
+
+export { truncateTextToPeriod, humanDate }
