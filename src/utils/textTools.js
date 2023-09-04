@@ -1,7 +1,11 @@
 function truncateTextToPeriod(text, sentences) {
-   const output = text.slice(".");
+   const searchStr = ".";
+   const firstPeriod = text.indexOf(searchStr, 1);
+   const secondPeriod = text.indexOf(searchStr, firstPeriod + 1);
 
-   return output;
+   const output = text.slice(0, secondPeriod);
+
+   return `${output} ...`;
 }
 
 function humanDate(date) {

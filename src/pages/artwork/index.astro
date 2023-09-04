@@ -1,8 +1,11 @@
 ---
+// Astro
+import { getCollection } from "astro:content";
+
 // import layout
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const works = await Astro.glob("./*.md");
+const artwork = await getCollection('artwork');
 ---
 
 <BaseLayout pageTitle="Artwork">
@@ -10,9 +13,9 @@ const works = await Astro.glob("./*.md");
 
    <ul>
       {
-         works.map((work) => {
+         artwork.map((entry) => {
             <li>
-               <a href={work.url}>{work.frontmatter.title}</a>
+               <a href={`${entry.collection}/${entry.slug}`}>{entry.data.title}</a>
             </li>
          })
       }

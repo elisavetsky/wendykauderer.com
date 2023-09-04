@@ -7,10 +7,10 @@ import Tag from "./Tag.astro";
 const { date, tags } = Astro.props;
 ---
 
-<div class="text-sm font-sans flex flex-col sm:flex-row">
-   <time datetime={date} class="py-1 mr-4 mb-3 flex-shrink-0">{humanDate(date)}</time>
-   <span class="text-sm py-1 mr-4 hidden sm:block">―</span>
-   <div class="flex flex-wrap py-0.5">
+<div class="text-sm font-sans flex items-start">
+   <time datetime={date} class="h-fit text-xs font-medium px-2.5 py-4 mr-4 mb-3 w-16 text-center flex-shrink-0 rounded-full bg-slate-100 dark:bg-slate-800">{humanDate(date)}</time>
+   <span class="text-sm py-1 mr-4 hidden">―</span>
+   <div class="flex flex-wrap py-0.5 gap-1.5">
       {
          tags.map((tag) => {
             return <Tag title={tag} />

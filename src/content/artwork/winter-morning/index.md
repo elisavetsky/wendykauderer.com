@@ -6,21 +6,15 @@ date: 2017-09-07
 tags: 
   - "landscapes"
   - "oil"
-  - "landscapes"
-  - "oil"
-  - "landscapes"
-  - "oil"
-  - "landscapes"
-  - "oil"
-  - "landscapes"
-  - "oil"
-  - "landscapes"
-  - "oil"
+  - "trees"
+  - "water"
+  - "clouds"
+  - "sunlight"
 featured: true
 images: 
   - image: "./winter-morning.jpg"
     image_alt: "THIS DESCRIPTION IS REQUIRED"
-description: "Pharetra nunc nibh mus himenaeos class quisque vel aenean nulla quam tincidunt sollicitudin quis luctus massa, lacus accumsan tristique per sem varius tortor primis ultrices ultricies urna fusce volutpat. Congue inceptos venenatis orci penatibus justo sagittis sed fusce sociosqu, duis nostra sapien purus commodo odio faucibus cubilia. Taciti magnis montes dictumst phasellus ullamcorper dapibus maecenas et neque dolor vulputate, id cras adipiscing odio nisi pharetra gravida eu vel eleifend."
+description: "Adipiscing magnis elit luctus dictum varius sem dictumst ad, risus erat mollis est donec interdum aliquam. Praesent nam efficitur consectetur donec posuere cubilia hendrerit quis aliquet varius nascetur, ridiculus vulputate molestie vivamus egestas finibus duis sed dolor. Diam tincidunt ex turpis faucibus lectus dictum suspendisse elementum, enim auctor a mus tempus metus eleifend."
 ---
 
 # Hey this is a H1

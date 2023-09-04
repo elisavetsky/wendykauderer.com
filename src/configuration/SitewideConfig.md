@@ -6,5 +6,5 @@ sections:
   - title: "Artwork"
   - title: "Bio"
   - title: "Contact"
-curved_edges: true
+curved_image_edges: true
 ---
