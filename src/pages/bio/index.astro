@@ -1,0 +1,14 @@
+---
+// Expose site configuration for CMS
+import * as SitewideConfig from "../../configuration/SitewideConfig.md";
+
+// import bio markdown
+import * as bio from "./bio.md";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title={`${SitewideConfig.frontmatter.site_name} - Bio`}>
+   <h1>{bio.frontmatter.heading}</h1>
+   <p>{bio.frontmatter.body}</p>
+</BaseLayout>

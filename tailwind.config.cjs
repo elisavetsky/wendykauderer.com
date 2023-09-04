@@ -8,6 +8,15 @@ module.exports = {
 				seascape: ['Seascape', 'sans-serif'],
 				jamesarthur: ['James Arthur Regular', 'sans-serif'],
 				southampton: ['Southampton', 'sans-serif']
+			},
+			typography: {
+				DEFAULT: {
+					css: {
+						p: {
+							'font-family': ['system-ui', 'Helvetica Neue', 'Helvetica', 'sans-serif']
+						}
+					}
+				}
 			}
 		},
 	},

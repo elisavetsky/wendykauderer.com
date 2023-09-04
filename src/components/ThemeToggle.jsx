@@ -39,11 +39,11 @@ export default function ThemeToggle() {
    // }
 
    return (
-      <div className="flex flex-row items-center w-fit px-2 py-1.5 rounded-full bg-slate-100 text-gray-800 dark:text-gray-100 dark:bg-slate-800">
+      <div className="flex w-fit p-1.5 rounded-full bg-slate-100 text-gray-800 dark:text-gray-100 dark:bg-slate-800">
          
          {/* <Within /> */}
          <button
-            className={`theme-toggle ${darkTheme ? "theme-toggle--toggled" : ""} flex text-xl mr-1.5 p-1.5 rounded-full transition-all hover:bg-slate-200 dark:hover:bg-slate-600`}
+            className={`theme-toggle ${darkTheme ? "theme-toggle--toggled" : ""} flex items-center text-xl mr-1.5 p-1.5 rounded-full transition-all hover:bg-slate-200 dark:hover:bg-slate-600`}
             onClick={handleClick}
             type="button"
             title="Toggle theme"
@@ -75,9 +75,7 @@ export default function ThemeToggle() {
             </svg>
          </button>
          
-         <button title="Toggle system theme" aria-label="Toggle light theme" className="text-sm px-2 pt-1 pb-1.5 rounded-full transition-all hover:bg-slate-200 dark:hover:bg-slate-600">System</button>
+         <button title="Toggle system theme" aria-label="Toggle light theme" className="text-sm font-light px-2 p-1 rounded-full transition-all hover:bg-slate-200 dark:hover:bg-slate-600">System</button>
       </div>
    )
 }
-
-

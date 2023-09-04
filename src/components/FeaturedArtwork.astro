@@ -6,10 +6,12 @@ const featuredTitle = frontmatter.homepage_featured_section_title;
 // import components
 import SectionTitle from "./SectionTitle.astro";
 
-const allArtwork = await Astro.glob("../pages/artwork/*.md");
-const featuredArtwork = allArtwork.filter((artwork) => artwork.frontmatter.featured === true)
+// import utils
+import { truncateTextToPeriod } from "../utils/textTools.js";
 
-console.log(featuredArtwork)
+// import Featured Artwork
+const allArtwork = await Astro.glob("../pages/artwork/*.md");
+const featuredArtwork = allArtwork.filter((artwork) => artwork.frontmatter.featured === true);
 ---
 
 <SectionTitle title={featuredTitle} />
@@ -17,9 +19,11 @@ console.log(featuredArtwork)
    {
       featuredArtwork.map(({frontmatter}) => {
          return (
-            <h1>{frontmatter.title}</h1>
-            <p>INSERT PICTURE HERE</p>
-            <p>{frontmatter.description}</p>
+            <article>
+               <h1 class="sm:text-5xl md:text-6xl">{frontmatter.title}</h1>
+               <p>INSERT PICTURE HERE</p>
+               <p>{truncateTextToPeriod(frontmatter.description)}</p>
+            </article>
          )
       })
    }

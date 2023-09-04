@@ -9,16 +9,16 @@ export default defineConfig({
     host: true
   },
   experimental: {
-    assets: true
+    
   },
   integrations: [
+    react(),
     mdx(), 
     tailwind({
       // config: {
       //   applyBaseStyles: false
       // }
       applyBaseStyles: false,
-    }), 
-    react(),
+    }),
   ]
 });
