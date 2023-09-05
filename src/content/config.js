@@ -22,6 +22,17 @@ const artworkCollection = defineCollection({
 		}),
 });
 
+const mainHeroCollection = defineCollection({
+   schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+         tagline: z.string().optional(),
+         image: image(),
+         image_alt: z.string()
+		}),
+})
+
 export const collections = {
 	artwork: artworkCollection,
+   settings: mainHeroCollection,
 };

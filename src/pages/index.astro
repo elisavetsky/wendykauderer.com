@@ -3,13 +3,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 // import components
+import MainHero from '../components/MainHero.astro';
 import FeaturedArtwork from '../components/FeaturedArtwork.astro';
 import Card from '../components/Card.astro';
 ---
 
 <BaseLayout pageTitle="Artist">
-	<main class="p-4 md:px-5 m-auto max-w-screen-2xl">
-
+	<main class="m-auto">
+		<MainHero />
 		<FeaturedArtwork />
 
 		<ul role="list" class="link-card-grid">
@@ -33,12 +34,7 @@ import Card from '../components/Card.astro';
 </BaseLayout>
 
 <style>
-	main {
-		padding: 1rem;
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
+	
 	.astro-a {
 		position: absolute;
 		top: -32px;
