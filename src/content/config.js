@@ -7,6 +7,7 @@ const artworkCollection = defineCollection({
          draft: z.boolean(),
 			title: z.string(),
          date: z.date(),
+         art_type: z.string(),
          tags: z.array(z.string()),
          featured: z.boolean(),
 			// image: image().refine((img) => img.width >= 600, {

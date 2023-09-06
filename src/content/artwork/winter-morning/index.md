@@ -3,6 +3,7 @@ draft: false
 # layout: "../../layouts/SingleArtworkLayout.astro"
 title: "Winter Morning"
 date: 2017-09-07
+art_type: "painting"
 tags: 
   - "landscapes"
   - "oil"

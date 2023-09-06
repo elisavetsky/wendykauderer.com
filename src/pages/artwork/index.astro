@@ -5,24 +5,48 @@ import { getCollection } from "astro:content";
 // import layout
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+// import components
+import SectionHero from "../../components/SectionHero.astro";
+import ArtTypes from "../../components/ArtTypes.astro";
+import SectionTitle from "../../components/SectionTitle.astro";
+import FullArtwork from "../../components/FullArtwork.astro";
+
 // import all non-draft artwork
-const artwork = await getCollection('artwork', ({data}) => {
+const allArtwork = await getCollection('artwork', ({data}) => {
    // prevent draft posts from showing in feature
    return data.draft !== true;
 });
+// sort latest to oldest by default
+const artwork = allArtwork.sort((a, b) => {
+   const latestToOldest = Date.parse(b.data.date) - Date.parse(a.data.date);
+
+   return latestToOldest;
+})
 ---
 
 <BaseLayout pageTitle="Artwork">
-   <h1>My artwork</h1>
-   <ul>
-      {
-         artwork.map((entry) => {
-            return (
-               <li>
-                  <a href={`${entry.collection}/${entry.slug}`}>{entry.data.title}</a>
-               </li>
-            )
-         })
-      }
-   </ul>
+   <main class="m-auto">
+      <SectionHero />
+      <section class="py-10 m-auto max-w-screen-2xl">
+         <ArtTypes />
+         <SectionTitle title="My Artwork" />
+         <div class="w-full flex gap-1 flex-col md:flex-row">
+            {
+               artwork.map((entry) => {
+                  return (
+                  <div class="mb-10 last-of-type:mb-0">
+                  <FullArtwork 
+                     title={entry.data.title} 
+                     date={entry.data.date}
+                     tags={entry.data.tags}
+                     href={`${entry.collection}/${entry.slug}`}
+                     images={entry.data.images[0]}
+                  />
+               </div>
+                  )
+               })
+            }
+         </div>
+      </section>
+   </main>
 </BaseLayout>

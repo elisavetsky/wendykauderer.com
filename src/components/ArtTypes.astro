@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+// get art type background
+const artwork = await getCollection("artwork");
+
+const allPaintings = artwork.filter((entry) => {
+   return entry.data.art_type === "painting";
+});
+const latestPainting = allPaintings.sort((a, b) => {
+   return Date.parse(b.data.date) - Date.parse(a.data.date);
+})[0].data.images[0];
+
+// art types array
+const artTypes = [
+   { 
+      route: "paintings", 
+      label: "Paintings", 
+      image: latestPainting.image, 
+      image_alt: latestPainting.image_alt 
+   },
+   { route: "drawings", label: "Drawings" },
+   { route: "sculptures", label: "Sculptures" }
+]
+
+const props = Astro.props;
+---
+
+<menu class="flex items-center p-4 mb-8 overflow-x-scroll font-sans text-slate-800 text-sm font-semibold dark:text-slate-100">
+   {
+      artTypes.map(({route, label, image, image_alt}) => {
+         return (
+            <a href={`/artwork/${route}`} class="relative shrink-0 w-32 h-32 mr-4 rounded-full last-of-type:mr-0">
+               <li class="absolute z-10 backdrop-blur-sm flex justify-center items-center bg-slate-50/20 w-full h-full rounded-full  p-2 dark:bg-slate-950/40">
+                  {label}
+               </li>
+               {
+                  image &&
+                  <Image
+                     src={image}
+                     alt={image_alt}
+                     quality={1}
+                     width={100}
+                     class="w-full h-full object-cover rounded-full"
+                  />
+               }
+               
+            </a>
+         )
+      })
+   }
+   
+</menu>

@@ -3,6 +3,7 @@ draft: false
 # layout: "../../layouts/SingleArtworkLayout.astro"
 title: "Jarrón"
 date: 2020-07-06
+art_type: "painting"
 tags: 
   - "still life"
   - "flowers"
