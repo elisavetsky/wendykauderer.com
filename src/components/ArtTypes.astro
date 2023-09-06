@@ -5,23 +5,51 @@ import { Image } from "astro:assets";
 // get art type background
 const artwork = await getCollection("artwork");
 
-const allPaintings = artwork.filter((entry) => {
-   return entry.data.art_type === "painting";
-});
-const latestPainting = allPaintings.sort((a, b) => {
-   return Date.parse(b.data.date) - Date.parse(a.data.date);
-})[0].data.images[0];
+function getLatestOfArtType(artType, property) {
+   const allPaintings = artwork.filter((entry) => entry.data.art_type === artType)
+      .sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
+   
+   // if nothing found, throw error
+   if (allPaintings.length) {
+      // return specified property by bracket syntax
+      const output = allPaintings[0].data.images[0][property];
+
+      if (output) {
+         console.log("output", output)
+         return output;
+      } else {
+         throw new Error(`No property named "${artType}" found for "${artType}" art type`);
+      }
+   } else {
+      console.warn(`No entries found for the specified art type: "${artType}"`);
+
+      // return null if nothing is found so that app doesn't crash
+      return null;
+   }   
+}
+
+getLatestOfArtType("painting", "image")
 
 // art types array
 const artTypes = [
    { 
       route: "paintings", 
       label: "Paintings", 
-      image: latestPainting.image, 
-      image_alt: latestPainting.image_alt 
+      image: getLatestOfArtType("painting", "image"), 
+      image_alt: getLatestOfArtType("painting", "image_alt") 
    },
-   { route: "drawings", label: "Drawings" },
-   { route: "sculptures", label: "Sculptures" }
+   { 
+      route: "drawings", 
+      label: "Drawings",
+      image: getLatestOfArtType("drawing", "image"), 
+      image_alt: getLatestOfArtType("drawing", "image_alt") 
+   },
+   { 
+      route: "sculptures", 
+      label: "Sculptures",
+      image: getLatestOfArtType("sculpture", "image"), 
+      image_alt: getLatestOfArtType("sculpture", "image_alt")
+   }
 ]
 
 const props = Astro.props;
@@ -32,11 +60,11 @@ const props = Astro.props;
       artTypes.map(({route, label, image, image_alt}) => {
          return (
             <a href={`/artwork/${route}`} class="relative shrink-0 w-32 h-32 mr-4 rounded-full last-of-type:mr-0">
-               <li class="absolute z-10 backdrop-blur-sm flex justify-center items-center bg-slate-50/20 w-full h-full rounded-full  p-2 dark:bg-slate-950/40">
+               <li class="absolute z-10 backdrop-blur-sm flex justify-center items-center bg-slate-50/20 w-full h-full rounded-full p-2 transition-colors hover:bg-slate-50/60 dark:bg-slate-950/40 dark:hover:bg-slate-950/70">
                   {label}
                </li>
                {
-                  image &&
+                  image && image_alt &&
                   <Image
                      src={image}
                      alt={image_alt}

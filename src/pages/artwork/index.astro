@@ -34,15 +34,15 @@ const artwork = allArtwork.sort((a, b) => {
             {
                artwork.map((entry) => {
                   return (
-                  <div class="mb-10 last-of-type:mb-0">
-                  <FullArtwork 
-                     title={entry.data.title} 
-                     date={entry.data.date}
-                     tags={entry.data.tags}
-                     href={`${entry.collection}/${entry.slug}`}
-                     images={entry.data.images[0]}
-                  />
-               </div>
+                     <div class="mb-10 last-of-type:mb-0">
+                        <FullArtwork 
+                           title={entry.data.title} 
+                           date={entry.data.date}
+                           tags={entry.data.tags}
+                           href={`${entry.collection}/${entry.slug}`}
+                           images={entry.data.images[0]}
+                        />
+                     </div>
                   )
                })
             }
