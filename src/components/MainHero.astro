@@ -4,25 +4,27 @@ import { getEntry } from "astro:content";
 import { Image } from "astro:assets";
 
 // import components
-
+import Logo from "./Logo.astro";
 
 // import data
 const mainHero = await getEntry("settings", "main-hero");
 const { title, tagline, image, image_alt } = mainHero.data;
 ---
 
-<section class="sm:py-16 sm:px-4 overflow-x-hidden bg-slate-50 dark:bg-slate-800">
-   <div class="relative flex sm:px-4 sm:max-w-none">
-      <div class="absolute bottom-0 prose prose-sm max-w-none p-6 h-fit sm:shadow-xl sm:bg-slate-50/30 sm:backdrop-blur-md dark:prose-invert sm:dark:bg-slate-600/30 sm:relative sm:prose-base sm:-right-10 sm:rounded-xl md:prose-md lg:prose-lg">
-         <h1>{title}</h1>
-         { tagline && <p>{tagline}</p> }
+<section class="sm:pb-20 sm:px-0 overflow-x-hidden bg-slate-50 dark:bg-slate-800">
+   <div class="relative flex min-h-screen sm:max-w-none sm:min-h-0">
+      <div class="absolute flex flex-col justify-end prose prose-sm max-w-none px-4 py-24 w-full h-full shadow-2xl z-30 bg-gradient-to-t from-slate-50/90 from-30% dark:prose-invert dark:bg-gradient-to-t dark:from-slate-800/90 sm:bg-none sm:shadow-none sm:bg-transparent sm:relative sm:prose-base sm:h-fit sm:px-8 sm:py-6 sm:w-96 sm:mt-40 sm:rounded-xl sm:dark:bg-none md:w-[40rem] md:prose-md lg:w-1/2 xl:prose-lg xl:p-20">
+         
+            <h1 class="">{title}</h1>
+            { tagline && <h2>{tagline}</h2> }
+         
       </div>
       <Image 
          src={image}
          alt={image_alt} 
-         width={768} 
-         quality={50}
-         class="h-90 sm:h-80 object-cover sm:rounded-md sm:shadow-xl sm:mt-4"
+         height={768} 
+         quality={90}
+         class="w-full max-w-none object-cover z-20 sm:rounded-md sm:shadow-xl sm:min-h-1/2 sm:min-h-[750px] sm:max-h-[640px] md:min-w-1/2 "
       />
    </div>
 </section>

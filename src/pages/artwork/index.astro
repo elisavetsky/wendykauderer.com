@@ -5,18 +5,23 @@ import { getCollection } from "astro:content";
 // import layout
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const artwork = await getCollection('artwork');
+// import all non-draft artwork
+const artwork = await getCollection('artwork', ({data}) => {
+   // prevent draft posts from showing in feature
+   return data.draft !== true;
+});
 ---
 
 <BaseLayout pageTitle="Artwork">
    <h1>My artwork</h1>
-
    <ul>
       {
          artwork.map((entry) => {
-            <li>
-               <a href={`${entry.collection}/${entry.slug}`}>{entry.data.title}</a>
-            </li>
+            return (
+               <li>
+                  <a href={`${entry.collection}/${entry.slug}`}>{entry.data.title}</a>
+               </li>
+            )
          })
       }
    </ul>

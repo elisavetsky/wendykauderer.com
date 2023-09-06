@@ -1,6 +1,6 @@
 ---
-title: "Hey! I'm Wendy Kauderer. This sentence is too long."
-tagline: "This is supposed to be a short tagline of sorts. Or you can just get rid of this if you please."
-image: "../../../assets/home_hero.jpeg"
+title: "Hey! I'm Wendy Kauderer."
+tagline: "I'm an artist based in Los Angeles, California."
+image: "../../../assets/home-hero.jpeg"
 image_alt: "A close-up drawing of an eye"
 ---

@@ -10,6 +10,7 @@ const featuredTitle = frontmatter.homepage_featured_section_title;
 import ImageWrapper from "./ImageWrapper.astro";
 import SectionTitle from "./SectionTitle.astro";
 import ArtDetails from "./ArtDetails.astro";
+import FullArtwork from "./FullArtwork.astro";
 
 // import utils
 import { truncateTextToPeriod } from "../utils/textTools.js";
@@ -25,33 +26,20 @@ const featuredArtwork = await getCollection('artwork', ({data}) => {
 
 <section class="py-10 m-auto max-w-screen-2xl">
    <SectionTitle title={featuredTitle} />
-   <div class="w-full flex flex-wrap flex-col gap-3 md:flex-row">
+   <div class="w-full flex gap-1 flex-col md:flex-row">
       {
          featuredArtwork.map((entry) => {
-   
             return (
-               <article class="prose dark:prose-invert dark:prose-p:text-gray-100 mb-16 sm:max-w-xl last-of-type:mb-0">
-                  <div class="px-4">
-                     <h1 class="mb-3 text-4xl sm:text-5xl md:text-6xl md:mb-3">{entry.data.title}</h1>
-                     <ArtDetails date={entry.data.date} tags={entry.data.tags} />
-                  </div>
-                  <div class="sm:px-4">
-                     <a href={`${entry.collection}/${entry.slug}`}>
-                        <ImageWrapper 
-                           src={entry.data.images[0].image} 
-                           alt={entry.data.images[0].image_alt} 
-                           quality={50}
-                           classes={""} 
-                        />
-                     </a>
-                  </div>
-                  <div class="px-4">
-                     <p class="flex flex-col p-3 rounded-md bg-slate-50 dark:bg-slate-800">
-                        {truncateTextToPeriod(entry.data.description)}
-                        <a href={`${entry.collection}/${entry.slug}`} class="no-underline text-sm font-bold font-sans mt-2 ml-auto transition-colors hover:text-gray-400 dark:hover:text-gray-300">Read More</a>
-                     </p>
-                  </div>
-               </article>
+               <div class="mb-10 last-of-type:mb-0">
+                  <FullArtwork 
+                     title={entry.data.title} 
+                     date={entry.data.date}
+                     tags={entry.data.tags}
+                     href={`${entry.collection}/${entry.slug}`}
+                     images={entry.data.images[0]}
+                  />
+               </div>
+               
             )
          })
       }
