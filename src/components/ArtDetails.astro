@@ -8,8 +8,7 @@ const { date, artType, tags } = Astro.props;
 ---
 
 <div class="text-sm font-sans flex items-start">
-   <time datetime={date} class="flex items-center h-[4.5rem] w-[4.5rem] text-xs font-medium p-2 mr-4 mb-3 text-center flex-shrink-0 rounded-full bg-slate-100 dark:bg-slate-800">{humanDate(date)}</time>
-   <span class="text-sm py-1 mr-4 hidden">―</span>
+   <time datetime={date} class="transition-colors duration-700 flex items-center h-[4.5rem] w-[4.5rem] text-xs font-medium p-2 mr-4 mb-3 text-center flex-shrink-0 rounded-full bg-slate-100 dark:bg-slate-800">{humanDate(date)}</time>
    <div class="flex flex-wrap py-0.5 gap-1.5">
       <Tag artType={artType} />
       {

@@ -1,0 +1,26 @@
+---
+// import components
+import FullArtwork from "../components/FullArtwork.astro";
+
+const { artwork, showDescriptions } = Astro.props;
+---
+
+<div class="w-full grid grid-flow-dense md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 md:px-4 md:gap-4">
+   {
+      artwork.map((entry) => {
+         return (
+            <div class="mb-10 last-of-type:mb-0">
+               <FullArtwork 
+                  title={entry.data.title} 
+                  date={entry.data.date}
+                  artType={entry.data.art_type}
+                  tags={entry.data.tags}
+                  href={`${entry.collection}/${entry.slug}`}
+                  images={entry.data.images[0]}
+                  description={showDescriptions && entry.data.description}
+               />
+            </div>
+         )
+      })
+   }
+</div>

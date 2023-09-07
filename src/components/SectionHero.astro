@@ -16,7 +16,9 @@ const { title, image, image_alt } = Astro.props;
       />
    }
    
-   <div class="absolute px-4 pt-24 z-20 flex justify-center items-center w-full h-full max-w-screen-2xl bg-white/60 backdrop-blur-xl prose dark:bg-black/50 dark:prose-invert sm:prose-md md:prose-lg">
-      <h1 class="">{title}</h1>
+   <div class="absolute transition-colors duration-700 flex justify-center items-center w-full h-full px-4 pt-24 z-20 bg-white/60 backdrop-blur-xl  dark:bg-black/50">
+      <div class="prose dark:prose-invert sm:prose-md md:prose-lg max-w-screen-2xl ">
+         <h1 class="">{title}</h1>
+      </div>
    </div>
 </section>
