@@ -27,17 +27,22 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout pageTitle={entry.data.title}>
-   <main class="m-auto">
-      <h1>{entry.data.title}</h1>
-      <FullArtwork 
-         title={entry.data.title} 
-         date={entry.data.date}
-         tags={entry.data.tags}
-         href={`${entry.collection}/${entry.slug}`}
-         images={entry.data.images}
-         description={entry.data.description}
-      />
-      <Content />
+   <main class="m-auto pt-32">
+      <section class="py-10 m-auto max-w-screen-2xl">
+         <div class="w-full flex flex-col flex-wrap justify-between md:flex-row md:px-4 md:gap-4">
+            <FullArtwork 
+               title={entry.data.title} 
+               date={entry.data.date}
+               tags={entry.data.tags}
+               artType={entry.data.art_type}
+               href={`${entry.collection}/${entry.slug}`}
+               images={entry.data.images}
+               description={entry.data.description}
+               showFullDescription={true}
+            />
+            <Content />
+         </div>
+      </section>
    </main>
 </BaseLayout>
 

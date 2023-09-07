@@ -2,13 +2,20 @@
 // import bio markdown
 import { getEntry } from "astro:content";
 const bio = await getEntry("bio", "bio");
+const { Content } = await bio.render();
+
+// import components
+import SectionHero from "../components/SectionHero.astro";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout pageTitle="Bio">
-   <article class="prose dark:prose-invert">
-      <h1>{bio.data.heading}</h1>
-      <p>{bio.data.body}</p>
-   </article>
+   <SectionHero title="Bio" />
+   <main class="m-auto">
+      <article class="prose dark:prose-invert">
+         <h1>{bio.data.heading}</h1>
+         <Content />
+      </article>
+   </main>
 </BaseLayout>

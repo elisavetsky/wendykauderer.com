@@ -1,6 +1,6 @@
 ---
 // Astro
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 
 // import layout
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -10,6 +10,9 @@ import SectionHero from "../../components/SectionHero.astro";
 import ArtTypes from "../../components/ArtTypes.astro";
 import SectionTitle from "../../components/SectionTitle.astro";
 import FullArtwork from "../../components/FullArtwork.astro";
+
+// import hero background
+const artworkHero = await getEntry("settings", "artwork-hero");
 
 // import all non-draft artwork
 const allArtwork = await getCollection('artwork', ({data}) => {
@@ -25,12 +28,12 @@ const artwork = allArtwork.sort((a, b) => {
 ---
 
 <BaseLayout pageTitle="Artwork">
+   <SectionHero title="Artwork" image={artworkHero.data.image} image_alt={artworkHero.data.image_alt} />
    <main class="m-auto">
-      <SectionHero />
       <section class="py-10 m-auto max-w-screen-2xl">
          <ArtTypes />
          <SectionTitle title="My Artwork" />
-         <div class="w-full flex gap-1 flex-col md:flex-row">
+         <div class="w-full grid grid-flow-dense md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 md:px-4 md:gap-4">
             {
                artwork.map((entry) => {
                   return (
@@ -38,6 +41,7 @@ const artwork = allArtwork.sort((a, b) => {
                         <FullArtwork 
                            title={entry.data.title} 
                            date={entry.data.date}
+                           artType={entry.data.art_type}
                            tags={entry.data.tags}
                            href={`${entry.collection}/${entry.slug}`}
                            images={entry.data.images[0]}

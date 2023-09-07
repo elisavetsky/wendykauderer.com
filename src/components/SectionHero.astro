@@ -1,9 +1,22 @@
 ---
-const props = Astro.props;
+// Astro
+import { Image } from "astro:assets";
+
+const { title, image, image_alt } = Astro.props;
 ---
 
-<section class="flex justify-center py-36 px-4 bg-slate-50 dark:bg-slate-800">
-   <div class="flex max-w-screen-2xl prose dark:prose-invert sm:prose-md md:prose-lg">
-      <h1 class="">Artwork</h1>
+<section class="relative flex justify-center h-72 overflow-y-hidden bg-slate-100 dark:bg-slate-800">
+   {
+      image && image_alt &&
+      <Image 
+         src={image} 
+         alt={`A blurred section background: ${image_alt}`} 
+         quality={1}
+         class="object-cover w-full h-full"
+      />
+   }
+   
+   <div class="absolute px-4 pt-24 z-20 flex justify-center items-center w-full h-full max-w-screen-2xl bg-white/60 backdrop-blur-xl prose dark:bg-black/50 dark:prose-invert sm:prose-md md:prose-lg">
+      <h1 class="">{title}</h1>
    </div>
 </section>
