@@ -7,13 +7,8 @@ import { frontmatter } from "../configuration/SitewideConfig.md";
 const featuredTitle = frontmatter.homepage_featured_section_title;
 
 // import components
-import ImageWrapper from "./ImageWrapper.astro";
 import SectionTitle from "./SectionTitle.astro";
-import ArtDetails from "./ArtDetails.astro";
 import FullArtwork from "./FullArtwork.astro";
-
-// import utils
-import { truncateTextToPeriod } from "../utils/textTools.js";
 
 // import Featured Artwork
 const allFeaturedArtwork = await getCollection('artwork', ({data}) => {
@@ -47,7 +42,6 @@ const featuredArtwork = allFeaturedArtwork.sort((a, b) => {
                      description={entry.data.description}
                   />
                </div>
-               
             )
          })
       }

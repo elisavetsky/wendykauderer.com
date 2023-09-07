@@ -4,6 +4,7 @@ import { getCollection, getEntry } from "astro:content";
 
 // import layout
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 
 // import components
 import SectionHero from "../../components/SectionHero.astro";
@@ -29,7 +30,7 @@ const artwork = allArtwork.sort((a, b) => {
 
 <BaseLayout pageTitle="Artwork">
    <SectionHero title="Artwork" image={artworkHero.data.image} image_alt={artworkHero.data.image_alt} />
-   <main class="m-auto">
+   <MainLayout>
       <section class="py-10 m-auto max-w-screen-2xl">
          <ArtTypes />
          <SectionTitle title="My Artwork" />
@@ -52,5 +53,5 @@ const artwork = allArtwork.sort((a, b) => {
             }
          </div>
       </section>
-   </main>
+   </MainLayout>
 </BaseLayout>

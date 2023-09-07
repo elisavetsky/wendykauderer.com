@@ -1,6 +1,7 @@
 ---
 // import layout
 import BaseLayout from '../layouts/BaseLayout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 
 // import components
 import MainHero from '../components/MainHero.astro';
@@ -9,8 +10,9 @@ import Card from '../components/Card.astro';
 ---
 
 <BaseLayout pageTitle="Artist">
-	<main class="m-auto">
-		<MainHero />
+	<MainHero />
+	<MainLayout>
+		
 		<FeaturedArtwork />
 
 		<ul role="list" class="link-card-grid">
@@ -30,7 +32,7 @@ import Card from '../components/Card.astro';
 				body="CARDS"
 			/> -->
 		</ul>
-	</main>
+	</MainLayout>
 </BaseLayout>
 
 <style>

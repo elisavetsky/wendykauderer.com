@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 
 // import layout
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 
 // import components
 import FullArtwork from '../../components/FullArtwork.astro';
@@ -27,7 +28,7 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout pageTitle={entry.data.title}>
-   <main class="m-auto pt-32">
+   <MainLayout classes="pt-32">
       <section class="py-10 m-auto max-w-screen-2xl">
          <div class="w-full flex flex-col flex-wrap justify-between md:flex-row md:px-4 md:gap-4">
             <FullArtwork 
@@ -43,7 +44,7 @@ const { Content } = await entry.render();
             <Content />
          </div>
       </section>
-   </main>
+   </MainLayout>
 </BaseLayout>
 
 
