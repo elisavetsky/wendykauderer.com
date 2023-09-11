@@ -31,6 +31,41 @@
    burgerMenus.forEach((menu) => {
       menu.addEventListener("click", handleClick)
    })
+
+
+   // /////////////////////////////////////////////////
+   // WHENEVER VIEW TRANSITIONS API IS WIDELY AVAILABLE
+   // /////////////////////////////////////////////////
+   /* document.addEventListener('astro:page-load', () => {
+   // This runs on every page load.
+
+   // Navbar
+   const burgerMenus = document.querySelectorAll(".burger");
+
+   function handleClick(el) {
+      const button = el.currentTarget;
+
+      // make menu active
+      const target = button.dataset.target;
+      const targetEl = document.getElementById(target);
+
+      targetEl.classList.toggle("hidden");
+
+      // conditional to apply active styles or not based on menu state
+      const styles = ["bg-gray-100", "dark:bg-gray-700"];
+
+      if (!targetEl.classList.contains("hidden")) {
+         button.classList.add(...styles);
+      } else {
+         button.classList.remove(...styles);
+      }
+   }
+
+   burgerMenus.forEach((menu) => {
+      menu.addEventListener("click", handleClick)
+   })
+   }, { once: false });
+   */
 </script>
 
 <style>

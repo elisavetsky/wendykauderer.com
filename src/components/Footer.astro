@@ -2,9 +2,11 @@
 import Logo from "./Logo.astro";
 ---
 
-<footer class="bg-slate-200 dark:bg-slate-700">
+<footer class="transition-colors bg-slate-200 dark:bg-slate-700">
    <div class="prose prose-sm px-5 pt-20 pb-12 flex flex-col mx-auto max-w-screen-2xl dark:prose-invert sm:text-right md:px-6 md:justify-between md:items-center">
-      <div class="self-start"><Logo /></div>
+      <div class="self-start text-sm">
+         <Logo fontSize="text-[10px]" />
+      </div>
       <div class="w-full mt-20 flex flex-col sm:flex-row sm:justify-end">
          <div class="sm:mr-3">Powered by Astro</div>
          <span class="hidden sm:block sm:mr-3"> | </span>

@@ -33,7 +33,21 @@ const mainHeroCollection = defineCollection({
 		}),
 })
 
+const bioCollection = defineCollection({
+   schema: ({ image }) =>
+		z.object({
+			heading: z.string().optional(),
+         images: z.array(
+            z.object({
+               image: image(),
+               image_alt: z.string()
+            })
+         ),
+		}),
+})
+
 export const collections = {
 	artwork: artworkCollection,
    settings: mainHeroCollection,
+   bio: bioCollection
 };

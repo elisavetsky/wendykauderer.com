@@ -2,6 +2,10 @@
 // Expose site configuration for CMS
 import * as SitewideConfig from "../configuration/SitewideConfig.md";
 
+//  import view transitions
+import { ViewTransitions } from 'astro:transitions';
+
+// import components
 import Header from '../components/Header.astro';
 import Footer from "../components/Footer.astro";
 
@@ -38,6 +42,11 @@ const { pageTitle } = Astro.props;
 			type="font/woff2"
 			crossorigin=""
 		/>
+		
+		<!-- // /////////////////////////////////////////////////
+   		// WHENEVER VIEW TRANSITIONS API IS WIDELY AVAILABLE
+   		// ///////////////////////////////////////////////// -->
+		<!-- <ViewTransitions fallback="none" /> -->
 	</head>
 	<body class="bg-white dark:bg-slate-900 transition duration-700">
 		<Header />
@@ -45,3 +54,21 @@ const { pageTitle } = Astro.props;
 		<Footer />
 	</body>
 </html>
+
+<script>
+	// /////////////////////////////////////////////////
+   // WHENEVER VIEW TRANSITIONS API IS WIDELY AVAILABLE
+   // /////////////////////////////////////////////////
+	/*
+	function setDarkMode() {
+		if (localStorage.darkMode) {
+			document.documentElement.dataset.dark = '';
+		}
+	};
+
+	// Runs on initial navigation
+	setDarkMode();
+	// Runs on view transitions navigation
+	document.addEventListener('astro:after-swap', setDarkMode);
+	*/
+</script>

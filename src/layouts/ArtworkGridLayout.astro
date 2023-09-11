@@ -15,7 +15,7 @@ const { artwork, showDescriptions } = Astro.props;
                   date={entry.data.date}
                   artType={entry.data.art_type}
                   tags={entry.data.tags}
-                  href={`${entry.collection}/${entry.slug}`}
+                  href={`${entry.data.art_type}/${entry.slug}`}
                   images={entry.data.images[0]}
                   description={showDescriptions && entry.data.description}
                />

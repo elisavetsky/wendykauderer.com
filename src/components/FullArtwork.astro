@@ -4,11 +4,18 @@ import ImageWrapper from "./ImageWrapper.astro";
 import ArtDetails from "./ArtDetails.astro";
 
 // import utils
-import { truncateTextToPeriod } from "../utils/textTools";
+import { truncateText } from "../utils/textTools";
 
-const { title, date, artType, tags, href, images, description, showFullDescription } = Astro.props;
-console.log(images)
-
+const { 
+   title, 
+   date, 
+   artType, 
+   tags, 
+   href, 
+   images, 
+   description, 
+   showFullDescription 
+} = Astro.props;
 ---
 
 <article class="prose max-w-none dark:prose-invert dark:prose-p:text-gray-100">
@@ -59,7 +66,7 @@ console.log(images)
                   } else {
                      return (
                         <>
-                           {truncateTextToPeriod(description)}
+                           {truncateText(description)}
                            <a href={href} class="no-underline text-sm font-bold font-sans mt-2 ml-auto transition-colors hover:text-gray-400 dark:hover:text-gray-300">Read More</a>
                         </>
                      )

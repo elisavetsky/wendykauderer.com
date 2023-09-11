@@ -1,7 +1,7 @@
 ---
-const { classes } = Astro.props;
+const { classes, padding } = Astro.props;
 ---
 
-<main id="main-content" class={`m-auto ${classes}`}>
+<main id="main-content" class={`${padding || "py-8"} ${classes || ""}`}>
    <slot />
 </main>

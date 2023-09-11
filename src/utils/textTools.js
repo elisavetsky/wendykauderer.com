@@ -1,7 +1,7 @@
-function truncateTextToPeriod(text, sentences) {
-   const searchStr = ".";
-   const firstPeriod = text.indexOf(searchStr, 1);
-   const secondPeriod = text.indexOf(searchStr, firstPeriod + 1);
+function truncateText(text, sentences) {
+   const searchStr = " ";
+   const firstPeriod = text.indexOf(searchStr, 0);
+   const secondPeriod = text.indexOf(searchStr, firstPeriod * 10);
 
    const output = text.slice(0, secondPeriod);
 
@@ -20,4 +20,4 @@ function humanDate(date) {
    return readableDate;
 }
 
-export { truncateTextToPeriod, humanDate }
+export { truncateText, humanDate }

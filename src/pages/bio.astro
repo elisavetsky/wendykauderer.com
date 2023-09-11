@@ -1,23 +1,46 @@
 ---
+// Astro
+import { getImage, Image } from "astro:assets";
+
 // import bio markdown
 import { getEntry } from "astro:content";
 const bio = await getEntry("bio", "bio");
 const { Content } = await bio.render();
 
+const imageArr = await Promise.all(
+   bio.data.images.map(async ({image, image_alt}) => {
+      const img = await getImage({
+         src: image,
+         alt: image_alt
+      })
+      
+      return img;
+   })
+)
+
 // import layouts
 import BaseLayout from "../layouts/BaseLayout.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+import Flex2ColLayout from "../layouts/Flex2ColLayout.astro";
 
 // import components
 import SectionHero from "../components/SectionHero.astro";
+import InlineLightboxWrapper from "../components/InlineLightboxWrapper.astro";
 ---
 
 <BaseLayout pageTitle="Bio">
-   <SectionHero title="Bio" />
-   <MainLayout>
-      <article class="prose dark:prose-invert">
-         <h1>{bio.data.heading}</h1>
-         <Content />
-      </article>
+   <SectionHero />
+   <MainLayout padding="py-20">
+      <Flex2ColLayout>
+         <article class="m-auto px-4 flex-1 prose justify-center dark:prose-invert lg:prose-lg">
+            <h1 class="md:text-5xl">Bio</h1>
+            {
+               bio.data.heading && 
+               <h2>{bio.data.heading}</h2>
+            }
+            <Content />
+         </article>
+         <InlineLightboxWrapper imageArr={imageArr} classes="flex-1 m-auto md:px-4" />
+      </Flex2ColLayout>
    </MainLayout>
 </BaseLayout>

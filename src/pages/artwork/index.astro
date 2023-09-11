@@ -30,9 +30,9 @@ const artwork = allArtwork.sort((a, b) => {
 ---
 
 <BaseLayout pageTitle="Artwork">
-   <SectionHero title="Artwork" image={artworkHero.data.image} image_alt={artworkHero.data.image_alt} />
+   <SectionHero title="All Artwork" image={artworkHero.data.image} image_alt={artworkHero.data.image_alt} />
    <MainLayout>
-      <section class="py-10 m-auto max-w-screen-2xl">
+      <section class="m-auto max-w-screen-2xl">
          <ArtTypes />
          <SectionTitle title="My Artwork" />
          <ArtworkGridLayout artwork={artwork} />

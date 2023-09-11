@@ -1,0 +1,49 @@
+---
+// Astro
+import { getCollection } from 'astro:content';
+
+// import layout
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+
+// import components
+import FullArtwork from '../../components/FullArtwork.astro';
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+   const artworkEntries = await getCollection('artwork');
+   return artworkEntries.map(entry => ({
+      params: { 
+         art_type: entry.data.art_type,
+         slug: entry.slug
+      }, 
+      props: { 
+         entry 
+      },
+   }));
+}
+
+// 2. For your template, you can get the entry directly from the prop
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout pageTitle={entry.data.title}>
+   <MainLayout classes="pt-32">
+      <section class="py-10 m-auto max-w-screen-2xl">
+         <div class="w-full flex flex-col flex-wrap justify-between md:flex-row md:px-4 md:gap-4">
+            <FullArtwork 
+               title={entry.data.title} 
+               date={entry.data.date}
+               tags={entry.data.tags}
+               artType={entry.data.art_type}
+               href={`${entry.data.art_type}/${entry.slug}`}
+               images={entry.data.images}
+               description={entry.data.description}
+               showFullDescription={true}
+            />
+            <Content />
+         </div>
+      </section>
+   </MainLayout>
+</BaseLayout>

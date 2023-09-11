@@ -33,19 +33,19 @@ getLatestOfArtType("painting", "image")
 // art types array
 const artTypes = [
    { 
-      route: "paintings", 
+      route: "painting", 
       label: "Paintings", 
       image: getLatestOfArtType("painting", "image"), 
       image_alt: getLatestOfArtType("painting", "image_alt") 
    },
    { 
-      route: "drawings", 
+      route: "drawing", 
       label: "Drawings",
       image: getLatestOfArtType("drawing", "image"), 
       image_alt: getLatestOfArtType("drawing", "image_alt") 
    },
    { 
-      route: "sculptures", 
+      route: "sculpture", 
       label: "Sculptures",
       image: getLatestOfArtType("sculpture", "image"), 
       image_alt: getLatestOfArtType("sculpture", "image_alt")
@@ -55,13 +55,13 @@ const artTypes = [
 const props = Astro.props;
 ---
 
-<menu class="flex items-center p-4 mb-8 overflow-x-scroll font-sans text-slate-800 text-sm font-semibold dark:text-slate-100">
+<menu class="flex items-center p-4 overflow-x-scroll font-sans text-slate-900 drop-shadow-xl text-sm font-semibold dark:text-slate-100">
    {
       artTypes.map(({route, label, image, image_alt}) => {
          return (
-            <a href={`/artwork/${route}`} class="relative shrink-0 w-32 h-32 mr-4 rounded-full last-of-type:mr-0">
-               <li class="absolute z-10 backdrop-blur-sm flex justify-center items-center bg-slate-50/20 w-full h-full rounded-full p-2 transition-colors hover:bg-slate-50/60 dark:bg-slate-950/40 dark:hover:bg-slate-950/70">
-                  {label}
+            <a href={`${route}`} class="relative shrink-0 w-32 h-32 mr-4 mb-4 rounded-full">
+               <li class="absolute z-10 backdrop-blur-md backdrop-saturate-200 flex justify-center items-center bg-white/70 w-full h-full rounded-full p-1 transition-all hover:backdrop-blur-sm hover:bg-slate-50/60 dark:bg-slate-950/50 dark:hover:bg-slate-950/70">
+                  <span class="drop-shadow-white dark:drop-shadow-sm">{label}</span>
                </li>
                {
                   image && image_alt &&
