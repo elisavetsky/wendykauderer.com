@@ -28,7 +28,12 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<BaseLayout pageTitle={entry.data.title}>
+<BaseLayout 
+   pageTitle={entry.data.title}
+   options={{
+      headerShadow: false
+   }}
+> 
    <MainLayout classes="pt-32">
       <section class="py-10 m-auto max-w-screen-2xl">
          <div class="w-full flex flex-col flex-wrap justify-between md:flex-row md:px-4 md:gap-4">

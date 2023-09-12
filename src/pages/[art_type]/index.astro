@@ -1,0 +1,64 @@
+---
+// Astro
+import { getCollection } from 'astro:content';
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+   const artworkEntries = await getCollection('artwork');
+   return artworkEntries.map(entry => ({
+      params: { 
+         art_type: entry.data.art_type,
+         slug: entry.slug
+      }, 
+      props: { 
+         entry 
+      },
+   }));
+}
+
+// 2. For your template, you can get the entry directly from the prop
+const { entry } = Astro.props;
+const params = Astro.params;
+const { Content } = await entry.render();
+
+// import utils
+import { titleCase } from "../../utils/textTools.js"
+
+// import layout
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import ArtworkGridLayout from "../../layouts/ArtworkGridLayout.astro";
+
+// import components
+import SectionHero from "../../components/SectionHero.astro";
+import ArtTypes from "../../components/ArtTypes.astro";
+import SectionTitle from "../../components/SectionTitle.astro";
+import FullArtwork from "../../components/FullArtwork.astro";
+
+// import all non-draft artwork
+const allArtwork = await getCollection('artwork', ({data}) => {
+   // prevent draft posts from showing
+   return data.draft !== true && data.art_type === params.art_type;
+});
+// sort latest to oldest by default
+const artwork = allArtwork.sort((a, b) => {
+   const latestToOldest = Date.parse(b.data.date) - Date.parse(a.data.date);
+
+   return latestToOldest;
+})
+---
+
+<BaseLayout pageTitle={`${titleCase(params.art_type)}s`}>
+   <SectionHero 
+      title={`${titleCase(params.art_type)}s`} 
+      image={artwork[0].data.images[0].image}
+      image_alt={artwork[0].data.images[0].image_alt}
+   />
+   <MainLayout>
+      <section class="m-auto max-w-screen-2xl">
+         <ArtTypes />
+         <SectionTitle title={`My ${params.art_type}s`} />
+         <ArtworkGridLayout artwork={artwork} />
+      </section>
+   </MainLayout>
+</BaseLayout>

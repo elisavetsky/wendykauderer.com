@@ -28,7 +28,12 @@ import SectionHero from "../components/SectionHero.astro";
 import InlineLightboxWrapper from "../components/InlineLightboxWrapper.astro";
 ---
 
-<BaseLayout pageTitle="Bio">
+<BaseLayout 
+   pageTitle="Bio"
+   options={{
+      headerShadow: false
+   }}
+>
    <SectionHero />
    <MainLayout padding="py-20">
       <Flex2ColLayout>

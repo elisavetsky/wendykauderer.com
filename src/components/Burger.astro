@@ -1,7 +1,7 @@
 ---
 ---
 
-<button aria-label="Main menu button" data-target="main-menu" class="burger flex items-center relative cursor-pointer rounded-b-lg rounded-t-sm transition-all delay-75 hover:bg-gray-100 hover:shadow-lg dark:hover:bg-slate-700 dark:hover:shadow-black md:hidden">
+<button aria-label="Main menu button" data-target="main-menu" class="burger z-50 flex items-center relative cursor-pointer rounded-b-lg rounded-t-sm transition-all delay-75 hover:bg-gray-100 hover:shadow-lg dark:hover:bg-slate-700 dark:hover:shadow-black md:hidden">
    <span class="patties w-12 h-10"></span>
 </button>
 
@@ -19,12 +19,15 @@
       targetEl.classList.toggle("hidden");
 
       // conditional to apply active styles or not based on menu state
-      const styles = ["bg-gray-100", "dark:bg-gray-700"];
+      const buttonStyles = ["bg-gray-100", "dark:bg-gray-700"];
+      const menuStyles = ["-translate-y-32"];
 
       if (!targetEl.classList.contains("hidden")) {
-         button.classList.add(...styles);
+         button.classList.add(...buttonStyles);
+         // targetEl.classList.remove(...menuStyles);
       } else {
-         button.classList.remove(...styles);
+         button.classList.remove(...buttonStyles);
+         // targetEl.classList.add(...menuStyles);
       }
    }
 

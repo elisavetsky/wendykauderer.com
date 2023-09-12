@@ -9,7 +9,12 @@ import MainHero from '../components/MainHero.astro';
 import Card from '../components/Card.astro';
 ---
 
-<BaseLayout pageTitle="Artist">
+<BaseLayout 
+	pageTitle="Artist"
+	options={{
+      headerShadow: true
+   }}
+>
 	<MainHero />
 	<MainLayout>
 		

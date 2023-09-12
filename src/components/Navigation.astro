@@ -7,22 +7,33 @@ import { frontmatter } from "../configuration/SitewideConfig.md";
 const sections = frontmatter.sections;
 
 // import components
+import Dropdown from './Dropdown.astro';
 import ThemeToggle from './ThemeToggle.jsx';
 ---
 
-<nav aria-label="Main menu" id="main-menu" class="hidden text-lg font-medium h-full mt-7 md:m-0 md:flex md:items-stretch md:h-10">
-   <noscript>
-      <ul>
-         
-      </ul>
-   </noscript>
-
-   <ul class="flex flex-col justify-between gap-1 leading-loose mb-4 md:flex-row md:mb-0 md:pr-12">
+<nav aria-label="Main menu" id="main-menu" class="hidden text-lg font-medium mt-7 md:translate-y-0 md:m-0 md:flex md:h-10">
+   <ul class="flex flex-col justify-between leading-loose mb-4 md:flex-row md:gap-8 md:mb-0 md:mr-12">
       { 
-         sections?.map(({title}) => {
+         sections?.map(({title, dropdown_items}) => {
             return (
-               <li class="md:pr-12 last:pr-0">
-                  <a class="transition-colors hover:text-gray-500 dark:hover:text-gray-300" href={`/${slugify(title)}`}>{title}</a>
+               <li class={`${dropdown_items ? "dropdown-container" : "" } inline-flex items-center relative`}>
+                  {
+                     dropdown_items ?
+                     <Dropdown items={dropdown_items} />
+                     <button 
+                        class={`dropdown-trigger transition-colors hover:text-gray-500 dark:hover:text-gray-300 py-1 px-4`}
+                     >
+                        {title}
+                     </button>
+                     :
+                     <a 
+                        class="py-1 px-4 transition-colors hover:text-gray-500 dark:hover:text-gray-300" 
+                        href={`/${slugify(title)}`}
+                     >
+                        {title}
+                     </a>
+                  }
+                  
                </li>
             )
          })
@@ -30,3 +41,31 @@ import ThemeToggle from './ThemeToggle.jsx';
    </ul>
    <ThemeToggle client:load />
 </nav>
+
+<script>
+   const dropTriggers = document.querySelectorAll(".dropdown-trigger");
+   const dropMenus = document.querySelectorAll(".dropdown-menu");
+
+   function handleClick(el) {
+      const button = el.currentTarget;
+      
+      const dropMenu = button.closest(".dropdown-container").querySelector(".dropdown-menu");
+      
+      // toggle 'hidden' class for dropMenu
+      dropMenu.classList.toggle("hidden");
+   }
+
+   function handleClickOutside(el) {
+      clickedEl = el.currentTarget
+   }
+
+   dropTriggers.forEach((dropTrigger) => {
+      dropTrigger.addEventListener("click", handleClick);
+   })
+
+   dropMenus.forEach((dropMenu) => {
+      dropMenu.addEventListener("blur", (e) => {
+         dropMenu.classList.add("hidden");
+      })
+   })
+</script>

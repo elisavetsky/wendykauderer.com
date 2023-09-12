@@ -5,7 +5,7 @@ title: "Winter Morning"
 date: 2017-09-07
 art_type: "painting"
 tags: 
-  - "landscapes"
+  - "landscape"
   - "oil"
   - "trees"
   - "water"

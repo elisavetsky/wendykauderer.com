@@ -32,9 +32,10 @@ const artwork = allArtwork.sort((a, b) => {
 <BaseLayout pageTitle="Artwork">
    <SectionHero title="All Artwork" image={artworkHero.data.image} image_alt={artworkHero.data.image_alt} />
    <MainLayout>
+      <SectionTitle title="My Artwork" />
       <section class="m-auto max-w-screen-2xl">
          <ArtTypes />
-         <SectionTitle title="My Artwork" />
+         
          <ArtworkGridLayout artwork={artwork} />
       </section>
    </MainLayout>

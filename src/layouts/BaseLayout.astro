@@ -12,7 +12,7 @@ import Footer from "../components/Footer.astro";
 // import css
 import '../styles/main.css'
 
-const { pageTitle } = Astro.props;
+const { pageTitle, options } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -48,8 +48,8 @@ const { pageTitle } = Astro.props;
    		// ///////////////////////////////////////////////// -->
 		<!-- <ViewTransitions fallback="none" /> -->
 	</head>
-	<body class="bg-white dark:bg-slate-900 transition duration-700">
-		<Header />
+	<body class="bg-white dark:bg-slate-950 transition duration-700">
+		<Header shadow={options?.headerShadow} />
 		<slot />
 		<Footer />
 	</body>

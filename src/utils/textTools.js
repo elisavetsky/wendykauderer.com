@@ -8,16 +8,31 @@ function truncateText(text, sentences) {
    return `${output} ...`;
 }
 
+function titleCase(words) {
+   const wordArray = words.split(" ");
+
+   return wordArray.map((word) => {
+      return `${word[0].toUpperCase()}${word.substring(1)}`
+   }).join(" ")
+}
+
 function humanDate(date) {
    const options = {
       year: 'numeric',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
+      timeZone: "UTC"
    }
 
-   const readableDate = new Date(date).toLocaleDateString(undefined, options);
+   const readableDate = new Date(date).toLocaleDateString("en-US", options);
 
    return readableDate;
 }
 
-export { truncateText, humanDate }
+
+
+export { 
+   truncateText, 
+   humanDate,
+   titleCase,
+}
