@@ -1,0 +1,93 @@
+local_backend: true # when using the default proxy server port
+
+site_url: https://wendykauderer.com
+logo_url: /public/favicon.svg
+
+# publish_mode: editorial_workflow
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: 'src/content/artwork/*' # Folder where user uploaded files should go
+public_folder: '/images/uploads' # Resolved folder on live site
+
+#####################
+#### Collections ####
+#####################
+
+collections:
+  - name: 'artwork' # Used in routes, ie.: /admin/collections/:slug/edit
+    label: 'My Artwork' # Used in the UI, ie.: "New Post"
+    folder: 'src/content/artwork' # The path to the folder where the documents are stored
+    create: true
+    nested:
+      depth: 200 # max depth to show in the collection tree
+      summary: '{{title}} | {{fields.date}}' # optional summary for a tree node, defaults to the inferred title field
+    view_filters:
+      - label: 'Featured'
+        field: 'featured'
+        pattern: true
+      - label: 'Not Featured'
+        field: 'featured'
+        pattern: false
+      - label: 'Paintings'
+        field: 'art_type'
+        pattern: 'painting'
+      - label: 'Drawings'
+        field: 'art_type'
+        pattern: 'drawing'
+      - label: 'Sculptures'
+        field: 'art_type'
+        pattern: 'sculpture'
+    view_groups:
+      - label: 'Drafts'
+        field: 'draft'
+      - label: 'Year'
+        field: 'date'
+        # groups items based on the value matched by the pattern
+        pattern: \d{4}
+      - label: 'Artwork Type - '
+        field: 'art_type'
+    fields:
+      - { label: 'Draft', name: 'draft', widget: 'boolean' }
+      - { label: '⭐ Featured ⭐', name: 'featured', widget: 'boolean' }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: '📆 Artwork Date', name: 'date', widget: 'datetime' }
+      - label: '🎨 Art Type'
+        name: 'art_type'
+        widget: 'select'
+        options:
+          - { label: "Painting", value: "painting" }
+          - { label: "Drawing", value: "drawing" }
+          - { label: "Scultpure", value: "sculpture" }
+      - label: '🏷️ Tags'
+        label_singular: 'Tag'
+        name: 'tags'
+        widget: 'list'
+        multiple: true
+        collapsed: true
+        summary: '{{fields | lower}}' # summary string template transformation
+      - label: " 🏞️ Artwork Image(s)"
+        label_singular: "Image"
+        name: "images"
+        widget: "list"
+        collapsed: false
+        summary: "{{fields.image}} ||||| ALT TEXT: {{fields.image_alt}}"
+        fields:
+          - label: "📷 Image"
+            name: "image"
+            widget: "image"
+            choose_url: false
+            default: null
+            media_folder: "./"
+            media_library:
+              config:
+              multiple: true
+          - label: "♿ Alternative Text (for Accessibility)"
+            name: "image_alt"
+            widget: "text"
+        
+      - { label: '💬 Description', name: 'description', widget: 'text' }
+      - { label: '✏️ Body', name: 'body', widget: 'markdown' }
+      

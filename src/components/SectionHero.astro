@@ -5,9 +5,8 @@ import { Image } from "astro:assets";
 const { title, image, image_alt } = Astro.props;
 ---
 
-<section class=`${!title ? "h-24" : "h-72 bg-slate-100 dark:bg-slate-800"} relative flex justify-center overflow-y-hidden`>
-   {
-      image && image_alt &&
+<section class=`${!title ? "h-20 md:h-40" : "h-72 bg-slate-100 dark:bg-slate-800"} relative flex justify-center overflow-y-hidden`>
+   {image && image_alt &&
       <Image 
          src={image} 
          alt={`A blurred section background: ${image_alt}`} 
@@ -16,9 +15,8 @@ const { title, image, image_alt } = Astro.props;
       />
    }
    
-   {  
-      title &&
-      <div class="absolute transition-colors duration-700 flex justify-center items-center w-full h-full px-4 pt-24 z-20 bg-white/50 backdrop-blur-2xl  dark:bg-black/50">
+   {title &&
+      <div class="absolute transition-colors duration-700 flex justify-center items-end w-full h-full px-4 py-10 z-20 bg-white/50 backdrop-blur-2xl  dark:bg-black/50">
          <div class="prose dark:prose-invert sm:prose-md md:prose-lg max-w-screen-2xl ">
             <h1 class="">{title}</h1>
          </div>

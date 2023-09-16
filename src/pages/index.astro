@@ -7,6 +7,9 @@ import FeaturedArtworkLayout from '../layouts/FeaturedArtworkLayout.astro';
 // import components
 import MainHero from '../components/MainHero.astro';
 import Card from '../components/Card.astro';
+
+// import NetlifyIdentity
+import { NetlifyIdentity } from '../components/NetlifyIdentity.jsx'
 ---
 
 <BaseLayout 
@@ -38,4 +41,7 @@ import Card from '../components/Card.astro';
 			/> -->
 		</ul>
 	</MainLayout>
+
+	<!-- Netlify Identity -->
+	<NetlifyIdentity client:only />
 </BaseLayout>
