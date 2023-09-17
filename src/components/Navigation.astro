@@ -9,6 +9,7 @@ const sections = frontmatter.sections;
 // import components
 import Dropdown from './Dropdown.astro';
 import ThemeToggle from './ThemeToggle.jsx';
+import Link from './Link.jsx';
 ---
 
 <nav aria-label="Main menu" id="main-menu" class="hidden text-md mt-8 md:translate-y-0 md:m-0 md:flex md:flex-col">
@@ -21,17 +22,18 @@ import ThemeToggle from './ThemeToggle.jsx';
                      dropdown_items ?
                      <Dropdown items={dropdown_items} />
                      <button 
-                        class={`dropdown-trigger transition-colors hover:text-slate-500 dark:hover:text-slate-100 py-1 px-4`}
+                        class={`dropdown-trigger py-1 px-4 transition-colors hover:text-slate-600 dark:hover:text-slate-100`}
                      >
                         {title}
                      </button>
                      :
-                     <a 
-                        class="py-1 px-4 transition-colors hover:text-slate-500 dark:hover:text-slate-100" 
+                     <Link
                         href={`/${slugify(title)}`}
+                        size="md"
+                        classes="hover:text-slate-600 dark:hover:text-slate-100"
                      >
                         {title}
-                     </a>
+                     </Link>
                   }
                   
                </li>
