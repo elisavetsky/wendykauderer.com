@@ -51,8 +51,8 @@ collections:
         field: 'art_type'
     fields:
       - { label: 'Draft', name: 'draft', widget: 'boolean' }
-      - { label: '⭐ Featured ⭐', name: 'featured', widget: 'boolean' }
-      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: '💲 Sold/Unavailable', name: 'sold', widget: 'boolean', default: false }
+      - { label: '❇️ Title', name: 'title', widget: 'string' }
       - { label: '📆 Artwork Date', name: 'date', widget: 'datetime' }
       - label: '🎨 Art Type'
         name: 'art_type'
