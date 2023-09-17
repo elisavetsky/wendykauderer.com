@@ -7,11 +7,6 @@ date: 2017-09-07
 art_type: "painting"
 tags: 
   - "landscape"
-  - "oil"
-  - "trees"
-  - "water"
-  - "clouds"
-  - "sunlight"
 images: 
   - image: "./winter-morning.jpg"
     image_alt: "THIS DESCRIPTION IS REQUIRED"

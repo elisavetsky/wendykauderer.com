@@ -132,9 +132,12 @@ export default function DecapCMS() {
 							label: "🏷️ Tags",
 							label_singular: "Tag",
 							name: "tags",
-							widget: "list",
+							widget: "relation",
 							multiple: true,
-							collapsed: true,
+                     collection: "tags",
+							value_field: "slug",
+                     search_fields: ["slug"],
+                     min: 1,
 							summary: "{{fields | lower}}", // # summary string template transformation
 						},
 						{
@@ -181,6 +184,23 @@ export default function DecapCMS() {
 						},
 					],
 				},
+            /////////////////////
+            // TAGS COLLECTION //
+            /////////////////////
+            {
+					name: "tags",
+					label: "Tags",
+               label_singular: "Tag",
+					folder: "src/content/tags",
+					create: true,
+               fields: [
+						{
+							label: "Name",
+							name: "slug",
+							widget: "string",
+						},
+               ]
+            }
 			],
 		},
 	});

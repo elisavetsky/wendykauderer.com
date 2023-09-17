@@ -6,7 +6,7 @@ title: "Life"
 date: 2020-06-01
 art_type: "sculpture"
 tags: 
-  - "person"
+  - "bronze powder"
 images: 
   - image: "./life.jpg"
     image_alt: "THIS DESCRIPTION IS REQUIRED"

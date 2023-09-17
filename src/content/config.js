@@ -1,4 +1,4 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, reference, z } from "astro:content";
 
 const artworkCollection = defineCollection({
    type: "content",
@@ -8,8 +8,8 @@ const artworkCollection = defineCollection({
 			title: z.string(),
          date: z.date(),
          art_type: z.string(),
-         tags: z.array(z.string()),
-         featured: z.boolean(),
+         tags: z.array(reference('tags')),
+         // featured: z.boolean(),
 			// image: image().refine((img) => img.width >= 600, {
 			// 	message: "Cover image must be at least 600 pixels wide!",
 			// }),
@@ -22,6 +22,13 @@ const artworkCollection = defineCollection({
          description: z.string(),
 		}),
 });
+
+const tagCollection = defineCollection({
+   type: "content",
+   schema: z.object({
+      title: z.string()
+   })
+})
 
 const mainHeroCollection = defineCollection({
    schema: ({ image }) =>
@@ -48,6 +55,7 @@ const bioCollection = defineCollection({
 
 export const collections = {
 	artwork: artworkCollection,
+   tags: tagCollection,
    settings: mainHeroCollection,
    bio: bioCollection
 };
