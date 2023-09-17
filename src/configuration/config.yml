@@ -1,13 +1,13 @@
 local_backend: true # when using the default proxy server port
 
-site_url: https://wendykauderer.com
-logo_url: /public/favicon.svg
+site_url: 'https://wendykauderer.com'
+logo_url: '/public/favicon.svg'
 
-# publish_mode: editorial_workflow
+# publish_mode: 'editorial_workflow'
 
 backend:
-  name: git-gateway
-  branch: main
+  name: 'git-gateway'
+  branch: 'main'
 
 media_folder: 'src/content/artwork/*' # Folder where user uploaded files should go
 public_folder: '/images/uploads' # Resolved folder on live site
@@ -46,7 +46,7 @@ collections:
       - label: 'Year'
         field: 'date'
         # groups items based on the value matched by the pattern
-        pattern: \d{4}
+        pattern: '\d{4}'
       - label: 'Artwork Type - '
         field: 'art_type'
     fields:
