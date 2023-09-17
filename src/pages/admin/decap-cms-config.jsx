@@ -210,5 +210,5 @@ export default function DecapCMS() {
 	CMS.registerPreviewStyle("./public/admin/example.css");
 
 	// Register preview templates
-	// CMS.registerPreviewTemplate("artwork", ArtworkPreview);
+	CMS.registerPreviewTemplate("artwork", ArtworkPreview);
 }

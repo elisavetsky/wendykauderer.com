@@ -1,7 +1,10 @@
-export default function Link({ children, href, target, size, classes }) {
+export default function Link({ children, href, target, size, inline, transition, classes }) {
 
    const textSize = size && `text-${size}`;
-   const className = `transition-colors py-1 px-4 ${textSize} ${classes}`
+   const padding = inline ? "" : "py-1 px-4";
+   const transitionClass = transition || "transition-colors";
+
+   const className = `${transitionClass} ${padding} ${textSize} ${classes}`;
 
    return (
       <a 
