@@ -1,12 +1,12 @@
 ---
 draft: false
 # layout: "../../layouts/SingleArtworkLayout.astro"
+sold: false
 title: "Life"
 date: 2020-06-01
 art_type: "sculpture"
 tags: 
   - "person"
-featured: true
 images: 
   - image: "./life.jpg"
     image_alt: "THIS DESCRIPTION IS REQUIRED"

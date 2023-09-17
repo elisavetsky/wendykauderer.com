@@ -1,13 +1,13 @@
 ---
 draft: false
 # layout: "../../layouts/SingleArtworkLayout.astro"
+sold: false
 title: "Jarrón"
 date: 2020-07-06
 art_type: "painting"
 tags: 
   - "still life"
-  - "flowers"
-featured: true
+  - "floral"
 images: 
   - image: "./jarron.jpg"
     image_alt: "THIS DESCRIPTION IS REQUIRED"

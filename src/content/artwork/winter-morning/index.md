@@ -1,6 +1,7 @@
 ---
 draft: false
 # layout: "../../layouts/SingleArtworkLayout.astro"
+sold: false
 title: "Winter Morning"
 date: 2017-09-07
 art_type: "painting"
@@ -11,7 +12,6 @@ tags:
   - "water"
   - "clouds"
   - "sunlight"
-featured: true
 images: 
   - image: "./winter-morning.jpg"
     image_alt: "THIS DESCRIPTION IS REQUIRED"

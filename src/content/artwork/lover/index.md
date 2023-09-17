@@ -1,12 +1,12 @@
 ---
 draft: false
 # layout: "../../layouts/SingleArtworkLayout.astro"
+sold: false
 title: "Lover"
 date: 2020-06-08
 art_type: "drawing"
 tags: 
   - "portrait"
-featured: true
 images: 
   - image: "./lover.jpg"
     image_alt: "THIS DESCRIPTION IS REQUIRED"
