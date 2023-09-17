@@ -1,0 +1,14 @@
+---
+// import components
+import Header from "../components/Header.astro"
+
+const props = Astro.props;
+---
+
+<div class="grid grid-flow-dense items-center md:grid-cols-12 md:min-h-screen">
+   <!-- <Header shadow={options?.headerShadow} /> -->
+   <Header />
+   <main>
+      <slot />
+   </main>
+</div>

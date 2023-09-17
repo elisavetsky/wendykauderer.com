@@ -1,7 +1,7 @@
 ---
 // import layout
 import BaseLayout from '../layouts/BaseLayout.astro';
-import MainLayout from '../layouts/MainLayout.astro';
+import MainGridLayout from '../layouts/MainGridLayout.astro';
 import FeaturedArtworkLayout from '../layouts/FeaturedArtworkLayout.astro';
 
 // import components
@@ -18,8 +18,8 @@ import { NetlifyIdentity } from '../components/NetlifyIdentity.jsx'
       headerShadow: true
    }}
 >
-	<MainHero />
-	<MainLayout>
+	<!-- <MainHero /> -->
+	<MainGridLayout>
 		
 		<FeaturedArtworkLayout />
 
@@ -40,7 +40,7 @@ import { NetlifyIdentity } from '../components/NetlifyIdentity.jsx'
 				body="CARDS"
 			/> -->
 		</ul>
-	</MainLayout>
+	</MainGridLayout>
 
 	<!-- Netlify Identity -->
 	<NetlifyIdentity client:only />

@@ -38,7 +38,8 @@
 	}
 
    html {
-		font-family: Georgia, "New York", Georgia, Cochin, 'Times New Roman', Times, ui-serif, serif, system-ui, sans-serif;
+		/* font-family: Georgia, "New York", Georgia, Cochin, 'Times New Roman', Times, ui-serif, serif, system-ui, sans-serif; */
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Helvetica, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
 		background: #ffffff;
 		background-size: 224px;
 	}
