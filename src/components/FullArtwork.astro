@@ -12,6 +12,7 @@ const {
    artType, 
    tags, 
    href, 
+   mainImage,
    images, 
    description, 
    showFullDescription 
@@ -24,8 +25,15 @@ const {
       <ArtDetails date={date} artType={artType} tags={tags} />
    </div>
    <div class="sm:px-4 md:px-0">
-      
-      {() => { 
+      <a href={href}>
+         <ImageWrapper 
+            src={mainImage.src} 
+            alt={mainImage.alt} 
+            quality={50}
+            classes={"w-full relative transition transition-translate ease-in-out delay-75 duration-300 hover:shadow-2xl hover:shadow-black/20 dark:hover:shadow-slate-700 sm:hover:translate-x-1 sm:hover:-translate-y-1"} 
+         />
+      </a> 
+      <!-- {() => { 
          if (!Array.isArray(images)) {
             return (
                <a href={href}>
@@ -51,9 +59,9 @@ const {
                )
             })
          }
-      }}
+      }} -->
    </div>
-   
+
    {description && 
       <div class="px-4">
          <p class="flex flex-col p-3 rounded-md prose max-w-none dark:prose-invert bg-slate-50 dark:bg-slate-800">

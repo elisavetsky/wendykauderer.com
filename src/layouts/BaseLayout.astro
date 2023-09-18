@@ -12,7 +12,7 @@ import Footer from "../components/Footer.astro";
 // import css
 import '../styles/main.css'
 
-const { pageTitle, options } = Astro.props;
+const { pageTitle, pageDescription, pageImage, options } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -26,6 +26,12 @@ const { pageTitle, options } = Astro.props;
 		<!-- Esssential meta tags -->
 		<title>{`${SitewideConfig.frontmatter.site_name} - ${pageTitle}`}</title>
 		<meta name="description" content={SitewideConfig.frontmatter.site_description}>
+
+		<!-- SEO -->
+		<meta property="og:title" content={pageTitle}>
+		<meta property="og:description" content={pageDescription}>
+		<meta property="og:image" content={pageImage}>
+		<meta property="og:url" content={`http://wendykauderer.com${Astro.url.pathname}`}>
 
 		<link
 			rel="preload"

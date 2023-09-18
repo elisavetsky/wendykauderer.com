@@ -1,3 +1,3 @@
 ---
-slug: "bronze powder"
+slug: bronze powder
 ---

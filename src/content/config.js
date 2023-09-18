@@ -13,13 +13,14 @@ const artworkCollection = defineCollection({
 			// image: image().refine((img) => img.width >= 600, {
 			// 	message: "Cover image must be at least 600 pixels wide!",
 			// }),
+         image: image(),
+         main_image_alt: z.string(),
          images: z.array(
             z.object({
                image: image(),
                image_alt: z.string()
             })
          ),
-         description: z.string(),
 		}),
 });
 

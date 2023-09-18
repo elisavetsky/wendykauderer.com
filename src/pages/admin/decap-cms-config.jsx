@@ -26,8 +26,8 @@ export default function DecapCMS() {
 				name: "git-gateway",
 				branch: "main",
 			},
-			media_folder: "src/content/artwork/*", // # Folder where user uploaded files should go
-			public_folder: "/images/uploads", // # Resolved folder on live site
+			media_folder: "/src/assets/images", // # Folder where user uploaded files should go
+			public_folder: "/", // # Resolved folder on live site
 
 		/*
       #####################
@@ -40,7 +40,10 @@ export default function DecapCMS() {
 					name: "artwork",
 					label: "My Artwork",
 					folder: "src/content/artwork",
+					media_folder: "/src/assets/images",
 					create: true,
+					preview_path: "{{fields.art_type}}/{{slug}}",
+					summary: "{{title}} | {{fields.date}}",
 					nested: {
 						depth: 200,
 						summary: "{{title}} | {{fields.date}}", // # optional summary for a tree node, defaults to the inferred title field
@@ -83,7 +86,7 @@ export default function DecapCMS() {
 							pattern: "\\d{4}", // # groups items based on the value matched by the pattern
 						},
 						{
-							label: "Artwork Type - ",
+							label: "Type - ",
 							field: "art_type",
 						},
 					],
@@ -108,6 +111,8 @@ export default function DecapCMS() {
 							label: "📆 Artwork Date",
 							name: "date",
 							widget: "datetime",
+							format: "YYYY-MM-DD",
+							time_format: false
 						},
 						{
 							label: "🎨 Art Type",
@@ -133,6 +138,7 @@ export default function DecapCMS() {
 							label_singular: "Tag",
 							name: "tags",
 							widget: "relation",
+							hint: "To create new tags, please go to your 'Tags' collection.",
 							multiple: true,
                      collection: "tags",
 							value_field: "slug",
@@ -141,7 +147,18 @@ export default function DecapCMS() {
 							summary: "{{fields | lower}}", // # summary string template transformation
 						},
 						{
-							label: " 🏞️ Artwork Image(s)",
+							label: "🖼️ Main Image",
+							name: "image",
+							// media_folder: "/src/assets/images",
+							widget: "image"
+						},
+						{
+							label: "♿ Main Image Alt",
+							name: "main_image_alt",
+							widget: "text"
+						},
+						{
+							label: " 🏞️ Other Artwork Image(s)",
 							label_singular: "Image",
 							name: "images",
 							widget: "list",
@@ -155,10 +172,12 @@ export default function DecapCMS() {
 									widget: "image",
 									choose_url: false,
 									default: null,
-									media_folder: "./",
+									media_folder: "/src/assets/images",
+									public_folder: "./",
 									media_library: {
-										config: null,
-										multiple: true,
+										config: {
+											media_folder: "/src/assets/images"
+										}
 									},
 								},
 								{
@@ -169,12 +188,7 @@ export default function DecapCMS() {
 							],
 						},
 						{
-							label: "💬 Description",
-							name: "description",
-							widget: "text",
-						},
-						{
-							label: "✏️ Body",
+							label: "✏️ Description",
 							name: "body",
 							widget: "markdown",
                      buttons: ["bold", "italic", "link", "quote"],
@@ -189,15 +203,25 @@ export default function DecapCMS() {
             /////////////////////
             {
 					name: "tags",
-					label: "Tags",
+					label: "Tag Collection",
                label_singular: "Tag",
 					folder: "src/content/tags",
 					create: true,
+					delete: false,
+					edit: false,
+					slug: "{{fields.slug}}",
+					editor: {
+						preview: false,
+					},
+					summary: "{{fields.slug | lower}}",
+					description: "All my artwork tags live here. In order to create a new one to use with my artwork entry, I must create it using the 'New Tag' button.",
                fields: [
 						{
 							label: "Name",
 							name: "slug",
 							widget: "string",
+							hint: "Must be lowercase!",
+							pattern: ["^[a-z\s]+", "Tag must have only lowercase letters and spaces!"]
 						},
                ]
             }

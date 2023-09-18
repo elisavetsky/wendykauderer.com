@@ -30,6 +30,8 @@ const { Content } = await entry.render();
 
 <BaseLayout 
    pageTitle={entry.data.title}
+   pageDescription={entry.body}
+   pageImage={entry.data.image.src}
    options={{
       headerShadow: false
    }}
@@ -43,6 +45,10 @@ const { Content } = await entry.render();
                tags={entry.data.tags}
                artType={entry.data.art_type}
                href={`${entry.data.art_type}/${entry.slug}`}
+               mainImage={{
+                  src: entry.data.image,
+                  alt: entry.data.main_image_alt
+               }}
                images={entry.data.images}
                description={entry.data.description}
                showFullDescription={true}
