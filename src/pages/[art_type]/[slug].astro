@@ -2,6 +2,9 @@
 // Astro
 import { getCollection } from 'astro:content';
 
+// Import SitewideConfig
+import * as SitewideConfig from "../../configuration/SitewideConfig.md";
+
 // import layout
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import MainLayout from '../../layouts/MainLayout.astro';
@@ -29,9 +32,10 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout 
-   pageTitle={entry.data.title}
-   pageDescription={entry.body}
-   pageImage={entry.data.image.src}
+   pageTitle={`${entry.data.title}`}
+   ogTitle={`${entry.data.title} by ${SitewideConfig.frontmatter.site_name}`}
+   ogDescription={entry.body}
+   ogImage={entry.data.image.src}
    options={{
       headerShadow: false
    }}

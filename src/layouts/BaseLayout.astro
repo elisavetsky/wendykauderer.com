@@ -12,7 +12,7 @@ import Footer from "../components/Footer.astro";
 // import css
 import '../styles/main.css'
 
-const { pageTitle, pageDescription, pageImage, options } = Astro.props;
+const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -23,15 +23,16 @@ const { pageTitle, pageDescription, pageImage, options } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		
 		<!-- Esssential meta tags -->
 		<title>{`${SitewideConfig.frontmatter.site_name} - ${pageTitle}`}</title>
 		<meta name="description" content={SitewideConfig.frontmatter.site_description}>
 
 		<!-- SEO -->
-		<meta property="og:title" content={pageTitle}>
-		<meta property="og:description" content={pageDescription}>
-		<meta property="og:image" content={pageImage}>
-		<meta property="og:url" content={`http://wendykauderer.com${Astro.url.pathname}`}>
+		<meta property="og:title" content={ogTitle}>
+		<meta property="og:description" content={ogDescription}>
+		<meta property="og:image" content={ogImage}>
+		<meta property="og:url" content={`https://wendykauderer.com${Astro.url.pathname}`}>
 
 		<link
 			rel="preload"

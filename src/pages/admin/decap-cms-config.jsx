@@ -36,9 +36,72 @@ export default function DecapCMS() {
       */
 
 			collections: [
+				////////////////////////////////
+            // GLOBAL SETTINGS COLLECTION //
+            ////////////////////////////////
+				{
+					name: "configuration",
+					label: "Global Settings",
+					folder: "src/configuration",
+					summary: "{{fields.label}}",
+					editor: {
+						preview: false,
+					},
+					srotable_fields: [],
+					fields: [
+						{
+							label: "Your Name",
+							name: "site_name",
+							widget: "string",
+						},
+						{
+							label: "Sitewide Description",
+							name: "site_description",
+							widget: "string",
+							hint: "Keep this short and simple."
+						},
+						{
+							label: "Curved Image Edges",
+							name: "curved_image_edges",
+							widget: "boolean",
+							hint: "If this switch is on, it means all images have a slight curve to their edges. If it is off, all images have sharp corners."
+						}
+					]
+				},
+				//////////////////////////////
+            // PAGE SETTINGS COLLECTION //
+            //////////////////////////////
+				{
+					name: "settings",
+					label: "Page Settings",
+					folder: "src/content/settings/",
+					summary: "{{fields.label}}",
+					nested: {
+						depth: 200,
+						summary: "{{fields.label}}", // # optional summary for a tree node, defaults to the inferred title field
+					},
+					sortable_fields: [],
+					fields: [
+						{
+							label: "🖼️ Feature Image",
+							name: "image",
+							widget: "image",
+						},
+						{
+							label: "♿ Feature Image Alt",
+							name: "image_alt",
+							widget: "text",
+							hint: "For accessibility purposes."
+						},
+					]
+				},
+				////////////////////////
+            // ARTWORK COLLECTION //
+            ////////////////////////
 				{
 					name: "artwork",
 					label: "My Artwork",
+					label_singular: "Artwork",
 					folder: "src/content/artwork",
 					media_folder: "/src/assets/images",
 					create: true,

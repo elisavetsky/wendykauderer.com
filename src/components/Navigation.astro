@@ -30,7 +30,9 @@ import Link from './Link.jsx';
                      <Link
                         href={`/${slugify(title)}`}
                         size="md"
-                        classes="hover:text-slate-600 dark:hover:text-slate-100"
+                        classes={
+                           `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline" : ""} hover:text-slate-600 dark:hover:text-slate-100`
+                        }
                      >
                         {title}
                      </Link>
