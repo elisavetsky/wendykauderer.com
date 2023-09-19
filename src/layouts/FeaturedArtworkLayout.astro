@@ -1,6 +1,6 @@
 ---
 // Astro
-import { getCollection } from "astro:content";
+import { getEntry } from "astro:content";
 
 // Expose site configuration for CMS
 import { frontmatter } from "../configuration/SitewideConfig.md";
@@ -12,23 +12,37 @@ import ArtworkGridLayout from "./ArtworkGridLayout.astro";
 // import components
 import SectionTitle from "../components/SectionTitle.astro";
 import FullArtwork from "../components/FullArtwork.astro";
+import ImageWrapper from "../components/ImageWrapper.astro";
+import ImageCTA from "../components/ImageCTA.jsx";
 
 // import Featured Artwork
-const allFeaturedArtwork = await getCollection('artwork', ({data}) => {
-   // prevent draft posts from showing in feature
-   return data.draft !== true && data.featured === true;
-});
-const featuredArtwork = allFeaturedArtwork.sort((a, b) => {
-   const latestToOldest = Date.parse(b.data.date) - Date.parse(a.data.date);
+const featuredArtwork = await getEntry('settings', 'main-hero');
+const { Content } = await featuredArtwork.render();
 
-   return latestToOldest;
-})
+// const allFeaturedArtwork = await getCollection('artwork', ({data}) => {
+//    // prevent draft posts from showing in feature
+//    return data.draft !== true && data.featured === true;
+// });
+// const featuredArtwork = allFeaturedArtwork.sort((a, b) => {
+//    const latestToOldest = Date.parse(b.data.date) - Date.parse(a.data.date);
 
-// const allArtwork = await Astro.glob("../pages/artwork/*.md");
-// const featuredArtwork = allArtwork.filter((artwork) => artwork.data.featured === true);
+//    return latestToOldest;
+// })
 ---
 
-<section class="py-10 m-auto max-w-screen-2xl">
-   <SectionTitle title={featuredTitle} />
-   <ArtworkGridLayout artwork={featuredArtwork} showDescriptions={true} />
+<section class={
+   `w-fit flex flex-col m-auto gap-4 relative md:static lg:flex-row lg:pr-5 lg:gap-8`
+}>
+   <div class={`${featuredArtwork.data.image.width > featuredArtwork.data.image.height ? "max-w-lg" : "max-w-md"} md:max-w-screen-sm`}>
+      <ImageWrapper 
+         src={featuredArtwork.data.image}
+         alt={featuredArtwork.data.image_alt}
+         quality={20}
+      />
+   </div>
+   <ImageCTA>
+      <Content />
+   </ImageCTA>
+
+   <!-- <ArtworkGridLayout artwork={featuredArtwork} showDescriptions={true} /> -->
 </section>

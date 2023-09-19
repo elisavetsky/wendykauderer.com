@@ -9,4 +9,8 @@ const curvedEdges = frontmatter.curved_image_edges;
 const { src, classes, ...props} = Astro.props;
 ---
 
-<Image src={src} {...props} class={`mt-2 shadow-xl ${curvedEdges ? 'rounded-md' : ''} ${classes}`} />
+<Image 
+   src={src} 
+   {...props} 
+   class={`mt-0 shadow-xl ${curvedEdges ? 'rounded-md' : ''} ${classes}`} 
+/>

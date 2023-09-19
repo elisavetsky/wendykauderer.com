@@ -61,6 +61,13 @@ export default function DecapCMS() {
 							hint: "Keep this short and simple."
 						},
 						{
+							label: "Contact Email",
+							name: "contact_email",
+							widget: "string",
+							pattern: ["^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$", "You must use a correct email format"],
+							hint: "Your email which will be used for people to contact you on your site."
+						},
+						{
 							label: "Curved Image Edges",
 							name: "curved_image_edges",
 							widget: "boolean",

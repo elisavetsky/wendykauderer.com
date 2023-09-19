@@ -3,6 +3,7 @@ label: "Global Settings"
 site_name: "Wendy Kauderer"
 site_description: "My works of art"
 homepage_featured_section_title: "Featured"
+contact_email: "wkauderer@aol.com"
 sections:
   - title: "Artwork"
     dropdown_items:
