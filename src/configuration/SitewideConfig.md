@@ -8,11 +8,11 @@ sections:
   - title: "Artwork"
     dropdown_items:
       - title: "Paintings"
-        href: "painting"
+        href: "/painting"
       - title: "Drawings"
-        href: "drawing"
+        href: "/drawing"
       - title: "Sculptures"
-        href: "sculpture"
+        href: "/sculpture"
   - title: "Bio"
   - title: "Contact"
 curved_image_edges: true

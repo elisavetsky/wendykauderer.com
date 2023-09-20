@@ -7,9 +7,9 @@ import Logo from "./Logo.astro";
 import Link from "./Link.jsx";
 ---
 
-<footer class="font-light border-t-slate-400 border-t text-slate-800 dark:border-t-slate-500 dark:text-slate-100">
-   <div class="px-5 pt-20 pb-12 flex flex-col mx-auto max-w-screen-2xl sm:text-right md:px-6 md:justify-between md:items-center">
-      <div class="self-start text-2xl">
+<footer class="h-80 font-light border-t-slate-400 border-t text-slate-800 dark:border-t-slate-500 dark:text-slate-100">
+   <div class="h-full px-5 pt-20 pb-10 flex flex-col mx-auto max-w-screen-2xl justify-between sm:text-right md:px-6 md:items-center lg:flex-row lg:items-end">
+      <div class="self-start text-2xl lg:self-end">
          <Link
             href="/"
             inline
@@ -19,8 +19,8 @@ import Link from "./Link.jsx";
             {SitewideConfig.frontmatter.site_name}
          </Link>
       </div>
-      <div class="w-full mt-20 flex flex-col sm:flex-row sm:justify-end">
-         <span class="sm:mr-3">Powered by Astro</span>
+      <div class="w-full flex flex-wrap sm:flex-wrap-nowrap sm:w-full sm:flex-row lg:justify-end">
+         <span class="w-full sm:w-fit sm:mr-3">Powered by Astro</span>
          <span class="hidden sm:block sm:mr-3"> | </span>
          <span class="mr-1">A website by</span>
             <Link

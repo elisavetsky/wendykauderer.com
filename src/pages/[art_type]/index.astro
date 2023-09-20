@@ -54,11 +54,10 @@ const artwork = allArtwork.sort((a, b) => {
       image={artwork[0].data.images[0].image}
       image_alt={artwork[0].data.images[0].image_alt}
    />
-   <MainLayout>
-      <section class="m-auto max-w-screen-2xl">
-         <ArtTypes />
-         <SectionTitle title={`My ${params.art_type}s`} />
-         <ArtworkGridLayout artwork={artwork} />
-      </section>
-   </MainLayout>
+   
+   <section>
+      <ArtTypes />
+      <SectionTitle title={`My ${params.art_type}s`} />
+      <ArtworkGridLayout artwork={artwork} />
+   </section>
 </BaseLayout>
