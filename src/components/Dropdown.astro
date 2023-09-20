@@ -1,25 +1,17 @@
 ---
 // import components
-import DropdownItem from "./DropdownItem.astro";
+import DropdownItem from "./DropdownItem.jsx";
 
 const { items } = Astro.props;
 ---
 
 <ul class="dropdown-menu hidden transition-colors relative z-10 left-0 rounded-lg shadow-lg bottom-0 min-w-max w-44 py-2 bg-white/60 before:backdrop-blur-lg dark:bg-slate-800/60 md:left-[unset]">
-   {
-      items.map((item) => {
-         return (
-            <DropdownItem item={item}>
-            
-            </DropdownItem>
-         )
-      })
-   }
+   {items.map((item) => {
+      return (
+         <DropdownItem item={item}>
+         
+         </DropdownItem>
+      )
+   })}
 </ul>
 
-<style>
-   ul::before {
-      border-radius: inherit;
-      @apply transition-all absolute inset-0 -z-10;
-   }
-</style>
