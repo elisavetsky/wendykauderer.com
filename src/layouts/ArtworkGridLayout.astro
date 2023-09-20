@@ -5,7 +5,7 @@ import FullArtwork from "../components/FullArtwork.astro";
 const { artwork, showDescriptions } = Astro.props;
 ---
 
-<div class="w-full grid grid-flow-dense lg:grid-cols-2 xl:grid-cols-3 md:px-4 md:gap-4">
+<div class="w-full grid grid-flow-dense gap-4 lg:items-center lg:grid-cols-2 xl:grid-cols-3 md:px-4">
    {
       artwork.map((entry) => {
          return (

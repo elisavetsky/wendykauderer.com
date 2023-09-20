@@ -10,14 +10,15 @@ const sections = frontmatter.sections;
 import Dropdown from './Dropdown.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
 import Link from './Link.jsx';
+import ArtTypes from './ArtTypes.astro';
 ---
 
 <nav aria-label="Main menu" id="main-menu" class="hidden text-md mt-8 pb-5 md:translate-y-0 md:m-0 md:flex md:flex-col">
-   <ul class="flex flex-col justify-between leading-loose mb-4 w-fit transition-colors hover:text-slate-400 dark:hover:text-slate-400 md:gap-1 md:mb-8 md:mr-12">
+   <ul class="flex flex-col justify-between leading-loose mb-4 w-full transition-colors hover:text-slate-400 dark:hover:text-slate-400 md:gap-1 md:mb-8 md:mr-12">
       
       {sections?.map(({title, dropdown_items}) => {
          return (
-            <li class={`${dropdown_items ? "dropdown-container" : "" } inline-flex flex-col items-start relative`}>
+            <li class={`${dropdown_items ? "dropdown-container" : "" } inline-flex flex-col items-start relative w-fit`}>
                
                {dropdown_items ?
                <button 
@@ -25,7 +26,10 @@ import Link from './Link.jsx';
                >
                   {title}
                </button>
-               <Dropdown items={dropdown_items} />
+               <ul class={`dropdown-menu ${Astro.url.pathname.split("/")[1] === slugify(title) ? "hidden" : ""} transition-colors relative z-10 left-0 rounded-lg bottom-0 w-full py-2  md:left-[unset]`}>
+                  <ArtTypes />
+               </ul>
+               // <Dropdown items={dropdown_items} />
                :
                <Link
                   href={`/${slugify(title)}`}

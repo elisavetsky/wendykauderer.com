@@ -11,10 +11,9 @@ const { date, artType, tags } = Astro.props;
    <time datetime={date} class="transition-colors duration-700 flex items-center h-[4.5rem] w-[4.5rem] text-xs font-medium p-2 mr-4 mb-3 text-center flex-shrink-0 rounded-full bg-neutral-100 dark:bg-slate-800">{humanDate(date)}</time>
    <div class="flex flex-wrap py-0.5 gap-1.5">
       <Tag artType={artType} />
-      {
-         tags.map((tag) => {
+      
+      {tags.map((tag) => {
             return <Tag title={(tag.slug).toLowerCase()} />
-         })
-      }
+      })}
    </div>
 </div>
