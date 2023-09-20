@@ -7,7 +7,7 @@ import Logo from "./Logo.astro";
 import Link from "./Link.jsx";
 ---
 
-<footer class="transition-colors font-light border-t-slate-400 border-t text-slate-800 dark:border-t-slate-500 dark:text-slate-100">
+<footer class="font-light border-t-slate-400 border-t text-slate-800 dark:border-t-slate-500 dark:text-slate-100">
    <div class="px-5 pt-20 pb-12 flex flex-col mx-auto max-w-screen-2xl sm:text-right md:px-6 md:justify-between md:items-center">
       <div class="self-start text-2xl">
          <Link
@@ -20,9 +20,9 @@ import Link from "./Link.jsx";
          </Link>
       </div>
       <div class="w-full mt-20 flex flex-col sm:flex-row sm:justify-end">
-         <div class="sm:mr-3">Powered by Astro</div>
+         <span class="sm:mr-3">Powered by Astro</span>
          <span class="hidden sm:block sm:mr-3"> | </span>
-         <span>A website by 
+         <span class="mr-1">A website by</span>
             <Link
                href="https://gabrielelisavetsky.com"
                inline
@@ -30,7 +30,13 @@ import Link from "./Link.jsx";
             >
                Gabriel Elisavetsky
             </Link>
-         </span>
+         
       </div>
    </div>
 </footer>
+
+<style>
+   span {
+      @apply transition-colors
+   }
+</style>

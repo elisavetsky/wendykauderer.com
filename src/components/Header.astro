@@ -33,17 +33,19 @@ const { shadow } = Astro.props;
 } -->
 
 <header class={
-   `transition-all duration-700 absolute top-0 text-slate-600 w-full z-[100] before:backdrop-blur-lg dark:text-slate-100 md:sticky md:col-span-5 lg:col-span-4 xl:col-span-3
-   ${shadow ? "bg-white/50 shadow-xl dark:bg-stone-950/50 dark:shadow-slate-950/20" : "bg-slate-50/60 dark:bg-slate-950/60"}`
+   `absolute top-0 text-slate-800 w-full z-10 before:backdrop-blur-lg dark:text-slate-100 md:sticky md:overflow-y-auto md:col-span-5 lg:col-span-4 xl:col-span-3
+   ${shadow ? "bg-white/50 shadow-xl dark:bg-stone-950/50 dark:shadow-slate-950/20" : "bg-slate-50/60 dark:bg-slate-950/60 md:bg-transparent dark:md:bg-transparent"}`
 }>
-   <div class="px-5 pt-7 pb-7 mx-auto max-w-screen-2xl md:pt-10 md:px-6 md:pb-4 md:flex md:flex-col md:gap-10 md:justify-between">
-      <div class="flex justify-between gap-2 md:pl-4 md:mb-8">
-         <Logo />
-      
-         <Burger />   
+   <!-- <div class="md:sticky md:top-0 md:overflow-y-auto md:pb-24"> -->
+      <div class="px-5 pt-7 pb-7 mx-auto max-w-screen-2xl md:overscroll-contain md:max-h-screen md:px-6 md:flex md:flex-col md:gap-10 md:justify-between">
+         <div class="duration-200 top-0 flex justify-between gap-2 md:backdrop-blur-md md:bg-slate-50/40 md:sticky md:z-20 md:pl-4 md:py-5 dark:md:bg-slate-950/40">
+            <Logo />
+         
+            <Burger />   
+         </div>
+         <Navigation />
       </div>
-      <Navigation />
-   </div>
+   <!-- </div> -->
 </header>
 
 <style>

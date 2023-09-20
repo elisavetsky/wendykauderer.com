@@ -12,36 +12,35 @@ import ThemeToggle from './ThemeToggle.jsx';
 import Link from './Link.jsx';
 ---
 
-<nav aria-label="Main menu" id="main-menu" class="hidden text-md mt-8 md:translate-y-0 md:m-0 md:flex md:flex-col">
+<nav aria-label="Main menu" id="main-menu" class="hidden text-md mt-8 pb-5 md:translate-y-0 md:m-0 md:flex md:flex-col">
    <ul class="flex flex-col justify-between leading-loose mb-4 w-fit transition-colors hover:text-slate-400 dark:hover:text-slate-400 md:gap-1 md:mb-8 md:mr-12">
-      { 
-         sections?.map(({title, dropdown_items}) => {
-            return (
-               <li class={`${dropdown_items ? "dropdown-container" : "" } inline-flex items-center relative`}>
-                  {
-                     dropdown_items ?
-                     <Dropdown items={dropdown_items} />
-                     <button 
-                        class={`dropdown-trigger py-1 px-4 transition-colors hover:text-slate-600 dark:hover:text-slate-100`}
-                     >
-                        {title}
-                     </button>
-                     :
-                     <Link
-                        href={`/${slugify(title)}`}
-                        size="md"
-                        classes={
-                           `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline" : ""} hover:text-slate-600 dark:hover:text-slate-100`
-                        }
-                     >
-                        {title}
-                     </Link>
+      
+      {sections?.map(({title, dropdown_items}) => {
+         return (
+            <li class={`${dropdown_items ? "dropdown-container" : "" } inline-flex flex-col items-start relative`}>
+               
+               {dropdown_items ?
+               <button 
+                  class={`dropdown-trigger py-1 px-4 transition-colors hover:text-slate-800 dark:hover:text-slate-100`}
+               >
+                  {title}
+               </button>
+               <Dropdown items={dropdown_items} />
+               :
+               <Link
+                  href={`/${slugify(title)}`}
+                  size="md"
+                  classes={
+                     `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline" : ""} hover:text-slate-800 dark:hover:text-slate-100`
                   }
-                  
-               </li>
-            )
-         })
-      }
+               >
+                  {title}
+               </Link>
+               }
+               
+            </li>
+         )
+      })}
       
    </ul>
    <ThemeToggle client:load />

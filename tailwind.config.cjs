@@ -26,6 +26,9 @@ module.exports = {
 			dropShadow: {
 				"white": "0 0px 2px rgba(253, 253, 253)",
 			},
+			transitionProperty: {
+				"background": "background-color"
+			}
 		},
 	},
 	plugins: [require("@tailwindcss/typography")],

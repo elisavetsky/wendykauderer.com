@@ -30,14 +30,15 @@ const { Content } = await featuredArtwork.render();
 // })
 ---
 
-<section class={
-   `w-fit flex flex-col m-auto gap-4 relative md:static lg:flex-row lg:pr-5 lg:gap-8`
-}>
+<section 
+   class={`w-fit flex flex-col justify-center m-auto gap-4 relative md:static lg:flex-row lg:pr-5 lg:gap-8`}
+>
    <div class={`${featuredArtwork.data.image.width > featuredArtwork.data.image.height ? "max-w-lg" : "max-w-md"} md:max-w-screen-sm`}>
       <ImageWrapper 
          src={featuredArtwork.data.image}
          alt={featuredArtwork.data.image_alt}
-         quality={20}
+         width={640}
+         quality={50}
       />
    </div>
    <ImageCTA>
