@@ -8,7 +8,7 @@ import { ViewTransitions } from 'astro:transitions';
 // import components
 import Header from '../components/Header.astro';
 import Footer from "../components/Footer.astro";
-import MainGridLayout from "./MainGridLayout.astro";
+import MainFlexLayout from "./MainFlexLayout.astro";
 
 // import css
 import '../styles/main.css'
@@ -57,9 +57,9 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 		<!-- <ViewTransitions fallback="none" /> -->
 	</head>
 	<body class="bg-gray-50 dark:bg-gray-800 duration-200">
-		<MainGridLayout>
+		<MainFlexLayout>
 			<slot />
-		</MainGridLayout>
+		</MainFlexLayout>
 		
 		
 	</body>

@@ -1,7 +1,6 @@
 ---
 // import layout
 import BaseLayout from '../layouts/BaseLayout.astro';
-import MainGridLayout from '../layouts/MainGridLayout.astro';
 import FeaturedArtworkLayout from '../layouts/FeaturedArtworkLayout.astro';
 
 // import components
@@ -19,11 +18,8 @@ import { NetlifyIdentity } from '../components/NetlifyIdentity.jsx'
    }}
 >
 	<!-- <MainHero /> -->
-	<!-- <MainGridLayout> -->
 		
 		<FeaturedArtworkLayout />
-		
-	<!-- </MainGridLayout> -->
 
 	<!-- Netlify Identity -->
 	<NetlifyIdentity client:only />

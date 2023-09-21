@@ -54,6 +54,7 @@ const artTypes = [
 ]
 
 const props = Astro.props;
+console.log(Astro.url.pathname)
 ---
 
 <menu class="flex flex-wrap py-2 px-1 items-center overflow-x-auto font-sans text-slate-950 text-sm font-medium dark:text-slate-50">
@@ -61,8 +62,8 @@ const props = Astro.props;
       return (
          <a 
             href={`${route}`} 
-            class={`relative w-24 h-24 mr-3 mb-3 rounded-full ${Astro.url.pathname.split("/")[1] === slugify(route) ? "border-2 border-slate-300" : ""}`}>
-            <li class="absolute z-10 shadow-md backdrop-blur-md backdrop-saturate-200 flex justify-center items-center bg-white/60 w-full h-full rounded-full p-1 transition-all duration-300 hover:translate-x-1 hover:-translate-y-1 hover:shadow-lg hover:backdrop-blur-lg hover:bg-slate-50/60 dark:shadow-slate-800 dark:bg-slate-950/50 dark:hover:bg-slate-950/50">
+            class={`relative w-24 h-24 mr-3 mb-3 rounded-full ${Astro.url.pathname === `/${slugify(route)}` ? "border-2 border-slate-400" : ""}`}>
+            <li class="absolute z-10 shadow-md backdrop-blur-md backdrop-saturate-0 hover:backdrop-saturate-200 flex justify-center items-center bg-white/60 w-full h-full rounded-full p-1 transition-all duration-300 hover:translate-x-1 hover:-translate-y-1 hover:shadow-lg hover:backdrop-blur-lg hover:bg-slate-50/60 dark:shadow-slate-800 dark:bg-slate-950/50 dark:hover:bg-slate-950/50">
                <span class="drop-shadow-white dark:drop-shadow-sm">{label}</span>
             </li>
             {

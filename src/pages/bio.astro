@@ -34,18 +34,17 @@ import InlineLightboxWrapper from "../components/InlineLightboxWrapper.astro";
       headerShadow: false
    }}
 >
-   <SectionHero />
-   <MainLayout padding="py-20">
+   <article>
+      <SectionHero title="Bio" />
       <Flex2ColLayout>
-         <article class="m-auto px-4 flex-1 prose justify-center dark:prose-invert lg:prose-lg">
-            <h1 class="md:text-5xl">Bio</h1>
-            {
-               bio.data.heading && 
+         <div class="px-5 flex-1 prose justify-center dark:prose-invert lg:prose-lg">
+            {bio.data.heading && 
                <h2>{bio.data.heading}</h2>
             }
             <Content />
-         </article>
+         </div>
          <InlineLightboxWrapper imageArr={imageArr} classes="flex-1 m-auto md:px-4" />
       </Flex2ColLayout>
-   </MainLayout>
+   </article>
+   
 </BaseLayout>
