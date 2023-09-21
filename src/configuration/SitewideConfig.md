@@ -16,4 +16,6 @@ sections:
   - title: "Bio"
   - title: "Contact"
 curved_image_edges: true
+developer_name: "Gabriel Elisavetsky"
+developer_site_url: "https://gabrielelisavetsky.com"
 ---

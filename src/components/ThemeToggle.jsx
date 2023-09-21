@@ -4,7 +4,7 @@ import { useState } from "react";
 import "@theme-toggles/react/css/Within.css";
 
 export default function ThemeToggle() {
-   const [darkTheme, setDarkTheme] = useState(false);
+   const [darkTheme, setDarkTheme] = useState(localStorage.getItem("theme") ?? "light");
 
    function handleClick() {
       if (darkTheme) {
