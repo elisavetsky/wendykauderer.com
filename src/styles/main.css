@@ -48,4 +48,11 @@
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
 	}
+
+   /* CLASSES */
+
+   .logo-text {
+      font-family: 'James Arthur Regular', Georgia, "New York", Georgia, Cochin, 'Times New Roman', Times, ui-serif, serif, system-ui, sans-serif;
+      text-decoration: none;
+   }
 }

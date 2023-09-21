@@ -16,7 +16,6 @@ function getLatestOfArtType(artType, property) {
       const output = allPaintings[0].data.images[0][property];
 
       if (output) {
-         console.log("output", output)
          return output;
       } else {
          throw new Error(`No property named "${artType}" found for "${artType}" art type`);
@@ -28,8 +27,6 @@ function getLatestOfArtType(artType, property) {
       return null;
    }   
 }
-
-getLatestOfArtType("painting", "image")
 
 // art types array
 const artTypes = [
@@ -54,29 +51,27 @@ const artTypes = [
 ]
 
 const props = Astro.props;
-console.log(Astro.url.pathname)
 ---
 
 <menu class="flex flex-wrap py-2 px-1 items-center overflow-x-auto font-sans text-slate-950 text-sm font-medium dark:text-slate-50">
+
    {artTypes.map(({route, label, image, image_alt}) => {
       return (
-         <a 
-            href={`${route}`} 
-            class={`relative w-24 h-24 mr-3 mb-3 rounded-full ${Astro.url.pathname === `/${slugify(route)}` ? "border-2 border-slate-400" : ""}`}>
-            <li class="absolute z-10 shadow-md backdrop-blur-md backdrop-saturate-0 hover:backdrop-saturate-200 flex justify-center items-center bg-white/60 w-full h-full rounded-full p-1 transition-all duration-300 hover:translate-x-1 hover:-translate-y-1 hover:shadow-lg hover:backdrop-blur-lg hover:bg-slate-50/60 dark:shadow-slate-800 dark:bg-slate-950/50 dark:hover:bg-slate-950/50">
+         <a href={`${route}`} class={`relative w-24 h-24 mr-3 mb-3 rounded-full`}>
+            <li 
+               class={`absolute z-10 shadow-md backdrop-blur-md backdrop-saturate-50 flex justify-center items-center bg-white/60 w-full h-full rounded-full p-1 transition-all duration-300 hover:backdrop-saturate-200 motion-safe:hover:translate-x-1 motion-safe:hover:-translate-y-1 hover:shadow-lg hover:backdrop-blur-md hover:bg-white/60 dark:shadow-slate-800 dark:bg-slate-950/50 dark:hover:bg-slate-950/50 ${Astro.url.pathname === `/${slugify(route)}` ? "backdrop-saturate-150 translate-x-1 -translate-y-1 shadow-lg backdrop-blur-lg bg-slate-50/60 dark:bg-slate-950/50" : ""}`}
+            >
                <span class="drop-shadow-white dark:drop-shadow-sm">{label}</span>
             </li>
-            {
-               image && image_alt &&
+            {image && image_alt &&
                <Image
                   src={image}
                   alt={image_alt}
                   quality={1}
                   width={50}
-                  class="saturate-200 w-full h-full object-cover rounded-full"
+                  class="saturate-200 brightness-[1.2] w-full h-full object-cover rounded-full"
                />
             }
-            
          </a>
       )
    })}

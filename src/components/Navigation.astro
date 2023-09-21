@@ -14,7 +14,7 @@ import ArtTypes from './ArtTypes.astro';
 ---
 
 <nav aria-label="Main menu" id="main-menu" class="hidden text-md mt-8 pb-5 md:translate-y-0 md:m-0 md:flex md:flex-col">
-   <ul class="flex flex-col justify-between leading-loose mb-4 w-full transition-colors hover:text-slate-400 dark:hover:text-slate-400 md:gap-1 md:mb-8 md:mr-12">
+   <ul class="flex flex-col justify-between leading-loose mb-4 w-full md:gap-1 md:mb-8 md:mr-12">
       
       {sections?.map(({title, dropdown_items}) => {
          return (
@@ -34,8 +34,9 @@ import ArtTypes from './ArtTypes.astro';
                <Link
                   href={`/${slugify(title)}`}
                   size="md"
+                  transition="transition"
                   classes={
-                     `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline" : ""} hover:text-slate-800 dark:hover:text-slate-100`
+                     `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline underline-offset-4 decoration-2 decoration-inherit" : "decoration-transparent"} decoration-2 hover:decoration-inherit motion-safe:hover:translate-x-px motion-safe:hover:-translate-y-px hover:underline hover:underline-offset-4 hover:text-slate-500 dark:hover:text-slate-200`
                   }
                >
                   {title}

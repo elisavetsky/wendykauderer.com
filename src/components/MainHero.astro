@@ -4,7 +4,7 @@ import { getEntry } from "astro:content";
 import { Image } from "astro:assets";
 
 // import components
-import Logo from "./Logo.astro";
+import Logo from "./Logo.jsx";
 
 // import data
 const mainHero = await getEntry("settings", "main-hero");
@@ -29,4 +29,4 @@ const { title, tagline, image, image_alt } = mainHero.data;
          class="w-full max-w-none object-cover z-20 sm:rounded-md sm:shadow-xl sm:min-h-1/2 sm:min-h-[640px] sm:max-h-[750px] md:min-w-1/2 "
       />
    </div>
-</section>
+</section>./Logo.jsx
