@@ -8,9 +8,9 @@ import Link from "./Link.jsx";
 
 export default function Footer() {
    return (
-      <footer class="h-80 font-light border-t-slate-400 border-t text-slate-800 dark:border-t-slate-500 dark:text-slate-100">
-         <div class="h-full px-5 pt-20 pb-10 flex flex-col mx-auto max-w-screen-2xl justify-between sm:text-right md:px-6 md:items-center lg:flex-row lg:items-end">
-            <div class=" self-start text-xl relative lg:self-end">
+      <footer className="h-80  border-t-slate-400 border-t text-slate-800 dark:border-t-slate-500 dark:text-slate-100">
+         <div className="h-full px-5 pt-20 pb-10 flex flex-col mx-auto max-w-screen-2xl justify-between sm:text-right md:px-0 md:items-center lg:flex-row lg:px-6 lg:items-end">
+            <div className="flex-auto text-left self-start text-xl relative lg:self-end">
                <Link
                   href="/"
                   inline
@@ -20,17 +20,18 @@ export default function Footer() {
                   {SitewideConfig.frontmatter.site_name}
                </Link>
             </div>
-            <div class="w-full flex flex-wrap sm:flex-wrap-nowrap sm:w-full sm:flex-row lg:justify-end">
-               <span class="transition-colors w-full sm:w-fit sm:mr-3">Powered by Astro</span>
-               <span class="transition-colors hidden sm:block sm:mr-3"> | </span>
-               <span class="transition-colors mr-1">A website by</span>
+            <div className="text-sm flex flex-wrap sm:h-fit sm:flex-wrap-nowrap sm:flex-row sm:self-start sm:items-baseline lg:justify-end lg:self-end">
+               <span className="transition-colors mr-1">A website by</span>
                   <Link
                      href={SitewideConfig.frontmatter.developer_site_url}
                      inline
-                     classes="hover:text-slate-400 dark:hover:text-slate-400"
+                     classes="sm:mr-3 hover:text-slate-400 dark:hover:text-slate-400"
                   >
                      {SitewideConfig.frontmatter.developer_name}
                   </Link>
+               <span className="transition-colors hidden sm:block sm:mr-3"> | </span>
+               <span className="transition-colors w-full sm:w-fit">Powered by Astro</span>
+               
                
             </div>
          </div>

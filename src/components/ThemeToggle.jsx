@@ -14,7 +14,7 @@ export const ThemeToggle = forwardRef((props, ref) => {
 
    useEffect(() => {
       if ('theme' in localStorage) {
-         if (localStorage.theme === "dark" || window.matchMedia("(prefers-color-scheme: dark)").matches) {
+         if (localStorage.theme === "dark") {
             document.documentElement.classList.add("dark");
    
             // set theme state to false
@@ -42,7 +42,7 @@ export const ThemeToggle = forwardRef((props, ref) => {
          
       <button
          ref={ref}
-         className={`theme-toggle ${!theme ? "theme-toggle--toggled" : ""} flex items-center text-xl ml-[0.6rem] my-1 mr-1.5 p-1.5 rounded-full transition-all delay-75 hover:bg-slate-200 dark:hover:bg-slate-600`}
+         className={`theme-toggle ${!theme ? "theme-toggle--toggled" : ""} flex items-center text-xl ml-[0.6rem] my-1 mr-1.5 p-1.5 rounded-full transition-all hover:bg-slate-200 dark:hover:bg-slate-600`}
          onClick={props.onClick}
          onKeyDown={props.onKeyDown}
          type="button"

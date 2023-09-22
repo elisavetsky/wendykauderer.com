@@ -33,6 +33,48 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 		<meta property="og:image" content={ogImage}>
 		<meta property="og:url" content={`https://wendykauderer.com${Astro.url.pathname}`}>
 
+		<script is:inline>
+			const theme = (() => {
+				if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+					console.log("REEETRN", localStorage.getItem("theme"))
+					return localStorage.getItem("theme");
+				}
+				
+				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					console.log("return dark")
+					return "dark";
+				}
+				return "light";
+			})();
+			
+			console.log("CURRENT THEME", theme)
+			
+			if (theme === "light") {
+				document.documentElement.classList.remove("dark");
+			} else {
+				console.log("adding dark BASELAYOUT")
+				document.documentElement.classList.add("dark");
+			}
+			console.log("setting theme", theme)
+			window.localStorage.setItem("theme", theme);
+		
+			// /////////////////////////////////////////////////
+			// WHENEVER VIEW TRANSITIONS API IS WIDELY AVAILABLE
+			// /////////////////////////////////////////////////
+			/*
+			function setDarkMode() {
+				if (localStorage.darkMode) {
+					document.documentElement.dataset.dark = '';
+				}
+			};
+		
+			// Runs on initial navigation
+			setDarkMode();
+			// Runs on view transitions navigation
+			document.addEventListener('astro:after-swap', setDarkMode);
+			*/
+		</script>
+
 		<link
 			rel="preload"
 			href="/fonts/James-Arthur-Regular/james-arthur-regular.woff2"
@@ -63,20 +105,3 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 	</body>
 </html>
 
-<script>
-	// /////////////////////////////////////////////////
-   // WHENEVER VIEW TRANSITIONS API IS WIDELY AVAILABLE
-   // /////////////////////////////////////////////////
-	/*
-	function setDarkMode() {
-		if (localStorage.darkMode) {
-			document.documentElement.dataset.dark = '';
-		}
-	};
-
-	// Runs on initial navigation
-	setDarkMode();
-	// Runs on view transitions navigation
-	document.addEventListener('astro:after-swap', setDarkMode);
-	*/
-</script>
