@@ -7,7 +7,7 @@ import { frontmatter } from "../configuration/SitewideConfig.md";
 const sections = frontmatter.sections;
 
 // import components
-import Dropdown from './Dropdown.jsx';
+import ThemeDropdown from './ThemeDropdown.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
 import Link from './Link.jsx';
 import ArtTypes from './ArtTypes.astro';
@@ -22,6 +22,7 @@ import ArtTypes from './ArtTypes.astro';
                
                {dropdown_items ?
                <button 
+                  aria-haspopup="true"
                   class={`dropdown-trigger py-1 px-4 transition-colors hover:text-slate-800 dark:hover:text-slate-100`}
                >
                   {title}
@@ -46,9 +47,14 @@ import ArtTypes from './ArtTypes.astro';
             </li>
          )
       })}
-      
+      <li>
+         <ThemeDropdown client:only="react">
+            
+         </ThemeDropdown>
+      </li>
    </ul>
-   <ThemeToggle client:only />
+   
+   
 </nav>
 
 <script>
