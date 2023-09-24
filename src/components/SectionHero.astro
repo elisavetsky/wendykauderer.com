@@ -5,7 +5,7 @@ import { Image } from "astro:assets";
 const { title, image, image_alt } = Astro.props;
 ---
 
-<header class=`${!title ? "" : ""}  text-xl text-slate-900 transition-colors duration-700 flex px-5 py-2 mb-3 z-20 dark:text-slate-100`>
+<header class=`${!title ? "" : ""} text-xl text-slate-900 transition-colors duration-700 flex px-4 py-2 mb-3 z-20 dark:text-slate-100`>
    <!-- {image && image_alt &&
       <Image 
          src={image} 

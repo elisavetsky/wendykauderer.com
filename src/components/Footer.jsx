@@ -8,8 +8,8 @@ import Link from "./Link.jsx";
 
 export default function Footer() {
    return (
-      <footer className="h-80  border-t-slate-400 border-t text-slate-800 dark:border-t-slate-500 dark:text-slate-100">
-         <div className="h-full px-5 pt-20 pb-10 flex flex-col mx-auto max-w-screen-2xl justify-between sm:text-right md:px-0 md:items-center lg:flex-row lg:px-6 lg:items-end">
+      <footer className="h-64 mt-auto w-screen border-t-slate-400 border-t dark:border-t-slate-500 sm:w-full">
+         <div className="h-full px-4 pt-20 pb-7 flex flex-col mx-auto max-w-screen-2xl justify-between sm:text-right md:items-center lg:flex-row lg:items-end">
             <div className="flex-auto text-left self-start text-xl relative lg:self-end">
                <Link
                   href="/"
@@ -20,7 +20,7 @@ export default function Footer() {
                   {SitewideConfig.frontmatter.site_name}
                </Link>
             </div>
-            <div className="text-sm flex flex-wrap sm:h-fit sm:flex-wrap-nowrap sm:flex-row sm:self-start sm:items-baseline lg:justify-end lg:self-end">
+            <div className="text-sm flex flex-wrap sm:h-fit sm:flex-wrap-nowrap sm:flex-row sm:self-start sm:items-center lg:justify-end lg:self-end">
                <span className="transition-colors mr-1">A website by</span>
                   <Link
                      href={SitewideConfig.frontmatter.developer_site_url}
@@ -31,7 +31,6 @@ export default function Footer() {
                   </Link>
                <span className="transition-colors hidden sm:block sm:mr-3"> | </span>
                <span className="transition-colors w-full sm:w-fit">Powered by Astro</span>
-               
                
             </div>
          </div>

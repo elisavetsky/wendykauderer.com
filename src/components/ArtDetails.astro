@@ -7,8 +7,8 @@ import Tag from "./Tag.jsx";
 const { date, artType, tags } = Astro.props;
 ---
 
-<div class="text-sm font-sans flex items-start">
-   <time datetime={date} class="transition-colors duration-700 flex items-center h-[4.5rem] w-[4.5rem] text-xs font-medium p-2 mr-4 mb-3 text-center flex-shrink-0 rounded-full bg-neutral-100 dark:bg-neutral-600">{humanDate(date)}</time>
+<div class="text-sm font-sans flex items-start text-slate-700 dark:text-slate-200">
+   <time datetime={date} class="transition-colors duration-700 flex items-center h-[4.5rem] w-[4.5rem] text-xs font-medium p-2 mr-4 mb-3 text-center flex-shrink-0 rounded-full bg-neutral-200 dark:bg-neutral-600">{humanDate(date)}</time>
    <div class="flex flex-wrap py-0.5 gap-1.5">
       <Tag artType={artType} />
       

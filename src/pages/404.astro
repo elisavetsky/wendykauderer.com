@@ -1,10 +1,30 @@
 ---
+import { getEntry } from "astro:content";
+
 // import layout
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Link from "../components/Link.jsx";
+
+// import featuredArtwork
+const featuredArtwork = await getEntry('settings', 'main-hero');
 ---
 
-<BaseLayout title="Oops! No artwork to be seen here">
-   <section class="prose dark:prose-invert">
-      <h1>Oops! That page doesn't exist!</h1>
+<BaseLayout 
+   pageTitle="404"
+   ogTitle="This page does not exist on Wendy's website."
+   ogDescription="Welcome to a page that does not exist!"
+>
+   <section class="px-4 m-auto">
+      <div class="prose mb-8 dark:prose-invert">
+         <h1>404</h1>
+         <h2>Oops! That page doesn't exist!</h2>
+      </div>
+      <Link 
+         inline 
+         href="/"
+         classes="decoration-0 hover:text-slate-400 underline underline-offset-4"
+      >
+         Go back home
+      </Link>
    </section>
 </BaseLayout>

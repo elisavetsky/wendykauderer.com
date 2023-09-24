@@ -13,9 +13,7 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
    }
 
    useEffect(() => {
-      console.log("hello", theme)
       if (theme === "dark") {
-         console.log("theme is dark")
          document.documentElement.classList.add("dark");
          // if (localStorage.theme === "dark" || window.matchMedia("(prefers-color-scheme: dark)").matches) {
          //    document.documentElement.classList.add("dark");
@@ -28,7 +26,6 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
          //    localStorage.setItem("theme", "light")
          // }
       } else {
-         console.log("removing dark")
          document.documentElement.classList.remove("dark");
          // localStorage.removeItem("theme");
       }
@@ -45,20 +42,20 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
          gap={8}
          direction="bottom"
          position="anchor"
-         menuClassName="bg-white shadow-lg rounded-lg py-2 min-w-[10rem] z-30 dark:bg-slate-700"
+         menuClassName="text-md bg-white shadow-lg rounded-lg py-2 min-w-[10rem] z-30 dark:bg-slate-800"
       >
          <MenuItem
             onClick={(e) => {
                setTheme("light");
             }}
-            className="cursor-pointer text-md px-2 p-1 transition-all hover:bg-slate-200 dark:hover:bg-slate-600">
+            className="cursor-pointer text-md px-2 p-1 transition-all hover:bg-gray-100 dark:hover:bg-slate-700">
             Light
          </MenuItem>
          <MenuItem 
             onClick={(e) => {
                setTheme("dark");
             }}
-            className="cursor-pointer text-md px-2 p-1 transition-all hover:bg-slate-200 dark:hover:bg-slate-600">
+            className="cursor-pointer text-md px-2 p-1 transition-all hover:bg-gray-100 dark:hover:bg-slate-700">
             Dark
          </MenuItem>
          <MenuDivider className="border-slate-200 border" />
@@ -67,7 +64,7 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
                localStorage.removeItem("theme");
                setTheme("");
             }}
-            className="cursor-pointer text-md px-2 p-1 transition-all hover:bg-slate-200 dark:hover:bg-slate-600">
+            className="cursor-pointer text-md px-2 p-1 transition-all hover:bg-gray-100 dark:hover:bg-slate-700">
             System
          </MenuItem>
       </Menu>

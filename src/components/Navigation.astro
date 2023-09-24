@@ -18,7 +18,7 @@ import ArtTypes from './ArtTypes.astro';
       
       {sections?.map(({title, dropdown_items}) => {
          return (
-            <li class={`${dropdown_items ? "dropdown-container" : "" } inline-flex flex-col items-start relative w-fit`}>
+            <li class={`${dropdown_items ? "dropdown-container" : "" } text-md inline-flex flex-col items-start relative w-fit`}>
                
                {dropdown_items ?
                <button 
@@ -47,7 +47,7 @@ import ArtTypes from './ArtTypes.astro';
             </li>
          )
       })}
-      <li>
+      <li class="mt-4">
          <ThemeDropdown client:only="react">
             
          </ThemeDropdown>
