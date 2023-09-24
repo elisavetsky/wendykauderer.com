@@ -20,7 +20,7 @@ const artworkCollection = defineCollection({
                image: image(),
                image_alt: z.string()
             })
-         ),
+         ).optional(),
 		}),
 });
 

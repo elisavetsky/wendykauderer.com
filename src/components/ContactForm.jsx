@@ -1,6 +1,6 @@
 export default function ContactForm() {
 	return (
-		<form name="contact" method="POST" data-netlify="true" className="px-4 m-auto max-w-xs sm:max-w-md sm:m-0">
+		<form name="contact" method="POST" data-netlify="true" className="px-4 m-auto sm:m-0">
 
          <label for="name" className="text-sm inline-block mb-1 mt-8">Name: </label>
          <input 
@@ -8,7 +8,7 @@ export default function ContactForm() {
             name="name" 
             aria-invalid="true" 
             aria-describedby="nameHint" 
-            className="text-sm px-2 my-1 h-8 rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-slate-700 dark:border-slate-300"
+            className="text-md px-2 my-1 h-8 rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-slate-700 dark:border-slate-300"
          />
          <p className="mt-1.5 text-xs h-5 text-rose-500 dark:text-rose-400" id="nameHint">
             <span aria-hidden="true">➔ </span>
@@ -21,7 +21,7 @@ export default function ContactForm() {
             name="email" 
             aria-invalid="true" 
             aria-describedby="emailHint" 
-            className="text-sm px-2 my-1 h-8 rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-slate-700 dark:border-slate-300"
+            className="text-md px-2 my-1 h-8 rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-slate-700 dark:border-slate-300"
          />
          <p className="mt-1.5 text-xs h-5 text-rose-500 dark:text-rose-400" id="emailHint">
             <span aria-hidden="true">➔ </span>
@@ -34,7 +34,7 @@ export default function ContactForm() {
             name="message" 
             aria-invalid="true" 
             aria-describedby="messageHint" 
-            className="text-sm px-2 my-1 h-28 min-h-[2rem] max-h-[30rem] rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-slate-700 dark:border-slate-300"
+            className="text-md px-2 my-1 h-28 min-h-[2rem] max-h-[30rem] rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-slate-700 dark:border-slate-300"
          />
          <p className="text-xs h-5 text-rose-500 dark:text-rose-400" id="messageHint">
             <span aria-hidden="true">➔ </span>

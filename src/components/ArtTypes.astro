@@ -12,8 +12,9 @@ function getLatestOfArtType(artType, property) {
    
    // if nothing found, throw error
    if (allPaintings.length) {
-      // return specified property by bracket syntax
-      const output = allPaintings[0].data.images[0][property];
+
+      // return first image with specified artType
+      const output = allPaintings[0].data.image;
 
       if (output) {
          return output;
@@ -69,7 +70,7 @@ const props = Astro.props;
                   alt={image_alt}
                   quality={1}
                   width={50}
-                  class="saturate-200 brightness-[1.2] w-full h-full object-cover rounded-full"
+                  class="saturate-200 brightness-[1.1] w-full h-full object-cover rounded-full"
                />
             }
          </a>

@@ -99,11 +99,10 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 		<!-- <ViewTransitions fallback="none" /> -->
 	</head>
 	<body class="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 duration-200">
-		<img src={featuredArtwork.data.image.src} alt="">
+
 		<MainFlexLayout>
 			<slot />
 		</MainFlexLayout>
-		
 		
 	</body>
 </html>

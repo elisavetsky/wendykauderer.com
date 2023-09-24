@@ -14,7 +14,9 @@ sections:
       - title: "Sculptures"
         href: "/sculpture"
   - title: "Bio"
+    href: "/bio"
   - title: "Contact"
+    href: "/contact"
 curved_image_edges: true
 developer_name: "Gabriel Elisavetsky"
 developer_site_url: "https://gabrielelisavetsky.com"

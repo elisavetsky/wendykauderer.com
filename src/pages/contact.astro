@@ -1,17 +1,33 @@
 ---
+import { getEntry } from "astro:content";
+
 // import layouts
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Flex2ColLayout from "../layouts/Flex2ColLayout.astro";
 
 // import components
 import SectionHero from "../components/SectionHero.astro";
 import ContactForm from "../components/ContactForm.jsx";
+import ImageWrapper from "../components/ImageWrapper.astro";
+
+// import featured artwork
+const featuredArtwork = await getEntry('settings', 'main-hero');
 ---
 
 <BaseLayout 
    pageTitle="Contact"
->
-   <div class="m-auto max-w-xs sm:max-w-none">
-      <SectionHero title="Contact Me"/>
-      <ContactForm />
+>  
+   <div class="m-auto max-w-sm sm:max-w-none">
+      <Flex2ColLayout>
+         <div class="m-auto flex-auto sm:max-w-sm">
+            <SectionHero title="Contact Me"/>
+            <ContactForm />
+         </div>
+         <ImageWrapper 
+            src={featuredArtwork.data.image} 
+            alt={featuredArtwork.data.image_alt} 
+            classes="m-auto md:max-w-md"
+         />
+      </Flex2ColLayout>
    </div>
 </BaseLayout>

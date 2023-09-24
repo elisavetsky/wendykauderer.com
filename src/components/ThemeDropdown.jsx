@@ -58,7 +58,7 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
             className="cursor-pointer text-md px-2 p-1 transition-all hover:bg-gray-100 dark:hover:bg-slate-700">
             Dark
          </MenuItem>
-         <MenuDivider className="border-slate-200 border" />
+         <MenuDivider className="border-slate-100 border dark:border-slate-700" />
          <MenuItem 
             onClick={(e) => {
                localStorage.removeItem("theme");
