@@ -2,7 +2,7 @@ export default function ContactForm() {
 	return (
 		<form name="contact" method="POST" data-netlify="true" className="px-4 m-auto sm:m-0">
 
-         <label for="name" className="text-sm inline-block mb-1 mt-8">Name: </label>
+         <label htmlFor="name" className="text-sm inline-block mb-1 mt-8">Name: </label>
          <input 
             type="text" 
             name="name" 
@@ -15,7 +15,7 @@ export default function ContactForm() {
             Your name must not have any numbers.
          </p>
       
-         <label for="email" className="text-sm inline-block mb-1 mt-8">Email: </label>
+         <label htmlFor="email" className="text-sm inline-block mb-1 mt-8">Email: </label>
          <input 
             type="text" 
             name="email" 
@@ -28,7 +28,7 @@ export default function ContactForm() {
             Your email must not have any spaces.
          </p>
       
-         <label for="message" className="text-sm inline-block mb-1 mt-8">Message: </label>
+         <label htmlFor="message" className="text-sm inline-block mb-1 mt-8">Message: </label>
          <textarea 
             type="text" 
             name="message" 
