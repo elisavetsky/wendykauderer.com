@@ -43,10 +43,13 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 				if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
 					return localStorage.getItem("theme");
 				}
-				
+				debugger
 				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					window.localStorage.setItem("theme", "system");
 					return "dark";
+					
 				} else {
+					window.localStorage.setItem("theme", "system");
 					return "light";
 				}
 				
@@ -58,7 +61,7 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 				document.documentElement.classList.add("dark");
 			}
 
-			window.localStorage.setItem("theme", theme);
+			// window.localStorage.setItem("theme", theme);
 		
 			// /////////////////////////////////////////////////
 			// WHENEVER VIEW TRANSITIONS API IS WIDELY AVAILABLE

@@ -7,7 +7,7 @@ import { Button, Wrapper, Menu, MenuItem } from 'react-aria-menubutton';
 import { useRef, useState, useEffect } from "react";
 
 export default function Dropdown({children, CustomButton, buttonTitle}) {
-   const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "light");
+   const [theme, setTheme] = useState(localStorage.getItem("theme"));
    const ref = useRef(null);
    // const [isOpen, setOpen] = useState(false);
    // const { openMenu, closeMenu, toggleMenu, ...menuProps } = useMenuState();
@@ -19,15 +19,29 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
       setTheme(theme === "light" ? "dark" : "light")
    }
 
-   const menuItemValues = ['Light', 'Dark', 'System'];
+   const themeDictionary = [
+		{
+			label: "Light",
+			value: "light"
+		}, 
+		{
+			label: "Dark",
+			value: "dark"
+		},
+		{
+			label: "System",
+			value: "system"
+		}
+	];
 
-   const menuItems = menuItemValues.map((item, i) => {
+   const menuItems = themeDictionary.map(({label, value}, i) => {
 		return (
-			<li key={i} className="last-of-type:border-t last-of-type:border-slate-400">
+			<li key={i} className="last-of-type:border-t last-of-type:border-slate-200 dark:last-of-type:border-slate-600">
 				<MenuItem 
-               className="cursor-pointer text-md px-2 p-1 transition-all hover:bg-gray-200 dark:hover:bg-slate-600"
+					aria-selected={theme === value ? true : false}
+               className={`${theme === value && "decoration-2 underline underline-offset-4"} cursor-pointer text-md px-2 p-1 transition-all hover:bg-gray-200 dark:hover:bg-slate-600`}
             >
-               {item}
+               {label}
             </MenuItem>
 			</li>
 		);
@@ -54,11 +68,12 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
             setTheme("dark");
             break;
          case "System":
-            if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-					setTheme("dark");
-				} else {
-					setTheme("light");
-				}
+				setTheme("system");
+            // if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+				// 	setTheme("dark");
+				// } else {
+				// 	setTheme("light");
+				// }
       }
    }
 
@@ -75,10 +90,16 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
          //    document.documentElement.classList.remove("dark");
          //    localStorage.setItem("theme", "light")
          // }
-      } else {
+      } else if (theme === "light") {
          document.documentElement.classList.remove("dark");
          // localStorage.removeItem("theme");
-      }
+      } else if (theme === "system") {
+			if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+				document.documentElement.classList.add("dark");
+			} else {
+				document.documentElement.classList.remove("dark");
+			}
+		}
       localStorage.setItem("theme", theme)
    }, [theme]);
 
