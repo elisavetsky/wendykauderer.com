@@ -40,6 +40,7 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 
 		<script is:inline>
 			const theme = (() => {
+
 				if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
 					return localStorage.getItem("theme");
 				}
@@ -57,8 +58,14 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 			
 			if (theme === "light") {
 				document.documentElement.classList.remove("dark");
-			} else {
+			} else if (theme === "dark") {
 				document.documentElement.classList.add("dark");
+			} else if (theme === "system" ) {
+				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					document.documentElement.classList.add("dark");
+				} else {
+					document.documentElement.classList.remove("dark");
+				}
 			}
 
 			// window.localStorage.setItem("theme", theme);

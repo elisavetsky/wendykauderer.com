@@ -38,6 +38,7 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
 		return (
 			<li key={i} className="last-of-type:border-t last-of-type:border-slate-200 dark:last-of-type:border-slate-600">
 				<MenuItem 
+					role="option"
 					aria-selected={theme === value ? true : false}
                className={`${theme === value && "decoration-2 underline underline-offset-4"} cursor-pointer text-md px-2 p-1 transition-all hover:bg-gray-200 dark:hover:bg-slate-600`}
             >
@@ -55,7 +56,7 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
 
    function handleSelection(value, event) {
       console.log(event)
-      event.stopPropagation;
+      
       
       switch (value) {
          case "Light": 
@@ -74,6 +75,18 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
 				// } else {
 				// 	setTheme("light");
 				// }
+      }
+   }
+
+	const themeToggleState = () => {
+      if (theme === "system") {
+         if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            return "dark";
+         } else {
+            return "light";
+         }
+      } else {
+         return theme;
       }
    }
 
@@ -100,15 +113,24 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
 				document.documentElement.classList.remove("dark");
 			}
 		}
-      localStorage.setItem("theme", theme)
+      localStorage.setItem("theme", theme);
+
    }, [theme]);
 
    return (
       <Wrapper className="w-fit relative" onSelection={handleSelection} >
-			<Button className="">
-            <ThemeToggle currentTheme={theme} />
+			<Button 
+				aria-label="Switch theme"
+				className={`theme-toggle ${
+				themeToggleState() === "dark" ? "theme-toggle--toggled" : ""
+			} flex items-center text-xl ml-[0.6rem] my-1 mr-1.5 p-1.5 rounded-full transition-all text-slate-900 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-600`}
+			>
+            <ThemeToggle currentTheme={themeToggleState()} />
          </Button>
-			<Menu className="ml-2 mt-2 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg rounded-lg py-2 min-w-[10rem] z-30 dark:bg-slate-800/80 md:left-11 md:-bottom-2.5">
+			<Menu 
+				role="listbox"
+				className="ml-2 mt-2 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg rounded-lg py-2 min-w-[10rem] z-30 dark:bg-slate-800/80 md:left-11 md:-bottom-2.5"
+			>
 				<ul>{menuItems}</ul>
 			</Menu>
 		</Wrapper>
