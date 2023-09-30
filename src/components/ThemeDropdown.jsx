@@ -106,7 +106,7 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
    return (
       <Wrapper className="w-fit relative" onSelection={handleSelection} >
 			<Button className="">
-            <ThemeToggle />
+            <ThemeToggle currentTheme={theme} />
          </Button>
 			<Menu className="ml-2 mt-2 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg rounded-lg py-2 min-w-[10rem] z-30 dark:bg-slate-800/80 md:left-11 md:-bottom-2.5">
 				<ul>{menuItems}</ul>

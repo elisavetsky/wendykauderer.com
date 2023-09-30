@@ -43,7 +43,7 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 				if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
 					return localStorage.getItem("theme");
 				}
-				debugger
+				
 				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 					window.localStorage.setItem("theme", "system");
 					return "dark";

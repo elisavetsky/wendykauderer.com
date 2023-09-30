@@ -11,23 +11,6 @@ export const ThemeToggle = forwardRef((props, ref) => {
    function handleClick() {
       setTheme(theme === "light" ? "dark" : "light")
    }
-
-   useEffect(() => {
-      if ('theme' in localStorage) {
-         if (localStorage.theme === "dark") {
-            document.documentElement.classList.add("dark");
-   
-            // set theme state to false
-            setTheme("dark");
-         } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", theme)
-         }
-      } else {
-         document.documentElement.classList.remove("dark");
-         localStorage.removeItem("theme");
-      }
-   }, [theme]);
    
 
    // if (localStorage.theme === 'dark' || 
@@ -42,7 +25,7 @@ export const ThemeToggle = forwardRef((props, ref) => {
          
       <button
          ref={ref}
-         className={`theme-toggle ${!theme ? "theme-toggle--toggled" : ""} flex items-center text-xl ml-[0.6rem] my-1 mr-1.5 p-1.5 rounded-full transition-all text-slate-900 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-600`}
+         className={`theme-toggle ${props.currentTheme === "dark" ? "theme-toggle--toggled" : ""} flex items-center text-xl ml-[0.6rem] my-1 mr-1.5 p-1.5 rounded-full transition-all text-slate-900 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-600`}
          onClick={props.onClick}
          onKeyDown={props.onKeyDown}
          type="button"
