@@ -10,7 +10,7 @@ export default function ContactForm() {
             aria-describedby="nameHint" 
             className="text-md px-2 my-1 h-8 rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-slate-700 dark:border-slate-300"
          />
-         <p className="mt-1.5 text-xs h-5 text-rose-500 dark:text-rose-400" id="nameHint">
+         <p className="mt-1.5 text-xs h-5 text-rose-700 dark:text-rose-400" id="nameHint">
             <span aria-hidden="true">➔ </span>
             Your name must not have any numbers.
          </p>
@@ -23,7 +23,7 @@ export default function ContactForm() {
             aria-describedby="emailHint" 
             className="text-md px-2 my-1 h-8 rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-slate-700 dark:border-slate-300"
          />
-         <p className="mt-1.5 text-xs h-5 text-rose-500 dark:text-rose-400" id="emailHint">
+         <p className="mt-1.5 text-xs h-5 text-rose-700 dark:text-rose-400" id="emailHint">
             <span aria-hidden="true">➔ </span>
             Your email must not have any spaces.
          </p>
@@ -36,7 +36,7 @@ export default function ContactForm() {
             aria-describedby="messageHint" 
             className="text-md px-2 my-1 h-28 min-h-[2rem] max-h-[30rem] rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-slate-700 dark:border-slate-300"
          />
-         <p className="text-xs h-5 text-rose-500 dark:text-rose-400" id="messageHint">
+         <p className="text-xs h-5 text-rose-700 dark:text-rose-400" id="messageHint">
             <span aria-hidden="true">➔ </span>
             Your message must not have any strange characters.
          </p>

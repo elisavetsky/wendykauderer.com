@@ -28,6 +28,7 @@ const featuredArtwork = await getEntry('settings', 'main-hero');
             alt={featuredArtwork.data.image_alt} 
             width={768}
             quality={50}
+            loading="eager"
             classes="m-auto md:max-w-md"
          />
       </Flex2ColLayout>
