@@ -9,7 +9,7 @@ import Link from "./Link.jsx";
 export default function Footer({footerNav}) {
    return (
       <footer className="mt-auto w-screen border-t-slate-400 border-t dark:border-t-slate-500 sm:w-full">
-         <div className="h-full px-4 pt-20 pb-7 flex flex-col mx-auto max-w-screen-2xl justify-between sm:text-right md:items-center lg:flex-row lg:items-end">
+         <div className="h-full px-4 pt-48 pb-7 flex flex-col gap-20 mx-auto max-w-screen-2xl justify-between sm:text-right md:items-center lg:flex-row lg:items-end">
             <div className="flex-auto text-left self-start lg:self-end">
                <Link
                   href="/"
@@ -19,7 +19,7 @@ export default function Footer({footerNav}) {
                >
                   {SitewideConfig.frontmatter.site_name}
                </Link>
-               <ul className="text-md mt-4 mb-12">
+               <ul className="text-md mt-4">
                   {footerNav.map(({title, href, dropdown_items}) => {
                      if (dropdown_items) {
                         return dropdown_items.map(({title, href}) => {

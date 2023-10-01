@@ -9,7 +9,12 @@ const { artwork, showDescriptions } = Astro.props;
    {
       artwork.map((entry, i) => {
          return (
-            <div class="">
+            <div 
+               class={`
+                  ${i % 2 === 1 && entry.data.image.width > entry.data.image.height ? "xl:col-span-2" : ""} 
+                  ${i % 3 === 2 && entry.data.image.width < entry.data.image.height ? "lg:col-span-2" : ""}
+               `}
+            >
                <FullArtwork 
                   title={entry.data.title} 
                   date={entry.data.date}

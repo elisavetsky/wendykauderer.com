@@ -8,7 +8,7 @@ export default function ContactForm() {
             name="name" 
             aria-invalid="true" 
             aria-describedby="nameHint" 
-            className="text-md px-2 my-1 h-8 rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-gray-900 dark:border-slate-300"
+            className="text-md px-2 my-1 h-8 rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-zinc-800 dark:border-slate-300"
          />
          <p className="mt-1.5 text-xs h-5 text-rose-700 dark:text-rose-400" id="nameHint">
             <span aria-hidden="true">➔ </span>
@@ -21,7 +21,7 @@ export default function ContactForm() {
             name="email" 
             aria-invalid="true" 
             aria-describedby="emailHint" 
-            className="text-md px-2 my-1 h-8 rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-gray-900 dark:border-slate-300"
+            className="text-md px-2 my-1 h-8 rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-zinc-800 dark:border-slate-300"
          />
          <p className="mt-1.5 text-xs h-5 text-rose-700 dark:text-rose-400" id="emailHint">
             <span aria-hidden="true">➔ </span>
@@ -34,7 +34,7 @@ export default function ContactForm() {
             name="message" 
             aria-invalid="true" 
             aria-describedby="messageHint" 
-            className="text-md px-2 my-1 h-28 min-h-[2rem] max-h-[30rem] rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-gray-900 dark:border-slate-300"
+            className="text-md px-2 my-1 h-28 min-h-[2rem] max-h-[30rem] rounded-none border-b border-l-2 bg-gray-50 border-slate-800 w-full dark:bg-zinc-800 dark:border-slate-300"
          />
          <p className="text-xs h-5 text-rose-700 dark:text-rose-400" id="messageHint">
             <span aria-hidden="true">➔ </span>
