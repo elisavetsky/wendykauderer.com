@@ -11,12 +11,12 @@ export default function Tag({title, artType}) {
          classes="no-underline"
       >
          <span 
-            className={`${commonClasses} bg-cyan-100/70 hover:bg-cyan-100/70 dark:bg-cyan-900 dark:hover:bg-cyan-700`}
+            className={`${commonClasses} bg-slate-200/70 hover:bg-slate-300/70 dark:bg-slate-900 dark:slate:bg-cyan-700`}
          >
             {artType}
          </span>
       </Link>
       : 
-      <span className={`${commonClasses} bg-slate-200 dark:bg-slate-700`}>{title}</span>
+      <span className={`${commonClasses} bg-gray-200 dark:bg-gray-700`}>{title}</span>
    )
 }
