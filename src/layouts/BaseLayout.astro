@@ -14,6 +14,7 @@ import MainFlexLayout from "./MainFlexLayout.astro";
 const featuredArtwork = await getEntry('settings', 'main-hero');
 
 // import css
+import "inter-ui/inter.css";
 import '../styles/main.css'
 
 const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
@@ -25,7 +26,7 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 		<!-- // /////////////////////////////////////////////////
    		// WHENEVER VIEW TRANSITIONS API IS WIDELY AVAILABLE, TRY SPA Mode
    		// ///////////////////////////////////////////////// -->
-		<ViewTransitions fallback="none" />
+		<ViewTransitions fallback="swap" />
 
 		<!-- Global meta tags -->
 		<meta charset="UTF-8" />
