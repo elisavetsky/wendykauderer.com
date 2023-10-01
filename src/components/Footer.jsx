@@ -9,13 +9,13 @@ import Link from "./Link.jsx";
 export default function Footer({footerNav}) {
    return (
       <footer className="mt-auto sm:w-full">
-         <div className="h-full px-4 pt-48 pb-7 flex flex-col gap-20 mx-auto max-w-screen-2xl justify-between sm:text-right md:items-center md:px-0 lg:px-4 lg:flex-row lg:items-end">
-            <div className="flex-auto text-left self-start lg:self-end">
+         <div className="h-full w-full px-4 pt-48 pb-7 flex flex-col gap-20 mx-auto max-w-screen-2xl justify-between sm:text-right md:items-center md:px-0 lg:px-4 lg:flex-row lg:items-end mr-auto">
+            <div className="text-left self-start lg:self-end">
                <Link
                   href="/"
                   inline
                   transition="transition"
-                  classes="font-semibold motion-safe:hover:-translate-y-[2px] motion-safe:hover:translate-x-[2px] hover:text-slate-400 dark:hover:text-zinc-400"
+                  classes="text-lg font-semibold motion-safe:hover:-translate-y-[2px] motion-safe:hover:translate-x-[2px]"
                >
                   {SitewideConfig.frontmatter.site_name}
                </Link>
@@ -32,7 +32,7 @@ export default function Footer({footerNav}) {
                                     href={href}
                                     inline
                                     transition="transition"
-                                    classes="motion-safe:hover:-translate-y-[2px] motion-safe:hover:translate-x-[2px] hover:text-slate-400 dark:hover:text-slate-400"
+                                    classes="motion-safe:hover:-translate-y-[2px] motion-safe:hover:translate-x-[2px]"
                                  >
                                     {title}
                                  </Link>
@@ -49,7 +49,7 @@ export default function Footer({footerNav}) {
                                  href={href}
                                  inline
                                  transition="transition"
-                                 classes="motion-safe:hover:-translate-y-[2px] motion-safe:hover:translate-x-[2px] hover:text-slate-400 dark:hover:text-slate-400"
+                                 classes="motion-safe:hover:-translate-y-[2px] motion-safe:hover:translate-x-[2px]"
                               >
                                  {title}
                               </Link>
@@ -59,12 +59,12 @@ export default function Footer({footerNav}) {
                   })}
                </ul>
             </div>
-            <div className="text-md flex flex-wrap sm:h-fit sm:flex-wrap-nowrap sm:flex-row sm:self-start sm:items-center lg:justify-end lg:self-end">
+            <div className="flex flex-wrap sm:h-fit sm:flex-wrap-nowrap sm:flex-row sm:self-start sm:items-center lg:justify-end lg:self-end">
                <span className="transition-colors mr-1">A website by</span>
                   <Link
                      href={SitewideConfig.frontmatter.developer_site_url}
                      inline
-                     classes="sm:mr-3 hover:text-slate-400 dark:hover:text-slate-400"
+                     classes="sm:mr-3"
                   >
                      {SitewideConfig.frontmatter.developer_name}
                   </Link>

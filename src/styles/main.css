@@ -39,6 +39,7 @@
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Helvetica, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
 		background: #ffffff;
 		background-size: 224px;
+      scroll-behavior: "auto";
 	}
 
    @supports (font-variation-settings: normal) {

@@ -38,7 +38,7 @@ import ArtTypes from './ArtTypes.astro';
                   size="md"
                   transition="transition"
                   classes={
-                     `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline underline-offset-4 decoration-2 decoration-inherit" : "decoration-transparent"} decoration-2 hover:decoration-inherit motion-safe:hover:translate-x-px motion-safe:hover:-translate-y-px hover:underline hover:underline-offset-4`
+                     `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline underline-offset-4 decoration-2 decoration-inherit" : "decoration-transparent"} hover:decoration-inherit motion-safe:hover:translate-x-px motion-safe:hover:-translate-y-px`
                   }
                >
                   {title}

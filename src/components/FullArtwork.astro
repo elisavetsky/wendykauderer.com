@@ -16,19 +16,21 @@ const {
    images, 
    description, 
    showFullDescription,
-   loading
+   loading,
+   classes
 } = Astro.props;
 ---
 
-<div class="prose max-w-none dark:prose-invert dark:prose-p:text-gray-100">
+<div class="max-w-none">
    <div class="sm:px-0">
       <a href={href}>
          <ImageWrapper 
             src={mainImage.src} 
             alt={mainImage.alt} 
+            width={640}
             quality={50}
             loading={loading ?? "lazy"}
-            classes={"w-full relative transition transition-translate ease-in-out delay-75 duration-300 hover:shadow-xl hover:shadow-black/20 dark:hover:shadow-zinc-600 sm:hover:translate-x-px sm:hover:-translate-y-1"} 
+            classes={`${classes} min-w-[100%] relative transition transition-translate ease-in-out delay-75 duration-300 hover:shadow-xl hover:shadow-black/20 dark:hover:shadow-zinc-600 sm:hover:translate-x-px sm:hover:-translate-y-1`} 
          />
       </a> 
       <!-- {() => { 
@@ -60,7 +62,7 @@ const {
       }} -->
    </div>
 
-   {description && 
+   <!-- {description && 
       <div class="px-4">
          <p class="flex flex-col p-3 rounded-md prose max-w-none dark:prose-invert bg-slate-50 dark:bg-slate-800">
             {() => {
@@ -77,5 +79,5 @@ const {
             }}
          </p>
       </div>
-   }
+   } -->
 </div>

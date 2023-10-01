@@ -8,7 +8,7 @@ export default function ContactForm() {
             name="name" 
             aria-invalid="true" 
             aria-describedby="nameHint" 
-            className="text-md px-2 my-1 h-8 rounded-none border-b border-l-2 bg-inherit border-slate-800 w-full dark:border-slate-300"
+            className="text-md px-2 my-1 h-8 rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full dark:border-zinc-200"
          />
          <p className="mt-1.5 text-xs h-5 text-rose-700 dark:text-rose-400" id="nameHint">
             <span aria-hidden="true">➔ </span>
@@ -21,7 +21,7 @@ export default function ContactForm() {
             name="email" 
             aria-invalid="true" 
             aria-describedby="emailHint" 
-            className="text-md px-2 my-1 h-8 rounded-none border-b border-l-2 bg-inherit border-slate-800 w-full  dark:border-slate-300"
+            className="text-md px-2 my-1 h-8 rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full  dark:border-zinc-200"
          />
          <p className="mt-1.5 text-xs h-5 text-rose-700 dark:text-rose-400" id="emailHint">
             <span aria-hidden="true">➔ </span>
@@ -34,7 +34,7 @@ export default function ContactForm() {
             name="message" 
             aria-invalid="true" 
             aria-describedby="messageHint" 
-            className="text-md px-2 my-1 h-28 min-h-[2rem] max-h-[30rem] rounded-none border-b border-l-2 bg-inherit border-slate-800 w-full dark:border-slate-300"
+            className="text-md px-2 my-1 h-28 min-h-[2rem] max-h-[30rem] rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full dark:border-zinc-200"
          />
          <p className="text-xs h-5 text-rose-700 dark:text-rose-400" id="messageHint">
             <span aria-hidden="true">➔ </span>
@@ -45,7 +45,7 @@ export default function ContactForm() {
       
          <button 
             type="submit" 
-            className="transition-colors w-full py-2 px-4 mt-6 border text-gray-100 bg-gray-700 border-slate-500 rounded-lg hover:bg-gray-500 sm:w-fit"
+            className="transition-colors w-full py-2 px-4 mt-6 border text-gray-100 bg-zinc-700 border-zinc-500 rounded-lg hover:bg-zinc-500 sm:w-fit"
          >
             Send
          </button>

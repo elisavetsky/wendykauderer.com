@@ -8,8 +8,9 @@ export default defineConfig({
   server: {
     host: true
   },
+  // site: 'https://www.my-site.dev',
   experimental: {
-    
+
   },
   integrations: [
     react(),
