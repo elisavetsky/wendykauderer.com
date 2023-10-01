@@ -54,28 +54,26 @@ const artTypes = [
 const props = Astro.props;
 ---
 
-<menu class="flex flex-wrap py-2 px-1 items-center overflow-x-auto font-sans text-slate-950 text-sm font-medium dark:text-slate-50">
 
-   {artTypes.map(({route, label, image, image_alt}) => {
-      return (
-         <a href={`${route}`} class={`relative w-24 h-24 mr-3 mb-3 rounded-full`}>
-            <li 
-               class={`absolute z-10 shadow-md backdrop-blur-md  flex justify-center items-center bg-white/60 w-full h-full rounded-full p-1 transition-all duration-300 decoration-2 underline-offset-4 hover:underline decoration-transparent hover:decoration-inherit motion-safe:hover:-translate-y-1 motion-safe:hover:translate-x-1 hover:backdrop-blur-md hover:bg-white/60 dark:shadow-slate-800 dark:bg-slate-950/50 dark:hover:bg-slate-950/50 ${Astro.url.pathname === `/${slugify(route)}` ? "backdrop-saturate-200 translate-x-1 -translate-y-1 shadow-lg backdrop-blur-lg bg-slate-50/60 dark:bg-slate-950/50" : "backdrop-saturate-50 hover:shadow-lg hover:backdrop-saturate-200"}`}
-            >
-               <span class="drop-shadow-white underline-offset-4 decoration-2 decoration-[inherit] hover:decoration-inherit dark:drop-shadow-sm">{label}</span>
+      {artTypes.map(({route, label, image, image_alt}) => {
+         return (
+            <li class={`relative w-24 h-24 mr-3 mb-3 rounded-full`}>
+               <a 
+                  href={`${route}`} 
+                  class={`absolute z-10 shadow-md backdrop-blur-md  flex justify-center items-center bg-white/60 w-full h-full rounded-full p-1 transition-all duration-300 decoration-2 underline-offset-4 hover:underline decoration-transparent hover:decoration-inherit motion-safe:hover:-translate-y-1 motion-safe:hover:translate-x-1 hover:backdrop-blur-md hover:bg-white/60 dark:shadow-slate-800 dark:bg-slate-950/50 dark:hover:bg-slate-950/50 ${Astro.url.pathname === `/${slugify(route)}` ? "backdrop-saturate-200 translate-x-1 -translate-y-1 shadow-lg backdrop-blur-lg bg-slate-50/60 dark:bg-slate-950/50" : "backdrop-saturate-50 hover:shadow-lg hover:backdrop-saturate-200"}`}
+               >
+                  <span class="drop-shadow-white underline-offset-4 decoration-2 decoration-[inherit] hover:decoration-inherit dark:drop-shadow-sm">{label}</span>
+               </a>
+               {image && image_alt &&
+                  <Image
+                     src={image}
+                     alt={image_alt}
+                     quality={1}
+                     width={50}
+                     loading="eager"
+                     class="saturate-200 brightness-[1.1] w-full h-full object-cover rounded-full"
+                  />
+               }
             </li>
-            {image && image_alt &&
-               <Image
-                  src={image}
-                  alt={image_alt}
-                  quality={1}
-                  width={50}
-                  loading="eager"
-                  class="saturate-200 brightness-[1.1] w-full h-full object-cover rounded-full"
-               />
-            }
-         </a>
-      )
-   })}
-   
-</menu>
+         )
+      })}

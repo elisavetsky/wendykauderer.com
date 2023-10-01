@@ -18,16 +18,17 @@ import ArtTypes from './ArtTypes.astro';
       
       {sections?.map(({title, dropdown_items}) => {
          return (
-            <li class={`${dropdown_items ? "dropdown-container" : "" } text-md inline-flex flex-col items-start relative w-fit`}>
+            <li class={`${dropdown_items ? "dropdown-container" : "" } text-md inline-flex flex-col items-start relative `}>
                
                {dropdown_items ?
-               <button 
-                  aria-haspopup="true"
-                  class={`dropdown-trigger py-1 px-4 transition-colors hover:text-slate-800 dark:hover:text-slate-100`}
-               >
-                  {title}
-               </button>
-               <ul class={`dropdown-menu ${Astro.url.pathname.split("/")[1] === slugify(title) ? "hidden" : ""} transition-colors relative z-10 left-0 rounded-lg bottom-0 w-full py-2  md:left-[unset]`}>
+               // <button 
+               //    aria-haspopup="true"
+               //    class={`dropdown-trigger py-1 px-4 transition-colors hover:text-slate-800 dark:hover:text-slate-100`}
+               // >
+               //    {title}
+               // </button>
+               <ul 
+                  class={`dropdown-menu transition-colors relative z-10 left-0 rounded-lg bottom-0 w-full py-2 md:left-[unset] flex flex-wrap px-1 items-center overflow-x-auto font-sans text-slate-950 text-sm font-medium dark:text-slate-50`}>
                   <ArtTypes />
                </ul>
                // <Dropdown items={dropdown_items} />
@@ -58,29 +59,33 @@ import ArtTypes from './ArtTypes.astro';
 </nav>
 
 <script>
-   const dropTriggers = document.querySelectorAll(".dropdown-trigger");
-   const dropMenus = document.querySelectorAll(".dropdown-menu");
+   document.addEventListener('astro:after-swap', () => {
 
-   function handleClick(el) {
-      const button = el.currentTarget;
-      
-      const dropMenu = button.closest(".dropdown-container").querySelector(".dropdown-menu");
-      
-      // toggle 'hidden' class for dropMenu
-      dropMenu.classList.toggle("hidden");
-   }
+      const dropTriggers = document.querySelectorAll(".dropdown-trigger");
+      const dropMenus = document.querySelectorAll(".dropdown-menu");
 
-   function handleClickOutside(el) {
-      clickedEl = el.currentTarget
-   }
+      function handleClick(el) {
+         const button = el.currentTarget;
+         
+         const dropMenu = button.closest(".dropdown-container").querySelector(".dropdown-menu");
+         
+         // toggle 'hidden' class for dropMenu
+         dropMenu.classList.toggle("hidden");
+      }
 
-   dropTriggers.forEach((dropTrigger) => {
-      dropTrigger.addEventListener("click", handleClick);
-   })
+      function handleClickOutside(el) {
+         const clickedEl = el.currentTarget
+      }
 
-   dropMenus.forEach((dropMenu) => {
-      dropMenu.addEventListener("blur", (e) => {
-         dropMenu.classList.add("hidden");
+      dropTriggers.forEach((dropTrigger) => {
+         dropTrigger.addEventListener("click", handleClick);
       })
-   })
+
+      dropMenus.forEach((dropMenu) => {
+         dropMenu.addEventListener("blur", (e) => {
+            dropMenu.classList.add("hidden");
+         })
+      })
+   });
+   
 </script>

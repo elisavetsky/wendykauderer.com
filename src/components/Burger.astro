@@ -7,34 +7,38 @@
 
 
 <script>
-   // Navbar
-   const burgerMenus = document.querySelectorAll(".burger");
+   document.addEventListener('astro:page-load', () => {
+   // This necessary script runs after very page load
 
-   function handleClick(el) {
-      const button = el.currentTarget;
+      // Navbar
+      const burgerMenus = document.querySelectorAll(".burger");
 
-      // make menu active
-      const target = button.dataset.target;
-      const targetEl = document.getElementById(target);
+      function handleClick(el) {
+         const button = el.currentTarget;
 
-      targetEl.classList.toggle("hidden");
+         // make menu active
+         const target = button.dataset.target;
+         const targetEl = document.getElementById(target);
 
-      // conditional to apply active styles or not based on menu state
-      const buttonStyles = ["bg-gray-100", "dark:bg-gray-700"];
-      const menuStyles = ["-translate-y-32"];
+         targetEl.classList.toggle("hidden");
 
-      if (!targetEl.classList.contains("hidden")) {
-         button.classList.add(...buttonStyles);
-         // targetEl.classList.remove(...menuStyles);
-      } else {
-         button.classList.remove(...buttonStyles);
-         // targetEl.classList.add(...menuStyles);
+         // conditional to apply active styles or not based on menu state
+         const buttonStyles = ["bg-gray-100", "dark:bg-gray-700"];
+         const menuStyles = ["-translate-y-32"];
+
+         if (!targetEl.classList.contains("hidden")) {
+            button.classList.add(...buttonStyles);
+            // targetEl.classList.remove(...menuStyles);
+         } else {
+            button.classList.remove(...buttonStyles);
+            // targetEl.classList.add(...menuStyles);
+         }
       }
-   }
 
-   burgerMenus.forEach((menu) => {
-      menu.addEventListener("click", handleClick)
-   })
+      burgerMenus.forEach((menu) => {
+         menu.addEventListener("click", handleClick)
+      })
+   });
 
 
    // /////////////////////////////////////////////////

@@ -20,8 +20,13 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="">
+<html lang="en" class="" transition:animate="none">
 	<head>
+		<!-- // /////////////////////////////////////////////////
+   		// WHENEVER VIEW TRANSITIONS API IS WIDELY AVAILABLE, TRY SPA Mode
+   		// ///////////////////////////////////////////////// -->
+		<ViewTransitions fallback="none" />
+
 		<!-- Global meta tags -->
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -39,34 +44,71 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 		<meta property="og:url" content={`https://wendykauderer.com${Astro.url.pathname}`}>
 
 		<script is:inline>
+			// Get theme 
 			const theme = (() => {
 
-				if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-					return localStorage.getItem("theme");
-				}
-				
-				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-					window.localStorage.setItem("theme", "system");
-					return "dark";
-					
-				} else {
-					window.localStorage.setItem("theme", "system");
-					return "light";
-				}
-				
-			})();
-			
-			if (theme === "light") {
+if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+	return localStorage.getItem("theme");
+}
+
+if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+	window.localStorage.setItem("theme", "system");
+	return "dark";
+	
+} else {
+	window.localStorage.setItem("theme", "system");
+	return "light";
+}
+
+})();
+
+				if (theme === "light") {
 				document.documentElement.classList.remove("dark");
-			} else if (theme === "dark") {
-				document.documentElement.classList.add("dark");
-			} else if (theme === "system" ) {
-				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+				} else if (theme === "dark") {
 					document.documentElement.classList.add("dark");
-				} else {
-					document.documentElement.classList.remove("dark");
+				} else if (theme === "system" ) {
+					if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+						document.documentElement.classList.add("dark");
+					} else {
+						document.documentElement.classList.remove("dark");
+					}
 				}
-			}
+			
+
+
+			// Runs on view transitions navigation
+			document.addEventListener('astro:after-swap', () => {
+				
+				// Get theme 
+				const theme = (() => {
+
+if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+	return localStorage.getItem("theme");
+}
+
+if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+	window.localStorage.setItem("theme", "system");
+	return "dark";
+	
+} else {
+	window.localStorage.setItem("theme", "system");
+	return "light";
+}
+
+})();
+
+				if (theme === "light") {
+				document.documentElement.classList.remove("dark");
+				} else if (theme === "dark") {
+					document.documentElement.classList.add("dark");
+				} else if (theme === "system" ) {
+					if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+						document.documentElement.classList.add("dark");
+					} else {
+						document.documentElement.classList.remove("dark");
+					}
+				}
+			})
 
 			// window.localStorage.setItem("theme", theme);
 		
@@ -103,10 +145,7 @@ const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
 			crossorigin=""
 		/>
 		
-		<!-- // /////////////////////////////////////////////////
-   		// WHENEVER VIEW TRANSITIONS API IS WIDELY AVAILABLE
-   		// ///////////////////////////////////////////////// -->
-		<!-- <ViewTransitions fallback="none" /> -->
+		
 	</head>
 	<body class="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 duration-200">
 

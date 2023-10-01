@@ -15,7 +15,8 @@ const {
    mainImage,
    images, 
    description, 
-   showFullDescription 
+   showFullDescription,
+   loading
 } = Astro.props;
 ---
 
@@ -26,6 +27,7 @@ const {
             src={mainImage.src} 
             alt={mainImage.alt} 
             quality={50}
+            loading={loading ?? "lazy"}
             classes={"w-full relative transition transition-translate ease-in-out delay-75 duration-300 hover:shadow-xl hover:shadow-black/20 dark:hover:shadow-slate-700 sm:hover:translate-x-px sm:hover:-translate-y-1"} 
          />
       </a> 

@@ -5,9 +5,9 @@ import FullArtwork from "../components/FullArtwork.astro";
 const { artwork, showDescriptions } = Astro.props;
 ---
 
-<div class="w-full grid grid-flow-dense gap-4 lg:items-center lg:grid-cols-2 xl:grid-cols-3 md:px-4">
+<div class="w-full grid grid-flow-dense gap-8 md:gap-4 md:px-4 lg:items-center lg:grid-cols-2 xl:grid-cols-3">
    {
-      artwork.map((entry) => {
+      artwork.map((entry, i) => {
          return (
             <div class="">
                <FullArtwork 
@@ -22,6 +22,7 @@ const { artwork, showDescriptions } = Astro.props;
                   }}
                   images={entry.data.images}
                   description={showDescriptions && entry.data.description}
+                  loading={i <= 2 ? "eager" : "lazy"}
                />
             </div>
          )
