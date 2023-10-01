@@ -13,8 +13,8 @@ import Link from './Link.jsx';
 import ArtTypes from './ArtTypes.astro';
 ---
 
-<nav aria-label="Main menu" id="main-menu" class="hidden text-md mt-8 md:translate-y-0 md:m-0 md:flex md:flex-col">
-   <ul class="flex flex-col justify-between leading-loose mb-4 w-full md:gap-1 md:mb-8 md:mr-12">
+<nav aria-label="Main menu" id="main-menu" class="hidden text-md font-medium mt-8 md:translate-y-0 md:m-0 md:flex md:flex-col">
+   <ul class="flex flex-col justify-between leading-loose mb-4 w-full md:gap-0 md:mb-8 md:mr-12">
       
       {sections?.map(({title, dropdown_items}) => {
          return (
@@ -48,7 +48,7 @@ import ArtTypes from './ArtTypes.astro';
             </li>
          )
       })}
-      <li class="mt-4">
+      <li class="mt-2">
          <ThemeDropdown client:only="react">
             
          </ThemeDropdown>

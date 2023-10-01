@@ -1,7 +1,7 @@
 ---
 ---
 
-<button aria-label="Main menu button" data-target="main-menu" class="burger z-50 flex items-center h-fit relative cursor-pointer rounded-b-lg rounded-t-sm transition-all delay-75 hover:bg-gray-100 hover:shadow-md dark:hover:bg-zinc-700 dark:hover:shadow-black md:hidden">
+<button aria-label="Main menu button" data-target="main-menu" class="burger z-50 flex items-center h-fit relative cursor-pointer rounded-b-lg rounded-t-sm transition-all delay-75 hover:bg-gray-200 hover:shadow-md dark:hover:bg-zinc-700 dark:hover:shadow-black md:hidden">
    <span class="patties w-12 h-10"></span>
 </button>
 
@@ -82,13 +82,17 @@
    }
    
    .patties::after {
-      @apply bottom-4 right-2
+      @apply bottom-4 right-2 
+   }
+
+   .patties::after:hover {
+      @apply w-6
    }
 
    .patties::before,
    .patties::after {
       content: "";
-      @apply absolute h-[2px] w-8 transition-colors bg-gray-900 dark:bg-gray-100 hover:dark:bg-white rounded-full
+      @apply absolute h-[2px] transition-all w-8 bg-gray-900 dark:bg-gray-100 hover:dark:bg-white rounded-full
    }
 
    /* COMPATIBILITY WITH THIS CSS MODULE */

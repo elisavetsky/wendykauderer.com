@@ -5,14 +5,14 @@ import FullArtwork from "../components/FullArtwork.astro";
 const { artwork, showDescriptions } = Astro.props;
 ---
 
-<div class="w-full grid grid-flow-dense gap-8 md:gap-4 md:px-4 lg:items-center lg:grid-cols-2 xl:grid-cols-3">
+<div class="w-full grid grid-flow-dense gap-8 sm:gap-4 md:px-4 lg:items-start md:grid-cols-2 xl:grid-cols-6">
    {
       artwork.map((entry, i) => {
          return (
             <div 
                class={`
-                  ${i % 2 === 1 && entry.data.image.width > entry.data.image.height ? "xl:col-span-2" : ""} 
-                  ${i % 3 === 2 && entry.data.image.width < entry.data.image.height ? "lg:col-span-2" : ""}
+                  ${entry.data.image.width > entry.data.image.height ? "xl:col-span-4" : "xl:col-span-2"} 
+                  ${i % 3 === 2 && entry.data.image.width < entry.data.image.height ? "sm:col-span-2" : ""}
                `}
             >
                <FullArtwork 
