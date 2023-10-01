@@ -25,7 +25,7 @@ const artworkCollection = defineCollection({
 });
 
 const tagCollection = defineCollection({
-   type: "content",
+   type: "data",
    schema: z.object({
       title: z.string()
    })

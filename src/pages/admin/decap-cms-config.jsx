@@ -276,19 +276,20 @@ export default function DecapCMS() {
 					label: "Tag Collection",
                label_singular: "Tag",
 					folder: "src/content/tags",
+					extension: "yml",
 					create: true,
 					delete: false,
 					edit: false,
-					slug: "{{fields.slug}}",
+					slug: "{{fields.title}}",
 					editor: {
 						preview: false,
 					},
-					summary: "{{fields.slug | lower}}",
+					summary: "{{fields.title | lower}}",
 					description: "All my artwork tags live here. In order to create a new one to use with my artwork entry, I must create it using the 'New Tag' button.",
                fields: [
 						{
 							label: "Name",
-							name: "slug",
+							name: "title",
 							widget: "string",
 							hint: "Must be lowercase!",
 							pattern: ["^[a-z\s]+", "Tag must have only lowercase letters and spaces!"]

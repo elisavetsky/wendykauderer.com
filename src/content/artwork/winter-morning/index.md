@@ -6,7 +6,7 @@ title: "Winter Morning"
 date: 2017-09-07
 art_type: "painting"
 tags: 
-  - "landscape"
+  - landscape
 image: "../../../assets/images/winter-morning.jpg"
 main_image_alt: "THIS DESCRIPTION IS REQUIRED"
 images: 

@@ -1,6 +1,6 @@
 ---
 // Astro
-import { getCollection } from 'astro:content';
+import { getCollection, getEntries } from 'astro:content';
 
 // Import SitewideConfig
 import * as SitewideConfig from "../../configuration/SitewideConfig.md";
@@ -29,6 +29,11 @@ export async function getStaticPaths() {
 
 // 2. For your template, you can get the entry directly from the prop
 const { entry } = Astro.props;
+
+// Get the tags as a separate collection since it is referenced from the schema
+const tags = await getEntries(entry.data.tags);
+
+// Get markdown content
 const { Content } = await entry.render();
 ---
 
@@ -47,7 +52,6 @@ const { Content } = await entry.render();
             <FullArtwork 
                title={entry.data.title} 
                date={entry.data.date}
-               tags={entry.data.tags}
                artType={entry.data.art_type}
                href={`${entry.data.art_type}/${entry.slug}`}
                mainImage={{
@@ -65,7 +69,7 @@ const { Content } = await entry.render();
                <header class="mt-8 text-md md:mt-0">
                   <h1>{entry.data.title}</h1>
                </header>
-               <ArtDetails date={entry.data.date} artType={entry.data.art_type} tags={entry.data.tags} />
+               <ArtDetails date={entry.data.date} artType={entry.data.art_type} tags={tags} />
                <Content />
                <hr>
                <nav class="flex justify-between py-4" aria-label="previous artwork and next artwork navigation">

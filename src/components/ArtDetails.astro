@@ -14,7 +14,7 @@ const { date, artType, tags } = Astro.props;
       
       {tags.map((tag) => {
             return (
-               <Tag title={(tag.slug).toLowerCase()} />
+               <Tag title={tag.data.title.toLowerCase()} />
             )
       })}
    </div>
