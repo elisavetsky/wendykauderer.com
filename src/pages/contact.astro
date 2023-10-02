@@ -18,19 +18,19 @@ const featuredArtwork = await getEntry('settings', 'main-hero');
    pageTitle="Contact"
 >  
    <div class="m-auto max-w-xl md:max-w-none">
+      <SectionHero title="Contact Me"/>
       <Flex2ColLayout>
-         <div class="m-auto flex-auto w-full max-w-sm sm:max-w-sm xl:mr-auto xl:ml-0">
-            <SectionHero title="Contact Me"/>
+         <div class="flex-auto w-full max-w-sm sm:max-w-sm xl:mr-auto xl:ml-0">
             <ContactForm />
          </div>
-         <div class="p-4 m-auto">
+         <div class="p-4 m-auto md:m-0 xl:m-auto">
             <ImageWrapper 
                src={featuredArtwork.data.image} 
                alt={featuredArtwork.data.image_alt} 
                width={768}
                quality={50}
                loading="eager"
-               classes="m-auto md:max-w-md"
+               classes="md:max-w-md xl:m-auto"
             />
          </div>
       </Flex2ColLayout>

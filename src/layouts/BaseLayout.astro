@@ -1,5 +1,6 @@
 --- 
 import { getEntry } from "astro:content";
+import { Image } from "astro:assets";
 
 // Expose site configuration for CMS
 import * as SitewideConfig from "../configuration/SitewideConfig.md";
@@ -17,7 +18,7 @@ const featuredArtwork = await getEntry('settings', 'main-hero');
 import "inter-ui/inter.css";
 import '../styles/main.css'
 
-const { pageTitle, ogTitle, ogDescription, ogImage, options } = Astro.props;
+const { pageTitle, ogTitle, ogDescription, ogImage, blurredBg, options } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -148,8 +149,10 @@ if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 		
 		
 	</head>
-	<body class="flex flex-col min-h-screen bg-gray-100 dark:bg-zinc-800 duration-200">
-
+	<body class="flex flex-col min-h-screen relative bg-gray-100 dark:bg-zinc-800 duration-200">
+		{blurredBg &&
+			<Image src={blurredBg} quality={1} width={50} alt="" role="presentation" class="hidden pointer-events-none animate-bgFadeIn supports-filter:block absolute overflow-hidden object-cover w-full h-full blur-2xl opacity-20 saturate-200 contrast-75 dark:opacity-[0.25] dark:animate-bgFadeIn-dark" />
+		}
 		<MainFlexLayout>
 			<slot />
 		</MainFlexLayout>
