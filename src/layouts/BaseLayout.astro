@@ -49,32 +49,32 @@ const { pageTitle, ogTitle, ogDescription, ogImage, blurredBg, options } = Astro
 			// Get theme 
 			const theme = (() => {
 
-if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-	return localStorage.getItem("theme");
-}
-
-if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-	window.localStorage.setItem("theme", "system");
-	return "dark";
-	
-} else {
-	window.localStorage.setItem("theme", "system");
-	return "light";
-}
-
-})();
-
-				if (theme === "light") {
-				document.documentElement.classList.remove("dark");
-				} else if (theme === "dark") {
-					document.documentElement.classList.add("dark");
-				} else if (theme === "system" ) {
-					if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-						document.documentElement.classList.add("dark");
-					} else {
-						document.documentElement.classList.remove("dark");
-					}
+				if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+					return localStorage.getItem("theme");
 				}
+
+				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					window.localStorage.setItem("theme", "system");
+					return "dark";
+					
+				} else {
+					window.localStorage.setItem("theme", "system");
+					return "light";
+				}
+
+			})();
+
+			if (theme === "light") {
+			document.documentElement.classList.remove("dark");
+			} else if (theme === "dark") {
+				document.documentElement.classList.add("dark");
+			} else if (theme === "system" ) {
+				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					document.documentElement.classList.add("dark");
+				} else {
+					document.documentElement.classList.remove("dark");
+				}
+			}
 			
 
 
@@ -84,20 +84,20 @@ if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 				// Get theme 
 				const theme = (() => {
 
-if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-	return localStorage.getItem("theme");
-}
+					if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+						return localStorage.getItem("theme");
+					}
 
-if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-	window.localStorage.setItem("theme", "system");
-	return "dark";
-	
-} else {
-	window.localStorage.setItem("theme", "system");
-	return "light";
-}
+					if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+						window.localStorage.setItem("theme", "system");
+						return "dark";
+						
+					} else {
+						window.localStorage.setItem("theme", "system");
+						return "light";
+					}
 
-})();
+				})();
 
 				if (theme === "light") {
 				document.documentElement.classList.remove("dark");
@@ -138,15 +138,6 @@ if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 			type="font/woff2"
 			crossorigin=""
 		/>
-
-		<link
-			rel="preload"
-			href="/fonts/Southampton/southampton.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin=""
-		/>
-		
 		
 	</head>
 	<body class="flex flex-col min-h-screen relative bg-gray-100 dark:bg-zinc-800 duration-200">

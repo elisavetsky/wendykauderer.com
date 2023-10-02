@@ -3,27 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-   @font-face {
-      font-family: 'Seascape';
-      font-display: block;
-      src: url('/fonts/Seascape/seascape.woff2') format('woff2'),
-      url('/fonts/Seascape/seascape.woff') format('woff');
-      font-weight: normal;
-   }
 
    @font-face {
       font-family: 'James Arthur Regular';
       font-display: block;
       src: url('/fonts/James-Arthur-Regular/james-arthur-regular.woff2') format('woff2'),
       url('/fonts/James-Arthur-Regular/james-arthur-regular.woff') format('woff');
-      font-weight: normal;
-   }
-
-   @font-face {
-      font-family: 'Southampton';
-      font-display: block;
-      src: url('/fonts/Southampton/southampton.woff2') format('woff2'),
-      url('/fonts/Southampton/southampton.woff') format('woff');
       font-weight: normal;
    }
 
