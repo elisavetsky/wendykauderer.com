@@ -13,7 +13,7 @@ module.exports = {
 			keyframes: {
 				"fadeIn": {
 					'0%': { opacity: '0' },
-					'100%': { opacity: '0.2' },
+					'100%': { opacity: '0.25' },
 				},
 				"fadeIn-dark": {
 					'0%': { opacity: '0' },
@@ -21,8 +21,8 @@ module.exports = {
 				}
 			},
 			animation: {
-				"bgFadeIn": "1s linear fadeIn ",
-				"bgFadeIn-dark": "1s linear 1s fadeIn-dark forwards"
+				"bgFadeIn": "1s linear 0.5s fadeIn forwards",
+				"bgFadeIn-dark": "1s linear 0.5s fadeIn-dark forwards"
 			},
 			fontFamily: {
 				sans: ["Inter var", "Inter", ...defaultTheme.fontFamily.sans],
