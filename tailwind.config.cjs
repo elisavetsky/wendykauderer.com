@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	darkMode: "class",
@@ -18,13 +21,12 @@ module.exports = {
 				}
 			},
 			animation: {
-				"bgFadeIn": "fadeIn 1s linear",
-				"bgFadeIn-dark": "fadeIn-dark 1s linear"
+				"bgFadeIn": "1s linear fadeIn ",
+				"bgFadeIn-dark": "1s linear 1s fadeIn-dark forwards"
 			},
 			fontFamily: {
-				seascape: ["Seascape", "sans-serif"],
-				jamesarthur: ["James Arthur Regular", "sans-serif"],
-				southampton: ["Southampton", "sans-serif"],
+				sans: ["Inter var", "Inter", ...defaultTheme.fontFamily.sans],
+				jamesarthur: ['James Arthur Regular', "Georgia", "New York", "Cochin", 'Times New Roman', "Times", "ui-serif", "serif", "system-ui", "sans-serif"],
 			},
 			typography: ({ theme }) => ({
 				DEFAULT: {
