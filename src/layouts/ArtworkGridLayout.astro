@@ -20,7 +20,7 @@ const { artwork, showDescriptions } = Astro.props;
                   date={entry.data.date}
                   artType={entry.data.art_type}
                   tags={entry.data.tags}
-                  href={`${entry.data.art_type}/${entry.slug}`}
+                  href={`/${entry.data.art_type}/${entry.slug}`}
                   mainImage={{
                      src: entry.data.image,
                      alt: entry.data.main_image_alt
