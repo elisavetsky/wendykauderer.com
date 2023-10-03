@@ -8,8 +8,8 @@ import Link from "./Link.jsx";
 
 export default function Footer({footerNav}) {
    return (
-      <footer className="mt-auto sm:w-full">
-         <div className="h-full w-full px-4 pt-48 pb-7 flex flex-col gap-20 mx-auto max-w-screen-2xl justify-between sm:text-right md:items-center md:px-0 lg:px-4 lg:flex-row lg:items-end mr-auto">
+      <footer className="relative mt-auto sm:w-full">
+         <div className="h-full w-full px-4 pt-48 pb-7 flex flex-col gap-20 mx-auto max-w-screen-2xl mr-auto justify-between sm:text-right md:items-center md:px-4 lg:flex-row lg:items-end xl:gap-64">
             <div className="text-left self-start lg:self-end">
                <Link
                   href="/"
@@ -59,17 +59,17 @@ export default function Footer({footerNav}) {
                   })}
                </ul>
             </div>
-            <div className="flex flex-wrap sm:h-fit sm:flex-wrap-nowrap sm:flex-row sm:self-start sm:items-center lg:justify-end lg:self-end">
-               <span className="transition-colors mr-1">A website by</span>
+            <div className="flex flex-col w-full sm:w-fit sm:h-fit sm:items-start sm:self-start lg:items-end lg:self-end xl:flex-row xl:flex-auto xl:justify-between">
+               <span className="transition-colors lg:mx-auto">A website by
                   <Link
                      href={SitewideConfig.frontmatter.developer_site_url}
                      inline
-                     classes="sm:mr-3"
+                     classes="ml-1"
                   >
                      {SitewideConfig.frontmatter.developer_name}
                   </Link>
-               <span className="transition-colors hidden sm:block sm:mr-3"> | </span>
-               <span className="transition-colors w-full sm:w-fit">Powered by Astro</span>
+                  </span>
+               <span className="transition-colors">Powered by Astro</span>
                
             </div>
          </div>

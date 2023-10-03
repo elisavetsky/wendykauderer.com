@@ -123,7 +123,7 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
 				aria-label="Switch theme"
 				className={`theme-toggle ${
 				themeToggleState() === "dark" ? "theme-toggle--toggled" : ""
-			} flex items-center text-xl ml-[0.6rem] my-1 mr-1.5 p-1.5 rounded-full transition-all hover:bg-slate-200 dark:hover:bg-zinc-600`}
+			} flex items-center text-xl ml-[0.6rem] my-1 mr-1.5 p-1.5 rounded-full transition-all hover:bg-gray-200 dark:hover:bg-zinc-600`}
 			>
             <ThemeToggle currentTheme={themeToggleState()} />
          </Button>

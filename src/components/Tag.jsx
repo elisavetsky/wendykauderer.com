@@ -1,7 +1,7 @@
 import Link from "./Link.jsx"
 
 export default function Tag({title, artType}) {
-   const commonClasses = "transition-colors h-fit px-2 py-0.5 last-of-type:mr-0 flex items-center rounded-full "
+   const commonClasses = "transition-colors h-fit px-2 py-0.5 last-of-type:mr-0 flex items-center rounded-lg "
 
    return (
       artType ? 
@@ -11,12 +11,12 @@ export default function Tag({title, artType}) {
          classes="no-underline"
       >
          <span 
-            className={`${commonClasses} border bg-slate-300/70 hover:bg-slate-400/70 dark:border-zinc-500 dark:bg-zinc-700 dark:hover:bg-zinc-900`}
+            className={`${commonClasses} border border-slate-200 bg-slate-300/30 hover:bg-slate-400/30 dark:border-zinc-600 dark:bg-zinc-700/30 dark:hover:bg-zinc-900/30`}
          >
             {artType}
          </span>
       </Link>
       : 
-      <span className={`${commonClasses} border bg-gray-200 dark:border-zinc-500 dark:bg-gray-700`}>{title}</span>
+      <span className={`${commonClasses} border border-gray-200 bg-gray-300/30 dark:border-gray-600 dark:bg-gray-700/30`}>{title}</span>
    )
 }

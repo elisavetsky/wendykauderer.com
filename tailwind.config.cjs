@@ -44,10 +44,12 @@ module.exports = {
 				},
 				zinc: {
 					css: {
-						'--tw-prose-body': theme('colors.zinc[800]'),
-						'--tw-prose-invert-body': theme('colors.zinc[50]'),
-						'--tw-prose-hr': theme('colors.zinc[800]'),
-						'--tw-prose-invert-hr': theme('colors.zinc[600]'),
+						'--tw-prose-body': theme('colors.gray.800 / 90%'),
+						'--tw-prose-invert-body': theme('colors.zinc.50 / 90%'),
+						'--tw-prose-headings': theme('colors.gray.800 / 90%'),
+						'--tw-prose-invert-headings': theme('colors.zinc.50 / 90%'),
+						'--tw-prose-hr': theme('colors.gray.800 / 90%'),
+						'--tw-prose-invert-hr': theme('colors.zinc.500 / 90%'),
 					}
 				}
 			}),

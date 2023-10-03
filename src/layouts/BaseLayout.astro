@@ -45,8 +45,9 @@ const { pageTitle, ogTitle, ogDescription, ogImage, blurredBg, options } = Astro
 		<meta property="og:image" content={ogImage || featuredArtwork.data.image.src}>
 		<meta property="og:url" content={`https://wendykauderer.com${Astro.url.pathname}`}>
 
-		<script is:inline>
+		<script>
 			// Get theme 
+			
 			const theme = (() => {
 
 				if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
@@ -142,7 +143,7 @@ const { pageTitle, ogTitle, ogDescription, ogImage, blurredBg, options } = Astro
 	</head>
 	<body class="flex flex-col min-h-screen relative bg-gray-100 dark:bg-zinc-800 duration-200">
 		{blurredBg &&
-			<Image src={blurredBg} quality={1} width={50} alt="" role="presentation" class="hidden pointer-events-none animate-bgFadeIn supports-filter:block absolute overflow-hidden object-cover w-full h-full blur-2xl opacity-0 saturate-200 contrast-75 dark:animate-bgFadeIn-dark" />
+			<Image src={blurredBg} quality={1} width={50} height={100} alt="" role="presentation" class="hidden pointer-events-none animate-bgFadeIn supports-filter:block absolute overflow-hidden object-cover w-full h-full blur-2xl opacity-0 saturate-200 contrast-75 dark:animate-bgFadeIn-dark" />
 		}
 		<MainFlexLayout>
 			<slot />
