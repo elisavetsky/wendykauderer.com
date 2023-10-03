@@ -12,23 +12,39 @@ import MainLayout from '../../layouts/MainLayout.astro';
 // import components
 import FullArtwork from '../../components/FullArtwork.astro';
 import ArtDetails from '../../components/ArtDetails.astro';
+import PrevNextArtwork from '../../components/PrevNextArtwork';
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-   const artworkEntries = await getCollection('artwork');
-   return artworkEntries.map(entry => ({
+
+   // import all non-draft artwork
+   const artworkEntries = await getCollection('artwork', ({data}) => {
+      return !data.draft;
+   });
+   
+   return artworkEntries.map((entry) => ({
       params: { 
          art_type: entry.data.art_type,
          slug: entry.slug
       }, 
       props: { 
-         entry 
+         entry
       },
    }));
 }
 
 // 2. For your template, you can get the entry directly from the prop
 const { entry } = Astro.props;
+const params = Astro.params;
+
+// Get the previous and next entry matching the art_type
+// const { prevEntry, nextEntry } = artworkEntries.sort((a, b) => {
+
+
+//    return (
+
+//    )
+// })
 
 // Get the tags as a separate collection since it is referenced from the schema
 const tags = await getEntries(entry.data.tags);
@@ -74,10 +90,7 @@ const { Content } = await entry.render();
                <ArtDetails date={entry.data.date} artType={entry.data.art_type} tags={tags} />
                <Content />
                <hr class="border">
-               <nav class="flex justify-between py-4" aria-label="previous artwork and next artwork navigation">
-                  <a href="" class="">Previous</a>
-                  <a href="" class="">Next</a>
-               </nav>
+               <PrevNextArtwork />
             </div>
             
          </div>

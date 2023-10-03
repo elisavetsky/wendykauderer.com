@@ -2,24 +2,31 @@
 // Astro
 import { getCollection } from 'astro:content';
 
+
+
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-   const artworkEntries = await getCollection('artwork');
-   return artworkEntries.map(entry => ({
+
+   // import all non-draft artwork
+   const artworkEntries = await getCollection('artwork', ({data}) => {
+      return !data.draft;
+   });
+
+   return artworkEntries.map((entry, i) => ({
       params: { 
          art_type: entry.data.art_type,
          slug: entry.slug
       }, 
       props: { 
-         entry 
+         entry,
       },
    }));
+
 }
 
 // 2. For your template, you can get the entry directly from the prop
 const { entry } = Astro.props;
 const params = Astro.params;
-const { Content } = await entry.render();
 
 // import utils
 import { titleCase } from "../../utils/textTools.js"
@@ -35,11 +42,11 @@ import ArtTypes from "../../components/ArtTypes.astro";
 import SectionTitle from "../../components/SectionTitle.astro";
 import FullArtwork from "../../components/FullArtwork.astro";
 
-// import all non-draft artwork
+// import all macthing art_type artwork
 const allArtwork = await getCollection('artwork', ({data}) => {
-   // prevent draft posts from showing
-   return data.draft !== true && data.art_type === params.art_type;
+   return data.art_type === params.art_type;
 });
+
 // sort latest to oldest by default
 const artwork = allArtwork.sort((a, b) => {
    const latestToOldest = Date.parse(b.data.date) - Date.parse(a.data.date);
