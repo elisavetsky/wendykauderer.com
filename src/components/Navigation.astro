@@ -13,7 +13,7 @@ import Link from './Link.jsx';
 import ArtTypes from './ArtTypes.astro';
 ---
 
-<nav aria-label="Main menu" id="main-menu" class="hidden text-md font-normal mt-8 md:translate-y-0 md:m-0 md:flex md:flex-col">
+<nav aria-label="Main menu" id="main-menu" class="hidden text-md font-normal mt-8 md:m-0 md:flex md:flex-col">
    <ul class="flex flex-col justify-between leading-loose mb-4 w-full md:gap-0 md:mb-8 md:mr-12">
       
       {sections?.map(({title, dropdown_items}) => {
@@ -38,7 +38,7 @@ import ArtTypes from './ArtTypes.astro';
                   size="md"
                   transition="transition"
                   classes={
-                     `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline underline-offset-4 decoration-2 decoration-inherit" : "decoration-transparent"} hover:decoration-inherit motion-safe:hover:translate-x-px motion-safe:hover:-translate-y-px`
+                     `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline underline-offset-4 decoration-2 decoration-inherit" : "decoration-transparent"} hover:decoration-inherit`
                   }
                >
                   {title}
