@@ -5,6 +5,7 @@ const artworkCollection = defineCollection({
 	schema: ({ image }) =>
 		z.object({
          draft: z.boolean(),
+         sold: z.boolean(),
 			title: z.string(),
          date: z.date(),
          art_type: z.string(),

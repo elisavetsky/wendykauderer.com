@@ -1,7 +1,7 @@
 ---
 draft: false
 # layout: "../../layouts/SingleArtworkLayout.astro"
-sold: false
+sold: true
 title: "Rio"
 date: 2020-06-07
 art_type: "painting"

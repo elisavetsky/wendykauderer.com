@@ -1,7 +1,7 @@
 ---
 draft: false
 # layout: "../../layouts/SingleArtworkLayout.astro"
-sold: false
+sold: true
 title: "The Awakening"
 date: 2020-06-11
 art_type: "painting"

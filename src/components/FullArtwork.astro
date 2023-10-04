@@ -2,11 +2,17 @@
 // import components
 import ImageWrapper from "./ImageWrapper.astro";
 import ArtDetails from "./ArtDetails.astro";
+import SoldMarker from"./SoldMarker.jsx";
+
+// import siteconfig
+import { frontmatter } from "../configuration/SitewideConfig.md";
+const curvedEdges = frontmatter.curved_image_edges;
 
 // import utils
 import { truncateText } from "../utils/textTools";
 
 const { 
+   sold, 
    title, 
    date, 
    artType, 
@@ -22,17 +28,20 @@ const {
 ---
 
 <div class="max-w-none">
-   <div class="sm:px-0">
-      <a href={href}>
+   <a href={href}>
+      <div class={`relative overflow-hidden sm:px-0 transition transition-translate ease-in-out delay-75 duration-300 hover:shadow-xl hover:shadow-black/20 dark:hover:shadow-zinc-600 sm:hover:translate-x-px sm:hover:-translate-y-1 ${curvedEdges && "sm:rounded-md"}`}>
          <ImageWrapper 
             src={mainImage.src} 
             alt={mainImage.alt} 
             width={640}
             quality={50}
             loading={loading ?? "lazy"}
-            classes={`${classes} min-w-[100%] relative transition transition-translate ease-in-out delay-75 duration-300 hover:shadow-xl hover:shadow-black/20 dark:hover:shadow-zinc-600 sm:hover:translate-x-px sm:hover:-translate-y-1`} 
+            classes={`${classes} min-w-[100%] `} 
          />
-      </a> 
+         <SoldMarker sold={sold} />
+      </div>
+   </a> 
+      
       <!-- {() => { 
          if (!Array.isArray(images)) {
             return (
@@ -60,7 +69,6 @@ const {
             })
          }
       }} -->
-   </div>
 
    <!-- {description && 
       <div class="px-4">

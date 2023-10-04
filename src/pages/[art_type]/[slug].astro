@@ -88,6 +88,7 @@ const { Content } = await entry.render();
       <div class="w-full flex flex-col justify-between py-2 sm:flex-row md:flex-col md:px-4 md:gap-6 lg:flex-row ">
          <div class="sm:w-3/5 md:w-full lg:w-7/12 xl:min-w-min">
             <FullArtwork 
+               sold={entry.data.sold} 
                title={entry.data.title} 
                date={entry.data.date}
                artType={entry.data.art_type}
