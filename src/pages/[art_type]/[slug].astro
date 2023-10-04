@@ -14,6 +14,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
 
 // import components
 import FullArtwork from '../../components/FullArtwork.astro';
+import ArtDate from '../../components/ArtDate.jsx';
 import ArtDetails from '../../components/ArtDetails.astro';
 import PrevNextArtwork from '../../components/PrevNextArtwork';
 
@@ -85,7 +86,7 @@ const { Content } = await entry.render();
 > 
    <article class="">
       <div class="w-full flex flex-col justify-between py-2 sm:flex-row md:flex-col md:px-4 md:gap-6 lg:flex-row ">
-         <div class="sm:w-3/5 md:w-full lg:w-2/3">
+         <div class="sm:w-3/5 md:w-full lg:w-7/12 xl:min-w-min">
             <FullArtwork 
                title={entry.data.title} 
                date={entry.data.date}
@@ -102,15 +103,18 @@ const { Content } = await entry.render();
                classes=""
             />
          </div>
-         <div class="relative px-4 prose prose-zinc prose-h1:font-medium prose-h1:mb-7 prose-a:no-underline max-w-none dark:prose-invert sm:w-2/5 md:prose-lg md:px-0 md:w-full lg:prose-base lg:w-1/3 xl:prose-lg">
+         <div class="relative px-4 prose prose-zinc prose-h1:font-medium prose-h1:mb-7 prose-a:no-underline max-w-none dark:prose-invert sm:w-2/5 md:prose-lg md:px-0 md:w-full lg:prose-base lg:w-5/12 xl:prose-lg xl:w-96 xl:mr-auto">
             <div class="top-0 lg:sticky lg:py-4">
                <header class="mt-10 text-md sm:mt-0 md:mt-10 lg:mt-0">
+                  <ArtDate date={entry.data.date} />
                   <h1>{entry.data.title}</h1>
                </header>
-               <ArtDetails date={entry.data.date} artType={entry.data.art_type} tags={tags} />
-               <Content />
+               <ArtDetails artType={entry.data.art_type} tags={tags} />
+               <div aria-label="Art description">
+                  <Content />
+               </div>
                <hr class="border">
-               <PrevNextArtwork prevEntry={prevEntry} nextEntry={nextEntry} />
+               <PrevNextArtwork client:load prevEntry={prevEntry} nextEntry={nextEntry} />
             </div>
             
          </div>
