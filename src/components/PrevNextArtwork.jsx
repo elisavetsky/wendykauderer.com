@@ -14,9 +14,9 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
                <a 
                   href={`/${prevEntry.data.art_type}/${prevEntry.slug}`} 
                   aria-label={`Previous ${prevEntry.data.art_type}`}
-                  className="hyphens-auto break-all border-2 items-start flex flex-col justify-between gap-4 px-3 pb-2 pt-3 border-black/10 dark:border-white/10"
+                  className="group transition-colors border-2 items-start flex flex-col justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-black/10 dark:border-white/10"
                >
-                  <ArrowLeftIcon className='w-8' aria-hidden />
+                  <ArrowLeftIcon className='w-8 transition motion-safe:group-hover:-translate-x-1' aria-hidden />
                   <span className="">{prevEntry.data.title}</span>
 
                </a>
@@ -25,9 +25,9 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
                <a 
                   href={`/${nextEntry.data.art_type}/${nextEntry.slug}`} 
                   aria-label={`Next ${nextEntry.data.art_type}`}
-                  className="col-start-2 border-2 items-end flex flex-col justify-between gap-4 px-3 pb-2 pt-3 border-black/10 dark:border-white/10"
+                  className="group text-right transition-colors col-start-2 border-2 items-end flex flex-col justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-black/10 dark:border-white/10"
                >
-                  <ArrowRightIcon className='w-8' aria-hidden />
+                  <ArrowRightIcon className='w-8 transition motion-safe:group-hover:translate-x-1' aria-hidden />
                   <span className="self-end">{nextEntry.data.title}</span>
                </a>
             }

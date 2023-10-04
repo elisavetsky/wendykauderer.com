@@ -1,14 +1,14 @@
 import Link from "./Link.jsx"
 
 export default function Tag({title, artType}) {
-   const commonClasses = "transition-colors h-fit px-2 py-0.5 last-of-type:mr-0 flex items-center rounded-lg "
+   const commonClasses = "transition-colors h-fit px-2 py-0.5 last-of-type:mr-0 flex items-center rounded-lg"
 
    return (
       artType ? 
       <Link 
          inline 
          href={`/${artType}`}
-         classes="no-underline"
+         classes="no-underline rounded-lg "
       >
          <span 
             className={`${commonClasses} border border-slate-200 bg-slate-300/30 hover:bg-slate-400/30 dark:border-zinc-600 dark:bg-zinc-700/30 dark:hover:bg-zinc-900/30`}
