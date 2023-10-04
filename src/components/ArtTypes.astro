@@ -52,18 +52,32 @@ const artTypes = [
 ]
 
 const props = Astro.props;
+const { pathname } = Astro.url;
+
+const commonClasses = "absolute z-10 backdrop-blur-lg flex justify-center items-center w-full h-full rounded-full p-1 transition-all underline decoration-2 underline-offset-4 decoration-transparent"
 ---
 
 {artTypes.map(({route, label, image, image_alt}) => {
    return (
-      <li class={`relative w-24 h-24 mr-3 mb-3 rounded-full`}>
+      <li class={`relative w-24 h-24 mr-3 mb-3 rounded-full border-2 border-black/10 dark:border-white/10`}>
          <a 
             href={`${route}`} 
-            class={`absolute z-10 backdrop-blur-lg flex justify-center items-center w-full h-full rounded-full p-1 transition-all underline decoration-2 underline-offset-4 decoration-transparent bg-white/50  dark:shadow-black dark:bg-black/50 ${Astro.url.pathname === `/${slugify(route)}` ? "backdrop-saturate-200 bg-white/30  !decoration-inherit shadow-md dark:bg-black/30 dark:backdrop-brightness-125" : "backdrop-saturate-50 shadow-sm hover:decoration-inherit hover:shadow-md hover:bg-white/30 dark:hover:bg-black/30"}`}
+            class={`
+               ${commonClasses} shadow-black/30 dark:shadow-black 
+               ${pathname === `/${slugify(route)}` 
+                  ? "backdrop-saturate-100 bg-white/30 !decoration-inherit shadow-md dark:bg-black/30 dark:backdrop-brightness-125" 
+                  : `${pathname.includes("/", 1) 
+                     ? "bg-transparent" 
+                     : "bg-white/50 dark:bg-black/50"} shadow-sm hover:decoration-inherit hover:shadow-md hover:shadow-black/30 hover:bg-white/30 dark:hover:bg-black/30`
+               }
+            `}
          >
             <span>{label}</span>
          </a>
-         {image && image_alt &&
+         {
+            // Return ArtTypes background image only if NOT on a single artwork page
+
+            image && image_alt && !pathname.includes("/", 1) &&
             <Image
                src={image}
                alt=""
@@ -71,7 +85,7 @@ const props = Astro.props;
                quality={1}
                width={50}
                loading="eager"
-               class="saturate-200 brightness-150 w-full h-full object-cover rounded-full"
+               class="saturate-200 brightness-110 w-full h-full object-cover rounded-full"
             />
          }
       </li>
