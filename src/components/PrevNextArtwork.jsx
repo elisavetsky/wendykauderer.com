@@ -8,7 +8,7 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
       return (
          <nav 
             aria-label={`previous ${prevEntry?.data.art_type ?? nextEntry?.data.art_type} and next artwork navigation`}
-            className="fixed bottom-0 left-0 px-4 w-full z-30 text-sm grid grid-cols-2 ml-auto justify-between py-4 gap-3 sm:static sm:px-0 xl:text-base"
+            className="fixed bottom-0 left-0 px-4 w-full z-50 text-sm grid grid-cols-2 ml-auto justify-between py-4 gap-3 sm:right-0 sm:min-w-[18rem] sm:w-3/12"
          >
             {prevEntry &&
                <a 

@@ -8,7 +8,7 @@ import Link from "./Link.jsx";
 
 export default function Footer({footerNav}) {
    return (
-      <footer className="relative mt-auto sm:w-full">
+      <footer className="mt-auto sm:w-full">
          <div className="h-full w-full px-4 pt-48 pb-7 flex flex-col gap-20 mx-auto max-w-screen-2xl mr-auto justify-between sm:text-right md:items-center md:px-4 lg:flex-row lg:items-end xl:gap-64">
             <div className="text-left self-start lg:self-end">
                <Link

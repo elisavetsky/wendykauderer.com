@@ -75,7 +75,7 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout 
-   pageTitle={`${entry.data.title}`}
+   pageTitle={entry.data.title}
    ogTitle={`${entry.data.title} by ${SitewideConfig.frontmatter.site_name}`}
    ogDescription={entry.body}
    ogImage={entry.data.image.src}
