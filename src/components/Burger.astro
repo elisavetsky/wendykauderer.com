@@ -10,7 +10,7 @@
    document.addEventListener('astro:page-load', () => {
    // This necessary script runs after very page load
 
-      // Navbar
+      // Navbar burger elements
       const burgerMenus = document.querySelectorAll(".burger");
 
       function handleClick(el) {
@@ -24,19 +24,30 @@
 
          // conditional to apply active styles or not based on menu state
          const buttonStyles = ["bg-gray-200", "dark:bg-zinc-700"];
-         const navStyles = ["shadow-lg", "bg-gray-100/70", "dark:bg-zinc-800/70"];
+         const navStyles = ["border-b", "border-b-black/20", "dark:border-b-white/20", "shadow-lg", "bg-gray-100/70", "dark:bg-zinc-800/70"];
 
          if (!targetEl.classList.contains("hidden")) {
             button.classList.add(...buttonStyles);
-            targetEl.parentElement.classList.add(...navStyles);
+            targetEl.closest(".navbar-container").classList.add(...navStyles);
          } else {
             button.classList.remove(...buttonStyles);
-            targetEl.parentElement.classList.remove(...navStyles);
+            targetEl.closest(".navbar-container").classList.remove(...navStyles);
          }
+      }
+
+      function handleBlur(el) {
+         const button = el.currentTarget;
+
+         const target = button.dataset.target;
+         const targetEl = document.getElementById(target);
+
+         console.log(targetEl.closest(".navbar-container"))
       }
 
       burgerMenus.forEach((menu) => {
          menu.addEventListener("click", handleClick)
+
+         menu.addEventListener("blur", handleBlur)
       })
    });
 

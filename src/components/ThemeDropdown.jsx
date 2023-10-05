@@ -40,7 +40,7 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
 				<MenuItem 
 					role="option"
 					aria-selected={theme === value ? true : false}
-               className={`${theme === value && "decoration-2 underline underline-offset-4"} cursor-pointer text-md px-2 py-1 transition-all hover:bg-gray-200 dark:hover:bg-zinc-600`}
+               className={`${theme === value && "decoration-2 underline underline-offset-4"} cursor-pointer text-md px-2 py-1 transition-all hover:text-white hover:bg-gray-500 dark:hover:bg-zinc-600`}
             >
                {label}
             </MenuItem>
@@ -122,14 +122,13 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
 			<Button 
 				aria-label="Switch theme"
 				className={`theme-toggle ${
-				themeToggleState() === "dark" ? "theme-toggle--toggled" : ""
-			} flex items-center text-xl ml-[0.6rem] my-1 mr-1.5 p-1.5 rounded-full transition-all hover:bg-gray-100 hover:shadow-lg dark:hover:bg-zinc-600`}
+				themeToggleState() === "dark" && "theme-toggle--toggled"} flex items-center text-xl ml-[0.6rem] my-1 mr-1.5 p-1.5 rounded-full transition-colors hover:bg-gray-200 dark:hover:bg-zinc-700 relative after:absolute after:transition-colors after:left-0 after:w-full after:h-full after:rounded-full after:hover:border after:border-black/30 after:dark:border-white/20 `}
 			>
             <ThemeToggle currentTheme={themeToggleState()} />
          </Button>
 			<Menu 
 				role="listbox"
-				className="ml-2 mt-4 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg rounded-lg py-2 min-w-[10rem] z-30 dark:bg-zinc-800/80 md:left-11 md:-bottom-3"
+				className="ml-2 mt-4 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg rounded-lg py-2 min-w-[10rem] z-30 border border-black/20 dark:border-white/20 dark:bg-zinc-800/80 md:left-11 md:-bottom-3"
 			>
 				<ul className="flex flex-col leading-loose">{menuItems}</ul>
 			</Menu>
