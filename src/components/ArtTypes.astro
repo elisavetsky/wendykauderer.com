@@ -77,7 +77,7 @@ const commonClasses = "group absolute z-10 backdrop-blur-lg flex justify-center 
          {
             // Return ArtTypes background image only if NOT on a single artwork page
 
-            image && image_alt && !pathname.includes("/", 1) &&
+            image && image_alt && !pathname.includes("/", 2) &&
             <Image
                src={image}
                alt=""

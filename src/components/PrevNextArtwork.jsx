@@ -6,7 +6,7 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
    // Do not render this if there is nothing previous or next
    if (prevEntry ?? nextEntry) {
       return (
-         <div className='flex fixed bottom-0 left-0 md:px-8 w-full gap-4'>
+         <div className='flex fixed z-30 bottom-0 left-0 md:px-8 w-full gap-4'>
             <span className='hidden md:px-6 md:block md:min-w-[16rem] md:w-3/12'></span>
             <nav 
                aria-label={`previous ${prevEntry?.data.art_type ?? nextEntry?.data.art_type} and next artwork navigation`}

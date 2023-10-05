@@ -14,8 +14,8 @@ import MainLayout from '../../layouts/MainLayout.astro';
 
 // import components
 import FullArtwork from '../../components/FullArtwork.astro';
-import ArtDate from '../../components/ArtDate.jsx';
-import ArtDetails from '../../components/ArtDetails.astro';
+import ArtDetails from '../../components/ArtDetails.jsx';
+import ArtTags from '../../components/ArtTags.jsx';
 import PrevNextArtwork from '../../components/PrevNextArtwork';
 
 // Generate a new path for every collection entry
@@ -112,16 +112,16 @@ import { fade } from 'astro:transitions';
             <div class="top-0 lg:sticky sm:pt-4 md:pt-0 lg:pt-4">
                <div transition:animate={fade({ duration: '0.6s' })}>
                   <header class="mt-10 text-md sm:mt-0 md:mt-10 lg:mt-0">
-                     <ArtDate date={entry.data.date} />
+                     <ArtDetails date={entry.data.date} />
                      <h1>{entry.data.title}</h1>
                   </header>
-                  <ArtDetails artType={entry.data.art_type} tags={tags} />
+                  <ArtTags artType={entry.data.art_type} tags={tags} />
                   <div aria-label="Art description">
                      <Content />
                   </div>
                   <hr class="border">
                </div>
-               <PrevNextArtwork client:load prevEntry={prevEntry} nextEntry={nextEntry} />
+               <PrevNextArtwork prevEntry={prevEntry} nextEntry={nextEntry} />
             </div>
             
          </div>
