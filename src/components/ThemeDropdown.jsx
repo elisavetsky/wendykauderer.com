@@ -36,7 +36,7 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
 
    const menuItems = themeDictionary.map(({label, value}, i) => {
 		return (
-			<li key={i} className="last-of-type:border-t last-of-type:mt-1.5 last-of-type:border-slate-200 dark:last-of-type:border-zinc-500">
+			<li key={i} className="last-of-type:border-t last-of-type:mt-1.5 last-of-type:border-slate-300 dark:last-of-type:border-zinc-500">
 				<MenuItem 
 					role="option"
 					aria-selected={theme === value ? true : false}
