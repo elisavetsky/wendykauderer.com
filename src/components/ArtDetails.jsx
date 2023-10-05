@@ -1,9 +1,18 @@
 import { humanDate } from "../utils/textTools.js";
 
-export default function ArtDate({ date }) {
+export default function ArtDetails({ date, sold }) {
    return (
-      <time dateTime={date} className="transition-colors flex items-center text-xs opacity-80 font-medium mr-4 mb-4 text-center flex-shrink-0 uppercase ">
-         {humanDate(date)}
-      </time>
+      <div className="flex gap-2 transition-colors items-center text-xs uppercase opacity-80 font-medium mr-4 mb-4">
+         <time dateTime={date} className="text-center flex-shrink-0">
+            {humanDate(date)}
+         </time>
+
+         {sold &&
+            <>
+               <span className="text-[5px]" aria-hidden={true} > ● </span>
+               <span>Unavailable</span>
+            </>
+         }
+      </div>
    )
 }

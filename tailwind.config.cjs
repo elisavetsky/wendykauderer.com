@@ -21,7 +21,7 @@ module.exports = {
 				}
 			},
 			animation: {
-				"bgFadeIn": "1s ease 0.2s fadeIn forwards",
+				"bgFadeIn": "1s ease  fadeIn 1 forwards",
 				"bgFadeIn-dark": "1s ease 0.2s fadeIn-dark forwards"
 			},
 			fontFamily: {

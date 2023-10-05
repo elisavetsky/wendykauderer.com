@@ -112,7 +112,7 @@ import { fade } from 'astro:transitions';
             <div class="top-0 lg:sticky sm:pt-4 md:pt-0 lg:pt-4">
                <div transition:animate={fade({ duration: '0.6s' })}>
                   <header class="mt-10 text-md sm:mt-0 md:mt-10 lg:mt-0">
-                     <ArtDetails date={entry.data.date} />
+                     <ArtDetails date={entry.data.date} sold={entry.data.sold} />
                      <h1>{entry.data.title}</h1>
                   </header>
                   <ArtTags artType={entry.data.art_type} tags={tags} />
