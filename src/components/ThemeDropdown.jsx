@@ -123,13 +123,13 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
 				aria-label="Switch theme"
 				className={`theme-toggle ${
 				themeToggleState() === "dark" ? "theme-toggle--toggled" : ""
-			} flex items-center text-xl ml-[0.6rem] my-1 mr-1.5 p-1.5 rounded-full transition-all hover:bg-gray-200 dark:hover:bg-zinc-600`}
+			} flex items-center text-xl ml-[0.6rem] my-1 mr-1.5 p-1.5 rounded-full transition-all hover:bg-gray-100 hover:shadow-lg dark:hover:bg-zinc-600`}
 			>
             <ThemeToggle currentTheme={themeToggleState()} />
          </Button>
 			<Menu 
 				role="listbox"
-				className="ml-2 mt-4 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg rounded-lg py-2 min-w-[10rem] z-30 dark:bg-zinc-700/80 md:left-11 md:-bottom-3"
+				className="ml-2 mt-4 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg rounded-lg py-2 min-w-[10rem] z-30 dark:bg-zinc-800/80 md:left-11 md:-bottom-3"
 			>
 				<ul className="flex flex-col leading-loose">{menuItems}</ul>
 			</Menu>
