@@ -21,8 +21,8 @@ module.exports = {
 				}
 			},
 			animation: {
-				"bgFadeIn": "1s ease  fadeIn 1 forwards",
-				"bgFadeIn-dark": "1s ease 0.2s fadeIn-dark forwards"
+				"bgFadeIn": "1s ease 0.2s fadeIn both",
+				"bgFadeIn-dark": "1s ease 0.2s fadeIn-dark both"
 			},
 			fontFamily: {
 				sans: ["Inter var", "Inter", ...defaultTheme.fontFamily.sans],

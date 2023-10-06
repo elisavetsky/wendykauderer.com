@@ -87,9 +87,8 @@ import { fade } from 'astro:transitions';
    }}
    blurredBg={entry.data.image}
 > 
-   <article class="" >
-      <div class="w-full flex flex-col justify-between sm:flex-row md:flex-col sm:px-4 sm:gap-4 md:gap-2 lg:gap-6 lg:flex-row ">
-         <div class="sm:w-3/5 md:w-full lg:w-7/12 xl:min-w-min" transition:animate={fade({ duration: '0.35s' })}>
+   <article class="w-full flex flex-col justify-between sm:flex-row md:flex-col sm:px-4 sm:gap-4 md:gap-2 lg:gap-6 lg:flex-row " >
+         <div class="sm:w-3/5 md:w-full lg:w-7/12 xl:min-w-min" >
             <FullArtwork 
                sold={entry.data.sold} 
                title={entry.data.title} 
@@ -110,7 +109,7 @@ import { fade } from 'astro:transitions';
          </div>
          <div class="relative px-4 prose prose-zinc prose-h1:font-medium prose-h1:mb-7 prose-a:no-underline max-w-none dark:prose-invert sm:w-2/5 md:prose-lg sm:px-0 md:w-full lg:prose-base lg:w-5/12 xl:prose-lg xl:w-96 xl:mr-auto">
             <div class="top-0 sm:pt-4 md:pt-0 lg:sticky lg:pt-4">
-               <div transition:animate={fade({ duration: '0.6s' })}>
+               <div >
                   <header class="mt-10 text-md sm:mt-0 md:mt-10 lg:mt-0">
                      <ArtDetails date={entry.data.date} sold={entry.data.sold} />
                      <h1>{entry.data.title}</h1>
@@ -125,7 +124,6 @@ import { fade } from 'astro:transitions';
             </div>
             
          </div>
-      </div>
       
    </article>
 </BaseLayout>
