@@ -12,5 +12,5 @@ const { src, classes, ...props} = Astro.props;
 <Image 
    src={src} 
    {...props} 
-   class={`mt-0 mb-0 shadow-lg ${curvedEdges ? 'sm:rounded-md' : ''} ${classes}`} 
+   class={`mt-0 mb-0 shadow-lg ${curvedEdges && 'sm:rounded-md'} ${classes}`} 
 />

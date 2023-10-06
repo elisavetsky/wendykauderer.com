@@ -1,10 +1,14 @@
-// import components
-import { ThemeToggle } from "./ThemeToggle.jsx"
-import { Button, Wrapper, Menu, MenuItem } from 'react-aria-menubutton';
-
 // import hooks
 // import { Menu, MenuItem, MenuButton, MenuDivider, ControlledMenu, useClick, useMenuState } from "@szhsin/react-menu";
 import { useRef, useState, useEffect } from "react";
+
+// import sitewide config for border-radius
+import { frontmatter } from "../configuration/SitewideConfig.md";
+const curvedEdges = frontmatter.curved_image_edges;
+
+// import components
+import { ThemeToggle } from "./ThemeToggle.jsx"
+import { Button, Wrapper, Menu, MenuItem } from 'react-aria-menubutton';
 
 export default function Dropdown({children, CustomButton, buttonTitle}) {
    const [theme, setTheme] = useState(localStorage.getItem("theme"));
@@ -128,7 +132,7 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
          </Button>
 			<Menu 
 				role="listbox"
-				className="ml-2 mt-4 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg rounded-lg py-2 min-w-[10rem] z-30 border border-black/20 dark:border-white/20 dark:bg-zinc-800/80 md:left-11 md:-bottom-3"
+				className={`${curvedEdges && "rounded-lg"} ml-2 mt-4 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg  py-2 min-w-[10rem] z-30 border border-black/20 dark:border-white/20 dark:bg-zinc-800/80 md:left-11 md:-bottom-3`}
 			>
 				<ul className="flex flex-col leading-loose">{menuItems}</ul>
 			</Menu>
