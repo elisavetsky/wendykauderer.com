@@ -60,7 +60,7 @@ export default function Footer({footerNav}) {
                </ul>
             </div>
             <div className="flex flex-col w-full sm:w-fit sm:h-fit sm:items-start sm:self-start lg:items-end lg:self-end xl:flex-row xl:flex-auto xl:justify-between">
-               <span className="transition-colors lg:mx-auto">A website by
+               <span className="transition-colors lg:ml-auto">A website by
                   <Link
                      href={SitewideConfig.frontmatter.developer_site_url}
                      inline
@@ -69,7 +69,6 @@ export default function Footer({footerNav}) {
                      {SitewideConfig.frontmatter.developer_name}
                   </Link>
                   </span>
-               <span className="transition-colors">Powered by Astro</span>
                
             </div>
          </div>
