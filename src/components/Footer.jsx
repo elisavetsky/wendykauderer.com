@@ -19,7 +19,7 @@ export default function Footer({footerNav}) {
                >
                   {SitewideConfig.frontmatter.site_name}
                </Link>
-               <ul className="text-md mt-4 border-b-gray-800 border-b-2 dark:border-b-zinc-100">
+               <ul className="text-md mt-4 border-b-gray-800 border-b-2 dark:border-b-zinc-100 lg:border-b-0">
                   {footerNav.map(({title, href, dropdown_items}) => {
                      if (dropdown_items) {
                         return dropdown_items.map(({title, href}) => {
@@ -43,7 +43,7 @@ export default function Footer({footerNav}) {
                         return (
                            <li
                               key={title} 
-                              className="mb-2 last-of-type:mb-6"
+                              className="mb-2 last-of-type:mb-6 lg:last-of-type:mb-0"
                            >
                               <Link
                                  href={href}
