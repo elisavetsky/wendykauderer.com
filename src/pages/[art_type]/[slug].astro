@@ -87,43 +87,37 @@ import { fade } from 'astro:transitions';
    }}
    blurredBg={entry.data.image}
 > 
-   <article class="w-full flex flex-col justify-between sm:flex-row md:flex-col sm:px-4 sm:gap-4 md:gap-2 lg:gap-6 lg:flex-row " >
-         <div class="sm:w-3/5 md:w-full lg:w-7/12 xl:min-w-min" >
-            <FullArtwork 
-               sold={entry.data.sold} 
-               title={entry.data.title} 
-               date={entry.data.date}
-               artType={entry.data.art_type}
-               href={`#`}
-               mainImage={{
-                  src: entry.data.image,
-                  alt: entry.data.main_image_alt
-               }}
-               images={entry.data.images}
-               description={entry.data.description}
-               showFullDescription={true}
-               loading="eager"
-               classes=""
-               
-            />
-         </div>
-         <div class="relative px-4 prose prose-zinc prose-h1:font-medium prose-h1:mb-7 prose-a:no-underline max-w-none dark:prose-invert sm:w-2/5 md:prose-lg sm:px-0 md:w-full lg:prose-base lg:w-5/12 xl:prose-lg xl:w-96 xl:mr-auto">
-            <div class="top-0 sm:pt-4 md:pt-0 lg:sticky lg:pt-4">
-               <div >
-                  <header class="mt-10 text-md sm:mt-0 md:mt-10 lg:mt-0">
-                     <ArtDetails date={entry.data.date} sold={entry.data.sold} />
-                     <h1>{entry.data.title}</h1>
-                  </header>
-                  <ArtTags artType={entry.data.art_type} tags={tags} />
-                  <div aria-label="Art description">
-                     <Content />
-                  </div>
-                  <hr class="border">
-               </div>
-               <PrevNextArtwork prevEntry={prevEntry} nextEntry={nextEntry} />
-            </div>
+   <article class="relative w-full flex flex-col justify-between sm:flex-row md:flex-col sm:px-4 sm:gap-4 md:gap-2 lg:gap-6 lg:flex-row " >
+      <div class="sm:w-3/5 md:w-full lg:w-7/12 xl:min-w-min" >
+         <FullArtwork 
+            sold={entry.data.sold} 
+            title={entry.data.title} 
+            date={entry.data.date}
+            artType={entry.data.art_type}
+            href={`#`}
+            mainImage={{
+               src: entry.data.image,
+               alt: entry.data.main_image_alt
+            }}
+            images={entry.data.images}
+            description={entry.data.description}
+            showFullDescription={true}
+            loading="eager"
+            classes=""
             
+         />
+      </div>
+      <div class="h-fit px-4 prose prose-zinc prose-h1:font-medium prose-h1:mb-7 prose-a:no-underline dark:prose-invert sm:w-2/5 sm:max-w-[40%] sm:px-0 sm:pt-4 md:pt-0 md:prose-lg md:w-full md:max-w-full lg:top-0 lg:sticky lg:pt-4 lg:prose-base lg:w-5/12 xl:prose-lg xl:w-96 xl:mr-auto ">
+         <header class="mt-10 text-md sm:mt-0 md:mt-10 lg:mt-0">
+            <ArtDetails date={entry.data.date} sold={entry.data.sold} />
+            <h1>{entry.data.title}</h1>
+         </header>
+         <ArtTags artType={entry.data.art_type} tags={tags} />
+         <div class="" aria-label="Art description">
+            <Content />
          </div>
-      
+         <hr class="border">
+         <PrevNextArtwork prevEntry={prevEntry} nextEntry={nextEntry} />
+      </div>
    </article>
 </BaseLayout>
