@@ -27,7 +27,7 @@ const { pageTitle, ogTitle, ogDescription, ogImage, blurredBg, options } = Astro
 		<!-- // /////////////////////////////////////////////////
    		// WHENEVER VIEW TRANSITIONS API IS WIDELY AVAILABLE, TRY SPA Mode
    		// ///////////////////////////////////////////////// -->
-		<ViewTransitions fallback="swap" />
+		<ViewTransitions fallback="animate" />
 
 		<!-- Global meta tags -->
 		<meta charset="UTF-8" />
@@ -151,7 +151,7 @@ const { pageTitle, ogTitle, ogDescription, ogImage, blurredBg, options } = Astro
 	</head>
 	<body class="flex flex-col min-h-screen relative bg-gray-100 dark:bg-zinc-800">
 		{blurredBg &&
-			<Image transition:animate="fade" src={blurredBg} quality={1} width={50} height={100} alt="" role="presentation" class="hidden pointer-events-none supports-filter:block absolute overflow-hidden object-cover w-full h-full blur-[45px] saturate-200 contrast-75  animate-bgFadeIn dark:animate-bgFadeIn-dark"/>
+			<Image  src={blurredBg} quality={1} width={50} height={100} alt="" role="presentation" class="hidden pointer-events-none supports-filter:block absolute overflow-hidden object-cover w-full h-full blur-[45px] saturate-200 contrast-75  animate-bgFadeIn dark:animate-bgFadeIn-dark"/>
 			
 		}
 		<MainFlexLayout>

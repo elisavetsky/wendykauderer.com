@@ -22,7 +22,8 @@ const {
    description, 
    showFullDescription,
    loading,
-   classes
+   classes,
+   ...props
 } = Astro.props;
 ---
 
@@ -36,6 +37,7 @@ const {
             quality={50}
             loading={loading ?? "lazy"}
             classes={`${classes} min-w-[100%] `} 
+            {...props}
          />
          <SoldMarker sold={sold} />
       </div>
