@@ -49,19 +49,19 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
       return (
          <div 
             transition:name={`PrevNextArtwork`}
-            className={`flex z-[30] sticky bottom-0 left-0 w-full gap-4 sm:left-[unset] sm:min-w-full sm:w-[inherit] sm:pl-0 md:px-0 lg:w-full`}
+            className={`flex z-[30] sticky bottom-0 left-0 w-full gap-4 h-fit sm:left-[unset] sm:min-w-full sm:w-[inherit] sm:pl-0 md:px-0 lg:w-full 2xl:flex-auto 2xl:w-fit 2xl:min-w-[unset] 2xl:max-w-[26rem]`}
          >
             {/* <span className='hidden md:px-6 md:block md:min-w-[16rem] md:w-3/12'></span> */}
             <nav 
                aria-label={`previous ${prevEntry?.data.art_type ?? nextEntry?.data.art_type} and next artwork navigation`}
                className="w-full text-sm py-4"
             >
-            <div className='grid grid-cols-2 justify-between w-full gap-3 '>
+            <div className='grid grid-cols-2 justify-between w-full gap-3 2xl:flex 2xl:flex-wrap'>
                {prevEntry &&
                   <a 
                      href={`/${prevEntry.data.art_type}/${prevEntry.slug}`} 
                      aria-label={`Previous ${prevEntry.data.art_type}`}
-                     className={`group ${curvedEdges && "rounded-xl"} bg-white/50 backdrop-blur-lg transition-colors border-2 items-end flex justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-white/30 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/20 sm:flex-col sm:items-start md:flex-row md:items-center lg:flex-col lg:items-start`}
+                     className={`group ${curvedEdges && "rounded-xl"} bg-white/50 backdrop-blur-lg transition-colors border-2 items-end flex justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-white/30 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/20 sm:flex-col sm:items-start md:flex-row md:items-center lg:flex-col lg:items-start 2xl:basis-1/2 2xl:flex-1 2xl:max-w-[50%]`}
                   >
                      <ArrowLeftIcon className='w-5 xl:w-8 transition motion-safe:group-hover:-translate-x-1' aria-hidden />
                      <span className="">{prevEntry.data.title}</span>
@@ -72,7 +72,7 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
                   <a 
                      href={`/${nextEntry.data.art_type}/${nextEntry.slug}`} 
                      aria-label={`Next ${nextEntry.data.art_type}`}
-                     className={`group ${curvedEdges && "rounded-xl"} bg-white/50 backdrop-blur-lg text-left transition-colors col-start-2 border-2 items-end flex flex-row-reverse justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-white/30 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/20 sm:flex-col sm:text-right md:flex-row-reverse md:items-center lg:flex-col lg:items-end`}
+                     className={`group ${curvedEdges && "rounded-xl"} bg-white/50 backdrop-blur-lg text-left transition-colors col-start-2 border-2 items-end flex flex-row-reverse justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-white/30 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/20 sm:flex-col sm:text-right md:flex-row-reverse md:items-center lg:flex-col lg:items-end 2xl:basis-1/2 2xl:flex-auto 2xl:max-w-[40%]`}
                   >
                      <ArrowRightIcon className='w-5 xl:w-8 transition motion-safe:group-hover:translate-x-1' aria-hidden />
                      <span className="">{nextEntry.data.title}</span>

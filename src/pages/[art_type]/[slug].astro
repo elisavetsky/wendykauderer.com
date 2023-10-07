@@ -88,7 +88,7 @@ import { fade } from 'astro:transitions';
    blurredBg={entry.data.image}
 > 
    <article class="relative w-full flex flex-col justify-between sm:flex-row md:flex-col sm:px-4 sm:gap-4 md:gap-2 lg:gap-6 lg:flex-row " >
-      <div class="sm:w-3/5 md:w-full lg:w-auto xl:min-w-min" >
+      <div class="sm:w-3/5 md:w-full lg:w-auto xl:min-w-min 2xl:min-w-max" >
          <FullArtwork 
             sold={entry.data.sold} 
             title={entry.data.title} 
@@ -109,19 +109,21 @@ import { fade } from 'astro:transitions';
          />
       </div>
       <div 
-         class="min-h-screen px-4 prose prose-zinc prose-h1:font-medium prose-h1:mb-7 prose-a:no-underline dark:prose-invert sm:w-2/5 sm:max-w-[40%] sm:px-0 sm:pt-4 md:pt-0 md:prose-lg md:w-full md:max-w-full lg:top-0 lg:sticky lg:pt-4 lg:prose-base lg:w-5/12 lg:min-w-[22rem] xl:prose-lg xl:w-96 xl:mr-auto"
+         class="min-h-screen px-4 prose prose-zinc prose-h1:font-medium prose-h1:mb-7 prose-a:no-underline dark:prose-invert sm:w-2/5 sm:max-w-[40%] sm:px-0 sm:pt-4 md:pt-0 md:prose-lg md:w-full md:max-w-full lg:top-0 lg:sticky lg:pt-4 lg:prose-base lg:w-5/12 lg:min-w-[22rem] xl:prose-lg  2xl:w-full 2xl:min-h-fit  flex flex-col 2xl:flex-row 2xl:flex-wrap 2xl:gap-4"
       >
-         <header class="mt-10 text-md sm:mt-0 md:mt-10 lg:mt-0">
-            <ArtDetails date={entry.data.date} sold={entry.data.sold} />
-            <h1>{entry.data.title}</h1>
-         </header>
-         <div class="relative fade-y-edges overflow-scroll min-w-[100%] sm:max-h-[18rem] md:max-h-[23rem] lg:min-h-[23rem] lg:max-h-[23rem]" aria-label="Art description">
-            <ArtTags artType={entry.data.art_type} tags={tags} />
-            
-            <Content />
-            
+         <div class="2xl:max-w-[26rem]">
+            <header class="mt-10 text-md sm:mt-0 md:mt-10 lg:mt-0">
+               <ArtDetails date={entry.data.date} sold={entry.data.sold} />
+               <h1>{entry.data.title}</h1>
+            </header>
+            <div class="relative fade-y-edges overflow-scroll min-w-[100%] sm:max-h-[18rem] md:max-h-[23rem] lg:min-h-[23rem] lg:max-h-[23rem]" aria-label="Art description">
+               <ArtTags artType={entry.data.art_type} tags={tags} />
+               
+               <Content />
+               
+            </div>
+            <hr class="border">
          </div>
-         <hr class="border">
          <PrevNextArtwork prevEntry={prevEntry} nextEntry={nextEntry} />
       </div>
    </article>
