@@ -17,7 +17,7 @@ import FullArtwork from '../../components/FullArtwork.astro';
 import ArtDetails from '../../components/ArtDetails.jsx';
 import ArtTags from '../../components/ArtTags.jsx';
 import PrevNextArtwork from '../../components/PrevNextArtwork';
-import LightboxWrapper from "../../components/LightboxWrapper.astro";
+import LightboxWrapper from "../../components/LightboxWrapper.jsx";
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -90,25 +90,50 @@ import { fade } from 'astro:transitions';
 > 
    <article class="relative w-full flex flex-col justify-between sm:flex-row md:flex-col sm:px-4 sm:gap-4 md:gap-2 lg:gap-6 lg:flex-row " >
       <div class="sm:w-3/5 md:w-full lg:w-auto 2xl:w-full 2xl:max-w-full" >
-         <FullArtwork 
-            sold={entry.data.sold} 
-            title={entry.data.title} 
-            date={entry.data.date}
-            artType={entry.data.art_type}
-            href={`#`}
+         <noscript>
+            <FullArtwork 
+               sold={entry.data.sold} 
+               title={entry.data.title} 
+               date={entry.data.date}
+               artType={entry.data.art_type}
+               href={`#`}
+               mainImage={{
+                  src: entry.data.image,
+                  alt: entry.data.main_image_alt
+               }}
+               showFullDescription={true}
+               loading="eager"
+               classes=""
+               
+            />
+         </noscript>
+         
+         <LightboxWrapper 
+            client:only='react' 
             mainImage={{
-               src: entry.data.image,
-               alt: entry.data.main_image_alt
-            }}
-            showFullDescription={true}
-            loading="eager"
-            classes=""
-            transition:animate="fade"
-            transition:name={`image:${entry.slug}-${entry.data.art_type}`} 
-         />
-         {entry.data.images &&
-            <LightboxWrapper imageArr={entry.data.images} />
-         }
+               image: entry.data.image, 
+               alt:entry.data.main_image_alt
+            }} 
+            imageArr={entry.data.images || []}
+         >
+            <FullArtwork 
+               sold={entry.data.sold} 
+               title={entry.data.title} 
+               date={entry.data.date}
+               artType={entry.data.art_type}
+               href={`#`}
+               mainImage={{
+                  src: entry.data.image,
+                  alt: entry.data.main_image_alt
+               }}
+               showFullDescription={true}
+               loading="eager"
+               classes=""
+               transition:animate="fade"
+               transition:name={`image:${entry.slug}-${entry.data.art_type}`} 
+            />
+         </LightboxWrapper>
+
       </div>
       
       <div 
@@ -122,11 +147,15 @@ import { fade } from 'astro:transitions';
 
             <ArtTags artType={entry.data.art_type} tags={tags} />
             
-            <div class="min-w-[100%] sm:max-h-[18rem] md:max-h-[23rem] lg:min-h-[23rem]">
+            <div class="min-w-[100%] sm:max-h-[18rem] md:max-h-[23rem] lg:max-h-[20rem] xl:max-h-[23rem]">
 
                {entry.body.length > 310
-                  ? <div class="fade-y-edges max-h-[inherit] max-w-[inherit] overflow-scroll"><Content /></div>
-                  : <div class="h-full"><Content /></div>
+                  ?  <div class="max-h-[inherit] max-w-[inherit] overflow-scroll sm:fade-y-edges md:fade-y-edges-none lg:fade-y-edges">
+                        <Content />
+                     </div>
+                  :  <div class="h-full">
+                        <Content />
+                     </div>
                }
 
             </div>
@@ -138,9 +167,5 @@ import { fade } from 'astro:transitions';
 </BaseLayout>
 
 <style>
-   .fade-y-edges {
-      padding-bottom: 22%;
-      /* -webkit-mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0))); */
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
-   }
+  
 </style>

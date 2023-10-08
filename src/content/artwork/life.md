@@ -1,7 +1,7 @@
 ---
 draft: false
 # layout: "../../layouts/SingleArtworkLayout.astro"
-sold: false
+sold: true
 title: "Life"
 date: 2020-06-01
 art_type: "sculpture"
