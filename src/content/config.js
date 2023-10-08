@@ -43,6 +43,7 @@ const mainHeroCollection = defineCollection({
 })
 
 const bioCollection = defineCollection({
+   type: "content",
    schema: ({ image }) =>
 		z.object({
 			heading: z.string().optional(),

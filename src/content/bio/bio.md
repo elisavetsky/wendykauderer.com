@@ -1,13 +1,13 @@
 ---
 heading: "This is an optional heading for my bio"
 images:
-  - image: "./painting.jpg"
+  - image: "../../assets/images/painting.jpg"
     image_alt: "WRITE ALT TEXT HERE"
-  - image: "./painting2.jpg"
+  - image: "../../assets/images/painting2.jpg"
     image_alt: "WRITE ALT TEXT HERE"
-  - image: "./painting3.jpg"
+  - image: "../../assets/images/painting3.jpg"
     image_alt: "WRITE ALT TEXT HERE"
-  - image: "./painting4.jpg"
+  - image: "../../assets/images/painting4.jpg"
     image_alt: "WRITE ALT TEXT HERE"
 ---
 

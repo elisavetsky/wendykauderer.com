@@ -15,10 +15,9 @@ const { imageArr, classes } = Astro.props;
          imageArr.map((image) => {
             return (
                <Image 
-                  src={image.src} 
-                  alt={image.attributes.alt} 
-                  width={image.attributes.width} 
-                  height={image.attributes.height} 
+                  src={image.image} 
+                  alt={image.image_alt} 
+                  
                   class="flex-1 max-w-[49.5%] rounded-lg"
                />
             )
@@ -26,10 +25,3 @@ const { imageArr, classes } = Astro.props;
       }
    </noscript>
 </div>
-
-   <!-- {
-      imageArr.map(({image, image_alt}) => {
-         return <Image src={image} alt={image_alt} />
-      })
-   }
-   <Image src={imageArr[0].image} alt={imageArr[0].image_alt} /> -->

@@ -11,29 +11,29 @@ import "yet-another-react-lightbox/styles.css";
 export default function InlineLightbox({imageArr}) {
 	const [open, setOpen] = useState(false);
 
-	const slides = imageArr.map((image) => {
+	const slides = imageArr.map(({image, image_alt}) => {
 		return {
 			src: image.src,
-			alt: image.attributes.alt,
-			width: image.attributes.width,
-			height: image.attributes.height
+			alt: image_alt,
+			width: image.width,
+			height: image.height
 		}
 	})
 
 	return (
-			<Lightbox
-				plugins={[Inline]}
-				slides={slides}
-				carousel={{
-					imageFit: "cover",
-					spacing: 10
-				}}
-				className={"shadow-xl"}
-				styles={{
-					container: { borderRadius: "0.5rem", position: "relative" },
-					slide: { padding: "0", maxHeight: "100vh" }
-					// slide: { padding: "0", height: "auto", maxWidth: "768px", width: "100%" },
-				}}
-			/>
+		<Lightbox
+			plugins={[Inline]}
+			slides={slides}
+			carousel={{
+				imageFit: "cover",
+				spacing: 10
+			}}
+			className={"shadow-xl"}
+			styles={{
+				container: { borderRadius: "0.5rem", position: "relative" },
+				slide: { padding: "0", maxHeight: "100vh" }
+				// slide: { padding: "0", height: "auto", maxWidth: "768px", width: "100%" },
+			}}
+		/>
 	);
 }

@@ -165,6 +165,7 @@ export default function DecapCMS() {
 							label: "Draft",
 							name: "draft",
 							widget: "boolean",
+							default: false
 						},
 						{
 							label: "💲 Sold/Unavailable",
@@ -198,7 +199,7 @@ export default function DecapCMS() {
 									value: "drawing",
 								},
 								{
-									label: "Scultpure",
+									label: "Sculpture",
 									value: "sculpture",
 								},
 							],
@@ -211,8 +212,9 @@ export default function DecapCMS() {
 							hint: "To create new tags, please go to your 'Tags' collection.",
 							multiple: true,
                      collection: "tags",
-							value_field: "slug",
-                     search_fields: ["slug"],
+							display_fields: ["title"],
+							value_field: "{{slug}}",
+                     search_fields: ["{{slug}}"],
                      min: 1,
 							summary: "{{fields | lower}}", // # summary string template transformation
 						},
@@ -242,13 +244,13 @@ export default function DecapCMS() {
 									widget: "image",
 									choose_url: false,
 									default: null,
-									media_folder: "/src/assets/images",
-									public_folder: "./",
-									media_library: {
-										config: {
-											media_folder: "/src/assets/images"
-										}
-									},
+									// media_folder: "/src/assets/images",
+									// public_folder: "./",
+									// media_library: {
+									// 	config: {
+									// 		media_folder: "/src/assets/images"
+									// 	}
+									// },
 								},
 								{
 									label: "♿ Alternative Text (for Accessibility)",
