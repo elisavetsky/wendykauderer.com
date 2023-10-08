@@ -16,34 +16,31 @@ const {
    title, 
    date, 
    artType, 
-   tags, 
    href, 
    mainImage,
-   description, 
-   showFullDescription,
    loading,
    classes,
    ...props
 } = Astro.props;
 ---
 
-<div class="max-w-none">
-   <a href={href}>
-      <div 
-         class={`relative overflow-hidden sm:px-0 transition transition-translate ease-in-out delay-75 duration-300 hover:shadow-xl hover:shadow-black/20 dark:hover:shadow-black/50 sm:hover:translate-x-px sm:hover:-translate-y-1 ${curvedEdges && "sm:rounded-md"}`}
-      >
-         <ImageWrapper 
-            src={mainImage.src} 
-            alt={mainImage.alt} 
-            width={640}
-            quality={50}
-            loading={loading ?? "lazy"}
-            classes={`${classes} min-w-[100%] `} 
-            {...props}
-         />
-         <SoldMarker sold={sold} />
-      </div>
-   </a> 
+
+<a href={href}>
+   <div 
+      class={`relative overflow-hidden sm:px-0 transition transition-translate ease-in-out delay-75 duration-300 hover:shadow-xl hover:shadow-black/20 dark:hover:shadow-black/50 sm:hover:translate-x-px sm:hover:-translate-y-1 ${curvedEdges && "sm:rounded-md"}`}
+   >
+      <ImageWrapper 
+         src={mainImage.src} 
+         alt={mainImage.alt} 
+         width={700}
+         quality={50}
+         loading={loading ?? "lazy"}
+         classes={`${classes} min-w-[100%] `} 
+         {...props}
+      />
+      <SoldMarker sold={sold} />
+   </div>
+</a> 
    
       
       <!-- {() => { 
@@ -92,4 +89,3 @@ const {
          </p>
       </div>
    } -->
-</div>

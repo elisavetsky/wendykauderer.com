@@ -22,14 +22,11 @@ const { artwork, showDescriptions } = Astro.props;
                   title={entry.data.title} 
                   date={entry.data.date}
                   artType={entry.data.art_type}
-                  tags={entry.data.tags}
                   href={`/${entry.data.art_type}/${entry.slug}`}
                   mainImage={{
                      src: entry.data.image,
                      alt: entry.data.main_image_alt
                   }}
-                  images={entry.data.images}
-                  description={showDescriptions && entry.data.description}
                   loading={i <= 2 ? "eager" : "lazy"}
                   transition:animate="fade"
                   transition:name={`image:${entry.slug}-${entry.data.art_type}`}

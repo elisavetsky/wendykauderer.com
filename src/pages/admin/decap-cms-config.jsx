@@ -10,7 +10,7 @@ import CMS, { init } from "decap-cms-app";
 */
 
 // import styles
-import "../../../public/admin/example.css";
+// import "../../../public/admin/example.css";
 
 // import preview templates
 import ArtworkPreview from "./previews/ArtworkPreview";
@@ -114,10 +114,10 @@ export default function DecapCMS() {
 					create: true,
 					preview_path: "{{fields.art_type}}/{{slug}}",
 					summary: "{{title}} | {{fields.date}}",
-					nested: {
-						depth: 200,
-						summary: "{{title}} | {{fields.date}}", // # optional summary for a tree node, defaults to the inferred title field
-					},
+					// nested: {
+					// 	depth: 200,
+					// 	summary: "{{title}} | {{fields.date}}", // # optional summary for a tree node, defaults to the inferred title field
+					// },
 					view_filters: [
 						{
 							label: "Featured",
@@ -304,7 +304,7 @@ export default function DecapCMS() {
 
    // Register preview styles from minified css output from astro build
    // Not a permanent solution, wish I knew how to directly import @tailwind
-	CMS.registerPreviewStyle("./public/admin/example.css");
+	CMS.registerPreviewStyle("./admin/example.css");
 
 	// Register preview templates
 	CMS.registerPreviewTemplate("artwork", ArtworkPreview);

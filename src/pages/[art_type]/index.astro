@@ -31,14 +31,10 @@ import { titleCase } from "../../utils/textTools.js"
 
 // import layout
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import MainLayout from '../../layouts/MainLayout.astro';
 import ArtworkGridLayout from "../../layouts/ArtworkGridLayout.astro";
 
 // import components
 import SectionHero from "../../components/SectionHero.astro";
-import ArtTypes from "../../components/ArtTypes.astro";
-import SectionTitle from "../../components/SectionTitle.astro";
-import FullArtwork from "../../components/FullArtwork.astro";
 
 // import all macthing art_type artwork
 const allArtwork = await getCollection('artwork', ({data}) => {
@@ -59,8 +55,6 @@ const artwork = allArtwork.sort((a, b) => {
    />
    
    <section>
-      <!-- <ArtTypes /> -->
-      <!-- <SectionTitle title={`My ${params.art_type}s`} /> -->
       <ArtworkGridLayout artwork={artwork} />
    </section>
 </BaseLayout>

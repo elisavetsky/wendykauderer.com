@@ -17,6 +17,7 @@ import FullArtwork from '../../components/FullArtwork.astro';
 import ArtDetails from '../../components/ArtDetails.jsx';
 import ArtTags from '../../components/ArtTags.jsx';
 import PrevNextArtwork from '../../components/PrevNextArtwork';
+import LightboxWrapper from "../../components/LightboxWrapper.astro";
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -88,7 +89,7 @@ import { fade } from 'astro:transitions';
    blurredBg={entry.data.image}
 > 
    <article class="relative w-full flex flex-col justify-between sm:flex-row md:flex-col sm:px-4 sm:gap-4 md:gap-2 lg:gap-6 lg:flex-row " >
-      <div class="sm:w-3/5 md:w-full lg:w-auto xl:min-w-min 2xl:min-w-max" >
+      <div class="sm:w-3/5 md:w-full lg:w-auto 2xl:w-full 2xl:max-w-full" >
          <FullArtwork 
             sold={entry.data.sold} 
             title={entry.data.title} 
@@ -99,28 +100,35 @@ import { fade } from 'astro:transitions';
                src: entry.data.image,
                alt: entry.data.main_image_alt
             }}
-            images={entry.data.images}
-            description={entry.data.description}
             showFullDescription={true}
             loading="eager"
             classes=""
             transition:animate="fade"
             transition:name={`image:${entry.slug}-${entry.data.art_type}`} 
          />
+         {entry.data.images &&
+            <LightboxWrapper imageArr={entry.data.images} />
+         }
       </div>
+      
       <div 
-         class="min-h-screen px-4 prose prose-zinc prose-h1:font-medium prose-h1:mb-7 prose-a:no-underline dark:prose-invert sm:w-2/5 sm:max-w-[40%] sm:px-0 sm:pt-4 md:pt-0 md:prose-lg md:w-full md:max-w-full lg:top-0 lg:sticky lg:pt-4 lg:prose-base lg:w-5/12 lg:min-w-[22rem] xl:prose-lg  2xl:w-full 2xl:min-h-fit  flex flex-col 2xl:flex-row 2xl:flex-wrap 2xl:gap-4"
+         class="flex flex-col h-full min-h-[60vh] px-4 prose prose-zinc prose-h1:font-medium prose-h1:mb-7 prose-a:no-underline dark:prose-invert sm:w-2/5 sm:max-w-[40%] sm:px-0 sm:pt-4 sm:sticky sm:top-0 md:pt-0 md:prose-lg md:w-full md:max-w-full md:static lg:sticky lg:pt-6 lg:prose-base lg:w-5/12 lg:min-w-[22rem] xl:prose-lg 2xl:w-full 2xl:min-h-fit 2xl:flex-row 2xl:gap-4 2xl:justify-between"
       >
-         <div class="2xl:max-w-[26rem]">
+         <div class="2xl:min-w-[26rem] 2xl:max-w-[26rem]">
             <header class="mt-10 text-md sm:mt-0 md:mt-10 lg:mt-0">
                <ArtDetails date={entry.data.date} sold={entry.data.sold} />
                <h1>{entry.data.title}</h1>
             </header>
-            <div class="relative fade-y-edges overflow-scroll min-w-[100%] sm:max-h-[18rem] md:max-h-[23rem] lg:min-h-[23rem] lg:max-h-[23rem]" aria-label="Art description">
-               <ArtTags artType={entry.data.art_type} tags={tags} />
-               
-               <Content />
-               
+
+            <ArtTags artType={entry.data.art_type} tags={tags} />
+            
+            <div class="min-w-[100%] sm:max-h-[18rem] md:max-h-[23rem] lg:min-h-[23rem]">
+
+               {entry.body.length > 310
+                  ? <div class="fade-y-edges max-h-[inherit] max-w-[inherit] overflow-scroll"><Content /></div>
+                  : <div class="h-full"><Content /></div>
+               }
+
             </div>
             <hr class="border">
          </div>
@@ -132,8 +140,6 @@ import { fade } from 'astro:transitions';
 <style>
    .fade-y-edges {
       padding-bottom: 22%;
-      height: 100%;
-      width: 100%;
       /* -webkit-mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0))); */
       mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0));
    }

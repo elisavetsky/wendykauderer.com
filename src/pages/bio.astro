@@ -7,16 +7,16 @@ import { getEntry } from "astro:content";
 const bio = await getEntry("bio", "bio");
 const { Content } = await bio.render();
 
-const imageArr = await Promise.all(
-   bio.data.images.map(async ({image, image_alt}) => {
-      const img = await getImage({
-         src: image,
-         alt: image_alt
-      })
+// const imageArr = await Promise.all(
+//    bio.data.images.map(async ({image, image_alt}) => {
+//       const img = await getImage({
+//          src: image,
+//          alt: image_alt
+//       })
       
-      return img;
-   })
-)
+//       return img;
+//    })
+// )
 
 // import layouts
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -33,7 +33,7 @@ import InlineLightboxWrapper from "../components/InlineLightboxWrapper.astro";
    options={{
       headerShadow: false
    }}
-   blurredBg={imageArr[0].src}
+   blurredBg={bio.data.images[0].src}
 >
    <article>
       <SectionHero title="Bio" />
@@ -44,7 +44,7 @@ import InlineLightboxWrapper from "../components/InlineLightboxWrapper.astro";
             }
             <Content />
          </div>
-         <InlineLightboxWrapper imageArr={imageArr} classes="flex-1 m-auto md:px-4 w-screen md:w-auto" />
+         <InlineLightboxWrapper imageArr={bio.data.images} classes="flex-1 m-auto md:px-4 w-screen md:w-auto md:max-w-[60rem]" />
       </Flex2ColLayout>
    </article>
    
