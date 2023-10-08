@@ -7,6 +7,7 @@ import { frontmatter } from "../configuration/SitewideConfig.md";
 const sections = frontmatter.sections;
 
 // import components
+import PageFind from './PageFind.astro';
 import ThemeDropdown from './ThemeDropdown.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
 import Link from './Link.jsx';
@@ -14,8 +15,12 @@ import ArtTypes from './ArtTypes.astro';
 ---
 
 <nav aria-label="Main menu" id="main-menu" class="hidden text-md font-normal mt-8 md:m-0 md:flex md:flex-col">
-   <ul class="flex flex-col justify-between leading-loose mb-4 w-full md:gap-0 md:mb-8 md:mr-12">
-      
+   
+   <div class="flex flex-col justify-between leading-loose mb-4 w-full md:gap-0 md:mb-8">
+
+      <PageFind />
+
+      <ul class="flex flex-col">
       {sections?.map(({title, dropdown_items}) => {
          return (
             <li
@@ -56,13 +61,17 @@ import ArtTypes from './ArtTypes.astro';
             
          </ThemeDropdown>
       </li>
-   </ul>
-   
+      </ul>
+   </div>
    
 </nav>
 
 <script>
    document.addEventListener('astro:after-swap', () => {
+
+      ////////////////////
+      // DROPDOWN MENUS //
+      ////////////////////
 
       const dropTriggers = document.querySelectorAll(".dropdown-trigger");
       const dropMenus = document.querySelectorAll(".dropdown-menu");

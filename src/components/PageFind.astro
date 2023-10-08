@@ -1,0 +1,59 @@
+---
+---
+
+<div id="search" class="px-2 mb-4"></div>
+
+<script>
+   ///////////////
+   // PAGEFIND //
+   //////////////
+   document.addEventListener('astro:page-load', () => {
+
+      new PagefindUI({
+         element: "#search",
+         showSubResults: true 
+      });
+   }, { once: false });
+</script>
+
+<style is:global>
+   .pagefind-ui__result {
+      flex-direction: row !important;
+   }
+
+   .pagefind-ui__result-thumb {
+      width: min(100%,calc((100% - (100px * var(--pagefind-ui-scale))) * 100000)) !important;
+      max-width: 12rem !important;
+      aspect-ratio: initial !important;
+   }
+
+   .pagefind-ui__result-image {
+      position: relative !important;
+      left: unset !important;
+      max-height: unset !important;
+      transform: none !important; 
+   }
+
+   @media (min-width: 768px) {
+      .pagefind-ui__result {
+         flex-direction: column !important;
+      }
+   }
+
+   @media (min-width: 1536px) {
+      .pagefind-ui__result {
+         flex-direction: row !important;
+      }
+   }
+   
+</style>
+
+<style is:global>
+	.dark {
+		--pagefind-ui-primary: #eeeeee;
+		--pagefind-ui-text: #eeeeee;
+		--pagefind-ui-background: #152028;
+		--pagefind-ui-border: #152028;
+		--pagefind-ui-tag: #152028;
+	}
+</style>
