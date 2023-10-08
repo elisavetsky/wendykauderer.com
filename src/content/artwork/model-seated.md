@@ -5,7 +5,7 @@ title: Model Seated
 date: 2020-06-04
 art_type: sculpture
 tags:
-  - bronze-powder
+  - plaster
 image: /src/assets/images/model-seated.jpg
 main_image_alt: IMAGE DESCRIPTION REQUIRED
 images:
