@@ -61,7 +61,7 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
                   <a 
                      href={`/${prevEntry.data.art_type}/${prevEntry.slug}`} 
                      aria-label={`Previous ${prevEntry.data.art_type}`}
-                     className={`group ${curvedEdges && "rounded-xl"} bg-white/50 backdrop-blur-lg transition-colors border-2 items-end flex justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-white/30 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/20 sm:flex-col sm:items-start md:flex-row md:items-center lg:flex-col lg:items-start 2xl:flex-1`}
+                     className={`group ${curvedEdges && "rounded-xl"} bg-white/30 backdrop-blur-lg transition-colors border-2 items-end flex justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-white/50 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/50 sm:flex-col sm:items-start md:flex-row md:items-center lg:flex-col lg:items-start 2xl:min-h-[7rem]`}
                   >
                      <ArrowLeftIcon className='w-5 xl:w-8 transition motion-safe:group-hover:-translate-x-1' aria-hidden />
                      <span className="">{prevEntry.data.title}</span>
@@ -72,7 +72,7 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
                   <a 
                      href={`/${nextEntry.data.art_type}/${nextEntry.slug}`} 
                      aria-label={`Next ${nextEntry.data.art_type}`}
-                     className={`group ${curvedEdges && "rounded-xl"} bg-white/50 backdrop-blur-lg text-left transition-colors col-start-2 border-2 items-end flex flex-row-reverse justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-white/30 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/20 sm:flex-col sm:text-right md:flex-row-reverse md:items-center lg:flex-col lg:items-end`}
+                     className={`group ${curvedEdges && "rounded-xl"} bg-white/30 backdrop-blur-xl text-left transition-colors col-start-2 border-2 items-end flex flex-row-reverse justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-white/50 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/50 sm:flex-col sm:text-right md:flex-row-reverse md:items-center lg:flex-col lg:items-end 2xl:min-h-[7rem]`}
                   >
                      <ArrowRightIcon className='w-5 xl:w-8 transition motion-safe:group-hover:translate-x-1' aria-hidden />
                      <span className="">{nextEntry.data.title}</span>
