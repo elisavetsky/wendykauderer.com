@@ -7,6 +7,7 @@ import * as SitewideConfig from "../../configuration/SitewideConfig.md";
 
 // import tools
 import { convertToArray } from "../../utils/arrayTools.js"
+import { getAspectRatio } from "../../utils/imageTools.js"
 
 // import layout
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -110,7 +111,14 @@ import { fade } from 'astro:transitions';
                data-pagefind-index-attrs="alt"
             />
          </noscript>
-         
+
+         <div 
+            style={{
+               height: "auto",
+               aspectRatio: getAspectRatio(entry.data.image.width, entry.data.image.height),
+               maxWidth: "100%"
+            }}
+         >
             <LightboxWrapper 
                client:only='react' 
                mainImage={{
@@ -139,6 +147,7 @@ import { fade } from 'astro:transitions';
                />
             </LightboxWrapper>
          </div>
+      </div>
       
       <div 
          class="flex flex-col h-full min-h-[60vh] px-4 prose prose-zinc prose-h1:font-medium prose-h1:mb-7 prose-a:no-underline dark:prose-invert sm:w-2/5 sm:max-w-[40%] sm:px-0 sm:pt-4 sm:sticky sm:top-0 md:pt-0 md:prose-lg md:w-full md:max-w-full md:static lg:sticky lg:pt-6 lg:prose-base lg:w-5/12 lg:min-w-[22rem] xl:prose-lg 2xl:w-full  2xl:flex-row 2xl:gap-4 2xl:justify-between 2xl:relative"
