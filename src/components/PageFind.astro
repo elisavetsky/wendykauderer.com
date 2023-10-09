@@ -1,7 +1,7 @@
 ---
 ---
 
-<div id="search" class="px-2 mb-4 min-h-[3rem]" transition:persist></div>
+<div id="search" class="px-2 mb-4 min-h-[3rem]"></div>
 
 <script>
    ///////////////
@@ -13,7 +13,7 @@
          element: "#search",
          showSubResults: false
       });
-   });
+   }, { once: false });
 </script>
 
 <style is:global>

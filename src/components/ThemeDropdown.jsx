@@ -132,7 +132,7 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
          </Button>
 			<Menu 
 				role="listbox"
-				className={`${curvedEdges && "rounded-lg"} ml-2 mt-4 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg  py-2 min-w-[10rem] z-30 border border-black/20 dark:border-white/20 dark:bg-zinc-800/80 md:left-11 md:-bottom-3`}
+				className={`${curvedEdges && "rounded-lg"} ml-2 mt-4 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg  py-2 min-w-[10rem] z-30 border border-black/20 dark:border-white/20 dark:bg-zinc-800/80 left-11 -bottom-3`}
 			>
 				<ul className="flex flex-col leading-loose">{menuItems}</ul>
 			</Menu>
