@@ -27,7 +27,7 @@ const {
 
 <a href={href}>
    <div 
-      class={`relative overflow-hidden sm:px-0 transition transition-translate ease-in-out delay-75 duration-300 sm:hover:shadow-xl sm:hover:shadow-black/20 sm:dark:hover:shadow-black/50 sm:hover:translate-x-px sm:hover:-translate-y-1 ${curvedEdges && "sm:rounded-md"}`}
+      class={`ml-auto w-fit relative overflow-hidden sm:px-0 transition transition-translate ease-in-out delay-75 duration-300 sm:hover:shadow-xl sm:hover:shadow-black/20 sm:dark:hover:shadow-black/50 sm:hover:translate-x-px sm:hover:-translate-y-1 ${curvedEdges && "sm:rounded-md"}`}
    >
       <ImageWrapper 
          src={mainImage.src} 
@@ -35,7 +35,7 @@ const {
          width={700}
          quality={50}
          loading={loading ?? "lazy"}
-         classes={`${classes} min-w-[100%] `} 
+         classes={`${classes}`} 
          {...props}
       />
       <SoldMarker sold={sold} />

@@ -49,12 +49,12 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
       return (
          <div
             transition:name={`PrevNextArtwork`}
-            className={`flex z-[30] sticky bottom-0 left-0 w-full gap-4 h-fit sm:left-[unset] sm:min-w-full sm:w-[inherit] sm:pl-0 md:px-0 lg:w-full 2xl:flex-1 2xl:min-w-[unset] 2xl:max-w-[10rem]`}
+            className={`flex z-[30] sticky bottom-0 left-0 w-full gap-4 h-fit sm:left-[unset] sm:min-w-full sm:w-[inherit] sm:pl-0 md:px-0 lg:w-full 2xl:flex-1 2xl:min-w-[unset] 2xl:max-w-[10rem] 2xl:top-4`}
          >
             {/* <span className='hidden md:px-6 md:block md:min-w-[16rem] md:w-3/12'></span> */}
             <nav 
                aria-label={`previous ${prevEntry?.data.art_type ?? nextEntry?.data.art_type} and next artwork navigation`}
-               className="w-full text-sm py-4 2xl:py-0"
+               className="w-full text-sm pb-4 pt-6 2xl:py-0" 
             >
                <div className='grid grid-cols-2 justify-between w-full gap-3 2xl:flex 2xl:flex-col'>
                   {prevEntry &&

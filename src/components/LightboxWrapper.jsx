@@ -36,16 +36,16 @@ export default function LightboxWrapper({mainImage, imageArr, children}) {
 
 	return (
 		<>
-			<div type="button" onClick={() => setOpen(true)}>{children}</div>
+			<div onClick={() => setOpen(true)}>{children}</div>
 			<Lightbox
 				open={open}
 				close={() => setOpen(false)}
 				plugins={[Thumbnails, Zoom]}
 				thumbnails={{
-					show: false
+					showToggle: true
 				}}
 				zoom={{
-					maxZoomPixelRatio: 1.5
+					maxZoomPixelRatio: 1.33
 				}}
 				slides={slides}
 				carousel={{
@@ -62,8 +62,8 @@ export default function LightboxWrapper({mainImage, imageArr, children}) {
 				}}
 				className={"shadow-xl"}
 				styles={{
-					container: { borderRadius: "0.5rem", position: "relative" },
-					slide: { padding: "0", maxHeight: "100vh" }
+					// container: { borderRadius: "0.5rem", position: "relative" },
+					// slide: { padding: "0", maxHeight: "100vh" }
 					// slide: { padding: "0", height: "auto", maxWidth: "768px", width: "100%" },
 				}}
 			/>

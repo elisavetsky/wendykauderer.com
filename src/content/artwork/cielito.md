@@ -9,4 +9,3 @@ tags:
 image: /src/assets/images/cielito.jpg
 main_image_alt: IMAGE DESCRIPTION REQUIRED
 ---
-OPTIONAL DESCRIPTION

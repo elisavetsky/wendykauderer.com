@@ -262,11 +262,13 @@ export default function DecapCMS() {
 						{
 							label: "✏️ Description",
 							name: "body",
+							required: false,
 							widget: "markdown",
                      buttons: ["bold", "italic", "link", "quote"],
                      editor_components: ["false"],
                      modes: ["rich_text"],
                      sanitize_preview: true
+							
 						},
 					],
 				},

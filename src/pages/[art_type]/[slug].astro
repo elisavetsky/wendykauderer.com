@@ -92,7 +92,7 @@ import { fade } from 'astro:transitions';
       data-pagefind-body
       class="relative w-full flex flex-col justify-between sm:flex-row md:flex-col sm:px-4 sm:gap-4 md:gap-2 lg:gap-6 lg:flex-row " 
    >
-      <div class="sm:w-3/5 md:w-full lg:w-auto 2xl:w-full 2xl:max-w-full" >
+      <div class="h-fit static sm:sticky md:static lg:sticky top-4 sm:w-3/5 md:w-full lg:7/12 2xl:w-full 2xl:max-w-full" >
          <noscript>
             <FullArtwork 
                sold={entry.data.sold} 
@@ -111,38 +111,37 @@ import { fade } from 'astro:transitions';
             />
          </noscript>
          
-         <LightboxWrapper 
-            client:only='react' 
-            mainImage={{
-               image: entry.data.image, 
-               alt:entry.data.main_image_alt
-            }} 
-            imageArr={entry.data.images || []}
-         >
-            <FullArtwork 
-               sold={entry.data.sold} 
-               title={entry.data.title} 
-               date={entry.data.date}
-               artType={entry.data.art_type}
-               href={`#`}
+            <LightboxWrapper 
+               client:only='react' 
                mainImage={{
-                  src: entry.data.image,
-                  alt: entry.data.main_image_alt
-               }}
-               showFullDescription={true}
-               loading="eager"
-               classes=""
-               transition:animate="fade"
-               transition:name={`image:${entry.slug}-${entry.data.art_type}`} 
-               data-pagefind-index-attrs="alt"
-               data-pagefind-meta="image[src], image_alt[alt]"
-            />
-         </LightboxWrapper>
-
-      </div>
+                  image: entry.data.image, 
+                  alt:entry.data.main_image_alt
+               }} 
+               imageArr={entry.data.images || []}
+            >
+               <FullArtwork 
+                  sold={entry.data.sold} 
+                  title={entry.data.title} 
+                  date={entry.data.date}
+                  artType={entry.data.art_type}
+                  href={`#`}
+                  mainImage={{
+                     src: entry.data.image,
+                     alt: entry.data.main_image_alt
+                  }}
+                  showFullDescription={true}
+                  loading="eager"
+                  classes=""
+                  transition:animate="fade"
+                  transition:name={`image:${entry.slug}-${entry.data.art_type}`} 
+                  data-pagefind-index-attrs="alt"
+                  data-pagefind-meta="image[src], image_alt[alt]"
+               />
+            </LightboxWrapper>
+         </div>
       
       <div 
-         class="flex flex-col h-full min-h-[60vh] px-4 prose prose-zinc prose-h1:font-medium prose-h1:mb-7 prose-a:no-underline dark:prose-invert sm:w-2/5 sm:max-w-[40%] sm:px-0 sm:pt-4 sm:sticky sm:top-0 md:pt-0 md:prose-lg md:w-full md:max-w-full md:static lg:sticky lg:pt-6 lg:prose-base lg:w-5/12 lg:min-w-[22rem] xl:prose-lg 2xl:w-full 2xl:min-h-fit 2xl:flex-row 2xl:gap-4 2xl:justify-between"
+         class="flex flex-col h-full min-h-[60vh] px-4 prose prose-zinc prose-h1:font-medium prose-h1:mb-7 prose-a:no-underline dark:prose-invert sm:w-2/5 sm:max-w-[40%] sm:px-0 sm:pt-4 sm:sticky sm:top-0 md:pt-0 md:prose-lg md:w-full md:max-w-full md:static lg:sticky lg:pt-6 lg:prose-base lg:w-5/12 lg:min-w-[22rem] xl:prose-lg 2xl:w-full  2xl:flex-row 2xl:gap-4 2xl:justify-between 2xl:relative"
       >
          <div class="2xl:min-w-[26rem] 2xl:max-w-[26rem]">
             <header class="mt-10 text-md sm:mt-0 md:mt-10 lg:mt-0">
@@ -152,19 +151,18 @@ import { fade } from 'astro:transitions';
 
             <ArtTags artType={entry.data.art_type} tags={tags} />
             
-            <div class="min-w-[100%] sm:max-h-[18rem] md:max-h-[23rem] lg:max-h-[20rem] xl:max-h-[23rem]">
-
+            <div class="min-w-[100%] sm:max-h-[18rem] md:max-h-none lg:max-h-[20rem] xl:max-h-[23rem] 2xl:max-h-none">
                {entry.body.length > 310
-                  ?  <div class="max-h-[inherit] max-w-[inherit] overflow-scroll sm:fade-y-edges md:fade-y-edges-none lg:fade-y-edges">
+                  ?  <div class="max-h-[inherit] max-w-[inherit] overflow-scroll sm:fade-y-edges md:fade-y-edges-none md:max-h-none lg:fade-y-edges lg:max-h-[inherit] 2xl:fade-y-edges-none 2xl:max-h-none">
                         <Content />
                      </div>
-                  :  <div class="h-full">
+                  :  <div class="h-full lg:min-h-screen lg:max-h-[inherit] pt-0.5">
                         <Content />
                      </div>
                }
 
             </div>
-            <hr class="border">
+            <!-- <hr class="border"> -->
          </div>
          <PrevNextArtwork prevEntry={prevEntry} nextEntry={nextEntry} />
       </div>
