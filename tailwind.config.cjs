@@ -10,6 +10,9 @@ module.exports = {
 			filter: "filter: blur(40px)"
 		},
 		extend: {
+			screens: {
+				'3xl': '1700px',
+			},
 			keyframes: {
 				"fadeIn": {
 					'0%': { opacity: '0' },
