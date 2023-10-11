@@ -1,5 +1,5 @@
 // import components
-import Link from "../../../components/Link.jsx";
+import Link from "../../Link.jsx";
 
 
 export default function ArtworkPreview({entry, widgetsFor}) {

@@ -1,5 +1,6 @@
 // This global flag enables manual initialization.
 window.CMS_MANUAL_INIT = true;
+
 // Usage with import from npm package
 import CMS, { init } from "decap-cms-app";
 
@@ -10,7 +11,7 @@ import CMS, { init } from "decap-cms-app";
 */
 
 // import styles
-// import "../../../public/admin/example.css";
+import "../../../public/admin/example.css";
 
 // import preview templates
 import ArtworkPreview from "./previews/ArtworkPreview";
@@ -83,10 +84,6 @@ export default function DecapCMS() {
 					label: "Page Settings",
 					folder: "src/content/settings/",
 					summary: "{{fields.label}}",
-					nested: {
-						depth: 200,
-						summary: "{{fields.label}}", // # optional summary for a tree node, defaults to the inferred title field
-					},
 					sortable_fields: [],
 					fields: [
 						{
@@ -95,7 +92,7 @@ export default function DecapCMS() {
 							widget: "image",
 						},
 						{
-							label: "♿ Feature Image Alt",
+							label: "♿ Featured Image Alt",
 							name: "image_alt",
 							widget: "text",
 							hint: "For accessibility purposes."

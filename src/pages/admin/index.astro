@@ -1,5 +1,5 @@
 ---
-import DecapCMS from "./decap-cms-config.jsx";
+import DecapCMS from "../../components/cms/decap-cms-config.js";
 
 // import global css
 // import '../../styles/main.css'
@@ -17,9 +17,6 @@ import DecapCMS from "./decap-cms-config.jsx";
 
       <title>Wendy Kauderer - Admin</title>
 
-      <!-- DecapCMS Config -->
-      <!-- <link href="./config.yml" type="text/yaml" rel="cms-config-url"> -->
-
       <!-- Netlify Identity -->
       <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
@@ -32,7 +29,7 @@ import DecapCMS from "./decap-cms-config.jsx";
 
    <body>
       <!-- Include the script that builds the page and powers Decap CMS -->
-      <!-- <script src="./decap-cms-config.js"></script> -->
+      <!-- <script is:inline src="/admin/decap-cms-config.js" type="module"></script> -->
       <DecapCMS client:only />
       <!-- <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script> -->
    </body>
