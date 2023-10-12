@@ -16,4 +16,4 @@ images:
   - image: /src/assets/images/at-last-1-1.jpg
     image_alt: IMAGE DESCRIPTION REQUIRED
 ---
-The gender of this piece is indeterminate, but the emotion of the piece isn’t. This was done when I let go of some big worries and felt peace for the first time in a long while. Plaster.
+The gender of this piece is indeterminate, but the emotion of the piece isn’t. This was done when I let go of some big worries and felt peace for the first time in a long while.

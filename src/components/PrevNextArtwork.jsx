@@ -49,7 +49,7 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
       return (
          <div
             transition:name={`PrevNextArtwork`}
-            className={`flex z-[30] sticky bottom-0 left-0 w-full gap-4 h-fit sm:left-[unset] sm:min-w-full sm:w-[inherit] sm:pl-0 md:px-0 lg:w-full 3xl:flex-1 3xl:min-w-[unset] 3xl:max-w-[10rem]`}
+            className={`flex z-[30] sticky bottom-0 left-0 w-full gap-4 h-fit sm:left-[unset] sm:min-w-full sm:w-[inherit] sm:pl-0 md:px-0 lg:w-full 3xl:flex-1 3xl:min-w-[unset] 3xl:max-w-[10rem] 3xl:top-8`}
          >
             {/* <span className='hidden md:px-6 md:block md:min-w-[16rem] md:w-3/12'></span> */}
             <nav 
