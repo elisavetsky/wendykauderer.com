@@ -6,24 +6,30 @@ import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
 
    // import all non-draft artwork
-   const artworkEntries = await getCollection('artwork', ({data}) => {
-      return !data.draft;
+   const artworkEntries = await getCollection('artwork', ({data}) => !data.draft);
+
+   // sort entries from latest to oldest
+   const sortedEntries = artworkEntries.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
+
+   return sortedEntries.map((entry) => {
+
+      // filter entries by art_type from the URL param
+      const entriesByArtType = sortedEntries.filter((sortedEntry) => sortedEntry.data.art_type === entry.data.art_type )
+
+      return {
+         params: { 
+            art_type: entry.data.art_type,
+            slug: entry.slug
+         }, 
+         props: { 
+            entries: entriesByArtType,
+         },
+      }
    });
-
-   return artworkEntries.map((entry) => ({
-      params: { 
-         art_type: entry.data.art_type,
-         slug: entry.slug
-      }, 
-      props: { 
-         entry,
-      },
-   }));
-
 }
 
 // 2. For your template, you can get the entry directly from the prop
-const { entry } = Astro.props;
+const { entries } = Astro.props;
 const params = Astro.params;
 
 // import utils
@@ -35,18 +41,6 @@ import ArtworkGridLayout from "../../layouts/ArtworkGridLayout.astro";
 
 // import components
 import SectionHero from "../../components/SectionHero.astro";
-
-// import all macthing art_type artwork
-const allArtwork = await getCollection('artwork', ({data}) => {
-   return data.art_type === params.art_type;
-});
-
-// sort latest to oldest by default
-const artwork = allArtwork.sort((a, b) => {
-   const latestToOldest = Date.parse(b.data.date) - Date.parse(a.data.date);
-
-   return latestToOldest;
-})
 ---
 
 <BaseLayout pageTitle={`${titleCase(params.art_type)}s`}>
@@ -55,6 +49,6 @@ const artwork = allArtwork.sort((a, b) => {
    />
    
    <section>
-      <ArtworkGridLayout artwork={artwork} />
+      <ArtworkGridLayout artwork={entries} />
    </section>
 </BaseLayout>
