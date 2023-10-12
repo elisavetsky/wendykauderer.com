@@ -10,4 +10,4 @@ tags:
 image: /src/assets/images/lake-calabasas.jpg
 main_image_alt: IMAGE DESCRIPTION REQUIRED
 ---
-2020, memories of a beautiful night. We walk around this lake as often as we can, and I was trying to capture what happens to water when it’s illuminated by moonlight. In painting the lights of the houses, it was interesting for me to really study the colors…orange, blue, yellow. Doing this kind of painting forces me to take the time to look, to stop and notice instead of assuming I know. That’s helpful, not just in painting.
+Memories of a beautiful night. We walk around this lake as often as we can, and I was trying to capture what happens to water when it’s illuminated by moonlight. In painting the lights of the houses, it was interesting for me to really study the colors…orange, blue, yellow. Doing this kind of painting forces me to take the time to look, to stop and notice instead of assuming I know. That’s helpful, not just in painting.

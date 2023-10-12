@@ -11,7 +11,10 @@ import CMS, { init } from "decap-cms-app";
 */
 
 // import styles
-import "../../../public/admin/example.css";
+import "../../../public/admin/admin.css";
+
+// import utils
+import { humanDate } from "../../utils/textTools";
 
 // import preview templates
 import ArtworkPreview from "./previews/ArtworkPreview";
@@ -110,7 +113,7 @@ export default function DecapCMS() {
 					media_folder: "/src/assets/images",
 					create: true,
 					preview_path: "{{fields.art_type}}/{{slug}}",
-					summary: "{{title}} | {{fields.date}}",
+					summary: "{{title}} | {{fields.tags}} | {{fields.date}}",
 					// nested: {
 					// 	depth: 200,
 					// 	summary: "{{title}} | {{fields.date}}", // # optional summary for a tree node, defaults to the inferred title field

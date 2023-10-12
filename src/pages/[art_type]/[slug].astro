@@ -154,11 +154,11 @@ import { fade } from 'astro:transitions';
       >
          <div class="3xl:sticky 3xl:top-8 3xl:h-full 3xl:min-w-[26rem] 3xl:max-w-[26rem]">
             <header class="mt-10 text-md sm:mt-0 md:mt-10 lg:mt-0">
-               <ArtDetails date={entry.data.date} sold={entry.data.sold} />
+               <ArtDetails artType={entry.data.art_type} sold={entry.data.sold} />
                <h1>{entry.data.title}</h1>
             </header>
 
-            <ArtTags artType={entry.data.art_type} tags={tags} />
+            <ArtTags tags={tags} />
             
             <div class="min-w-[100%] sm:max-h-[18rem] md:max-h-none lg:max-h-[20rem] xl:max-h-[23rem] 3xl:max-h-none">
                {entry.body.length > 310

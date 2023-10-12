@@ -11,17 +11,13 @@ export default function Tag({title, artType}) {
          classes="no-underline rounded-lg "
       >
          <span 
-            title={artType}
-            data-pagefind-index-attrs="title"
-            className={`${commonClasses} border border-slate-200 bg-slate-300/30 hover:bg-slate-400/30 dark:border-zinc-600 dark:bg-zinc-700/30 dark:hover:bg-zinc-900/30`}
+            className={`${commonClasses} border border-gray-200 bg-gray-300/30 hover:bg-gray-400/30 dark:border-zinc-600 dark:bg-zinc-700/30 dark:hover:bg-zinc-900/30`}
          >
             {artType}
          </span>
       </Link>
       : 
       <span 
-         title={title}
-         data-pagefind-index-attrs="title"
          className={`${commonClasses} border border-gray-200 bg-gray-300/30 dark:border-gray-600 dark:bg-gray-700/30`}
       >
          {title}

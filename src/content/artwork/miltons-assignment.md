@@ -10,7 +10,7 @@ tags:
 image: /src/assets/images/miltons-assignment.jpg
 main_image_alt: IMAGE DESCRIPTION REQUIRED
 ---
-2017, This is one of the first paintings I did after having left drawing and sculpture behind for many years.
+This is one of the first paintings I did after having left drawing and sculpture behind for many years.
 
 I liked what happened here with a palette knife. It would cover the other colors I’d put down, but not entirely, so a texture was created. I was a little too invested in the outcome of this painting, because I didn’t want to fail.
 
