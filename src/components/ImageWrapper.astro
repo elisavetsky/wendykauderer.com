@@ -6,11 +6,12 @@ import { Image } from "astro:assets";
 import { frontmatter } from "../configuration/SitewideConfig.md";
 const curvedEdges = frontmatter.curved_image_edges;
 
-const { src, classes, ...props} = Astro.props;
+const { src, widths, classes, noWidth, ...props} = Astro.props;
 ---
 
 <Image 
    src={src} 
+   widths={[240, 320, 540, 640, 700, 1024]}
    {...props} 
-   class={`w-full mt-0 mb-0 shadow-lg ${curvedEdges && 'sm:rounded-md'} ${classes}`} 
+   class={`${noWidth ? "" : "w-full"} mt-0 mb-0 shadow-lg ${curvedEdges && 'sm:rounded-md'} ${classes}`} 
 />

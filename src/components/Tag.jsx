@@ -18,8 +18,9 @@ export default function Tag({title, artType}) {
       </Link>
       : 
       <span 
+         title={title}
+         data-pagefind-index-attrs="title"
          className={`${commonClasses} border border-gray-200 bg-gray-300/30 dark:border-gray-600 dark:bg-gray-700/30`}
-         data-pagefind-meta={`tag:${title}`}
       >
          {title}
       </span>

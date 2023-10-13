@@ -121,6 +121,7 @@ import { fade } from 'astro:transitions';
          >
             <LightboxWrapper 
                client:only='react' 
+               
                mainImage={{
                   image: entry.data.image, 
                   alt:entry.data.main_image_alt
@@ -139,7 +140,6 @@ import { fade } from 'astro:transitions';
                   }}
                   showFullDescription={true}
                   loading="eager"
-                  classes=""
                   transition:animate="fade"
                   transition:name={`image:${entry.slug}-${entry.data.art_type}`} 
                   data-pagefind-index-attrs="alt"
@@ -162,10 +162,10 @@ import { fade } from 'astro:transitions';
             
             <div class="min-w-[100%] sm:max-h-[18rem] md:max-h-none lg:max-h-[20rem] xl:max-h-[23rem] 3xl:max-h-none">
                {entry.body.length > 310
-                  ?  <div class="max-h-[inherit] max-w-[inherit] overflow-scroll sm:fade-y-edges md:fade-y-edges-none md:max-h-none lg:fade-y-edges lg:max-h-[inherit] 3xl:fade-y-edges-none 3xl:max-h-none">
+                  ?  <div class="max-h-[inherit] max-w-[inherit] overflow-scroll sm:fade-y-edges sm:pb-44 md:fade-y-edges-none md:pb-0 md:max-h-none lg:fade-y-edges lg:pb-40 lg:max-h-[inherit] 3xl:fade-y-edges-none 3xl:pb-0 3xl:max-h-none">
                         <Content />
                      </div>
-                  :  <div class="h-full  lg:max-h-[inherit] pt-0.5">
+                  :  <div class="pt-[0.3px] h-full sm:min-h-[18rem] md:min-h-0 lg:min-h-[20rem] lg:max-h-[inherit] xl:min-h-[23rem]">
                         <Content />
                      </div>
                }

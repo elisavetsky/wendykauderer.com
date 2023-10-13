@@ -61,10 +61,10 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
                      <a 
                         href={`/${prevEntry.data.art_type}/${prevEntry.slug}`} 
                         aria-label={`Previous ${prevEntry.data.art_type}`}
-                        className={`group ${curvedEdges && "rounded-xl"} bg-white/30 backdrop-blur-lg transition-colors border-2 items-end flex justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-white/50 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/50 sm:flex-col sm:items-start md:flex-row md:items-center lg:flex-col lg:items-start 3xl:min-h-[7rem]`}
+                        className={`group ${curvedEdges && "rounded-xl"} bg-white/30 backdrop-blur-lg transition-colors text-right border-2 items-end flex justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-white/50 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/50 sm:flex-col sm:items-start md:flex-row md:items-center sm:text-left lg:flex-col lg:items-start 3xl:min-h-[7rem] `}
                      >
-                        <ArrowLeftIcon className='w-5 xl:w-8 transition motion-safe:group-hover:-translate-x-1' aria-hidden />
-                        <span className="">{prevEntry.data.title}</span>
+                        <ArrowLeftIcon className='min-w-[18px] w-5 xl:w-[30px] transition motion-safe:group-hover:-translate-x-1' aria-hidden />
+                        <span className="line-clamp-1 break-all sm:break-normal sm:line-clamp-3">{prevEntry.data.title}</span>
          
                      </a>
                   }
@@ -72,10 +72,10 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
                      <a 
                         href={`/${nextEntry.data.art_type}/${nextEntry.slug}`} 
                         aria-label={`Next ${nextEntry.data.art_type}`}
-                        className={`group ${curvedEdges && "rounded-xl"} bg-white/30 backdrop-blur-xl text-left transition-colors col-start-2 border-2 items-end flex flex-row-reverse justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-white/50 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/50 sm:flex-col sm:text-right md:flex-row-reverse md:items-center lg:flex-col lg:items-end 3xl:min-h-[7rem]`}
+                        className={`group ${curvedEdges && "rounded-xl"} bg-white/30 backdrop-blur-xl text-left transition-colors col-start-2 border-2  items-end flex flex-row-reverse justify-between gap-5 px-3 pb-2 pt-3 border-black/10 hover:bg-white/50 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/50 sm:flex-col sm:text-right md:flex-row-reverse md:items-center lg:flex-col lg:items-end 3xl:min-h-[7rem]`}
                      >
-                        <ArrowRightIcon className='w-5 xl:w-8 transition motion-safe:group-hover:translate-x-1' aria-hidden />
-                        <span className="">{nextEntry.data.title}</span>
+                        <ArrowRightIcon className='min-w-[18px] w-5 xl:w-[30px] transition motion-safe:group-hover:translate-x-1' aria-hidden />
+                        <span className="line-clamp-1 break-all sm:break-normal sm:line-clamp-3">{nextEntry.data.title}</span>
                      </a>
                   }
                </div>
