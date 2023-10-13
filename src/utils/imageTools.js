@@ -4,4 +4,22 @@ function getAspectRatio(width, height) {
    return `${width/difference}/${height/difference}`
 }
 
-export { getAspectRatio };
+function getImageSrcSet(originalWidth, originalHeight, values) {
+
+   // map over the 'values' property
+   const ImageSrcSet = values.map((img) => {
+
+		const imgWidth = Number(img.descriptor.slice(0, img.descriptor.length - 1));
+
+      // return the properly structured data for yet-another-react-lightbox
+		return {
+			src: img.url,
+			width: imgWidth,
+			height: Math.floor((imgWidth * originalHeight) / originalWidth)
+		}
+	})
+
+   return ImageSrcSet;
+}
+
+export { getAspectRatio, getImageSrcSet };

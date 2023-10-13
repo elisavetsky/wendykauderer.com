@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
+import colors from "tailwindcss/colors"
 
+/** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
@@ -12,6 +13,20 @@ module.exports = {
 		extend: {
 			screens: {
 				'3xl': '1700px',
+			},
+			colors: {
+				"primary": {
+					DEFAULT: colors.gray[100],
+					text: colors.gray[800],
+					"button-hover": colors.gray[200],
+					"button-hover-shadow" : colors.black
+				},
+				"primary-dark": {
+					DEFAULT: colors.zinc[800],
+					text: colors.zinc[100],
+					"button-hover": colors.zinc[700],
+
+				}
 			},
 			keyframes: {
 				"fadeIn": {

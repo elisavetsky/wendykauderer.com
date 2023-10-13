@@ -32,7 +32,7 @@
     "react-aria-menubutton": "^7.0.3",
     "react-dom": "^18.2.0",
     "tailwindcss": "^3.3.3",
-    "yet-another-react-lightbox": "^3.12.2"
+    "yet-another-react-lightbox": "^3.14.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",

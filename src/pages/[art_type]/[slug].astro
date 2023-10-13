@@ -1,12 +1,13 @@
 ---
 // Astro
 import { getCollection, getEntries } from 'astro:content';
+import { getImage } from 'astro:assets';
 
 // Import SitewideConfig
 import * as SitewideConfig from "../../configuration/SitewideConfig.md";
 
 // import tools
-import { convertToArray } from "../../utils/arrayTools.js"
+import { convertToArray, getPrevAndNextEntry } from "../../utils/arrayTools.js"
 import { getAspectRatio } from "../../utils/imageTools.js"
 
 // import layout
@@ -43,31 +44,14 @@ export async function getStaticPaths() {
 const { entry, artworkEntries } = Astro.props;
 const params = Astro.params;
 
+// get all optimized images
+const optimizedMainImage = await getImage({src: entry.data.image, widths: [240, 320, 540, 640, 700, 1024, entry.data.image.width] });
+const optimizedAdditionalImages = entry.data.images && await Promise.all(
+   entry.data.images?.map(async ({image}) => await getImage({src: image, widths: [240, 320, 540, 640, 700, 1024, image.width] }))
+)
+
 // Get the previous and next entry matching the art_type
-function getPrevAndNextEntry() {
-   
-   // Get the matching art_type array
-   const matchingArtTypeEntries = artworkEntries.filter((artworkEntry) => {
-      return artworkEntry.data.art_type === entry.data.art_type
-   });
-
-   const numberOfEntries = matchingArtTypeEntries.length; // Get the number of entries matching the art_type
-   
-   // Grab the index of this current entry where it appears in the designated art_type.
-   // If art_type only has one entry, convert it to an array!
-   const currentEntryIndex = convertToArray(matchingArtTypeEntries).findIndex((artworkEntry) => artworkEntry.slug === entry.slug);
-
-   return {
-      prevEntry: currentEntryIndex - 1 === numberOfEntries
-         ? null
-         : matchingArtTypeEntries[currentEntryIndex - 1], // Give a null value if there is no previous entry
-      nextEntry: currentEntryIndex + 1 === numberOfEntries
-         ? null
-         : matchingArtTypeEntries[currentEntryIndex + 1] // Give a null value if there is no next entry
-   }
-}
-
-const { prevEntry, nextEntry } = getPrevAndNextEntry();
+const { prevEntry, nextEntry } = getPrevAndNextEntry(entry, artworkEntries);
 
 // Get the tags as a separate collection since it is referenced from the schema
 const tags = await getEntries(entry.data.tags);
@@ -121,12 +105,14 @@ import { fade } from 'astro:transitions';
          >
             <LightboxWrapper 
                client:only='react' 
-               
                mainImage={{
-                  image: entry.data.image, 
-                  alt:entry.data.main_image_alt
+                  image: optimizedMainImage, 
+                  alt: entry.data.main_image_alt
                }} 
-               imageArr={entry.data.images || []}
+               additionalImages={{
+                  optimizedImages: optimizedAdditionalImages || [],
+                  imagesWithAlts: entry.data.images || []
+               }}
             >
                <FullArtwork 
                   sold={entry.data.sold} 
@@ -165,7 +151,7 @@ import { fade } from 'astro:transitions';
                   ?  <div class="max-h-[inherit] max-w-[inherit] overflow-scroll sm:fade-y-edges sm:pb-44 md:fade-y-edges-none md:pb-0 md:max-h-none lg:fade-y-edges lg:pb-40 lg:max-h-[inherit] 3xl:fade-y-edges-none 3xl:pb-0 3xl:max-h-none">
                         <Content />
                      </div>
-                  :  <div class="pt-[0.3px] h-full sm:min-h-[18rem] md:min-h-0 lg:min-h-[20rem] lg:max-h-[inherit] xl:min-h-[23rem]">
+                  :  <div class="pt-[0.3px] h-full sm:min-h-[18rem] md:min-h-0 lg:min-h-[20rem] lg:max-h-[inherit] xl:min-h-[23rem] 3xl:min-h-0">
                         <Content />
                      </div>
                }
@@ -177,7 +163,3 @@ import { fade } from 'astro:transitions';
       </div>
    </article>
 </BaseLayout>
-
-<style>
-  
-</style>
