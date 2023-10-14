@@ -140,8 +140,8 @@ export default function LightboxWrapper({mainImage, additionalImages, children})
             <GalleryThumbs 
 					setIndex={setIndex} 
 					images={{
-						optimizedImages: optimizedAdditionalImages || [],
-						imagesWithAlts: entry.data.images || []
+						optimizedImages: additionalImages.optimizedImages || [],
+						imagesWithAlts: additionalImages.imagesWithAlts || []
 					}}
 				/>
          }

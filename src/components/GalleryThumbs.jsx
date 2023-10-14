@@ -5,7 +5,7 @@ export default function GalleryThumbs({images, setIndex}) {
    return (
       <nav className={`w-full grid gap-2 ${setIndex ? "grid-cols-4 md:grid-cols-5 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6" : "grid-cols-2"} `}>
          
-         {images.optimizedImages.map(({srcSet}, i) => {
+         {images.optimizedImages?.map(({srcSet}, i) => {
             return (
                <button 
                   key={srcSet.values[0].url} 
@@ -18,7 +18,6 @@ export default function GalleryThumbs({images, setIndex}) {
                      className={`object-cover w-full`} 
                   />
                </button>
-               
             )
          })}
 
