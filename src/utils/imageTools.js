@@ -1,7 +1,13 @@
 function getAspectRatio(width, height) {
-   const difference = Math.abs(width - height);
+   const difference = Math.abs(width - height)
+   
+   if (difference === 0) {
+      return `1/1`
+   } else {
+      return `${width/difference}/${height/difference}`
+   };
 
-   return `${width/difference}/${height/difference}`
+   
 }
 
 function getImageSrcSet(originalWidth, originalHeight, values) {

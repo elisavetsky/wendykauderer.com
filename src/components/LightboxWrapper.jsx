@@ -7,10 +7,15 @@ import { getImageSrcSet } from "../utils/imageTools";
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Counter from "yet-another-react-lightbox/plugins/counter";
+
+// import my components
+import GalleryThumbs from "./GalleryThumbs.jsx";
 
 // import lightbox styles
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import "yet-another-react-lightbox/plugins/counter.css";
 
 // import custom icons
 import { 
@@ -25,7 +30,7 @@ import {
 
 
 export default function LightboxWrapper({mainImage, additionalImages, children}) {
-	const [open, setOpen] = useState(false);
+	const [index, setIndex] = useState(-1);
 	const thumbnailsRef = useRef(null);
 
 	const nonMainImages = additionalImages.optimizedImages?.map(({src, attributes, srcSet}, i) => {
@@ -54,16 +59,18 @@ export default function LightboxWrapper({mainImage, additionalImages, children})
 
 	return (
 		<>
-			<div onClick={() => setOpen(true)}>{children}</div>
+			<div className="mb-2" onClick={() => setIndex(0)}>{children}</div>
 			<Lightbox
-				open={open}
-				close={() => setOpen(false)}
-				plugins={[Thumbnails, Zoom]}
+				index={index}
+				open={index >= 0}
+				close={() => setIndex(-1)}
+				plugins={[Thumbnails, Zoom, Counter]}
 				thumbnails={{
 					ref: thumbnailsRef,
 					border: 0,
 					borderRadius: 0,
 					width: 100,
+					imageFit: "contain",
 					padding: 0,
 					gap: 2,
 					vignette: true,
@@ -76,6 +83,15 @@ export default function LightboxWrapper({mainImage, additionalImages, children})
 				}}
 				zoom={{
 					maxZoomPixelRatio: 1.33,
+				}}
+				counter={{ 
+					container: { 
+						style: { 
+							fontSize: "14px",
+							fontWeight: 600,
+							marginLeft: "0.75rem" 
+						} 
+					} 
 				}}
 				slides={slides}
 				carousel={{
@@ -102,8 +118,8 @@ export default function LightboxWrapper({mainImage, additionalImages, children})
 				}}
 				animation={{
 					fade: 300,
-					swipe: 600,
-					navigation: 600,
+					swipe: 900,
+					navigation: 900,
 					easing: {
 						fade: "ease-in-out",
 						swipe: "cubic-bezier(0.18, 0.89, 0.44, 1)",
@@ -119,6 +135,16 @@ export default function LightboxWrapper({mainImage, additionalImages, children})
 					}
 				}
 			/>
+
+			{additionalImages.optimizedImages.length > 0 &&
+            <GalleryThumbs 
+					setIndex={setIndex} 
+					images={{
+						optimizedImages: optimizedAdditionalImages || [],
+						imagesWithAlts: entry.data.images || []
+					}}
+				/>
+         }
 		</>
 	);
 }

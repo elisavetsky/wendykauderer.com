@@ -20,6 +20,8 @@ import ArtDetails from '../../components/ArtDetails.jsx';
 import ArtTags from '../../components/ArtTags.jsx';
 import PrevNextArtwork from '../../components/PrevNextArtwork';
 import LightboxWrapper from "../../components/LightboxWrapper.jsx";
+import GalleryThumbs from "../../components/GalleryThumbs.jsx";
+
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -45,9 +47,9 @@ const { entry, artworkEntries } = Astro.props;
 const params = Astro.params;
 
 // get all optimized images
-const optimizedMainImage = await getImage({src: entry.data.image, widths: [240, 320, 540, 640, 700, 1024, entry.data.image.width] });
+const optimizedMainImage = await getImage({src: entry.data.image, widths: [120, 240, 320, 540, 640, 700, 1024, entry.data.image.width] });
 const optimizedAdditionalImages = entry.data.images && await Promise.all(
-   entry.data.images?.map(async ({image}) => await getImage({src: image, widths: [240, 320, 540, 640, 700, 1024, image.width] }))
+   entry.data.images?.map(async ({image}) => await getImage({src: image, widths: [120, 240, 320, 540, 640, 700, 1024, image.width] }))
 )
 
 // Get the previous and next entry matching the art_type
@@ -78,6 +80,8 @@ import { fade } from 'astro:transitions';
       class="relative w-full flex flex-col justify-between sm:flex-row md:flex-col sm:px-4 sm:gap-4 md:gap-2 lg:gap-6 lg:flex-row " 
    >
       <div class="h-fit static top-8 sm:sticky md:static lg:sticky sm:w-3/5 md:w-full lg:7/12 3xl:w-full 3xl:max-w-full" >
+         
+         <!-- No Javascript Fallback -->
          <noscript>
             <FullArtwork 
                sold={entry.data.sold} 
@@ -91,48 +95,48 @@ import { fade } from 'astro:transitions';
                }}
                showFullDescription={true}
                loading="eager"
-               classes=""
+               classes="mb-2"
                data-pagefind-index-attrs="alt"
             />
+            {entry.data.images &&
+               <GalleryThumbs images={optimizedAdditionalImages} />
+            }
          </noscript>
 
-         <div 
-            style={{
-               height: "auto",
-               aspectRatio: getAspectRatio(entry.data.image.width, entry.data.image.height),
-               maxWidth: "100%"
+         <LightboxWrapper 
+            client:only='react' 
+            mainImage={{
+               image: optimizedMainImage, 
+               alt: entry.data.main_image_alt
+            }} 
+            additionalImages={{
+               optimizedImages: optimizedAdditionalImages || [],
+               imagesWithAlts: entry.data.images || []
             }}
          >
-            <LightboxWrapper 
-               client:only='react' 
-               mainImage={{
-                  image: optimizedMainImage, 
-                  alt: entry.data.main_image_alt
-               }} 
-               additionalImages={{
-                  optimizedImages: optimizedAdditionalImages || [],
-                  imagesWithAlts: entry.data.images || []
+            <FullArtwork 
+               style={{
+                  height: "auto",
+                  aspectRatio: getAspectRatio(entry.data.image.width, entry.data.image.height),
+                  maxWidth: "100%"
                }}
-            >
-               <FullArtwork 
-                  sold={entry.data.sold} 
-                  title={entry.data.title} 
-                  date={entry.data.date}
-                  artType={entry.data.art_type}
-                  href={`#`}
-                  mainImage={{
-                     src: entry.data.image,
-                     alt: entry.data.main_image_alt
-                  }}
-                  showFullDescription={true}
-                  loading="eager"
-                  transition:animate="fade"
-                  transition:name={`image:${entry.slug}-${entry.data.art_type}`} 
-                  data-pagefind-index-attrs="alt"
-                  data-pagefind-meta="image[src], image_alt[alt]"
-               />
-            </LightboxWrapper>
-         </div>
+               sold={entry.data.sold} 
+               title={entry.data.title} 
+               date={entry.data.date}
+               artType={entry.data.art_type}
+               href={`#`}
+               mainImage={{
+                  src: entry.data.image,
+                  alt: entry.data.main_image_alt
+               }}
+               showFullDescription={true}
+               loading="eager"
+               transition:animate="fade"
+               transition:name={`image:${entry.slug}-${entry.data.art_type}`} 
+               data-pagefind-index-attrs="alt"
+               data-pagefind-meta="image[src], image_alt[alt]"
+            />
+         </LightboxWrapper>
       </div>
       
       <div 
