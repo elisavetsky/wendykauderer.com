@@ -8,9 +8,9 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import ArtworkGridLayout from "../../layouts/ArtworkGridLayout.astro";
 
 // import components
-import SectionHero from "../../components/SectionHero.astro";
+import SectionHero from "../../components/SectionTitle.jsx";
 import ArtTypes from "../../components/ArtTypes.astro";
-import SectionTitle from "../../components/SectionTitle.astro";
+import SectionTitle from "../../components/SectionTitle.jsx";
 import FullArtwork from "../../components/FullArtwork.astro";
 
 // import hero background
@@ -30,7 +30,7 @@ const artwork = allArtwork.sort((a, b) => {
 ---
 
 <BaseLayout pageTitle="Artwork">
-   <SectionHero title="All Artwork" image={artworkHero.data.image} image_alt={artworkHero.data.image_alt} />
+   <SectionTitle title="All Artwork" />
    <MainLayout>
       <SectionTitle title="My Artwork" />
       <section class="m-auto max-w-screen-2xl">

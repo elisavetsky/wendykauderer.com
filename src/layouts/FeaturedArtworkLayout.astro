@@ -1,37 +1,14 @@
 ---
 // Astro
 import { getEntry } from "astro:content";
-import { Image } from "astro:assets";
-
-// Expose site configuration for CMS
-import { frontmatter } from "../configuration/SitewideConfig.md";
-const featuredTitle = frontmatter.homepage_featured_section_title;
-
-// import utils
-import { getAspectRatio } from "../utils/imageTools";
-
-// import layouts
-import ArtworkGridLayout from "./ArtworkGridLayout.astro";
 
 // import components
-import SectionTitle from "../components/SectionTitle.astro";
-import FullArtwork from "../components/FullArtwork.astro";
 import ImageWrapper from "../components/ImageWrapper.astro";
 import ImageCTA from "../components/ImageCTA.jsx";
 
 // import Featured Artwork
 const featuredArtwork = await getEntry('settings', 'main-hero');
 const { Content } = await featuredArtwork.render();
-
-// const allFeaturedArtwork = await getCollection('artwork', ({data}) => {
-//    // prevent draft posts from showing in feature
-//    return data.draft !== true && data.featured === true;
-// });
-// const featuredArtwork = allFeaturedArtwork.sort((a, b) => {
-//    const latestToOldest = Date.parse(b.data.date) - Date.parse(a.data.date);
-
-//    return latestToOldest;
-// })
 ---
 
 <section 
@@ -51,6 +28,4 @@ const { Content } = await featuredArtwork.render();
    <ImageCTA>
       <Content />
    </ImageCTA>
-
-   <!-- <ArtworkGridLayout artwork={featuredArtwork} showDescriptions={true} /> -->
 </section>

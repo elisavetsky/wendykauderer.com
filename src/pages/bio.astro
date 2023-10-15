@@ -24,7 +24,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Flex2ColLayout from "../layouts/Flex2ColLayout.astro";
 
 // import components
-import SectionHero from "../components/SectionHero.astro";
+import SectionTitle from "../components/SectionTitle.jsx";
 import InlineLightboxWrapper from "../components/InlineLightboxWrapper.astro";
 ---
 
@@ -36,7 +36,7 @@ import InlineLightboxWrapper from "../components/InlineLightboxWrapper.astro";
    blurredBg={bio.data.images[0].image}
 >
    <article>
-      <SectionHero title="Bio" />
+      <SectionTitle title="Bio" />
       <Flex2ColLayout>
          <div class="px-4 flex-1 prose prose-zinc dark:prose-p:text-zinc-100 justify-center dark:prose-invert md:prose-lg">
             {bio.data.heading && 

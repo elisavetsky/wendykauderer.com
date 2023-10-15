@@ -36,55 +36,8 @@ const {
          classes={`${classes}`} 
          {...props}
       />
-      
-      <SoldMarker sold={sold} />
+      <div transition:animate="fade">
+         <SoldMarker sold={sold} />
+      </div>
    </div>
 </a> 
-   
-      
-      <!-- {() => { 
-         if (!Array.isArray(images)) {
-            return (
-               <a href={href}>
-                  <ImageWrapper 
-                     src={images.image} 
-                     alt={images.image_alt} 
-                     quality={50}
-                     classes={"w-full relative transition transition-translate ease-in-out delay-75 duration-300 hover:shadow-2xl hover:shadow-black/20 dark:hover:shadow-slate-700 sm:hover:translate-x-1 sm:hover:-translate-y-1"} 
-                  />
-               </a> 
-            )
-         } else {
-            return images.map(({image, image_alt}) => {
-               return (
-                  <a href={href}>
-                     <ImageWrapper 
-                        src={image} 
-                        alt={image_alt} 
-                        quality={50}
-                        classes={""} 
-                     />
-                  </a>
-               )
-            })
-         }
-      }} -->
-
-   <!-- {description && 
-      <div class="px-4">
-         <p class="flex flex-col p-3 rounded-md prose max-w-none dark:prose-invert bg-slate-50 dark:bg-slate-800">
-            {() => {
-               if (showFullDescription) {
-                  return <> {description} </>;
-               } else {
-                  return (
-                     <>
-                        {truncateText(description)}
-                        <a href={href} class="no-underline text-sm font-bold font-sans mt-2 ml-auto transition-colors hover:text-gray-400 dark:hover:text-gray-300">Read More</a>
-                     </>
-                  )
-               }
-            }}
-         </p>
-      </div>
-   } -->

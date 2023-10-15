@@ -30,17 +30,22 @@ module.exports = {
 			},
 			keyframes: {
 				"fadeIn": {
-					'0%': { opacity: '0' },
-					'100%': { opacity: '0.3' },
+					'0%': { opacity: 0 },
+					'100%': { opacity: 0.3 },
 				},
 				"fadeIn-dark": {
-					'0%': { opacity: '0' },
-					'100%': { opacity: '0.3' },
+					'0%': { opacity: 0 },
+					'100%': { opacity: 0.3 },
+				},
+				"fadeIn-fullOpacity": {
+					'0%': { opacity: 0 },
+					'100%': { opacity: 1 }
 				}
 			},
 			animation: {
 				"bgFadeIn": "2s ease fadeIn both",
-				"bgFadeIn-dark": "2s ease fadeIn-dark both"
+				"bgFadeIn-dark": "2s ease fadeIn-dark both",
+				"fadeIn-fullOpacity": "0.8s ease-in-out fadeIn-fullOpacity both"
 			},
 			fontFamily: {
 				sans: ["Inter var", "Inter", ...defaultTheme.fontFamily.sans],

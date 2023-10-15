@@ -40,11 +40,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArtworkGridLayout from "../../layouts/ArtworkGridLayout.astro";
 
 // import components
-import SectionHero from "../../components/SectionHero.astro";
+import SectionTitle from "../../components/SectionTitle.jsx";
 ---
 
 <BaseLayout pageTitle={`${titleCase(params.art_type)}s`}>
-   <SectionHero 
+   <SectionTitle 
       title={`${titleCase(params.art_type)}s`} 
    />
    

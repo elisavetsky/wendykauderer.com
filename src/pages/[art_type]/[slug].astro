@@ -83,28 +83,30 @@ import { fade } from 'astro:transitions';
          
          <!-- No Javascript Fallback -->
          <noscript>
-            <FullArtwork 
-               sold={entry.data.sold} 
-               title={entry.data.title} 
-               date={entry.data.date}
-               artType={entry.data.art_type}
-               href={`#`}
-               mainImage={{
-                  src: entry.data.image,
-                  alt: entry.data.main_image_alt
-               }}
-               showFullDescription={true}
-               loading="eager"
-               classes="mb-2"
-               data-pagefind-index-attrs="alt"
-            />
+            <div class="mb-2">
+               <FullArtwork 
+                  sold={entry.data.sold} 
+                  title={entry.data.title} 
+                  date={entry.data.date}
+                  artType={entry.data.art_type}
+                  href={`#`}
+                  mainImage={{
+                     src: entry.data.image,
+                     alt: entry.data.main_image_alt
+                  }}
+                  showFullDescription={true}
+                  loading="eager"
+                  classes=""
+                  data-pagefind-index-attrs="alt"
+               />
+            </div>
             {entry.data.images &&
                <GalleryThumbs images={optimizedAdditionalImages} />
             }
          </noscript>
 
          <LightboxWrapper 
-            client:only='react' 
+            client:visible
             mainImage={{
                image: optimizedMainImage, 
                alt: entry.data.main_image_alt
@@ -115,11 +117,6 @@ import { fade } from 'astro:transitions';
             }}
          >
             <FullArtwork 
-               style={{
-                  height: "auto",
-                  aspectRatio: getAspectRatio(entry.data.image.width, entry.data.image.height),
-                  maxWidth: "100%"
-               }}
                sold={entry.data.sold} 
                title={entry.data.title} 
                date={entry.data.date}

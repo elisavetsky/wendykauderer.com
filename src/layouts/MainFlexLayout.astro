@@ -8,10 +8,10 @@ import Header from "../components/Header.astro"
 import Footer from "../components/Footer.jsx";
 ---
 
-<div class="flex flex-col md:flex-row pt-16 mx-auto grow items-start min-w-full max-w-screen-2xl gap-4">
+<div class="flex flex-col md:flex-row pt-12 mx-auto grow items-start min-w-full max-w-screen-2xl gap-4">
    <!-- <Header shadow={options?.headerShadow} /> -->
    <Header />
-   <div class="relative w-full text-gray-800 dark:text-zinc-100 m-auto flex flex-col min-h-[125vh] grow md:pr-8 md:w-9/12 lg:m-0">
+   <div class="relative w-full text-primary-text dark:text-primary-dark-text m-auto flex flex-col min-h-[125vh] grow md:pr-8 md:w-9/12 lg:m-0">
       <main id="main-content" class="pb-16 pt-7">
          <slot />
          

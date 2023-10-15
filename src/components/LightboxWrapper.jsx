@@ -29,7 +29,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 
-export default function LightboxWrapper({mainImage, additionalImages, children}) {
+export default function LightboxWrapper({mainImage, additionalImages, children, ...props}) {
 	const [index, setIndex] = useState(-1);
 	const thumbnailsRef = useRef(null);
 
