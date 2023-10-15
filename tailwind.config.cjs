@@ -30,12 +30,12 @@ module.exports = {
 			},
 			keyframes: {
 				"fadeIn": {
-					'0%': { opacity: 0 },
-					'100%': { opacity: 0.3 },
+					'0%': { opacity: "0" },
+					'100%': { opacity: "0.3" },
 				},
 				"fadeIn-dark": {
-					'0%': { opacity: 0 },
-					'100%': { opacity: 0.3 },
+					'0%': { opacity: "0" },
+					'100%': { opacity: "0.3" },
 				},
 				"fadeIn-fullOpacity": {
 					'0%': { opacity: 0 },

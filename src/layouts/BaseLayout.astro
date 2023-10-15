@@ -155,7 +155,7 @@ const { pageTitle, ogTitle, ogDescription, ogImage, blurredBg, options } = Astro
 	</head>
 	<body class="flex flex-col min-h-screen relative bg-primary dark:bg-primary-dark">
 		{blurredBg &&
-			<Image src={blurredBg} quality={1} width={50} height={100} loading="eager" alt="" role="presentation" class="hidden pointer-events-none supports-filter:block absolute overflow-hidden object-cover w-full h-full blur-[45px] saturate-200 contrast-75  animate-bgFadeIn dark:animate-bgFadeIn-dark"/>
+			<Image src={blurredBg} quality={1} width={50} height={100}  alt="" role="presentation" class="hidden pointer-events-none supports-filter:block absolute overflow-hidden object-cover w-full h-full [filter:blur(45px)contrast(0.3)saturate(6)]  animate-bgFadeIn dark:animate-bgFadeIn-dark"/>
 		}
 		<MainFlexLayout>
 			<slot />
