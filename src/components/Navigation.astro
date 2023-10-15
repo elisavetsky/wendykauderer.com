@@ -9,12 +9,11 @@ const sections = frontmatter.sections;
 // import components
 import PageFind from './PageFind.astro';
 import ThemeDropdown from './ThemeDropdown.jsx';
-import ThemeToggle from './ThemeToggle.jsx';
 import Link from './Link.jsx';
 import ArtTypes from './ArtTypes.astro';
 ---
 
-<nav aria-label="Main menu" id="main-menu" class="hidden text-md font-normal mt-8 md:m-0 md:flex md:flex-col md:pr-2">
+<nav aria-label="Main menu" id="main-menu" class="hidden text-md font-normal md:active md:transition-none md:duration-0 md:m-0 md:flex md:flex-col md:pr-2">
    
    <div class="flex flex-col justify-between leading-loose mb-4 w-full md:gap-0 md:mb-8">
 
@@ -25,7 +24,7 @@ import ArtTypes from './ArtTypes.astro';
          return (
             <li
                
-               class={`${dropdown_items ? "dropdown-container" : "" } text-md inline-flex flex-col items-start relative `}
+               class={`${dropdown_items ? "dropdown-container" : "" } text-md inline-flex flex-col items-start `}
             >
                
                {dropdown_items ?
@@ -63,39 +62,3 @@ import ArtTypes from './ArtTypes.astro';
    </div>
    
 </nav>
-
-<script>
-   document.addEventListener('astro:after-swap', () => {
-
-      ////////////////////
-      // DROPDOWN MENUS //
-      ////////////////////
-
-      const dropTriggers = document.querySelectorAll(".dropdown-trigger");
-      const dropMenus = document.querySelectorAll(".dropdown-menu");
-
-      function handleClick(el) {
-         const button = el.currentTarget;
-         
-         const dropMenu = button.closest(".dropdown-container").querySelector(".dropdown-menu");
-         
-         // toggle 'hidden' class for dropMenu
-         dropMenu.classList.toggle("hidden");
-      }
-
-      function handleClickOutside(el) {
-         const clickedEl = el.currentTarget
-      }
-
-      dropTriggers.forEach((dropTrigger) => {
-         dropTrigger.addEventListener("click", handleClick);
-      })
-
-      dropMenus.forEach((dropMenu) => {
-         dropMenu.addEventListener("blur", (e) => {
-            dropMenu.classList.add("hidden");
-         })
-      })
-   });
-   
-</script>

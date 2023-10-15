@@ -55,6 +55,24 @@
       /* -webkit-mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0))); */
       mask-image: none;
    }
+
+   /* NAVBAR */
+
+   #main-menu {
+      @apply opacity-0
+   }
+
+   #main-menu.active {
+      @apply block opacity-100 md:opacity-100
+   }
+
+   .navbar-container {
+      @apply border-b border-b-black/0 dark:border-b-white/0
+   }
+
+   .navbar-container.active {
+      @apply border-b-black/20 dark:border-b-white/20 shadow-lg bg-gray-100/70 dark:bg-zinc-800/70
+   }
 }
 
 /* Yet-Another-React-Lightbox overriding styles */

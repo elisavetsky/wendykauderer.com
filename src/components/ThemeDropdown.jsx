@@ -126,13 +126,13 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
 			<Button 
 				aria-label="Switch theme"
 				className={`theme-toggle ${
-				themeToggleState() === "dark" && "theme-toggle--toggled"} flex items-center text-xl ml-[0.6rem] my-1 mr-1.5 p-1.5 rounded-full transition-colors hover:bg-gray-200 dark:hover:bg-zinc-700 relative after:absolute after:transition-colors after:left-0 after:w-full after:h-full after:rounded-full after:hover:border after:border-black/30 after:dark:border-white/20 `}
+				themeToggleState() === "dark" && "theme-toggle--toggled"} flex items-center text-xl ml-[0.4rem] my-1 mr-1.5 p-1.5 rounded-full transition-colors hover:bg-gray-200 dark:hover:bg-zinc-700 relative after:absolute after:transition-colors after:left-0 after:w-full after:h-full after:rounded-full after:hover:border after:border-black/30 after:dark:border-white/20 `}
 			>
             <ThemeToggle currentTheme={themeToggleState()} />
          </Button>
 			<Menu 
 				role="listbox"
-				className={`${curvedEdges && "rounded-lg"} ml-2 mt-4 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg  py-2 min-w-[10rem] z-30 border border-black/20 dark:border-white/20 dark:bg-zinc-800/80 left-11 -bottom-3`}
+				className={`${curvedEdges && "rounded-lg"} ml-2 mt-4 absolute text-md backdrop-blur-lg bg-white/80 shadow-lg py-2 min-w-[10rem] z-30 border border-black/20 dark:border-white/20 dark:bg-zinc-800/80 max-[233px]:top-8 min-[234px]:left-11 min-[234px]:-bottom-3`}
 			>
 				<ul className="flex flex-col leading-loose">{menuItems}</ul>
 			</Menu>

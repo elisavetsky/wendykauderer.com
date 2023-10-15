@@ -19,20 +19,32 @@
          const target = button.dataset.target;
          const targetEl = document.getElementById(target);
 
-         targetEl.classList.toggle("hidden");
-
          // conditional to apply active styles or not based on menu state
          const buttonStyles = ["bg-gray-200", "dark:bg-zinc-700"];
-         const navStyles = ["border-b", "border-b-black/20", "dark:border-b-white/20", "shadow-lg", "bg-gray-100/70", "dark:bg-zinc-800/70"];
 
-         if (!targetEl.classList.contains("hidden")) {
-            button.classList.add(...buttonStyles);
-            targetEl.closest(".navbar-container").classList.add(...navStyles);
-            targetEl.closest(".navbar-header").classList.add("before:backdrop-blur-lg"); // add blur to header
+         if (!targetEl.classList.contains("active")) {
+            targetEl.classList.remove("hidden");
+            
+            // wait 1ms to add animation because you cannot animate a 'display: none' element
+            setTimeout(() => {
+               button.classList.add(...buttonStyles); // add active button styles
+
+               targetEl.classList.add("active");
+               targetEl.closest(".navbar-container").classList.add("active");
+               targetEl.closest(".navbar-header").classList.add("before:backdrop-blur-lg"); // add blur to header
+            }, 1);
+            
          } else {
-            button.classList.remove(...buttonStyles);
-            targetEl.closest(".navbar-container").classList.remove(...navStyles);
+            button.classList.remove(...buttonStyles); // remove active button styles
+
+            targetEl.classList.remove("active");
+            targetEl.closest(".navbar-container").classList.remove("active");
             targetEl.closest(".navbar-header").classList.remove("before:backdrop-blur-lg"); // remove blur from header
+
+            setTimeout(() => {
+               targetEl.classList.add("hidden");
+            }, 300)
+            
          }
       }
 
