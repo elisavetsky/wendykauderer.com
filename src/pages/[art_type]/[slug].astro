@@ -82,7 +82,7 @@ import { fade } from 'astro:transitions';
       <div class="h-fit static top-8 sm:sticky md:static lg:sticky sm:w-3/5 md:w-full lg:7/12 3xl:w-full 3xl:max-w-full" >
          
          <!-- No Javascript Fallback -->
-         <noscript>
+         <!-- <noscript>
             <div class="mb-2">
                <FullArtwork 
                   sold={entry.data.sold} 
@@ -103,7 +103,7 @@ import { fade } from 'astro:transitions';
             {entry.data.images &&
                <GalleryThumbs images={optimizedAdditionalImages} />
             }
-         </noscript>
+         </noscript> -->
 
          <LightboxWrapper 
             client:visible
