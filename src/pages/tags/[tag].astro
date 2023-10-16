@@ -39,14 +39,15 @@ export async function getStaticPaths() {
          }, 
          props: { 
             entries: entriesByTag,
-            tags: matchingTagObject
+            tagCollection: tagCollection,
+            tag: matchingTagObject
          },
       }
    });
 }
 
 // 2. For your template, you can get the entry directly from the prop
-const { entries, tags } = Astro.props;
+const { entries, tag, tagCollection } = Astro.props;
 const params = Astro.params;
 
 // import utils
@@ -58,14 +59,22 @@ import ArtworkGridLayout from "../../layouts/ArtworkGridLayout.astro";
 
 // import components
 import SectionTitle from "../../components/SectionTitle.jsx";
+import ArtTags from "../../components/ArtTags.jsx";
 ---
 
-<BaseLayout pageTitle={`${titleCase(params.tag)}`}>
-   <SectionTitle 
-      title={`${titleCase(tags.data.title)}`} 
-   />
+<BaseLayout pageTitle={`${titleCase(tag.data.title)}`}>
+
+   <section class="relative">
+      <div class="md:top-0 md:sticky md:z-20 flex flex-wrap lg:grid grid-cols-12 items-center justify-between py-2 mb-4 bg-transparent backdrop-blur-md">
+         <SectionTitle 
+            title={`${titleCase(tag.data.title)}`} 
+         />
+         <nav class="col-span-9 col-start-4 items-start h-full">
+            <ArtTags tags={tagCollection} classes="px-4" listClasses="lg:justify-end" />
+         </nav>
+      </div>
    
-   <section>
+   
       <ArtworkGridLayout artwork={entries} />
    </section>
 </BaseLayout>
