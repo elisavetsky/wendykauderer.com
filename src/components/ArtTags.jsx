@@ -15,8 +15,9 @@ export default function ArtTags({tags}) {
             {tags.map((tag) => {
                   return (
                      <Tag
-                        key={tag.data.title}
+                        key={tag.id}
                         title={tag.data.title.toLowerCase()} 
+                        slug={tag.id}
                      />
                   )
             })}
@@ -24,4 +25,3 @@ export default function ArtTags({tags}) {
       </div>
    )
 }
-

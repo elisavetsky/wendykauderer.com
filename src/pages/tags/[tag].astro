@@ -5,8 +5,11 @@ import { getCollection } from 'astro:content';
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
 
-   // create a Set of art_type's to limit params to avoid conflicting dyanamic routes
-   const allArtTypes = new Set();
+   // create a Set so each tag is only listed once
+   const allTags = new Set();
+
+   // import tag collection
+   const tagCollection = await getCollection('tags');
 
    // import all non-draft artwork
    const artworkEntries = await getCollection('artwork', ({data}) => !data.draft);
@@ -14,30 +17,36 @@ export async function getStaticPaths() {
    // sort entries from latest to oldest
    const sortedEntries = artworkEntries.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
 
-   // map over each entry to grab its art_type and add it to the Set
+   // map over each entry to grab its tags and add it to the Set
    sortedEntries.map((entry) => {
-      entry.data.art_type && allArtTypes.add(entry.data.art_type);
+      entry.data.tags && entry.data.tags.map((tag) => allTags.add(tag));
    })
+   
+   return Array.from(allTags).map((tag) => {
 
-   // return the paths of ONLY the art_type's
-   return Array.from(allArtTypes).map((artType) => {
+      // filter entries by tag from the URL param
+      const entriesByTag = sortedEntries.filter((sortedEntry) => sortedEntry.data.tags.find((entryTag) => {
 
-      // filter entries by art_type from the URL param
-      const entriesByArtType = sortedEntries.filter((sortedEntry) => sortedEntry.data.art_type === artType )
-      
+         return entryTag.id === tag.id
+      }))
+
+      // get matching tag object from 'tags' collection to use for templates
+      const matchingTagObject = tagCollection.filter(({id}) => id === tag.id)[0]
+
       return {
          params: { 
-            art_type: artType,
+            tag: tag.id,
          }, 
          props: { 
-            entries: entriesByArtType,
+            entries: entriesByTag,
+            tags: matchingTagObject
          },
       }
    });
 }
 
 // 2. For your template, you can get the entry directly from the prop
-const { entries } = Astro.props;
+const { entries, tags } = Astro.props;
 const params = Astro.params;
 
 // import utils
@@ -51,9 +60,9 @@ import ArtworkGridLayout from "../../layouts/ArtworkGridLayout.astro";
 import SectionTitle from "../../components/SectionTitle.jsx";
 ---
 
-<BaseLayout pageTitle={`${titleCase(params.art_type)}s`}>
+<BaseLayout pageTitle={`${titleCase(params.tag)}`}>
    <SectionTitle 
-      title={`${titleCase(params.art_type)}s`} 
+      title={`${titleCase(tags.data.title)}`} 
    />
    
    <section>
