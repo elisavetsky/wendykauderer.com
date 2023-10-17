@@ -7,7 +7,7 @@ function convertToArray(data) {
 }
 
 // Get the previous and next entry matching the art_type
-function getPrevAndNextEntry(currentEntry, artworkEntries) {
+function getPrevAndNextEntry({ currentEntry, artworkEntries }) {
    
    // Get the matching art_type array
    const matchingArtTypeEntries = artworkEntries.filter((artworkEntry) => {
@@ -30,4 +30,16 @@ function getPrevAndNextEntry(currentEntry, artworkEntries) {
    }
 }
 
-export { convertToArray, getPrevAndNextEntry };
+// move desired array item to the beginning of array
+function moveToFirst({array, findFunction}) {
+
+   // return the first item in the array that satisfies the testing function
+   // return all other items which do not satisfy the testing function
+   // this keeps the order of the original array for the rest of the items
+   return [
+      ...array.filter(findFunction),
+      ...array.filter((item) => !findFunction(item))
+   ]
+}
+
+export { convertToArray, getPrevAndNextEntry, moveToFirst };

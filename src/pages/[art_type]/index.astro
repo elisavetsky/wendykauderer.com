@@ -43,9 +43,7 @@ export async function getStaticPaths() {
 // 2. For your template, you can get the entry directly from the prop
 const { entries, tagCollection } = Astro.props;
 const params = Astro.params;
-
-// import utils
-import { titleCase } from "../../utils/textTools.js"
+const urlPath = Astro.url.pathname;
 
 // import layout
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -53,20 +51,24 @@ import ArtworkGridLayout from "../../layouts/ArtworkGridLayout.astro";
 
 // import components
 import SectionTitle from "../../components/SectionTitle.jsx";
-import ArtTags from "../../components/ArtTags.jsx";
+import GridHeader from "../../components/GridHeader.jsx";
+import GridNav from "../../components/GridNav.jsx";
 ---
 
-<BaseLayout pageTitle={`${titleCase(params.art_type)}s`}>
+<BaseLayout pageTitle={`${params.art_type}s`}>
 
    <section class="relative">
-      <div class="md:top-0 md:sticky md:z-20 flex flex-wrap lg:grid grid-cols-12 items-center justify-between py-2 mb-4 bg-transparent backdrop-blur-md">
+      <GridHeader>
          <SectionTitle 
-            title={`${titleCase(params.art_type)}`} 
+            title={`${params.art_type}s`}
          />
-         <nav class="col-span-9 col-start-4 items-start h-full">
-            <ArtTags tags={tagCollection} classes="px-4" listClasses="lg:justify-end" />
-         </nav>
-      </div>
+         <GridNav 
+            tagCollection={tagCollection} 
+            urlPath={urlPath}
+         >
+            <input transition:persist id="expand-tags" name="Expand artwork tag navigation" type="checkbox" class="sr-only peer/checkbox">
+         </GridNav>
+      </GridHeader>
 
       <ArtworkGridLayout artwork={entries} />
    </section>

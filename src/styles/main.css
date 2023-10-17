@@ -45,15 +45,20 @@
       text-decoration: none;
    }
 
-   .fade-y-edges {
+   .fade-edge-y {
       /* -webkit-mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0))); */
       mask-image: 
          linear-gradient(to top,  transparent 10%, rgba(0, 0, 0, 1) 30% 90%, transparent 95%);
    }
 
-   .fade-y-edges-none {
+   .fade-edge-y-none {
       /* -webkit-mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0))); */
       mask-image: none;
+   }
+
+   .fade-edge-t {
+      mask-image: 
+         linear-gradient(to top, transparent 10%, rgba(0, 0, 0, 1) 25% 90%);
    }
 
    /* NAVBAR */

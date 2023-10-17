@@ -1,4 +1,5 @@
 --- 
+// Astro
 import { getEntry } from "astro:content";
 import { Image } from "astro:assets";
 
@@ -18,6 +19,9 @@ const featuredArtwork = await getEntry('settings', 'main-hero');
 import "inter-ui/inter.css";
 import '../styles/main.css'
 
+// import utils
+import { titleCase } from "../utils/textTools.js"
+
 const { pageTitle, ogTitle, ogDescription, ogImage, blurredBg, options } = Astro.props;
 ---
 
@@ -36,7 +40,7 @@ const { pageTitle, ogTitle, ogDescription, ogImage, blurredBg, options } = Astro
 		<meta name="generator" content={Astro.generator} />
 		
 		<!-- Esssential meta tags -->
-		<title>{`${SitewideConfig.frontmatter.site_name} - ${pageTitle}`}</title>
+		<title>{`${SitewideConfig.frontmatter.site_name} - ${titleCase(pageTitle)}`}</title>
 		<meta name="description" content={SitewideConfig.frontmatter.site_description}>
 
 		<!-- SEO -->

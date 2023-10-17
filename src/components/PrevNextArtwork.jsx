@@ -8,9 +8,6 @@ const curvedEdges = frontmatter.curved_image_edges;
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
-
-
-
 export default function PrevNextArtwork({prevEntry, nextEntry}) {
    // const [isIntersecting, setIsIntersecting] = useState(false)
 

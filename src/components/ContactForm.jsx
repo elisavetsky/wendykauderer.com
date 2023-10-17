@@ -8,9 +8,9 @@ export default function ContactForm() {
             name="name" 
             aria-invalid="true" 
             aria-describedby="nameHint" 
-            className="text-md px-2 my-1 h-8 rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full dark:border-zinc-200"
+            className="border-0 text-md px-2 my-1 h-8 rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full dark:border-zinc-200 peer invalid:border-rose-700 dark:invalid:border-rose-400"
          />
-         <p className="mt-1.5 text-xs h-5 text-rose-700 dark:text-rose-400" id="nameHint">
+         <p className="mt-1.5 invisible text-xs h-5 text-rose-700 dark:text-rose-400 peer-invalid:visible" id="nameHint">
             <span aria-hidden="true">➔ </span>
             Your name must not have any numbers.
          </p>
@@ -21,9 +21,9 @@ export default function ContactForm() {
             name="email" 
             aria-invalid="true" 
             aria-describedby="emailHint" 
-            className="text-md px-2 my-1 h-8 rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full  dark:border-zinc-200"
+            className="border-0 text-md px-2 my-1 h-8 rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full  dark:border-zinc-200 peer invalid:border-rose-700 dark:invalid:border-rose-400"
          />
-         <p className="mt-1.5 text-xs h-5 text-rose-700 dark:text-rose-400" id="emailHint">
+         <p className="mt-1.5 invisible text-xs h-5 text-rose-700 dark:text-rose-400 peer-invalid:visible" id="emailHint">
             <span aria-hidden="true">➔ </span>
             Your email must not have any spaces.
          </p>
@@ -34,9 +34,9 @@ export default function ContactForm() {
             name="message" 
             aria-invalid="true" 
             aria-describedby="messageHint" 
-            className="text-md px-2 my-1 h-28 min-h-[2rem] max-h-[30rem] rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full dark:border-zinc-200"
+            className="border-0 text-md px-2 my-1 h-28 min-h-[2rem] max-h-[30rem] rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full dark:border-zinc-200 peer invalid:border-rose-700 dark:invalid:border-rose-400"
          />
-         <p className="text-xs h-5 text-rose-700 dark:text-rose-400" id="messageHint">
+         <p className="invisible text-xs h-5 text-rose-700 dark:text-rose-400 peer-invalid:visible" id="messageHint">
             <span aria-hidden="true">➔ </span>
             Your message must not have any strange characters.
          </p>

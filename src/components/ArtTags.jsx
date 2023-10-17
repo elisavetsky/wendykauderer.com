@@ -1,25 +1,35 @@
 // import components
 import Tag from "./Tag.jsx";
 
-export default function ArtTags({tags, classes, listClasses}) {
+// import utils
+import { moveToFirst } from "../utils/arrayTools.js";
+
+export default function ArtTags({inline, tags, urlPath, classes, listClasses}) {
    const commaSeparatedTags = tags.map((tag) => tag.data.title).join(", ");
+
+   // move the current tag that is present in the url path to the front of the array for better UX
+   const orderedTags = moveToFirst({
+      array: tags, 
+      findFunction: (tag) => tag.id === urlPath?.split("/")[2]
+   })
 
    return (
       <div 
          data-pagefind-meta={`tags:${commaSeparatedTags}`}
-         className={`not-prose text-sm font-sans flex items-start ${classes}`}
+         className={`not-prose relative z-10 text-sm flex items-start pb-3 ${!inline && "transition-all fade-edge-t duration-400 h-14 overflow-y-hidden hover:h-full hover:fade-edge-y-none peer-checked/checkbox:h-full peer-checked/checkbox:fade-edge-y-none"} ${classes}`}
          aria-label="Artwork tags"
       >
-         <ul className={`flex flex-wrap py-0.5 gap-1.5 ${listClasses}`}>
+         <ul className={`flex flex-wrap py-2 gap-1.5 ${listClasses}`}>
             
-            {tags.map((tag) => {
-                  return (
-                     <Tag
-                        key={tag.id}
-                        title={tag.data.title.toLowerCase()} 
-                        slug={tag.id}
-                     />
-                  )
+            {orderedTags.map((tag) => {
+               return (
+                  <Tag
+                     key={tag.id}
+                     title={tag.data.title.toLowerCase()} 
+                     slug={tag.id}
+                     urlPath={urlPath && urlPath}
+                  />
+               )
             })}
          </ul>
       </div>
