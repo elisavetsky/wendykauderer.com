@@ -1,0 +1,27 @@
+---
+// Astro
+import { Image } from "astro:assets";
+
+// import jsx components
+import InlineLightbox from "../components/InlineLightbox.jsx"
+
+const { imageArr, classes } = Astro.props;
+---
+
+<div class={classes || null}>
+   <InlineLightbox client:load imageArr={imageArr} />
+   <noscript class="flex flex-wrap gap-1">
+      {
+         imageArr.map((image) => {
+            return (
+               <Image 
+                  src={image.image} 
+                  alt={image.image_alt} 
+                  
+                  class="flex-1 max-w-[49.5%] rounded-lg"
+               />
+            )
+         })
+      }
+   </noscript>
+</div>

@@ -11,7 +11,12 @@ import Card from '../components/Card.astro';
 import { NetlifyIdentity } from '../components/NetlifyIdentity.jsx'
 ---
 
-<BaseLayout pageTitle="Artist" >
+<BaseLayout 
+	pageTitle="Artist"
+	options={{
+      headerShadow: true
+   }}
+>
 	<!-- <MainHero /> -->
 		
 	<FeaturedArtworkLayout />

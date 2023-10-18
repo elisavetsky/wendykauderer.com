@@ -1,17 +1,11 @@
 ---
 // Astro
-import { getImage } from "astro:assets";
+import { getImage, Image } from "astro:assets";
 
 // import bio markdown
 import { getEntry } from "astro:content";
 const bio = await getEntry("bio", "bio");
-const { heading, images } = bio.data;
 const { Content } = await bio.render();
-
-// get all optimized images
-const optimizedImages = images && await Promise.all(
-   images?.map(async ({image}) => await getImage({src: image, widths: [120, 240, 320, 540, 640, 700, 1024, image.width] }))
-)
 
 // const imageArr = await Promise.all(
 //    bio.data.images.map(async ({image, image_alt}) => {
@@ -32,46 +26,25 @@ import Flex2ColLayout from "../layouts/Flex2ColLayout.astro";
 // import components
 import SectionTitle from "../components/SectionTitle.jsx";
 import InlineLightboxWrapper from "../components/InlineLightboxWrapper.astro";
-import InlineLightbox from "../components/InlineLightbox.jsx";
-import GridHeader from "../components/GridHeader.jsx";
 ---
 
 <BaseLayout 
    pageTitle="Bio"
-   blurredBg={images[0].image}
+   options={{
+      headerShadow: false
+   }}
+   blurredBg={bio.data.images[0].image}
 >
    <article>
       <SectionTitle title="Bio" />
-      
       <Flex2ColLayout>
          <div class="mt-7 px-4 flex-1 prose prose-zinc dark:prose-p:text-zinc-100 justify-center dark:prose-invert md:prose-lg">
-            {heading && 
-               <h2>{heading}</h2>
+            {bio.data.heading && 
+               <h2>{bio.data.heading}</h2>
             }
             <Content />
          </div>
-
-         <InlineLightbox
-            client:visible 
-            images={{
-               optimizedImages: optimizedImages || [],
-               imagesWithAlts: images || []
-            }} 
-            classes="flex-1 m-auto md:px-4 w-screen md:w-full md:max-w-[60rem]" 
-         >
-            {optimizedImages?.map(({src, attributes}, i) => {
-               return (
-                  <img 
-                     src={src} 
-                     alt={images[i].image_alt} 
-                     width={attributes.width}
-                     height={attributes.height}
-                     class="rounded-lg"
-                  />
-               )
-            })}
-         </InlineLightbox>
-
+         <InlineLightboxWrapper imageArr={bio.data.images} classes="flex-1 m-auto md:px-4 w-screen md:w-auto md:max-w-[60rem]" />
       </Flex2ColLayout>
    </article>
    

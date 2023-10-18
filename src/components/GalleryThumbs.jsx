@@ -10,7 +10,7 @@ export default function GalleryThumbs({images, setIndex}) {
                <button 
                   key={srcSet.values[0].url} 
                   onClick={setIndex && (() => setIndex(i + 1))} // add 1 to index because additional images come after mainImage
-                  className={`overflow-hidden h-0 w-full pb-[100%] transition transition-translate ease-in-out delay-75 duration-300 sm:shadow-md sm:hover:shadow-xl sm:hover:shadow-black/20 sm:dark:hover:shadow-black/50 sm:motion-safe:hover:translate-x-px sm:motion-safe:hover:-translate-y-1 ${SitewideConfig.frontmatter.curved_image_edges && "sm:rounded-md"}`}
+                  className={`overflow-hidden h-0 w-full pb-[100%] transition transition-translate ease-in-out delay-75 duration-300 sm:hover:shadow-xl sm:hover:shadow-black/20 sm:dark:hover:shadow-black/50 sm:motion-safe:hover:translate-x-px sm:motion-safe:hover:-translate-y-1 ${SitewideConfig.frontmatter.curved_image_edges && "sm:rounded-md"}`}
                >
                   <img 
                      src={setIndex ? srcSet.values[0].url : srcSet.values[3].url} 

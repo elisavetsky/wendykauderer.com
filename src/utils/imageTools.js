@@ -6,6 +6,8 @@ function getAspectRatio(width, height) {
    } else {
       return `${width/difference}/${height/difference}`
    };
+
+   
 }
 
 function getImageSrcSet(originalWidth, originalHeight, values) {
