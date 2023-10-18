@@ -5,9 +5,7 @@ import { getImageSrcSet } from "../utils/imageTools";
 
 // Import lightbox
 import Lightbox from "yet-another-react-lightbox";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import Counter from "yet-another-react-lightbox/plugins/counter";
+import { Thumbnails, Zoom, Counter } from "yet-another-react-lightbox/plugins";
 
 // import my components
 import GalleryThumbs from "./GalleryThumbs.jsx";

@@ -19,7 +19,7 @@ export default function Tag({title, slug, urlPath}) {
             <span 
                title={title}
                data-pagefind-index-attrs="title"
-               className={`${commonClasses} ${isCurrentPage ? "bg-gray-300 dark:bg-gray-500/70 border-black/70 dark:border-white/70" : "bg-gray-300/40 hover:bg-gray-500/40 dark:bg-gray-700/40 dark:hover:bg-gray-500/40 border-black/10 dark:border-white/10" } border   `}
+               className={`${commonClasses} ${isCurrentPage ? "bg-gray-300 dark:bg-gray-500/70 border-black/70 dark:border-white/70" : "bg-gray-300/40 hover:bg-gray-500/40 dark:bg-gray-700/40 dark:hover:bg-gray-500/40 border-black/10 dark:border-white/10"} border`}
             >
                {title}
             </span>

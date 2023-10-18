@@ -1,12 +1,7 @@
 ---
-import { getEntry } from "astro:content";
-
 // import layout
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Link from "../components/Link.jsx";
-
-// import featuredArtwork
-const featuredArtwork = await getEntry('settings', 'main-hero');
 ---
 
 <BaseLayout 
