@@ -1,6 +1,6 @@
 ---
 // Astro
-import { getCollection, getEntries } from 'astro:content';
+import { getCollection, getEntries, type CollectionEntry } from 'astro:content';
 import { getImage } from 'astro:assets';
 
 // Import SitewideConfig
@@ -42,6 +42,13 @@ export async function getStaticPaths() {
    }));
 }
 
+// define types with typescript
+// these are my first couple of lines of typescript :)
+type Props = {
+   entry: CollectionEntry<"artwork">,
+   artworkEntries: CollectionEntry<"artwork">
+}
+
 // Getting the entry and artworkEntries directly from the prop
 const { entry, artworkEntries } = Astro.props;
 const params = Astro.params;
@@ -70,9 +77,6 @@ import { fade } from 'astro:transitions';
    ogTitle={`${entry.data.title} by ${SitewideConfig.frontmatter.site_name}`}
    ogDescription={entry.body}
    ogImage={entry.data.image.src}
-   options={{
-      headerShadow: false
-   }}
    blurredBg={entry.data.image}
 > 
    <article 

@@ -1,6 +1,15 @@
 ---
 // Astro
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+// import layout
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArtworkGridLayout from "../../layouts/ArtworkGridLayout.astro";
+
+// import components
+import SectionTitle from "../../components/SectionTitle.jsx";
+import GridHeader from "../../components/GridHeader.jsx";
+import GridNav from "../../components/GridNav.jsx";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -46,19 +55,17 @@ export async function getStaticPaths() {
    });
 }
 
+// define types with typescript
+type Props = {
+   entries: CollectionEntry<"artwork">,
+   tag: CollectionEntry<"tags">,
+   tagCollection: CollectionEntry<"tags">
+}
+
 // 2. For your template, you can get the entry directly from the prop
 const { entries, tag, tagCollection } = Astro.props;
 const params = Astro.params;
 const urlPath = Astro.url.pathname;
-
-// import layout
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ArtworkGridLayout from "../../layouts/ArtworkGridLayout.astro";
-
-// import components
-import SectionTitle from "../../components/SectionTitle.jsx";
-import GridHeader from "../../components/GridHeader.jsx";
-import GridNav from "../../components/GridNav.jsx";
 ---
 
 <BaseLayout pageTitle={tag.data.title}>
