@@ -72,7 +72,14 @@ const urlPath = Astro.url.pathname;
             tagCollection={tagCollection} 
             urlPath={urlPath}
          >
-            <input transition:persist id="expand-tags" name="Expand artwork tag navigation" type="checkbox" class="sr-only peer/checkbox">
+            <input 
+               transition:persist 
+               aria-hidden
+               id="expand-tags" 
+               name="Expand artwork tags" 
+               type="checkbox" 
+               class="sr-only peer/checkbox"
+            >
          </GridNav>
       </GridHeader>
 

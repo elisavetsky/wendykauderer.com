@@ -50,7 +50,7 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
          >
             {/* <span className='hidden md:px-6 md:block md:min-w-[16rem] md:w-3/12'></span> */}
             <nav 
-               aria-label={`previous ${prevEntry?.data.art_type ?? nextEntry?.data.art_type} and next ${prevEntry?.data.art_type ?? nextEntry?.data.art_type} navigation`}
+               aria-label={`previous ${prevEntry?.data.art_type ?? nextEntry?.data.art_type} and next ${prevEntry?.data.art_type ?? nextEntry?.data.art_type}`}
                className="w-full text-sm pb-4 pt-6 3xl:py-0" 
             >
                <div className='grid grid-cols-2 justify-between w-full gap-3 3xl:flex 3xl:flex-col'>
