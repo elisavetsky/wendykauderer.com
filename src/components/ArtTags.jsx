@@ -16,10 +16,12 @@ export default function ArtTags({inline, tags, urlPath, classes, listClasses}) {
    return (
       <div 
          data-pagefind-meta={`tags:${commaSeparatedTags}`}
-         className={`not-prose relative z-10 text-sm flex items-start pb-3 ${!inline && "transition-all fade-edge-t duration-400 h-14 overflow-y-hidden hover:h-full hover:fade-edge-y-none peer-checked/checkbox:h-full peer-checked/checkbox:fade-edge-y-none"} ${classes}`}
-         aria-label="Artwork tags"
+         className={`not-prose relative z-10 text-sm flex items-start pb-3 ${!inline && "transition-all fade-edge-t duration-400 h-14 overflow-y-hidden hover:h-full hover:fade-edge-y-none peer-checked/checkbox:h-full peer-checked/checkbox:fade-edge-y-none"} ${classes || ""}`}
       >
-         <ul className={`flex flex-wrap py-2 gap-1.5 ${listClasses}`}>
+         <ul 
+            aria-label="Artwork tags"
+            className={`flex flex-wrap py-2 gap-1.5 ${listClasses || ""}`}
+         >
             
             {orderedTags.map((tag) => {
                return (

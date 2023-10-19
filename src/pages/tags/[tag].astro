@@ -10,6 +10,7 @@ import ArtworkGridLayout from "../../layouts/ArtworkGridLayout.astro";
 import SectionTitle from "../../components/SectionTitle.jsx";
 import GridHeader from "../../components/GridHeader.jsx";
 import GridNav from "../../components/GridNav.jsx";
+import GridNavItems from "../../components/GridNavItems.jsx";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -68,18 +69,22 @@ const params = Astro.params;
 const urlPath = Astro.url.pathname;
 ---
 
-<BaseLayout pageTitle={tag.data.title}>
+<BaseLayout pageTitle={`${tag.data.title} art`}>
    <section class="relative">
 
       <GridHeader>
          <SectionTitle 
             title={tag.data.title}
          />
-         <GridNav 
-            tagCollection={tagCollection} 
-            urlPath={urlPath}
-         >
-            <input transition:persist id="expand-tags" name="Expand artwork tag navigation" type="checkbox" class="sr-only peer/checkbox">
+         <GridNav client:load >
+            <input 
+               transition:persist 
+               id="expand-tags" 
+               name="Expand artwork tags" 
+               type="checkbox" 
+               class="sr-only right-6 top-5 peer/checkbox"
+            >
+            <GridNavItems tagCollection={tagCollection} urlPath={urlPath} />
          </GridNav>
       </GridHeader>
    

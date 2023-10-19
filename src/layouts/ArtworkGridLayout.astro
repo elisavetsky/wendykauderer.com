@@ -5,7 +5,10 @@ import FullArtwork from "../components/FullArtwork.astro";
 const { artwork } = Astro.props;
 ---
 
-<div class="w-full grid grid-flow-dense gap-4 sm:px-4 sm:grid-cols-2 items-center xl:grid-cols-6" >
+<ul 
+   role="list" 
+   class="w-full grid grid-flow-dense gap-4 sm:px-4 sm:grid-cols-2 items-center xl:grid-cols-6" 
+>
    {
       artwork.map((entry, i) => {
          
@@ -13,7 +16,7 @@ const { artwork } = Astro.props;
          const image = entry.data.image;
 
          return (
-            <div 
+            <li 
                class={`sm:col-span-1 md:col-span-1 xl:col-span-2
                   ${image.width > 1.5 * image.height && image.width < 1.74 * image.height ? "sm:col-span-2 md:col-span-2" : "xl:col-span-2"} 
                   ${image.width > 1.75 * image.height && i % 2 !== 1 ? "sm:col-span-2 md:col-span-2 xl:col-span-6" : "xl:col-span-2"} 
@@ -34,8 +37,8 @@ const { artwork } = Astro.props;
                   transition:animate="fade"
                   transition:name={`image:${entry.slug}-${entry.data.art_type}`}
                />
-            </div>
+            </li>
          )
       })
    }
-</div>
+</ul>

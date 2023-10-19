@@ -7,10 +7,6 @@ import SoldMarker from"./SoldMarker.jsx";
 import { frontmatter } from "../configuration/SitewideConfig.md";
 const curvedEdges = frontmatter.curved_image_edges;
 
-// import utils
-import { truncateText } from "../utils/textTools";
-
-
 const { 
    sold, 
    title, 
@@ -24,7 +20,7 @@ const {
 } = Astro.props;
 ---
 
-<a href={href}>
+<a role="button" href={href}>
    <div 
       class={`relative overflow-hidden sm:px-0 transition transition-translate ease-in-out delay-75 duration-300 sm:hover:shadow-xl sm:hover:shadow-black/20 sm:dark:hover:shadow-black/50 sm:motion-safe:hover:translate-x-px sm:motion-safe:hover:-translate-y-1 ${curvedEdges && "sm:rounded-md"}`}
    >

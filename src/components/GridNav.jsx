@@ -1,25 +1,40 @@
-// import components
-import ArtTags from "./ArtTags.jsx";
+import { useState, useEffect } from "react";
 
-// import icons
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+export default function GridNav({children}) {
+   const [expanded, setExpanded] = useState(false);
 
-export default function GridNav({tagCollection, urlPath, children}) {
+   function handleChange(e) {
+      setExpanded(e.target.checked);
+      console.log(e.target.labels)
+   }
+
+   useEffect(() => {
+
+      // assign DOM elements variables within useEffect because of page lifecycle
+      const expandCheckbox = document.querySelector("#expand-tags");
+      const expandCheckboxLabel = document.querySelector("#expand-tags").labels[0];
+      
+      // set initial nav expanded state after page-load
+      setExpanded(expandCheckbox.checked)
+
+      // add change listener for when checkbox is checked
+      expandCheckbox.addEventListener("change", handleChange);
+      
+      // add aria-expanded to button (which is a label) to expanded state
+      expandCheckboxLabel.ariaExpanded = expanded;
+
+      // cleanup effect
+      return () => expandCheckbox.removeEventListener("change", handleChange);
+   }, [expanded, handleChange])
+
    return (
-      <nav class="px-4 sm:col-span-7 grid grid-cols-8 items-start gap-4 ">
+      <nav
+         aria-label="Artwork tags menu"
+         className="px-4 sm:col-span-7 grid grid-cols-8 items-start gap-4"
+      >
 
          {children}
          
-         <ArtTags 
-            tags={tagCollection} 
-            urlPath={urlPath}
-            classes="peer/tags col-span-7" 
-            listClasses="lg:justify-end" 
-         />
-         <label for="expand-tags" class="relative mt-1.5 z-30 transition-transform duration-300 peer-checked/checkbox:rotate-180 peer-focus-visible/checkbox:ring-2  peer-focus-visible/checkbox:ring-blue-500 cursor-pointer rounded-full p-1 h-8 w-8 justify-self-end col-span-1 sm:col-span-1">
-               <ChevronDownIcon className="w-full h-full drop-shadow-white" />
-         </label>
-         <div class="transition-all z-0 left-0 top-0 absolute w-full h-24 bg-transparent backdrop-blur-xl opacity-100 peer-hover/tags:h-[95%] peer-hover/tags:opacity-100 peer-checked/checkbox:opacity-100 peer-checked/checkbox:h-[95%] sm:rounded-b-md sm:h-14 md:h-24 lg:h-14"></div>
       </nav>
    )
 }
