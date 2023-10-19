@@ -30,7 +30,7 @@ export default function GridNav({children}) {
    return (
       <nav
          aria-label="Artwork tags menu"
-         className="px-4 sm:col-span-7 grid grid-cols-8 items-start gap-4"
+         className="px-4 grid grid-cols-8 items-start gap-4 sm:col-span-7 3xl:col-span-4"
       >
 
          {children}

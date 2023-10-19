@@ -1,3 +1,26 @@
+function getLatestOfArtType(artType, collection) {
+   const allPaintings = collection.filter((entry) => entry.data.art_type === artType)
+      .sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
+   
+   // if nothing found, throw error
+   if (allPaintings.length) {
+
+      // return first image with specified artType
+      const output = allPaintings[0].data.image;
+
+      if (output) {
+         return output;
+      } else {
+         throw new Error(`No property named "${artType}" found for "${artType}" art type`);
+      }
+   } else {
+      console.warn(`No entries found for the specified art type: "${artType}"`);
+
+      // return null if nothing is found so that app doesn't crash
+      return null;
+   }   
+}
+
 function getAspectRatio(width, height) {
    const difference = Math.abs(width - height)
    
@@ -28,4 +51,4 @@ function getImageSrcSet(originalWidth, originalHeight, values) {
    return ImageSrcSet;
 }
 
-export { getAspectRatio, getImageSrcSet };
+export { getLatestOfArtType, getAspectRatio, getImageSrcSet };

@@ -56,6 +56,11 @@
       mask-image: none;
    }
 
+   .fade-edge {
+      mask-image: 
+         radial-gradient(circle farthest-side at center, transparent 0%, rgba(0, 0, 0, 1) 30% 20%, transparent 60%);
+   }
+
    .fade-edge-t {
       mask-image: 
          linear-gradient(to top, transparent 10%, rgba(0, 0, 0, 1) 25% 90%);
@@ -76,7 +81,7 @@
    }
 
    .navbar-container.active {
-      @apply border-b-black/20 dark:border-b-white/20 shadow-lg bg-gray-100/70 dark:bg-zinc-800/70
+      @apply border-b-black/20 dark:border-b-white/20 shadow-lg bg-gray-100/70 dark:bg-zinc-800/70 md:bg-transparent
    }
 }
 

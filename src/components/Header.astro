@@ -8,7 +8,7 @@ const { shadow } = Astro.props;
 
 <header
    class={
-   `navbar-header absolute top-0 text-primary-text w-full z-40  dark:text-primary-dark-text md:before:backdrop-blur-none md:sticky md:top-4 md:overflow-y-auto md:min-w-[16rem] md:w-3/12 md:max-h-screen md:max-w-sm`
+   `navbar-header absolute top-0 text-primary-text w-full z-40 dark:text-primary-dark-text md:before:backdrop-blur-none md:sticky md:top-4 md:overflow-y-auto md:min-w-[16rem] md:w-3/12 md:max-h-screen md:max-w-sm`
 }>
    <div class="navbar-container px-4 py-4 gap-5 mx-auto max-w-screen-xl max-md:transition max-md:duration-300 md:bg-transparent md:dark:bg-transparent md:border-0 md:overscroll-contain md:px-6 md:py-0 md:pr-0 flex flex-col md:gap-10  md:justify-between">
       <div class="top-0 flex justify-between gap-2 md:backdrop-blur-sm md:bg-inherit md:sticky md:z-50 md:pl-4 md:py-9 md:mt-8 dark:md:bg-inherit">
@@ -23,19 +23,5 @@ const { shadow } = Astro.props;
 <style>
    header::before {
       @apply absolute inset-0 -z-10;
-   }
-
-   .patties::before {
-      @apply top-5;
-   }
-   
-   .patties::after {
-      @apply bottom-4 right-1.5;
-   }
-
-   .patties::before,
-   .patties::after {
-      content: '';
-      @apply absolute h-[2px] w-10 bg-gray-900;
    }
 </style>

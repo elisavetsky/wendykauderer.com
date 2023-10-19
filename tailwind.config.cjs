@@ -18,12 +18,18 @@ module.exports = {
 				"primary": {
 					DEFAULT: colors.gray[100],
 					text: colors.gray[800],
+					"tag-active-bg": colors.gray[300],
+					"tag-active-border": colors.gray[800],
+					"button-icon": colors.gray[800],
 					"button-hover": colors.gray[200],
 					"button-hover-shadow" : colors.black
 				},
 				"primary-dark": {
 					DEFAULT: colors.zinc[800],
 					text: colors.zinc[100],
+					"tag-active-bg": colors.gray[500],
+					"tag-active-border": colors.zinc[100],
+					"button-icon": colors.zinc[100],
 					"button-hover": colors.zinc[700],
 
 				}
@@ -31,7 +37,7 @@ module.exports = {
 			keyframes: {
 				"fadeIn": {
 					'0%': { opacity: "0" },
-					'100%': { opacity: "0.3" },
+					'100%': { opacity: "0.35" },
 				},
 				"fadeIn-dark": {
 					'0%': { opacity: "0" },
