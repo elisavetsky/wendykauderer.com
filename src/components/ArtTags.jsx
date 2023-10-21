@@ -16,7 +16,7 @@ export default function ArtTags({inline, tags, urlPath, classes, listClasses}) {
    return (
       <div 
          data-pagefind-meta={`tags:${commaSeparatedTags}`}
-         className={`not-prose relative z-10 text-sm flex items-start pb-3 ${!inline && "transition-all fade-edge-t duration-400 h-14 overflow-y-hidden hover:h-full hover:fade-edge-y-none peer-checked/checkbox:h-full peer-checked/checkbox:fade-edge-y-none"} ${classes || ""}`}
+         className={`not-prose relative z-10 text-sm flex items-start pb-3 ${!inline && "transition-all fade-edge-t duration-400 h-14 max-h-fit overflow-y-hidden hover:h-full hover:fade-edge-y-none peer-checked/checkbox:h-full peer-checked/checkbox:fade-edge-y-none"} ${classes || ""}`}
       >
          <ul 
             aria-label="Artwork tags"
