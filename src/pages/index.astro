@@ -1,21 +1,46 @@
 ---
+// Astro
+import { getEntry } from 'astro:content';
+
 // import layout
 import BaseLayout from '../layouts/BaseLayout.astro';
-import FeaturedArtworkLayout from '../layouts/FeaturedArtworkLayout.astro';
+import FeaturedArtworkLayout from '../components/layouts/FeaturedArtworkLayout.jsx';
 
 // import components
-import MainHero from '../components/MainHero.astro';
-import Card from '../components/Card.astro';
+import ImageWrapper from "../components/ImageWrapper.astro";
+import ImageCTA from "../components/ImageCTA.jsx";
+
+// import Featured Artwork
+const featuredArtwork = await getEntry('settings', 'main-hero');
+const { Content } = await featuredArtwork.render();
 
 // import NetlifyIdentity
 import { NetlifyIdentity } from '../components/NetlifyIdentity.jsx'
 ---
 
-<BaseLayout pageTitle="Artist" >
-	<!-- <MainHero /> -->
-		
-	<FeaturedArtworkLayout />
+<BaseLayout 
+	pageTitle="Artist" 
+	blurredBg={featuredArtwork.data.image}
+>
+	
+	<FeaturedArtworkLayout 
+		width={featuredArtwork.data.image.width} 
+		height={featuredArtwork.data.image.height}
+	>
+		<div slot="image">
+			<ImageWrapper 
+				src={featuredArtwork.data.image}
+				alt={featuredArtwork.data.image_alt}
+				quality="low"
+				loading="eager"
+				noWidth
+			/>
+		</div>
+		<ImageCTA>
+			<Content />
+		</ImageCTA>
+	</FeaturedArtworkLayout>
 
 	<!-- Netlify Identity -->
-	<NetlifyIdentity client:only />
+	<NetlifyIdentity client:only="react" />
 </BaseLayout>

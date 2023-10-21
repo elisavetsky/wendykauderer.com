@@ -1,31 +1,10 @@
 ---
-// Astro
-import { getEntry } from "astro:content";
 
-// import components
-import ImageWrapper from "../components/ImageWrapper.astro";
-import ImageCTA from "../components/ImageCTA.jsx";
 
-// import Featured Artwork
-const featuredArtwork = await getEntry('settings', 'main-hero');
-const { Content } = await featuredArtwork.render();
 ---
 
 <section 
    class={`w-fit max-w-fit flex flex-col justify-center px-4 m-auto gap-4 lg:flex-row lg:gap-8`}
 >
-   <div
-      class={`${featuredArtwork.data.image.width > featuredArtwork.data.image.height ? "max-w-lg" : "max-w-md"} md:max-w-screen-sm`}
-   >
-      <ImageWrapper 
-         src={featuredArtwork.data.image}
-         alt={featuredArtwork.data.image_alt}
-         quality="low"
-         loading="eager"
-         noWidth
-      />
-   </div>
-   <ImageCTA>
-      <Content />
-   </ImageCTA>
+   
 </section>

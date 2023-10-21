@@ -15,11 +15,13 @@ const optimizedImages = images && await Promise.all(
 
 // import layouts
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Flex2ColLayout from "../layouts/Flex2ColLayout.astro";
+import Flex2ColLayout from "../components/layouts/Flex2ColLayout.jsx";
+// import Flex2ColLayout from "../layouts/Flex2ColLayout.astro";
+
 
 // import components
 import SectionTitle from "../components/SectionTitle.jsx";
-import InlineLightbox from "../components/InlineLightbox.jsx";
+import InlineLightboxGallery from "../components/InlineLightboxGallery.jsx";
 ---
 
 <BaseLayout 
@@ -28,22 +30,25 @@ import InlineLightbox from "../components/InlineLightbox.jsx";
 >
    <article>
       <SectionTitle title="Bio" />
-      <Flex2ColLayout>
-         <div class="mt-7 px-4 flex-1 prose prose-zinc dark:prose-p:text-zinc-100 justify-center dark:prose-invert md:prose-lg">
-            {heading && 
-               <h2>{heading}</h2>
-            }
-            <Content />
-         </div>
-         <InlineLightbox
-            client:visible 
-            images={{
-               optimizedImages: optimizedImages || [],
-               imagesWithAlts: images || []
-            }} 
-            classes="flex-1 m-auto md:px-4 w-screen md:w-full md:max-w-[60rem]" 
-         />
-      </Flex2ColLayout>
+      <div transition:animate="fade">
+         <Flex2ColLayout>
+            <div class="mt-7 px-4 flex-1 prose prose-zinc dark:prose-p:text-zinc-100 justify-center dark:prose-invert md:prose-lg">
+               {heading && 
+                  <h2>{heading}</h2>
+               }
+               <Content />
+            </div>
+            <InlineLightboxGallery
+               ariaLabel="Some of my photos"
+               client:visible 
+               data={{
+                  images: optimizedImages || [],
+                  imagesWithAlts: images || []
+               }} 
+               classes="flex-1 m-auto md:px-4 w-screen md:w-full md:max-w-[60rem]" 
+            />
+         </Flex2ColLayout>
+      </div>
    </article>
    
 </BaseLayout>

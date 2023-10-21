@@ -1,6 +1,6 @@
 export default function ContactForm() {
 	return (
-		<form name="contact" method="POST" data-netlify="true" className="px-4 w-fit sm:m-0 xl:ml-auto">
+		<form name="contact" method="POST" data-netlify="true" className="px-4 w-fit xl:ml-auto">
 
          <label htmlFor="name" className="text-sm inline-block mb-1 mt-8">Name: </label>
          <input 
