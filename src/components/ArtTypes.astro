@@ -31,12 +31,12 @@ const artTypes = [
 const props = Astro.props;
 const { pathname } = Astro.url;
 
-const commonClasses = "group absolute z-10 backdrop-blur-lg flex justify-center items-center w-full h-full rounded-full p-1 transition-all decoration-2 underline-offset-4"
+const commonClasses = "group absolute z-10 backdrop-blur-lg flex justify-center items-center w-full h-full rounded-full p-1 decoration-2 underline-offset-4"
 ---
 
 {artTypes.map(({route, label, image, image_alt}) => {
    return (
-      <li class={`relative w-[6.5rem] h-[6.5rem] rounded-full overflow-hidden`}>
+      <li class={`relative w-[6.5rem] h-[6.5rem] rounded-full overflow-hidden transition-all duration-700 `}>
          <a 
             href={`${route}`} 
             class={`
@@ -45,11 +45,11 @@ const commonClasses = "group absolute z-10 backdrop-blur-lg flex justify-center 
                   ? "backdrop-saturate-100  !decoration-inherit  dark:backdrop-brightness-125" 
                   : `${pathname.includes("/", 1) 
                      ? "bg-transparent border-2 border-primary-dark/10 dark:border-primary/10" 
-                     : ""} hover:underline hover:decoration-inherit `
+                     : ""} decoration-transparent hover:underline hover:decoration-inherit `
                }
             `}
          >
-            <span class={`${pathname === `/${slugify(route)}` && "underline decoration-2"} decoration-inherit group-hover:decoration-2`}>{label}</span>
+            <span class={`${pathname === `/${slugify(route)}` ? "underline decoration-2" : ""} decoration-inherit group-hover:decoration-2`}>{label}</span>
          </a>
          {
             // Return ArtTypes background image only if NOT on a single artwork page
