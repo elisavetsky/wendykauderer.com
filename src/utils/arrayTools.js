@@ -42,4 +42,61 @@ function moveToFirst({array, findFunction}) {
    ]
 }
 
-export { convertToArray, getPrevAndNextEntry, moveToFirst };
+function promiseCMSImages({
+   immutableData,
+   imageAlt,
+   getAsset
+}) {
+
+   return immutableData.map(async (imageData) => {
+
+      const image_alt = imageAlt 
+                           ? imageAlt
+                           : imageData.getIn(["data", "image_alt"])
+      
+      const img = new Image();
+
+      // change img.src based on whether incoming data is already a string
+      if (typeof imageData === "string") {
+         img.src = getAsset(imageData);
+      } else {
+         img.src = getAsset(imageData.getIn(["data", "image"])).toString();
+      }
+
+      console.log("SRC", img.src)
+
+      await img.decode();
+
+      return {
+         src: img.src,
+         width: img.width,
+         height: img.height,
+         image_alt: image_alt
+      }
+   
+   }).toJS();
+}
+
+// Resolve array of promises and set state with resolved data
+function resolveAndSetState({data, setStateFunction}) {
+
+   // Promise the array then resolve it
+   Promise.all(data).then((resolvedData) => {
+      
+      // execute the setStateFunction w/data
+      setStateFunction(resolvedData);
+
+   }).catch((err) => {
+
+      // log some error
+      console.error(err)
+   })
+}
+
+export { 
+   convertToArray, 
+   getPrevAndNextEntry, 
+   moveToFirst, 
+   promiseCMSImages, 
+   resolveAndSetState 
+};
