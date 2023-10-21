@@ -5,10 +5,7 @@ import FullArtwork from "../components/FullArtwork.astro";
 const { artwork } = Astro.props;
 ---
 
-<ul 
-   role="list" 
-   class="w-full grid grid-flow-dense gap-4 sm:px-4 sm:grid-cols-2 items-center xl:grid-cols-6" 
->
+<ul class="w-full grid grid-flow-dense gap-4 sm:px-4 sm:grid-cols-2 items-center xl:grid-cols-6">
    {
       artwork.map((entry, i) => {
          
