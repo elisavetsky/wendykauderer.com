@@ -81,7 +81,7 @@
    }
 
    .navbar-container.active {
-      @apply border-b-black/20 dark:border-b-white/20 shadow-lg bg-gray-100/70 dark:bg-zinc-800/70 md:bg-transparent
+      @apply border-b-black/20 dark:border-b-white/20 shadow-lg bg-gray-100/70 dark:bg-zinc-800/70 md:bg-transparent md:dark:bg-transparent
    }
 }
 
