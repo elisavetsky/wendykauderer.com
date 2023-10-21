@@ -1,10 +1,9 @@
 ---
-label: "Homepage Featured Image"
+label: Homepage (w/Featured Image)
 weight: -1
-title: "Hey! I'm Wendy Kauderer."
-tagline: "I'm an artist based in Los Angeles, California."
-image: "../../assets/images/home-hero.jpeg"
-image_alt: "A close-up drawing of an eye"
+title: Hey! I'm Wendy Kauderer.
+image: /src/assets/images/home-hero.jpeg
+image_alt: A close-up, black & white drawing of an eye
 ---
 
 To see.
