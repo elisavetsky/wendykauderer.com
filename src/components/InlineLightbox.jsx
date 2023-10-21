@@ -96,7 +96,6 @@ export default function InlineLightbox({data, classes, children}) {
 				</ul>
 			</noscript>
 			<Lightbox
-				key={slides.length}
 				plugins={[Inline, Counter]}
 				counter={{ 
 					container: { 
