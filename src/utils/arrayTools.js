@@ -63,8 +63,7 @@ function promiseCMSImages({
          img.src = getAsset(imageData.getIn(["data", "image"])).toString();
       }
 
-      console.log("SRC", img.src)
-
+      // need to await the async nature of decoding
       await img.decode();
 
       return {

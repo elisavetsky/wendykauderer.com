@@ -15,37 +15,38 @@ import GridNavItems from "../../components/GridNavItems.jsx";
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
 
-   // create a Set so each tag is only listed once
-   const allTags = new Set();
-
-   // import tag collection
-   const tagCollection = await getCollection('tags');
-
    // import all non-draft artwork
    const artworkEntries = await getCollection('artwork', ({data}) => !data.draft);
 
    // sort entries from latest to oldest
    const sortedEntries = artworkEntries.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
 
+   // create a Set so each tag is only listed once
+   const allUsedTags = new Set();
+
    // map over each entry to grab its tags and add it to the Set
    sortedEntries.map((entry) => {
-      entry.data.tags && entry.data.tags.map((tag) => allTags.add(tag));
+      entry.data.tags && entry.data.tags.map((tag) => allUsedTags.add(tag.id));
    })
+
+   // import only used tags which we defined in the allTags set
+   const tagCollection = await getCollection('tags', ((tag) => allUsedTags.has(tag.id)));
    
-   return Array.from(allTags).map((tag) => {
+   
+   return Array.from(allUsedTags).map((tag) => {
 
       // filter entries by tag from the URL param
       const entriesByTag = sortedEntries.filter((sortedEntry) => sortedEntry.data.tags.find((entryTag) => {
 
-         return entryTag.id === tag.id
+         return entryTag.id === tag
       }))
 
       // get matching tag object from 'tags' collection to use for templates
-      const matchingTagObject = tagCollection.filter(({id}) => id === tag.id)[0]
+      const matchingTagObject = tagCollection.filter(({id}) => id === tag)[0]
 
       return {
          params: { 
-            tag: tag.id,
+            tag: tag,
          }, 
          props: { 
             entries: entriesByTag,
