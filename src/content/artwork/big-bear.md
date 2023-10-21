@@ -5,8 +5,8 @@ title: Big Bear
 date: 2020-05-24
 art_type: painting
 tags:
-  - landscape
   - acrylic
+  - landscape
 image: /src/assets/images/big-bear.jpg
 main_image_alt: IMAGE DESCRIPTION REQUIRED
 ---

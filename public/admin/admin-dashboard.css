@@ -1,0 +1,24 @@
+
+/* Fix the incorrect background size on the <html/> element when DecapCMS is loaded */
+html {
+	background-size: unset;
+	background: unset;
+}
+
+/* Increase the height of grid items to reveal more of the artwork image */
+/* CARD CONTAINER */
+.effeus42 {
+	height: 100% !important;
+}
+
+/* CARD IMAGE */
+.effeus48 {
+	min-height: 300px;
+	background-size: contain !important;
+}
+
+/* Increase the dimensions of the images in editing mode */
+.e1hax4ql0 {
+	width: 33% !important;
+	height: 33% !important;
+}
