@@ -10,14 +10,15 @@ import CMS, { init } from "decap-cms-app";
 // Until then an "overrides" object is added to package.json to "trick" React
 */
 
-// import styles
-import "../../../public/admin/admin.css";
 
 // import utils
 import { humanDate } from "../../utils/textTools";
 
 // import preview templates
-import ArtworkPreview from "./previews/ArtworkPreview";
+import HomepagePreview from "./previews/HomepagePreview.jsx";
+import ArtworkPreview from "./previews/ArtworkPreview.jsx";
+import BioPreview from "./previews/BioPreview.jsx";
+
 
 export default function DecapCMS() {
 	init({
@@ -87,18 +88,31 @@ export default function DecapCMS() {
 					label: "Page Settings",
 					folder: "src/content/settings/",
 					summary: "{{fields.label}}",
+					description: "Tweak your homepage and more!",
 					sortable_fields: [],
 					fields: [
 						{
 							label: "🖼️ Feature Image",
 							name: "image",
 							widget: "image",
+							choose_url: false,
+							media_folder: "/src/assets/images",
 						},
 						{
 							label: "♿ Featured Image Alt",
 							name: "image_alt",
 							widget: "text",
 							hint: "For accessibility purposes."
+						},
+						{
+							label: "📣 Tagline",
+							name: "body",
+							widget: "markdown",
+							hint: "Edit the text that appears below your featured image & on the right of the image on larger screens.",
+                     buttons: [],
+                     editor_components: ["false"],
+                     modes: ["rich_text"],
+                     sanitize_preview: true
 						},
 					]
 				},
@@ -158,6 +172,10 @@ export default function DecapCMS() {
 						{
 							label: "Type - ",
 							field: "art_type",
+						},
+						{
+							label: "Tags - ",
+							field: "tags",
 						},
 					],
 					fields: [
@@ -299,15 +317,69 @@ export default function DecapCMS() {
 							pattern: ["^[a-z\s]+", "Tag must have only lowercase letters and spaces!"]
 						},
                ]
-            }
+            },
+				////////////////////
+            // BIO COLLECTION //
+            ////////////////////
+				{
+					name: "bio",
+					label: "Bio",
+					folder: "src/content/bio/",
+					summary: "Bio",
+					description: "I can edit my bio here!",
+					sortable_fields: [],
+					fields: [
+						{
+							label: "📰 Heading",
+							name: "heading",
+							widget: "string",
+							required: false
+						},
+						{
+							label: "👤 Bio",
+							name: "body",
+							widget: "markdown",
+                     buttons: ["bold", "italic", "link", "quote"],
+                     editor_components: ["false"],
+                     modes: ["rich_text"],
+                     sanitize_preview: false
+						},
+						{
+							label: "🏞️ Gallery",
+							label_singular: "Image",
+							name: "images",
+							widget: "list",
+							collapsed: false,
+							summary:
+								"{{fields.image}} ||||| ALT TEXT: {{fields.image_alt}}",
+							fields: [
+								{
+									label: "📷 Image",
+									name: "image",
+									widget: "image",
+									choose_url: false,
+									default: null,
+									media_folder: "/src/assets/images",
+								},
+								{
+									label: "♿ Alternative Text (for Accessibility)",
+									name: "image_alt",
+									widget: "text",
+								},
+							],
+						},
+					]
+				},
 			],
 		},
 	});
 
    // Register preview styles from minified css output from astro build
    // Not a permanent solution, wish I knew how to directly import @tailwind
-	CMS.registerPreviewStyle("./admin/example.css");
+	CMS.registerPreviewStyle("./admin/admin.css");
 
 	// Register preview templates
+	CMS.registerPreviewTemplate("settings", HomepagePreview);
 	CMS.registerPreviewTemplate("artwork", ArtworkPreview);
+	CMS.registerPreviewTemplate("bio", BioPreview);
 }

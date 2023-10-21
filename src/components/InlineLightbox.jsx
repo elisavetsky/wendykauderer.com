@@ -27,38 +27,68 @@ import {
 	ChevronRightIcon, 
 } from '@heroicons/react/24/outline';
 
-export default function InlineLightbox({images, classes, children}) {
+export default function InlineLightbox({data, classes, children}) {
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	useEffect(() => {
 		setIsLoaded(true)
+
+	return () => {}
 	}, [])
 
-	const slides = images.optimizedImages?.map(({src, attributes, srcSet}, i) => {
+	/* 
+	const slides = data.images?.map(({src, image_alt, attributes, srcSet}, i) => {
 		return {
 			src: src,
- 			alt: images.imagesWithAlts[i].image_alt, // get alt by matching index from optimizedImages
-			width: attributes.width,
-			height: attributes.height,
- 			srcSet: getImageSrcSet(attributes.width, attributes.height, srcSet.values) // get srcSet for each additional image with helper function
+ 			alt: data.isCMS ? image_alt : data.imagesWithAlts[i].image_alt, // get alt by matching index from optimizedImages
+			width: attributes?.width,
+			height: attributes?.height,
+			srcSet: !data.isCMS 
+							? getImageSrcSet(attributes.width, attributes.height, srcSet.values) // get srcSet for each additional image with helper function
+							: []
 		}
 	})
+	*/
 
-	const imageAspectRatio = getAspectRatio(slides[0].width, slides[0].height);
+	const slides = data.images?.map(async (promisedImage, i) => {
+		const result = Promise.resolve(promisedImage);
+		const image = await result;
+		
+
+			const slideObject = {
+				src: image.src,
+				// alt: data.isCMS ? image.image_alt : data.imagesWithAlts[i].image_alt, // get alt by matching index from optimizedImages
+				// width: image.width || attributes?.width,
+				// height: image.height || attributes?.height,
+				// srcSet: !data.isCMS 
+				// 				? getImageSrcSet(attributes.width, attributes.height, srcSet.values) // get srcSet for each additional image with helper function
+				// 				: []
+			}
+
+			console.log(slideObject)
+
+			return slideObject;
+		
+		
+	})
+
+	// console.log("SLIDES", slides)
+
+	const imageAspectRatio = !data.isCMS ?? getAspectRatio(slides[0].width, slides[0].height);
 
 	return (
 		<div className={`${classes} relative` || null}>
 			<noscript className="absolute z-10">
 				<ul className=" grid grid-cols-2 gap-1">
-					{images.optimizedImages?.map(({src, attributes}, i) => {
+					{!data.isCMS && data.images?.map(({src, attributes}, i) => {
 						return (
 							<li key={src}>
 								<img 
 									src={src} 
-									alt={images.imagesWithAlts[i].image_alt} 
+									alt={data.imagesWithAlts[i].image_alt} 
 									width={attributes.width}
 									height={attributes.height}
-									class="rounded-lg"
+									className="rounded-lg"
 								/>
 							</li>
 						)
@@ -66,6 +96,7 @@ export default function InlineLightbox({images, classes, children}) {
 				</ul>
 			</noscript>
 			<Lightbox
+				key={slides.length}
 				plugins={[Inline, Counter]}
 				counter={{ 
 					container: { 
