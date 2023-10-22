@@ -3,6 +3,7 @@ import { promiseCMSImages } from "../../../utils/arrayTools.js";
 
 // import components
 import SectionTitle from "../../SectionTitle.jsx";
+import BioContent from "../../BioContent.jsx";
 import Flex2ColLayout from "../../layouts/Flex2ColLayout.jsx";
 import InlineLightboxGallery from "../../InlineLightboxGallery.jsx";
 import SingleImage from "./SingleImage.jsx";
@@ -19,7 +20,8 @@ export default function BioPreview({entry, widgetsFor, getAsset}) {
    const heading = entry.getIn(["data", "heading"]);
 
    // use helper to get the array of Promises
-   const promisedImages = promiseCMSImages({
+   // only if there are images to search for
+   const promisedImages = entry.getIn(["data", "images"]) && promiseCMSImages({
       immutableData: widgetsFor("images"),
       getAsset: getAsset
    })
@@ -27,21 +29,20 @@ export default function BioPreview({entry, widgetsFor, getAsset}) {
    // get markdown content
    const body = entry.getIn(["data", "body"]);
 
-   console.log("promise", promisedImages[0].data)
 
    return (
-      <BodyLayout blurredBg={<SingleImage blurredBg image={promisedImages[0]} />}>
+      <BodyLayout 
+         blurredBg={<SingleImage blurredBg image={promisedImages[0]} />}
+      >
          <MainFlexLayout>
+
             <article>
                <SectionTitle title="Bio" />
                <Flex2ColLayout>
-                  <div className="mt-7 px-4 flex-1 prose prose-zinc dark:prose-p:text-zinc-100 justify-center dark:prose-invert md:prose-lg">
-                     {heading && 
-                        <h2>{heading}</h2>
-                     }
+                  <BioContent heading={heading}>
                      <Markdown>{body}</Markdown>
-                  </div>
-
+                  </BioContent>
+                  
                   <InlineLightboxGallery
                      ariaLabel="Some of my photos"
                      isCMS={true}
@@ -53,6 +54,7 @@ export default function BioPreview({entry, widgetsFor, getAsset}) {
                   />
                </Flex2ColLayout>
             </article>
+
          </MainFlexLayout>
       </BodyLayout>
    )

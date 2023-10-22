@@ -36,7 +36,6 @@ export default function SingleImage({blurredBg, image}) {
       // or CMS keeps re-rendering this to infinity
    }, [cmsImages])
 
-   console.log("IMAGES", cmsImages)
 
    return (
       images &&
