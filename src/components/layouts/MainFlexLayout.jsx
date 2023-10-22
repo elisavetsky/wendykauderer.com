@@ -9,11 +9,11 @@ import Footer from "../../components/Footer.jsx";
 export default function MainFlexLayout({ header, children }) {
 
    return (
-      <div class="flex flex-col md:flex-row  mx-auto grow items-start min-w-full max-w-screen-2xl gap-4">
+      <div className="flex flex-col md:flex-row  mx-auto grow items-start min-w-full max-w-screen-2xl gap-4">
          {header}
          {/* <Header /> */}
-         <div class="relative w-full text-primary-text dark:text-primary-dark-text m-auto flex flex-col min-h-[125vh] grow md:pr-8 md:w-9/12 lg:m-0">
-            <main id="main-content" class="max-[233px]:mt-10 pb-16 pt-20 md:pt-20">
+         <div className="relative w-full text-primary-text dark:text-primary-dark-text m-auto flex flex-col min-h-[125vh] grow md:pr-8 md:w-9/12 lg:m-0">
+            <main id="main-content" className="max-[233px]:mt-10 pb-16 pt-20 md:pt-20">
                {children}
                
             </main>

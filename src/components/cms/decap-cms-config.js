@@ -370,7 +370,7 @@ export default function DecapCMS() {
 					name: "bio",
 					label: "Bio",
 					folder: "src/content/bio/",
-					summary: "Bio",
+					summary: "Bio ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{fields.body}}",
 					description: "I can edit my bio here!",
 					sortable_fields: [],
 					fields: [
