@@ -5,7 +5,9 @@ import Tag from "./Tag.jsx";
 import { moveToFirst } from "../utils/arrayTools.js";
 
 export default function ArtTags({inline, tags, urlPath, classes, listClasses}) {
-   const commaSeparatedTags = tags.map((tag) => tag.data.title).join(", ");
+
+   // create a string for the search index to crawl through
+   const commaSeparatedTags = tags?.map((tag) => tag.data.title).join(", ");
 
    // move the current tag that is present in the url path to the front of the array for better UX
    const orderedTags = moveToFirst({
@@ -23,7 +25,7 @@ export default function ArtTags({inline, tags, urlPath, classes, listClasses}) {
             className={`flex flex-wrap py-2 gap-1.5 ${listClasses || ""}`}
          >
             
-            {orderedTags.map((tag) => {
+            {orderedTags?.map((tag) => {
                return (
                   <Tag
                      key={tag.id}

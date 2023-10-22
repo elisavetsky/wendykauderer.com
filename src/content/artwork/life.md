@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 sold: false
 title: Life
 date: 2020-06-01

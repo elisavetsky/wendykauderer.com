@@ -1,6 +1,6 @@
 ---
 draft: false
-sold: true
+sold: false
 title: Rio
 date: 2020-06-07
 art_type: painting

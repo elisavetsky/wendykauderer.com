@@ -19,7 +19,7 @@ import {
 	ChevronRightIcon, 
 } from '@heroicons/react/24/outline';
 
-export default function InlineLightboxGallery({ariaLabel, isCMS, data, classes, children}) {
+export default function InlineLightboxGallery({ariaLabel, isCMS, data, classes}) {
 	const [isLoaded, setIsLoaded] = useState(false);
    const [slides, setSlides] = useState([]);
    const [cmsImages, setCmsImages] = useState([]);

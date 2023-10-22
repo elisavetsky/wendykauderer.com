@@ -56,7 +56,6 @@ function createLightboxSlides({
 }) {
    
    // map over images and create the slide structure `yet-another-react-lightbox` expects
-
    // also change values based on if environment is CMS
    return images?.map(({
       filename, 
@@ -69,7 +68,7 @@ function createLightboxSlides({
    }, i) => {
       return {
          type: "image",
-         filename: filename ?? filename,
+         // filename: filename ?? filename,
          src: src,
          alt: isCMS 
                   ? image_alt 

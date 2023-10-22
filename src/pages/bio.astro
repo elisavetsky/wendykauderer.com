@@ -21,6 +21,7 @@ import Flex2ColLayout from "../components/layouts/Flex2ColLayout.jsx";
 
 // import components
 import SectionTitle from "../components/SectionTitle.jsx";
+import BioContent from "../components/BioContent.jsx";
 import InlineLightboxGallery from "../components/InlineLightboxGallery.jsx";
 ---
 
@@ -32,12 +33,9 @@ import InlineLightboxGallery from "../components/InlineLightboxGallery.jsx";
       <SectionTitle title="Bio" />
       <div transition:animate="fade">
          <Flex2ColLayout>
-            <div class="mt-7 px-4 flex-1 prose prose-zinc dark:prose-p:text-zinc-100 justify-center dark:prose-invert md:prose-lg">
-               {heading && 
-                  <h2>{heading}</h2>
-               }
+            <BioContent heading={heading}>
                <Content />
-            </div>
+            </BioContent>
             <InlineLightboxGallery
                ariaLabel="Some of my photos"
                client:visible 
