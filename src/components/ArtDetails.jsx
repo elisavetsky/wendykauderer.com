@@ -3,7 +3,6 @@ import Link from "./Link.jsx";
 import ArtTags from "./ArtTags.jsx";
 
 export default function ArtDetails({ artType, sold, artTitle, artTags, dependencyArray }) {
-   console.log("NORMAL ART TAGS", artTags)
 
    return (
       <>

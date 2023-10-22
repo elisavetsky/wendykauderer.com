@@ -2,7 +2,6 @@
 import * as SitewideConfig from "../configuration/SitewideConfig.md";
 
 export default function GalleryThumbs({images, setIndex}) {
-   console.log("THUMBS", images)
 
    return (
       <nav className={`w-full grid gap-2 ${setIndex ? "grid-cols-4 md:grid-cols-5 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6" : "grid-cols-2"} `}>
