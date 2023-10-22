@@ -73,7 +73,9 @@ function promiseCMSImages({
          image_alt: image_alt
       }
    
-   }).toJS();
+      // Finally, shallow convert to native JS Array
+      // For performance reasons
+   }).toArray();
 }
 
 // Resolve array of promises and set state with resolved data
@@ -92,10 +94,31 @@ function resolveAndSetState({data, setStateFunction}) {
    })
 }
 
+// restructure the tags array to a similar
+// structure to Astro's collection
+function restructureTags(tags) {
+   
+   // map over Immutable data,
+   // destructure it and
+   // return a similar structure to Astro
+   return tags.map((val, key) => {
+
+      // .toObject() Immutable.js method
+      // is used to convert to a normal looking
+      // {key: val} structure
+      return {
+         id: key,
+         data: val.toObject()
+      }
+   }).toArray() // shallow convert to regular JS
+
+}
+
 export { 
    convertToArray, 
    getPrevAndNextEntry, 
    moveToFirst, 
    promiseCMSImages, 
-   resolveAndSetState 
+   resolveAndSetState,
+   restructureTags 
 };
