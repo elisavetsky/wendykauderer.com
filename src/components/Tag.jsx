@@ -1,6 +1,8 @@
+// import components
 import Link from "./Link.jsx"
 
 export default function Tag({title, slug, urlPath}) {
+
    const commonClasses = "transition-colors h-fit px-2 py-0.5 last-of-type:mr-0 flex w-max items-center rounded-lg font-medium"
 
    const isCurrentPage = urlPath && urlPath.split("/")[2] === slug;

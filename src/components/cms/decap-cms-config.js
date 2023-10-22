@@ -274,7 +274,7 @@ export default function DecapCMS() {
 							value_field: "{{slug}}",
                      search_fields: ["title"],
                      min: 1,
-							summary: "{{fields | lower}}", // # summary string template transformation
+							
 						},
 						{
 							label: "🖼️ Main Image",
