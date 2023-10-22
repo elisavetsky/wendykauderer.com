@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // import utils
-import { getImageSrcSet } from "../utils/imageTools";
+import { getImageSrcSet, getAspectRatio, createLightboxSlides } from "../utils/imageTools";
+import { resolveAndSetState } from "../utils/arrayTools";
 
 // Import lightbox
 import Lightbox from "yet-another-react-lightbox";
@@ -29,33 +30,88 @@ import {
 } from '@heroicons/react/24/outline';
 
 
-export default function LightboxWrapper({mainImage, additionalImages, children, ...props}) {
+export default function LightboxWrapper({isCMS, mainImage, additionalImages, children, ...props}) {
 	const [index, setIndex] = useState(-1);
 	const thumbnailsRef = useRef(null);
 
-	const nonMainImages = additionalImages.optimizedImages?.map(({src, attributes, srcSet}, i) => {
-		return {
-			src: src,
-			alt: additionalImages.imagesWithAlts[i].image_alt, // get alt by matching index from optimizedImages
-			width: attributes.width,
-			height: attributes.height,
-			srcSet: getImageSrcSet(attributes.width, attributes.height, srcSet.values) // get srcSet for each additional image with helper function
+	// set the state of images
+	const [slides, setSlides] = useState([]);
+   const [cmsImages, setCmsImages] = useState([]);
+	const [additionalGalleryImages, setAdditionalGalleryImages] = useState([]);
+
+	// this useEffect resolves Promises that need to be resolved
+	// every time a new image is added in the CMS, component re-renders
+	// then sets the cmsImages state
+	useEffect(() => {
+
+		// const nonMainImages = additionalImages.optimizedImages?.map(({src, attributes, srcSet}, i) => {
+		// 	return {
+		// 		src: src,
+		// 		alt: additionalImages.imagesWithAlts[i].image_alt, // get alt by matching index from optimizedImages
+		// 		width: attributes.width,
+		// 		height: attributes.height,
+		// 		srcSet: getImageSrcSet(attributes.width, attributes.height, srcSet.values) // get srcSet for each additional image with helper function
+		// 	}
+		// })
+		
+		// const mainImageWidth = mainImage.image.attributes.width;
+		// const mainImageHeight = mainImage.image.attributes.height;
+
+		// const incomingImages = [
+		// 	{
+		// 		src: mainImage.image.src,
+		// 		alt: mainImage.alt,
+		// 		width: mainImageWidth,
+		// 		height: mainImageHeight,
+		// 		srcSet: getImageSrcSet(mainImageWidth, mainImageHeight, mainImage.image.srcSet.values) // get srcSet from mainImage with helper function
+		// 	},
+		// 	...nonMainImages
+		// ]
+
+		const incomingImages = [
+			mainImage.image,
+			...additionalImages?.optimizedImages
+		]
+
+		// conditions based on whether user is editing on CMS
+		if (isCMS) {
+
+			// resolve CMS images because they are Promises
+			// this sets the state of all images in the gallery
+			resolveAndSetState({
+				data: incomingImages,
+				setStateFunction: setCmsImages
+			});
+
+			// this sets the state of the additional images
+			resolveAndSetState({
+				data: [...additionalImages?.optimizedImages],
+				setStateFunction: setAdditionalGalleryImages
+			});
+		} else {
+
+			setCmsImages(incomingImages); // set state directly because we don't need to resolve them
+			setAdditionalGalleryImages(additionalImages?.optimizedImages); // this sets the state of the additional images
 		}
-	})
 
-	const mainImageWidth = mainImage.image.attributes.width;
-	const mainImageHeight = mainImage.image.attributes.height;
+		return () => {}
+	}, [mainImage, additionalImages])
 
-	const slides = [
-		{
-			src: mainImage.image.src,
-			alt: mainImage.alt,
-			width: mainImageWidth,
-			height: mainImageHeight,
-			srcSet: getImageSrcSet(mainImageWidth, mainImageHeight, mainImage.image.srcSet.values) // get srcSet from mainImage with helper function
-		},
-		...nonMainImages
-	]
+	// this useEffect re-creates the slides every time cmsImages changes somehow
+	useEffect(() => {
+
+		console.log("CMS", cmsImages)
+		const slidesArr = createLightboxSlides({
+			isCMS: isCMS,
+			images: cmsImages,
+			imagesWithAlts: [mainImage, ...additionalImages.imagesWithAlts]
+		})
+		console.log("slidesARR", slidesArr)
+		setSlides(slidesArr);
+		console.log("SLIDES", slides)
+		return () => {}
+	}, [cmsImages])
+
 
 	return (
 		<>
@@ -140,7 +196,7 @@ export default function LightboxWrapper({mainImage, additionalImages, children, 
             <GalleryThumbs 
 					setIndex={setIndex} 
 					images={{
-						optimizedImages: additionalImages.optimizedImages || [],
+						optimizedImages: additionalGalleryImages || [],
 						imagesWithAlts: additionalImages.imagesWithAlts || []
 					}}
 				/>
