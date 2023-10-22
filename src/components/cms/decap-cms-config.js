@@ -157,6 +157,7 @@ export default function DecapCMS() {
 					create: true,
 					preview_path: "{{fields.art_type}}/{{slug}}",
 					summary: "{{title}} | {{fields.tags}} | {{fields.date}}",
+					description: "On your live site, your artwork is still separated under 'Paintings', 'Drawings', and 'Sculptures'. What you see here is all of your artwork but you are able to filter, group, and sort them as needed (this only applies to you). Click the icon on the right (the one with 4 little squares) to see an image preview.",
 					// nested: {
 					// 	depth: 200,
 					// 	summary: "{{title}} | {{fields.date}}", // # optional summary for a tree node, defaults to the inferred title field
