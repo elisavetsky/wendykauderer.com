@@ -10,6 +10,30 @@ import CMS, { init } from "decap-cms-app";
 // Until then an "overrides" object is added to package.json to "trick" React
 */
 
+const test = import.meta.glob("../../content/artwork/*");
+const testIterable = Object.entries(test);
+
+// Cool tweaked function from Aaron Hubbard 
+// (https://www.aaronhubbard.dev/blogposts/text-from-module)
+// This loads markdown files and parses them 
+// and returns content of interest for the CMS
+async function loadMarkdown(globEntries) {
+	const promisedEntries = await Promise.all(
+		globEntries.map(async ([path, resolver]) => {
+			const { frontmatter, rawContent } = await resolver();
+
+			return {
+				frontmatter: frontmatter,
+				body: rawContent(),
+			};
+	}))
+
+	return promisedEntries;
+}
+	
+loadMarkdown(testIterable).then((res) => {
+	console.log("res", res)
+})
 
 // import utils
 import { humanDate } from "../../utils/textTools";
@@ -18,6 +42,9 @@ import { humanDate } from "../../utils/textTools";
 import HomepagePreview from "./previews/HomepagePreview.jsx";
 import ArtworkPreview from "./previews/ArtworkPreview.jsx";
 import BioPreview from "./previews/BioPreview.jsx";
+
+// create alt text pattern variable for easier tweaking
+const altTextPattern = [".{20,}", "Alternative text must be at least 20 characters long. Try giving just a bit more detail."];
 
 
 export default function DecapCMS() {
@@ -55,25 +82,25 @@ export default function DecapCMS() {
 					srotable_fields: [],
 					fields: [
 						{
-							label: "Your Name",
+							label: "👩‍🎨 Your Name",
 							name: "site_name",
 							widget: "string",
 						},
 						{
-							label: "Sitewide Description",
+							label: "📄 Sitewide Description",
 							name: "site_description",
 							widget: "string",
 							hint: "Keep this short and simple."
 						},
 						{
-							label: "Contact Email",
+							label: "📩 Contact Email",
 							name: "contact_email",
 							widget: "string",
 							pattern: ["^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$", "You must use a correct email format"],
 							hint: "Your email which will be used for people to contact you on your site."
 						},
 						{
-							label: "Curved Image Edges",
+							label: "⏹️ Curved Image Edges",
 							name: "curved_image_edges",
 							widget: "boolean",
 							hint: "If this switch is on, it means all images have a slight curve to their edges. If it is off, all images have sharp corners."
@@ -92,16 +119,17 @@ export default function DecapCMS() {
 					sortable_fields: [],
 					fields: [
 						{
-							label: "🖼️ Feature Image",
+							label: "🖼️ Featured Image",
 							name: "image",
 							widget: "image",
 							choose_url: false,
 							media_folder: "/src/assets/images",
 						},
 						{
-							label: "♿ Featured Image Alt",
+							label: "♿ Featured Image Alternative Text",
 							name: "image_alt",
 							widget: "text",
+							pattern: altTextPattern,
 							hint: "For accessibility purposes."
 						},
 						{
@@ -134,53 +162,63 @@ export default function DecapCMS() {
 					// },
 					view_filters: [
 						{
-							label: "Featured",
-							field: "featured",
+							label: "📝 Drafts",
+							field: "draft",
 							pattern: true,
 						},
 						{
-							label: "Not Featured",
-							field: "featured",
+							label: "🟢 Available (Unsold, etc.)",
+							field: "sold",
 							pattern: false,
 						},
 						{
-							label: "Paintings",
+							label: "🔴 Not Available (Sold, etc.)",
+							field: "sold",
+							pattern: true,
+						},
+						{
+							label: "🖼️ Paintings",
 							field: "art_type",
 							pattern: "painting",
 						},
 						{
-							label: "Drawings",
+							label: "✏️ Drawings",
 							field: "art_type",
 							pattern: "drawing",
 						},
 						{
-							label: "Sculptures",
+							label: "🗿 Sculptures",
 							field: "art_type",
 							pattern: "sculpture",
 						},
 					],
 					view_groups: [
 						{
-							label: "Drafts",
+							label: "📝 Drafts",
 							field: "draft",
 						},
 						{
-							label: "Year",
+							label: "🟢 Available",
+							field: "sold",
+							
+						},
+						{
+							label: "🔢 Year - ",
 							field: "date",
 							pattern: "\\d{4}", // # groups items based on the value matched by the pattern
 						},
 						{
-							label: "Type - ",
+							label: "*️⃣ Type - ",
 							field: "art_type",
 						},
 						{
-							label: "Tags - ",
+							label: "🏷️ Tags - ",
 							field: "tags",
 						},
 					],
 					fields: [
 						{
-							label: "Draft",
+							label: "📝 Draft",
 							name: "draft",
 							widget: "boolean",
 							default: false
@@ -190,6 +228,7 @@ export default function DecapCMS() {
 							name: "sold",
 							widget: "boolean",
 							default: false,
+							hint: "Turn this on if this piece is no longer available."
 						},
 						{
 							label: "❇️ Title",
@@ -243,9 +282,11 @@ export default function DecapCMS() {
 							widget: "image"
 						},
 						{
-							label: "♿ Main Image Alt",
+							label: "♿ Main Image Alternative Text",
 							name: "main_image_alt",
-							widget: "text"
+							widget: "text",
+							pattern: altTextPattern,
+							hint: "For accessibility purposes.",
 						},
 						{
 							label: " 🏞️ Other Artwork Image(s)",
@@ -271,14 +312,16 @@ export default function DecapCMS() {
 									// },
 								},
 								{
-									label: "♿ Alternative Text (for Accessibility)",
+									label: "♿ Alternative Text",
 									name: "image_alt",
 									widget: "text",
+									pattern: altTextPattern,
+									hint: "For accessibility purposes.",
 								},
 							],
 						},
 						{
-							label: "✏️ Description",
+							label: "📄 Description",
 							name: "body",
 							required: false,
 							widget: "markdown",
@@ -362,9 +405,11 @@ export default function DecapCMS() {
 									media_folder: "/src/assets/images",
 								},
 								{
-									label: "♿ Alternative Text (for Accessibility)",
+									label: "♿ Alternative Text",
 									name: "image_alt",
-									widget: "text",
+									widget: "string",
+									pattern: altTextPattern,
+									hint: "For accessibility purposes.",
 								},
 							],
 						},
