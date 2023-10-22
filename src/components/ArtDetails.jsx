@@ -2,7 +2,7 @@
 import Link from "./Link.jsx";
 import ArtTags from "./ArtTags.jsx";
 
-export default function ArtDetails({ artType, sold, artTitle, artTags }) {
+export default function ArtDetails({ artType, sold, artTitle, artTags, dependencyArray }) {
    console.log("NORMAL ART TAGS", artTags)
 
    return (
@@ -45,6 +45,7 @@ export default function ArtDetails({ artType, sold, artTitle, artTags }) {
          <ArtTags 
             inline 
             tags={artTags} 
+            dependencyArray={dependencyArray}
             classes="mb-8" 
          />
       </>

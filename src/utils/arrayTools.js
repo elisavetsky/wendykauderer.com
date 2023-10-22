@@ -50,29 +50,34 @@ function promiseCMSImages({
 
    return immutableData.map(async (imageData) => {
 
-      const image_alt = imageAlt 
+      try {
+         const image_alt = imageAlt 
                            ? imageAlt
                            : imageData.getIn(["data", "image_alt"])
       
-      const img = new Image();
+         const img = new Image();
 
-      // change img.src based on whether incoming data is already a string
-      if (typeof imageData === "string") {
-         img.src = getAsset(imageData);
-      } else {
-         img.src = getAsset(imageData.getIn(["data", "image"])).toString();
+         // change img.src based on whether incoming data is already a string
+         if (typeof imageData === "string") {
+            img.src = getAsset(imageData);
+         } else {
+            img.src = getAsset(imageData.getIn(["data", "image"])).toString();
+         }
+
+         // need to await the async nature of decoding
+         await img.decode();
+
+         return {
+            src: img.src,
+            width: img.width,
+            height: img.height,
+            image_alt: image_alt
+         }
+
+      } catch (err) {
+         console.error(err)
       }
 
-      // need to await the async nature of decoding
-      await img.decode();
-
-      return {
-         src: img.src,
-         width: img.width,
-         height: img.height,
-         image_alt: image_alt
-      }
-   
       // Finally, shallow convert to native JS Array
       // For performance reasons
    }).toArray();
@@ -94,9 +99,9 @@ function resolveAndSetState({data, setStateFunction}) {
    })
 }
 
-// restructure the tags array to a similar
-// structure to Astro's collection
-function restructureTags(tags) {
+// restructure the fieldsMetaData tags array 
+// to a similar structure to Astro's collection
+function restructureTagsFieldsMetaData(tags) {
    
    // map over Immutable data,
    // destructure it and
@@ -105,14 +110,35 @@ function restructureTags(tags) {
 
       // .toObject() Immutable.js method
       // is used to convert to a normal looking
-      // {key: val} structure
+      // {key: val} structure.
+      // We just want the `val` for `data:` which 
+      // looks like example: `{ title: 'still life' }`
       return {
          id: key,
-         data: val.toObject()
+         data: val.map((val, key) => val).toObject()
       }
-   }).toArray() // shallow convert to regular JS
 
+   }).toArray() // shallow convert to regular JS
 }
+
+// this is the current tags array of strings 
+// being selected. For some reason, the fieldsMetaData 
+// does NOT update with currently selected tags
+function restructureTags(tags) {
+   return tags.map((tag) => {
+
+      // must replace title with unslugified version
+      // so that it is human readable
+      return {
+         id: tag,
+         data: {
+            title: tag.replace("-", " ")
+         }
+      }
+
+   }).toArray(); // shallow convert to regular JS
+}
+
 
 export { 
    convertToArray, 
@@ -120,5 +146,6 @@ export {
    moveToFirst, 
    promiseCMSImages, 
    resolveAndSetState,
-   restructureTags 
+   restructureTagsFieldsMetaData,
+   restructureTags
 };
