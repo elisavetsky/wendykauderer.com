@@ -47,6 +47,10 @@ import BioPreview from "./previews/BioPreview.jsx";
 // create alt text pattern variable for easier tweaking
 const altTextPattern = [".{20,}", "Alternative text must be at least 20 characters long. Try giving just a bit more detail."];
 
+// create only letters and spaces pattern.
+// No spaces at the end though!
+const lettersAndSpacesPattern = ["^[\p{L}\p{Zs}.-]+$/u", "Only letters, spaces, hypens, and periods are allowed. No spaces at the end though"]
+
 
 export default function DecapCMS() {
 	init({
@@ -86,12 +90,14 @@ export default function DecapCMS() {
 							label: "👩‍🎨 Your Name",
 							name: "site_name",
 							widget: "string",
+							pattern: lettersAndSpacesPattern
 						},
 						{
 							label: "📄 Sitewide Description",
 							name: "site_description",
 							widget: "string",
-							hint: "Keep this short and simple."
+							hint: "Keep this short and simple.",
+							pattern: lettersAndSpacesPattern
 						},
 						{
 							label: "📩 Contact Email",
