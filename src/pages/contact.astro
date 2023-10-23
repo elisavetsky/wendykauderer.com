@@ -17,24 +17,22 @@ const featuredArtwork = await getEntry('settings', 'main-hero');
 <BaseLayout 
    pageTitle="Contact"
 >  
-   <div class="max-w-xl md:max-w-none">
+   <div transition:animate="fade" class="max-w-xl md:max-w-none">
       <SectionTitle title="Contact Me"/>
-      <div transition:animate="fade">
-         <Flex2ColLayout>
-            <div class="flex-auto w-full xl:w-1/3">
-               <ContactForm />
-            </div>
-            <div class="p-4 m-auto xl:w-2/3 md:m-0 xl:m-auto">
-               <ImageWrapper 
-                  src={featuredArtwork.data.image} 
-                  alt={featuredArtwork.data.image_alt} 
-                  width={768}
-                  quality={50}
-                  loading="eager"
-                  classes="md:max-w-md xl:mr-auto"
-               />
-            </div>
-         </Flex2ColLayout>
-      </div>
+      <Flex2ColLayout>
+         <div class="flex-auto w-full md:max-w-[24rem] xl:max-w-[35rem] mr-auto xl:ml-auto">
+            <ContactForm client:load />
+         </div>
+         <div class="p-4 m-auto md:m-0 lg:w-auto xl:m-auto xl:w-3/5 2xl:w-3/4">
+            <ImageWrapper 
+               src={featuredArtwork.data.image} 
+               alt={featuredArtwork.data.image_alt} 
+               width={768}
+               quality={50}
+               loading="eager"
+               classes="md:max-w-xl lg:max-w-lg xl:mr-auto"
+            />
+         </div>
+      </Flex2ColLayout>
    </div>
 </BaseLayout>

@@ -8,6 +8,7 @@ import { frontmatter } from "../configuration/SitewideConfig.md";
 const curvedEdges = frontmatter.curved_image_edges;
 
 const { 
+   focusFirst,
    sold, 
    title, 
    date, 
@@ -20,7 +21,7 @@ const {
 } = Astro.props;
 ---
 
-<a role="button" href={href}>
+<a id="main-image" data-focus-first={focusFirst} role="button" href={href}>
    <div 
       class={`relative overflow-hidden sm:px-0 transition transition-translate ease-in-out delay-75 duration-300 sm:shadow-lg  sm:hover:shadow-xl sm:hover:shadow-black/20 sm:dark:hover:shadow-black/50 sm:motion-safe:hover:translate-x-px sm:motion-safe:hover:-translate-y-1 ${curvedEdges && "sm:rounded-md"}`}
    >
@@ -37,3 +38,24 @@ const {
       </div>
    </div>
 </a> 
+
+<!-- <script>
+   document.addEventListener('astro:page-load', () => {
+   // This necessary script runs after very page load
+
+      const mainImage = document.querySelector("#main-image");
+
+      if (mainImage.getAttribute("data-focus-first") === "true") {
+         document.addEventListener("keydown", (event) => {
+            if (event.code === "Tab") {
+               mainImage.focus()
+            } else {
+               
+            }
+
+         })
+      }
+
+   })
+   
+</script> -->

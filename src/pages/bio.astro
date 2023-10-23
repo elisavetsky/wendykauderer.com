@@ -29,24 +29,22 @@ import InlineLightboxGallery from "../components/InlineLightboxGallery.jsx";
    pageTitle="Bio"
    blurredBg={images[0].image}
 >
-   <article>
+   <article transition:animate="fade">
       <SectionTitle title="Bio" />
-      <div transition:animate="fade">
-         <Flex2ColLayout>
-            <BioContent heading={heading}>
-               <Content />
-            </BioContent>
-            <InlineLightboxGallery
-               ariaLabel="Some of my photos"
-               client:visible 
-               data={{
-                  images: optimizedImages || [],
-                  imagesWithAlts: images || []
-               }} 
-               classes="flex-1 m-auto md:px-4 w-screen md:w-full md:max-w-[60rem]" 
-            />
-         </Flex2ColLayout>
-      </div>
+      <Flex2ColLayout>
+         <BioContent heading={heading}>
+            <Content />
+         </BioContent>
+         <InlineLightboxGallery
+            ariaLabel="Some of my photos"
+            client:visible 
+            data={{
+               images: optimizedImages || [],
+               imagesWithAlts: images || []
+            }} 
+            classes="flex-1 m-auto md:px-4 w-screen md:w-full md:max-w-[60rem]" 
+         />
+      </Flex2ColLayout>
    </article>
    
 </BaseLayout>
