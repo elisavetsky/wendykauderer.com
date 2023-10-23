@@ -11,7 +11,7 @@ import {
 export default function ContactForm() {
 	return (
       <Form.Root name="contact" method="POST" data-netlify="true" className="px-4">
-
+         <input type="hidden" name="form-name" value="contact" />
          <Form.Field className="group relative max-w-[24rem]" name="name">
             <Form.Label className="text-sm inline-block mb-1 mt-8">Name</Form.Label>
             <UserIcon className="absolute h-5 w-5 pl-1 pt-0.5 ml-1 mt-2"/>
