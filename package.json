@@ -20,6 +20,7 @@
     "@astrojs/react": "^3.0.2",
     "@astrojs/tailwind": "^5.0.0",
     "@heroicons/react": "^2.0.18",
+    "@radix-ui/react-form": "^0.0.3",
     "@sindresorhus/slugify": "^2.2.1",
     "@szhsin/react-menu": "^4.0.3",
     "@theme-toggles/react": "^4.1.0",
