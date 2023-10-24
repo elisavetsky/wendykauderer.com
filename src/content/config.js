@@ -37,7 +37,9 @@ const settingsCollection = defineCollection({
 		z.object({
 			title: z.string().optional(),
          image: image().optional(),
-         image_alt: z.string().optional()
+         image_alt: z.string().optional(),
+         success_heading: z.string().optional(),
+         success_message: z.string().optional(),
 		}),
 })
 
