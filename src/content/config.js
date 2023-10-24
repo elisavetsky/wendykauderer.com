@@ -32,12 +32,12 @@ const tagCollection = defineCollection({
    })
 })
 
-const mainHeroCollection = defineCollection({
+const settingsCollection = defineCollection({
    schema: ({ image }) =>
 		z.object({
-			title: z.string(),
-         image: image(),
-         image_alt: z.string()
+			title: z.string().optional(),
+         image: image().optional(),
+         image_alt: z.string().optional()
 		}),
 })
 
@@ -58,6 +58,6 @@ const bioCollection = defineCollection({
 export const collections = {
 	artwork: artworkCollection,
    tags: tagCollection,
-   settings: mainHeroCollection,
+   settings: settingsCollection,
    bio: bioCollection
 };
