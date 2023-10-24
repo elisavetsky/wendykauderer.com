@@ -17,11 +17,12 @@ const { artwork } = Astro.props;
 
          return (
             <li 
-               class={`sm:col-span-1 md:col-span-1 xl:col-span-2
-                  ${image.width > 1.5 * image.height && image.width < 1.74 * image.height ? "sm:col-span-2 md:col-span-2" : "xl:col-span-2"} 
-                  ${image.width > 1.75 * image.height && i % 2 !== 1 ? "sm:col-span-2 md:col-span-2 xl:col-span-6" : "xl:col-span-2"} 
-                  ${image.height > 1.6 * image.width ? "xl:col-span-4 xl:row-span-2" : ""} 
-               `}
+               class={"sm:col-span-1 md:col-span-1 xl:col-span-2"
+                  // `sm:col-span-1 md:col-span-1 xl:col-span-2
+                  // ${image.width > 1.5 * image.height && image.width < 1.74 * image.height ? "sm:col-span-2 md:col-span-2" : "xl:col-span-2"} 
+                  // ${image.width > 1.75 * image.height && i % 2 !== 1 ? "sm:col-span-2 md:col-span-2 xl:col-span-6" : "xl:col-span-2"} 
+                  // ${image.height > 1.6 * image.width ? "xl:col-span-4 xl:row-span-2" : ""}`
+               }
             >
                <FullArtwork 
                   sold={entry.data.sold} 
