@@ -7,5 +7,5 @@ art_type: painting
 tags:
   - portrait
 image: /src/assets/images/alejandra.jpg
-main_image_alt: ♿♿♿♿♿♿♿♿♿♿♿
+main_image_alt: ♿
 ---

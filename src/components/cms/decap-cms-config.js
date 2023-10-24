@@ -10,6 +10,7 @@ import CMS, { init } from "decap-cms-app";
 // Until then an "overrides" object is added to package.json to "trick" React
 */
 
+/*
 const test = import.meta.glob("../../content/artwork/*");
 const testIterable = Object.entries(test);
 
@@ -34,6 +35,7 @@ async function loadMarkdown(globEntries) {
 loadMarkdown(testIterable).then((res) => {
 	console.log("res", res)
 })
+*/
 
 
 // import utils
@@ -45,7 +47,7 @@ import ArtworkPreview from "./previews/ArtworkPreview.jsx";
 import BioPreview from "./previews/BioPreview.jsx";
 
 // create alt text pattern variable for easier tweaking
-const altTextPattern = [".{20,}", "Alternative text must be at least 20 characters long. Try giving just a bit more detail."];
+const altTextPattern = [".{20,}", "This must be at least 20 characters long. Try giving just a bit more detail."];
 
 // create only letters and spaces pattern.
 // No spaces at the end though!
@@ -80,6 +82,7 @@ export default function DecapCMS() {
 					name: "configuration",
 					label: "Global Settings",
 					folder: "src/configuration",
+					delete: false,
 					summary: "{{fields.label}}",
 					editor: {
 						preview: false,
@@ -121,6 +124,7 @@ export default function DecapCMS() {
 					name: "settings",
 					label: "Page Settings",
 					folder: "src/content/settings/",
+					delete: false,
 					summary: "{{fields.label}}",
 					description: "Tweak your homepage and more!",
 					sortable_fields: [],
@@ -163,7 +167,7 @@ export default function DecapCMS() {
 					create: true,
 					preview_path: "{{fields.art_type}}/{{slug}}",
 					summary: "{{title}} | {{fields.tags}} | {{fields.date}}",
-					description: "On your live site, your artwork is still separated under 'Paintings', 'Drawings', and 'Sculptures'. What you see here is all of your artwork but you are able to filter, group, and sort them as needed (this only applies to you). Click the icon on the right (the one with 4 little squares) to see an image preview.",
+					description: "On your live site, your artwork is still separated under 'Paintings', 'Drawings', and 'Sculptures'. What you see here is all of your artwork but you are able to filter, group, and sort them as needed (this only applies to you on this specific screen). Hint: click the icon on the right (the one with 4 little squares) to see an image preview.",
 					// nested: {
 					// 	depth: 200,
 					// 	summary: "{{title}} | {{fields.date}}", // # optional summary for a tree node, defaults to the inferred title field
@@ -287,7 +291,8 @@ export default function DecapCMS() {
 							label: "🖼️ Main Image",
 							name: "image",
 							// media_folder: "/src/assets/images",
-							widget: "image"
+							widget: "image",
+							choose_url: false,
 						},
 						{
 							label: "♿ Main Image Alternative Text",
@@ -295,6 +300,17 @@ export default function DecapCMS() {
 							widget: "text",
 							pattern: altTextPattern,
 							hint: "For accessibility purposes.",
+						},
+						{
+							label: "📄 Description",
+							name: "body",
+							required: false,
+							widget: "markdown",
+                     buttons: ["bold", "italic", "link", "quote"],
+                     editor_components: ["false"],
+                     modes: ["rich_text"],
+                     sanitize_preview: true
+							
 						},
 						{
 							label: " 🏞️ Other Artwork Image(s)",
@@ -327,17 +343,6 @@ export default function DecapCMS() {
 									hint: "For accessibility purposes.",
 								},
 							],
-						},
-						{
-							label: "📄 Description",
-							name: "body",
-							required: false,
-							widget: "markdown",
-                     buttons: ["bold", "italic", "link", "quote"],
-                     editor_components: ["false"],
-                     modes: ["rich_text"],
-                     sanitize_preview: true
-							
 						},
 					],
 				},
@@ -376,6 +381,7 @@ export default function DecapCMS() {
 					name: "bio",
 					label: "Bio",
 					folder: "src/content/bio/",
+					delete: false,
 					summary: "Bio ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{fields.body}}",
 					description: "I can edit my bio here!",
 					sortable_fields: [],

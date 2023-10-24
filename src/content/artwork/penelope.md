@@ -7,5 +7,5 @@ art_type: drawing
 tags:
   - portrait
 image: /src/assets/images/penelope.jpg
-main_image_alt: ♿♿♿♿♿♿♿♿♿♿♿♿
+main_image_alt: ♿♿
 ---
