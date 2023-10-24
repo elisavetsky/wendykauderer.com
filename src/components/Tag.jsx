@@ -1,7 +1,7 @@
 // import components
 import Link from "./Link.jsx"
 
-export default function Tag({title, slug, urlPath}) {
+export default function Tag({isCMS, title, slug, urlPath}) {
 
    const commonClasses = "transition-colors h-fit px-2 py-0.5 last-of-type:mr-0 flex w-max items-center rounded-lg font-medium"
 
@@ -14,7 +14,7 @@ export default function Tag({title, slug, urlPath}) {
       <li>
          <Link 
             inline 
-            href={`/tags/${slug}`}
+            href={isCMS ? null : `/tags/${slug}`}
             classes="no-underline rounded-lg"
             transition="transition-none"
          >

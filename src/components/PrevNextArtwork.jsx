@@ -8,37 +8,7 @@ const curvedEdges = frontmatter.curved_image_edges;
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
-export default function PrevNextArtwork({prevEntry, nextEntry}) {
-   // const [isIntersecting, setIsIntersecting] = useState(false)
-
-   // const prevNextRef = useRef(null);
-
-   // const options = {
-   //    root: document.querySelector(".fix-art-nav"),
-   //    rootMargin: "0px",
-   //    threshhold: 1.0
-   // }
-
-   // function handleIntersection(entries) {
-   //    const [entry] = entries;
-
-   //    console.log(entry.isIntersecting)
-   //    setIsIntersecting(entry.isIntersecting)
-   // }
-
-   // useEffect(() => {
-   //    const observer = new IntersectionObserver(handleIntersection, options)
-
-   //    if (prevNextRef.current) {
-   //       observer.observe(prevNextRef.current)
-   //    }
-
-   //    return () => {
-   //       if (prevNextRef.current) {
-   //          observer.unobserve(prevNextRef.current)
-   //       }
-   //    }
-   // }, [prevNextRef, options])
+export default function PrevNextArtwork({isCMS, prevEntry, nextEntry}) {
 
 
    // Do not render this if there is nothing previous or next
@@ -56,7 +26,7 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
                <div className='grid grid-cols-2 justify-between w-full gap-3 3xl:flex 3xl:flex-col'>
                   {prevEntry &&
                      <a 
-                        href={`/${prevEntry.data.art_type}/${prevEntry.slug}`} 
+                        href={isCMS ? null : `/${prevEntry.data.art_type}/${prevEntry.slug}`} 
                         aria-label={`Previous ${prevEntry.data.art_type}`}
                         className={`group ${curvedEdges && "rounded-xl"} bg-white/30 backdrop-blur-lg transition-colors text-right border-2 items-end flex justify-between gap-4 px-3 pb-2 pt-3 border-black/10 hover:bg-white/50 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/50 sm:flex-col sm:items-start md:flex-row md:items-center sm:text-left lg:flex-col lg:items-start 3xl:min-h-[7rem] `}
                      >
@@ -67,7 +37,7 @@ export default function PrevNextArtwork({prevEntry, nextEntry}) {
                   }
                   {nextEntry &&
                      <a 
-                        href={`/${nextEntry.data.art_type}/${nextEntry.slug}`} 
+                        href={isCMS ? null : `/${nextEntry.data.art_type}/${nextEntry.slug}`} 
                         aria-label={`Next ${nextEntry.data.art_type}`}
                         className={`group ${curvedEdges && "rounded-xl"} bg-white/30 backdrop-blur-xl text-left transition-colors col-start-2 border-2  items-end flex flex-row-reverse justify-between gap-5 px-3 pb-2 pt-3 border-black/10 hover:bg-white/50 dark:bg-black/30 dark:border-white/10 dark:hover:bg-black/50 sm:flex-col sm:text-right md:flex-row-reverse md:items-center lg:flex-col lg:items-end 3xl:min-h-[7rem]`}
                      >

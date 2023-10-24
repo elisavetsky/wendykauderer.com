@@ -2,7 +2,7 @@
 import Link from "./Link.jsx";
 import ArtTags from "./ArtTags.jsx";
 
-export default function ArtDetails({ artType, sold, artTitle, artTags, dependencyArray }) {
+export default function ArtDetails({ isCMS, artType, sold, artTitle, artTags, dependencyArray }) {
 
    return (
       <>
@@ -19,7 +19,7 @@ export default function ArtDetails({ artType, sold, artTitle, artTags, dependenc
                   {humanDate(date)}
                </time> */}
                <Link
-                  href={`/${artType}`}
+                  href={isCMS ? null : `/${artType}`}
                   inline
                   classes="opacity-70"
                   data-pagefind-meta={`type:${artType}`}
@@ -42,6 +42,7 @@ export default function ArtDetails({ artType, sold, artTitle, artTags, dependenc
             <h1>{artTitle}</h1>
          </header>
          <ArtTags 
+            isCMS={isCMS}
             inline 
             tags={artTags} 
             dependencyArray={dependencyArray}
