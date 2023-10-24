@@ -1,4 +1,4 @@
-export default function BioContent({ heading, content, ...props}) {
+export default function MarkdownContent({ heading, content, ...props}) {
    return (
       <div className="mt-7 px-4 flex-1 prose prose-zinc dark:prose-p:text-zinc-100 justify-center dark:prose-invert md:prose-lg">
          {heading && 

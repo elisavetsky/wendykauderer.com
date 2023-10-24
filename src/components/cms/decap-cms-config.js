@@ -10,33 +10,6 @@ import CMS, { init } from "decap-cms-app";
 // Until then an "overrides" object is added to package.json to "trick" React
 */
 
-/*
-const test = import.meta.glob("../../content/artwork/*");
-const testIterable = Object.entries(test);
-
-// Cool tweaked function from Aaron Hubbard 
-// (https://www.aaronhubbard.dev/blogposts/text-from-module)
-// This loads markdown files and parses them 
-// and returns content of interest for the CMS
-async function loadMarkdown(globEntries) {
-	const promisedEntries = await Promise.all(
-		globEntries.map(async ([path, resolver]) => {
-			const { frontmatter, rawContent } = await resolver();
-
-			return {
-				frontmatter: frontmatter,
-				body: rawContent(),
-			};
-	}))
-
-	return promisedEntries;
-}
-	
-loadMarkdown(testIterable).then((res) => {
-	console.log("res", res)
-})
-*/
-
 
 // import utils
 import { humanDate } from "../../utils/textTools";
@@ -45,6 +18,7 @@ import { humanDate } from "../../utils/textTools";
 import HomepagePreview from "./previews/HomepagePreview.jsx";
 import ArtworkPreview from "./previews/ArtworkPreview.jsx";
 import BioPreview from "./previews/BioPreview.jsx";
+import ContactSuccessPreview from "./previews/ContactSuccessPreview.jsx";
 
 // create alt text pattern variable for easier tweaking
 const altTextPattern = [".{20,}", "This must be at least 20 characters long. Try giving just a bit more detail."];
@@ -197,10 +171,6 @@ export default function DecapCMS() {
 					summary: "{{title}} | {{fields.tags}} | {{fields.date}}",
 					description: "On your live site, your artwork is still separated under 'Paintings', 'Drawings', and 'Sculptures'. What you see here is all of your artwork but you are able to filter, group, and sort them as needed (this only applies to you on this specific screen). Hint: click the icon on the right (the one with 4 little squares) to see an image preview.",
 					preview_path: "/{{fields.art_type}}/{{fields.title}}",
-					// nested: {
-					// 	depth: 200,
-					// 	summary: "{{title}} | {{fields.date}}", // # optional summary for a tree node, defaults to the inferred title field
-					// },
 					view_filters: [
 						{
 							label: "📝 Drafts",
@@ -356,13 +326,6 @@ export default function DecapCMS() {
 									widget: "image",
 									choose_url: false,
 									default: null,
-									// media_folder: "/src/assets/images",
-									// public_folder: "./",
-									// media_library: {
-									// 	config: {
-									// 		media_folder: "/src/assets/images"
-									// 	}
-									// },
 								},
 								{
 									label: "♿ Alternative Text",
@@ -478,4 +441,5 @@ export default function DecapCMS() {
 	CMS.registerPreviewTemplate("homepage", HomepagePreview);
 	CMS.registerPreviewTemplate("artwork", ArtworkPreview);
 	CMS.registerPreviewTemplate("bio", BioPreview);
+	CMS.registerPreviewTemplate("contact", ContactSuccessPreview);
 }

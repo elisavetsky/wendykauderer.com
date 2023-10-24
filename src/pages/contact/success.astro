@@ -1,0 +1,54 @@
+---
+import { getEntry } from "astro:content";
+
+// import layouts
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Flex2ColLayout from "../../components/layouts/Flex2ColLayout.jsx";
+
+// import components
+import SectionTitle from "../../components/SectionTitle.jsx";
+import ImageWrapper from "../../components/ImageWrapper.astro";
+import ImageColumn from "../../components/ImageColumn.jsx";
+import MarkdownContent from "../../components/MarkdownContent.jsx";
+import Link from "../../components/Link.jsx";
+
+// import featured artwork
+const featuredArtwork = await getEntry('settings', 'main-hero');
+const { image, image_alt } = featuredArtwork.data;
+
+// import Contact page settings
+const contactMe = await getEntry('settings', 'contact-me');
+const { title, success_heading, success_message } = contactMe.data;
+---
+
+<BaseLayout 
+   pageTitle="Contact Success"
+>  
+   <div transition:animate="fade" class="max-w-xl md:max-w-none">
+      <SectionTitle title={title} />
+      <Flex2ColLayout>
+         <div class="flex-auto w-full md:max-w-[24rem] xl:max-w-[35rem] mr-auto xl:ml-auto">
+            <MarkdownContent heading={success_heading}>
+               <p>{success_message}</p>
+               <Link 
+                  inline 
+                  href="/"
+                  classes="decoration-transparent underline underline-offset-4 hover:decoration-primary-text"
+               >
+                  Go back home
+               </Link>
+            </MarkdownContent>
+         </div>
+         <ImageColumn>
+            <ImageWrapper 
+               src={image} 
+               alt={image_alt} 
+               width={768}
+               quality={50}
+               loading="eager"
+               classes="md:max-w-xl lg:max-w-lg xl:mr-auto"
+            />
+         </ImageColumn>
+      </Flex2ColLayout>
+   </div>
+</BaseLayout>
