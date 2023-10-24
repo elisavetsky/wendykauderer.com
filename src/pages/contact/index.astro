@@ -8,6 +8,7 @@ import Flex2ColLayout from "../../components/layouts/Flex2ColLayout.jsx";
 // import components
 import SectionTitle from "../../components/SectionTitle.jsx";
 import ContactForm from "../../components/ContactForm.jsx";
+import ImageColumn from "../../components/ImageColumn.jsx";
 import ImageWrapper from "../../components/ImageWrapper.astro";
 
 // import featured artwork
@@ -28,7 +29,7 @@ const { title } = contactMe.data;
          <div class="flex-auto w-full md:max-w-[24rem] xl:max-w-[35rem] mr-auto xl:ml-auto">
             <ContactForm client:load />
          </div>
-         <div class="p-4 m-auto md:m-0 lg:w-auto xl:m-auto xl:w-3/5 2xl:w-3/4">
+         <ImageColumn>
             <ImageWrapper 
                src={image} 
                alt={image_alt} 
@@ -37,7 +38,7 @@ const { title } = contactMe.data;
                loading="eager"
                classes="md:max-w-xl lg:max-w-lg xl:mr-auto"
             />
-         </div>
+         </ImageColumn>
       </Flex2ColLayout>
    </div>
 </BaseLayout>
