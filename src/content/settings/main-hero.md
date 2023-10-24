@@ -1,4 +1,5 @@
 ---
+type: homepage
 label: Homepage (w/Featured Image)
 weight: -1
 title: Hey! I'm Wendy Kauderer.

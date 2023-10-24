@@ -79,79 +79,107 @@ export default function DecapCMS() {
             // GLOBAL SETTINGS COLLECTION //
             ////////////////////////////////
 				{
+					label: "🌏 Global Settings",
 					name: "configuration",
-					label: "Global Settings",
-					folder: "src/configuration",
-					delete: false,
-					summary: "{{fields.label}}",
-					editor: {
-						preview: false,
-					},
-					srotable_fields: [],
-					fields: [
+					description: "Here you can change settings which apply to your entire website.",
+					sortable_fields: [],
+					files: [
 						{
-							label: "👩‍🎨 Your Name",
-							name: "site_name",
-							widget: "string",
-							pattern: lettersAndSpacesPattern
-						},
-						{
-							label: "📄 Sitewide Description",
-							name: "site_description",
-							widget: "string",
-							hint: "Keep this short and simple.",
-							pattern: lettersAndSpacesPattern
-						},
-						{
-							label: "📩 Contact Email",
-							name: "contact_email",
-							widget: "string",
-							pattern: ["^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$", "You must use a correct email format"],
-							hint: "Your email which will be used for people to contact you on your site."
-						},
-						{
-							label: "⏹️ Curved Image Edges",
-							name: "curved_image_edges",
-							widget: "boolean",
-							hint: "If this switch is on, it means all images have a slight curve to their edges. If it is off, all images have sharp corners."
+							name: "global-settings",
+							label: "🌏 Global Settings",
+							file: "src/configuration/SitewideConfig.md",
+							delete: false,
+							summary: "{{fields.label}}",
+							editor: {
+								preview: false,
+							},
+							fields: [
+								{
+									label: "👩‍🎨 Your Name",
+									name: "site_name",
+									widget: "string",
+									pattern: lettersAndSpacesPattern
+								},
+								{
+									label: "📄 Sitewide Description",
+									name: "site_description",
+									widget: "string",
+									hint: "Keep this short and simple.",
+									pattern: lettersAndSpacesPattern
+								},
+								{
+									label: "📩 Contact Email",
+									name: "contact_email",
+									widget: "string",
+									pattern: ["^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$", "You must use a correct email format"],
+									hint: "Your email which will be used for people to contact you on your site."
+								},
+								{
+									label: "⏹️ Curved Image Edges",
+									name: "curved_image_edges",
+									widget: "boolean",
+									hint: "If this switch is on, it means all images and some other elements have a slight curve to their edges. If it is off, all images have sharp corners."
+								}
+							]
 						}
 					]
 				},
-				//////////////////////////////
-            // PAGE SETTINGS COLLECTION //
-            //////////////////////////////
+				///////////////////////////////////
+            // PAGE SETTINGS FILE COLLECTION //
+            ///////////////////////////////////
 				{
+					label: "⚙️ Page Settings",
 					name: "settings",
-					label: "Page Settings",
-					folder: "src/content/settings/",
-					delete: false,
-					summary: "{{fields.label}}",
-					description: "Tweak your homepage and more!",
+					description: "Tweak your website's homepage, and contact page!",
 					sortable_fields: [],
-					fields: [
+					files: [
 						{
-							label: "🖼️ Featured Image",
-							name: "image",
-							widget: "image",
-							choose_url: false,
-							media_folder: "/src/assets/images",
+							label: "🏡 Homepage Settings",
+							name: "homepage",
+							file: "src/content/settings/main-hero.md",
+							delete: false,
+							summary: "{{fields.label}}",
+							fields: [
+								{
+									label: "🖼️ Featured Image",
+									name: "image",
+									widget: "image",
+									choose_url: false,
+									media_folder: "/src/assets/images",
+								},
+								{
+									label: "♿ Featured Image Alternative Text",
+									name: "image_alt",
+									widget: "text",
+									pattern: altTextPattern,
+									hint: "For accessibility purposes."
+								},
+								{
+									label: "📣 Tagline",
+									name: "body",
+									widget: "markdown",
+									hint: "Edit the text that appears below your featured image & on the right of the image on larger screens.",
+									buttons: [],
+									editor_components: ["false"],
+									modes: ["rich_text"],
+									sanitize_preview: true
+								},
+							],
 						},
 						{
-							label: "♿ Featured Image Alternative Text",
-							name: "image_alt",
-							widget: "text",
-							pattern: altTextPattern,
-							hint: "For accessibility purposes."
-						},
-						{
-							label: "📣 Tagline",
-							name: "body",
-							widget: "markdown",
-							hint: "Edit the text that appears below your featured image & on the right of the image on larger screens.",
-                     buttons: [],
-                     editor_components: ["false"],
-                     modes: ["rich_text"],
-                     sanitize_preview: true
+							label: "📩 Contact Page Settings",
+							name: "contact",
+							file: "src/content/settings/contact-me.md",
+							delete: false,
+							summary: "{{fields.label}}",
+							preview_path: "/contact",
+							fields: [
+								{
+									label: "Section Title",
+									name: "title",
+									widget: "string"
+								}
+							]
 						},
 					]
 				},
@@ -159,8 +187,8 @@ export default function DecapCMS() {
             // ARTWORK COLLECTION //
             ////////////////////////
 				{
+					label: "👩‍🎨 My Artwork",
 					name: "artwork",
-					label: "My Artwork",
 					label_singular: "Artwork",
 					folder: "src/content/artwork",
 					media_folder: "/src/assets/images",
@@ -168,6 +196,7 @@ export default function DecapCMS() {
 					preview_path: "{{fields.art_type}}/{{slug}}",
 					summary: "{{title}} | {{fields.tags}} | {{fields.date}}",
 					description: "On your live site, your artwork is still separated under 'Paintings', 'Drawings', and 'Sculptures'. What you see here is all of your artwork but you are able to filter, group, and sort them as needed (this only applies to you on this specific screen). Hint: click the icon on the right (the one with 4 little squares) to see an image preview.",
+					preview_path: "/{{fields.art_type}}/{{fields.title}}",
 					// nested: {
 					// 	depth: 200,
 					// 	summary: "{{title}} | {{fields.date}}", // # optional summary for a tree node, defaults to the inferred title field
@@ -351,7 +380,7 @@ export default function DecapCMS() {
             /////////////////////
             {
 					name: "tags",
-					label: "Tag Collection",
+					label: "🏷️ Tag Collection",
                label_singular: "Tag",
 					folder: "src/content/tags",
 					extension: "yml",
@@ -378,56 +407,64 @@ export default function DecapCMS() {
             // BIO COLLECTION //
             ////////////////////
 				{
+					label: "📜 Bio",
 					name: "bio",
-					label: "Bio",
-					folder: "src/content/bio/",
-					delete: false,
-					summary: "Bio ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{fields.body}}",
 					description: "I can edit my bio here!",
 					sortable_fields: [],
-					fields: [
+					summary: "Bio ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{fields.body}}",
+					files: [
 						{
-							label: "📰 Heading",
-							name: "heading",
-							widget: "string",
-							required: false
-						},
-						{
-							label: "👤 Bio",
-							name: "body",
-							widget: "markdown",
-                     buttons: ["bold", "italic", "link", "quote"],
-                     editor_components: ["false"],
-                     modes: ["rich_text"],
-                     sanitize_preview: false
-						},
-						{
-							label: "🏞️ Gallery",
-							label_singular: "Image",
-							name: "images",
-							widget: "list",
-							collapsed: false,
-							summary:
-								"{{fields.image}} ||||| ALT TEXT: {{fields.image_alt}}",
+							label: "📜 Bio",
+							name: "bio",
+							file: "src/content/bio/bio.md",
+							delete: false,
+							summary: "Bio ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{fields.body}}",
+							preview_path: "/bio",
 							fields: [
 								{
-									label: "📷 Image",
-									name: "image",
-									widget: "image",
-									choose_url: false,
-									default: null,
-									media_folder: "/src/assets/images",
+									label: "📰 Heading",
+									name: "heading",
+									widget: "string",
+									required: false
 								},
 								{
-									label: "♿ Alternative Text",
-									name: "image_alt",
-									widget: "string",
-									pattern: altTextPattern,
-									hint: "For accessibility purposes.",
+									label: "👤 Bio",
+									name: "body",
+									widget: "markdown",
+									buttons: ["bold", "italic", "link", "quote"],
+									editor_components: ["false"],
+									modes: ["rich_text"],
+									sanitize_preview: false
 								},
-							],
-						},
-					]
+								{
+									label: "🏞️ Gallery",
+									label_singular: "Image",
+									name: "images",
+									widget: "list",
+									collapsed: false,
+									summary:
+										"{{fields.image}} ||||| ALT TEXT: {{fields.image_alt}}",
+									fields: [
+										{
+											label: "📷 Image",
+											name: "image",
+											widget: "image",
+											choose_url: false,
+											default: null,
+											media_folder: "/src/assets/images",
+										},
+										{
+											label: "♿ Alternative Text",
+											name: "image_alt",
+											widget: "string",
+											pattern: altTextPattern,
+											hint: "For accessibility purposes.",
+										},
+									],
+								},
+							]
+						}
+					],
 				},
 			],
 		},
@@ -438,7 +475,7 @@ export default function DecapCMS() {
 	CMS.registerPreviewStyle("./admin/admin.css");
 
 	// Register preview templates
-	CMS.registerPreviewTemplate("settings", HomepagePreview);
+	CMS.registerPreviewTemplate("homepage", HomepagePreview);
 	CMS.registerPreviewTemplate("artwork", ArtworkPreview);
 	CMS.registerPreviewTemplate("bio", BioPreview);
 }

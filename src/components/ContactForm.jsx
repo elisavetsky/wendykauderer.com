@@ -21,7 +21,7 @@ export default function ContactForm() {
                   required
                   minLength={2}
                   maxLength={911}
-                  className="indent-6 border-0 text-md px-2 my-1 h-8 rounded-none border-b-2 border-l-4 bg-inherit valid:border-gray-800 w-full dark:border-zinc-200 data-[invalid=true]:border-rose-700 dark:data-[invalid=true]:border-rose-400"
+                  className="indent-6 border-0 text-md px-2 my-1 h-8 rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full dark:border-zinc-200 data-[invalid=true]:border-rose-700 dark:data-[invalid=true]:border-rose-400"
                />
             </Form.Control>
 
