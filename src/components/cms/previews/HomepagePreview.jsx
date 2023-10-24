@@ -39,7 +39,7 @@ export default function HomepagePreview({entry, widgetsFor, getAsset}) {
                <div className={`navbar-container px-2 py-4 gap-5 mx-auto max-w-screen-xl max-md:transition max-md:duration-300 md:bg-transparent md:dark:bg-transparent md:border-0 md:overscroll-contain md:px-6 md:py-0 md:pr-0 flex flex-col md:gap-10  md:justify-between`
                }>
                   <div className="top-0 px-2 flex justify-between gap-2 md:backdrop-blur-sm md:bg-inherit md:sticky md:z-50 md:pl-4 md:py-9 md:mt-8 dark:md:bg-inherit">
-                     <Logo />
+                     <Logo isCMS />
                   </div>
                </div>
             </header>
