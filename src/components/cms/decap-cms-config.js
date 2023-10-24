@@ -78,7 +78,7 @@ export default function DecapCMS() {
 									label: "📄 Sitewide Description",
 									name: "site_description",
 									widget: "string",
-									hint: "Keep this short and simple.",
+									hint: "Keep this *short and simple.*",
 									pattern: lettersAndSpacesPattern
 								},
 								{
@@ -86,13 +86,13 @@ export default function DecapCMS() {
 									name: "contact_email",
 									widget: "string",
 									pattern: ["^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$", "You must use a correct email format"],
-									hint: "Your email which will be used for people to contact you on your site."
+									hint: "Your email which will be used for people to **contact you on your site.**"
 								},
 								{
 									label: "⏹️ Curved Image Edges",
 									name: "curved_image_edges",
 									widget: "boolean",
-									hint: "If this switch is on, it means all images and some other elements have a slight curve to their edges. If it is off, all images have sharp corners."
+									hint: "If this switch is *on*, it means **all images and some other elements have a slight curve to their edges.** If it is *off*, **all images have sharp corners.**"
 								}
 							]
 						}
@@ -126,13 +126,13 @@ export default function DecapCMS() {
 									name: "image_alt",
 									widget: "text",
 									pattern: altTextPattern,
-									hint: "For accessibility purposes."
+									hint: "For *accessibility* purposes."
 								},
 								{
 									label: "📣 Tagline",
 									name: "body",
 									widget: "markdown",
-									hint: "Edit the text that appears below your featured image & on the right of the image on larger screens.",
+									hint: "Edit the text that appears **below your featured image & on the right of the image on larger screens.**",
 									buttons: [],
 									editor_components: ["false"],
 									modes: ["rich_text"],
@@ -232,14 +232,15 @@ export default function DecapCMS() {
 							label: "📝 Draft",
 							name: "draft",
 							widget: "boolean",
-							default: false
+							default: null,
+							hint: "**ATTENTION: As a precautionary measure, you must manually tick this ON or OFF so you are sure about whether you want your entry as *draft* or not.** Don't actually publish anything you don't mean to publish :)"
 						},
 						{
 							label: "💲 Sold/Unavailable",
 							name: "sold",
 							widget: "boolean",
 							default: false,
-							hint: "Turn this on if this piece is no longer available."
+							hint: "Turn this on if this piece is **no longer available.**"
 						},
 						{
 							label: "❇️ Title",
@@ -277,7 +278,7 @@ export default function DecapCMS() {
 							label_singular: "Tag",
 							name: "tags",
 							widget: "relation",
-							hint: "To create new tags, please go to your 'Tags' collection.",
+							hint: "To create new tags, **please go to your 'Tags' collection.**",
 							multiple: true,
                      collection: "tags",
 							display_fields: ["title"],
@@ -298,7 +299,7 @@ export default function DecapCMS() {
 							name: "main_image_alt",
 							widget: "text",
 							pattern: altTextPattern,
-							hint: "For accessibility purposes.",
+							hint: "For *accessibility* purposes.",
 						},
 						{
 							label: "📄 Description",
@@ -332,7 +333,7 @@ export default function DecapCMS() {
 									name: "image_alt",
 									widget: "text",
 									pattern: altTextPattern,
-									hint: "For accessibility purposes.",
+									hint: "For *accessibility* purposes.",
 								},
 							],
 						},
@@ -421,7 +422,7 @@ export default function DecapCMS() {
 											name: "image_alt",
 											widget: "string",
 											pattern: altTextPattern,
-											hint: "For accessibility purposes.",
+											hint: "For *accessibility* purposes.",
 										},
 									],
 								},
