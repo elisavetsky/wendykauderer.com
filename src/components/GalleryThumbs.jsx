@@ -9,7 +9,6 @@ export default function GalleryThumbs({images, setIndex}) {
          {images.optimizedImages?.map(({srcSet, src}, i) => {
 
             const hasSrcSet = srcSet ? true : false;
-            console.log(src)
 
             return (
                <button 
@@ -23,7 +22,7 @@ export default function GalleryThumbs({images, setIndex}) {
                               ? srcSet.values[0].url 
                               : srcSet.values[3].url
                            : src} 
-                     alt={images.imagesWithAlts[i].image_alt}
+                     alt={images.imagesWithAlts[i]?.image_alt}
                      className={`object-cover w-full aspect-square object-top`} 
                   />
                </button>

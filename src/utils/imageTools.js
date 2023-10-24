@@ -55,35 +55,45 @@ function createLightboxSlides({
    isCMS, images, imagesWithAlts
 }) {
    
-   // map over images and create the slide structure `yet-another-react-lightbox` expects
-   // also change values based on if environment is CMS
-   return images?.map(({
-      filename, 
-      src, 
-      image_alt, 
-      width, 
-      height, 
-      attributes, 
-      srcSet
-   }, i) => {
-      return {
-         type: "image",
-         // filename: filename ?? filename,
-         src: src,
-         alt: isCMS 
-                  ? image_alt 
-                  : imagesWithAlts[i].image_alt, // get alt by matching index from images
-         width: isCMS 
-                  ? width 
-                  : attributes?.width,
-         height: isCMS 
-                  ? height 
-                  : attributes?.height,
-         srcSet: isCMS 
-                  ? [] // pass empty array if environment is CMS
-                  : getImageSrcSet(attributes.width, attributes.height, srcSet.values) // get srcSet for each additional image using my helper function
-      } 
-   })
+   if (
+      Array.isArray(images) &&
+      images.every(img => img !== undefined)
+   ) {
+
+      // map over images and create the slide structure `yet-another-react-lightbox` expects
+      // also change values based on 
+      // if environment is CMS
+      return images?.map(({
+         filename, 
+         src, 
+         image_alt, 
+         width, 
+         height, 
+         attributes, 
+         srcSet
+      }, i) => {
+         return {
+            type: "image",
+            // filename: filename ?? filename,
+            src: src,
+            alt: isCMS 
+                     ? image_alt 
+                     : imagesWithAlts[i].image_alt, // get alt by matching index from images
+            width: isCMS 
+                     ? width || undefined
+                     : attributes?.width,
+            height: isCMS || undefined
+                     ? height 
+                     : attributes?.height,
+            srcSet: isCMS 
+                     ? [] // pass empty array if environment is CMS
+                     : getImageSrcSet(attributes.width, attributes.height, srcSet.values) // get srcSet for each additional image using my helper function
+         } 
+      })
+
+   } else {
+      return [];
+   }
 }
 
 export { getLatestOfArtType, getAspectRatio, getImageSrcSet, createLightboxSlides };

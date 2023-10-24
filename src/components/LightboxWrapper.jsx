@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 // import utils
-import { getImageSrcSet, getAspectRatio, createLightboxSlides } from "../utils/imageTools";
+import { createLightboxSlides } from "../utils/imageTools";
 import { resolveAndSetState } from "../utils/arrayTools";
 
 // Import lightbox
@@ -30,7 +30,11 @@ import {
 } from '@heroicons/react/24/outline';
 
 
-export default function LightboxWrapper({isCMS, mainImage, additionalImages, children, ...props}) {
+export default function LightboxWrapper({isCMS, mainImage, additionalImages, ...props}) {
+
+	// check if children is truthy by using nullish coalescing 
+	const children = props.children ?? {};
+
 	const [index, setIndex] = useState(-1);
 	const thumbnailsRef = useRef(null);
 
@@ -39,34 +43,13 @@ export default function LightboxWrapper({isCMS, mainImage, additionalImages, chi
    const [cmsImages, setCmsImages] = useState([]);
 	const [additionalGalleryImages, setAdditionalGalleryImages] = useState([]);
 
+	// set portal within CMS iframe if environment is CMS
+	const [ portal, setPortal ] = useState({});
+
 	// this useEffect resolves Promises that need to be resolved
 	// every time a new image is added in the CMS, component re-renders
 	// then sets the cmsImages state
 	useEffect(() => {
-
-		// const nonMainImages = additionalImages.optimizedImages?.map(({src, attributes, srcSet}, i) => {
-		// 	return {
-		// 		src: src,
-		// 		alt: additionalImages.imagesWithAlts[i].image_alt, // get alt by matching index from optimizedImages
-		// 		width: attributes.width,
-		// 		height: attributes.height,
-		// 		srcSet: getImageSrcSet(attributes.width, attributes.height, srcSet.values) // get srcSet for each additional image with helper function
-		// 	}
-		// })
-		
-		// const mainImageWidth = mainImage.image.attributes.width;
-		// const mainImageHeight = mainImage.image.attributes.height;
-
-		// const incomingImages = [
-		// 	{
-		// 		src: mainImage.image.src,
-		// 		alt: mainImage.alt,
-		// 		width: mainImageWidth,
-		// 		height: mainImageHeight,
-		// 		srcSet: getImageSrcSet(mainImageWidth, mainImageHeight, mainImage.image.srcSet.values) // get srcSet from mainImage with helper function
-		// 	},
-		// 	...nonMainImages
-		// ]
 
 		const incomingImages = [
 			mainImage.image,
@@ -75,6 +58,12 @@ export default function LightboxWrapper({isCMS, mainImage, additionalImages, chi
 
 		// conditions based on whether user is editing on CMS
 		if (isCMS) {
+
+			// set lightbox portal to the body inside the iframe
+			// const iframe = document.querySelector("#preview-pane");
+			// iframe.addEventListener("load", () => {
+			// 	setPortal(iframe.contentDocument || iframe.contentWindow.document);
+			// })
 
 			// resolve CMS images because they are Promises
 			// this sets the state of all images in the gallery
@@ -90,6 +79,9 @@ export default function LightboxWrapper({isCMS, mainImage, additionalImages, chi
 			});
 		} else {
 
+			// set lightbox portal to the body of the entire website
+			setPortal(document.querySelector("body"))
+
 			setCmsImages(incomingImages); // set state directly because we don't need to resolve them
 			setAdditionalGalleryImages(additionalImages?.optimizedImages); // this sets the state of the additional images
 		}
@@ -100,15 +92,18 @@ export default function LightboxWrapper({isCMS, mainImage, additionalImages, chi
 	// this useEffect re-creates the slides every time cmsImages changes somehow
 	useEffect(() => {
 
-		console.log("CMS", cmsImages)
+		const additionalImagesWithAlts = isCMS
+														? additionalGalleryImages
+														: additionalImages.imagesWithAlts
+
 		const slidesArr = createLightboxSlides({
 			isCMS: isCMS,
 			images: cmsImages,
-			imagesWithAlts: [mainImage, ...additionalImages.imagesWithAlts]
+			imagesWithAlts: [mainImage, ...additionalImagesWithAlts]
 		})
-		console.log("slidesARR", slidesArr)
+
 		setSlides(slidesArr);
-		console.log("SLIDES", slides)
+
 		return () => {}
 	}, [cmsImages])
 
@@ -117,6 +112,7 @@ export default function LightboxWrapper({isCMS, mainImage, additionalImages, chi
 		<>
 			<div className="mb-2" onClick={() => setIndex(0)}>{children}</div>
 			<Lightbox
+				portal={portal}
 				index={index}
 				open={index >= 0}
 				close={() => setIndex(-1)}
@@ -128,7 +124,7 @@ export default function LightboxWrapper({isCMS, mainImage, additionalImages, chi
 					width: 100,
 					imageFit: "contain",
 					padding: 0,
-					gap: 2,
+					gap: 8,
 					vignette: true,
 					showToggle: true,
 				}}
@@ -168,7 +164,7 @@ export default function LightboxWrapper({isCMS, mainImage, additionalImages, chi
 					iconThumbnailsHidden: () => <EyeSlashIcon className="w-8 h-8" />,
 					iconPrev: () => <ChevronLeftIcon className="w-8 h-8" />,
 					iconNext: () => <ChevronRightIcon className="w-8 h-8" />,
-					iconClose: () => <XMarkIcon className="w-8 h-8" />,
+					iconClose: () => isCMS ? <span>Close</span> : <XMarkIcon className="w-8 h-8" />,
 					buttonPrev: slides.length <= 1 ? () => null : undefined,
 					buttonNext: slides.length <= 1 ? () => null : undefined,
 				}}
@@ -197,7 +193,7 @@ export default function LightboxWrapper({isCMS, mainImage, additionalImages, chi
 					setIndex={setIndex} 
 					images={{
 						optimizedImages: additionalGalleryImages || [],
-						imagesWithAlts: additionalImages.imagesWithAlts || []
+						imagesWithAlts: isCMS ? additionalGalleryImages : additionalImages.imagesWithAlts || []
 					}}
 				/>
          }

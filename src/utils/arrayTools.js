@@ -42,50 +42,200 @@ function moveToFirst({array, findFunction}) {
    ]
 }
 
-function promiseCMSImages({
-   immutableData,
+async function getSingleCMSImagePromise({
+   selectedImageString,
+   imageSrc, 
    imageAlt,
    getAsset
 }) {
-
-   return immutableData.map(async (imageData) => {
-
+   console.log(imageSrc)
+   // check if data is NOT undefined
+   // AND if any image is chosen from the picker
+   // w/`selectedImageString` check,
+   // otherwise the CMS tries to resolve the 
+   // checkerboard bg image thing
+   if (
+      selectedImageString &&
+      imageSrc.path !== "empty.svg"
+   ) {
       try {
-         const image_alt = imageAlt 
-                           ? imageAlt
-                           : imageData.getIn(["data", "image_alt"])
-      
+
+         // construct image native w/Image API
          const img = new Image();
-
-         // change img.src based on whether incoming data is already a string
-         if (typeof imageData === "string") {
-            img.src = getAsset(imageData);
-         } else {
-            img.src = getAsset(imageData.getIn(["data", "image"])).toString();
-         }
-
+   
+         // use passed in getAsset function from CMS
+         console.log("SRC being used", imageSrc)
+         img.src = imageSrc;
+   
          // need to await the async nature of decoding
          await img.decode();
 
+         console.warn("CONSTURCTUING IMG", img)
+         
          return {
             src: img.src,
             width: img.width,
             height: img.height,
-            image_alt: image_alt
+            alt: imageAlt
          }
-
       } catch (err) {
-         console.error(err)
+         console.error(`Image with src "${imageSrc}" has error:`, err)
       }
 
+   } else {
+      
+      // return empty object if no image is selected yet
+      return {}; 
+   }
+}
+
+function promiseCMSImages({
+   selectedImageString,
+   immutableData,
+   imageAlt,
+   getAsset
+}) {
+   
+   // check if data is NOT undefined
+   // AND if any image is chosen from the picker
+   // w/`selectedImageString` check,
+   // otherwise the CMS tries to resolve the 
+   // checkerboard bg image thing
+   if (
+      !immutableData.some((data) => data === undefined) 
+   ) {
+
+      
+         
+         console.warn("SOMETHING", immutableData)
+         // Check whether the immutable data 
+         // is a Map of Lists or just a Map. 
+         // If it is just a Map, throw a new error
+         if (immutableData.get("data")) {
+
+            throw new Error('Unsupported data type, please pass in an array');
+
+         } else {
+
+            // perform map function if array of image data
+            immutableData.map(async (imageData, i) => {
+               console.warn("imageData image", imageData.getIn(["data", "image"]))
+
+               const getAssetFunc = imageData.getIn(["widgets", "image"]).props.children.props.getAsset;
+
+               // const selectedImageTest = selectedImageString.getIn(["data", "image"])[i]
+
+               // if (!imageData.some(data => data === undefined)) {
+                  try {
+
+                     const testobj = {
+                        selectedImageString: imageData?.getIn(["data", "image"]),
+                        imgSrc: getAsset(imageData.getIn(["data", "image"])),
+                        imgAlt: imageData?.getIn(["data", "image_alt"]),
+                     }
+
+                     console.log("TEST OBJ", testobj)
+
+                     const imgSrc = getAssetFunc(imageData.getIn(["data", "image"]));
+
+                     // console.log("imgASSET", getAsset(imageData?.getIn(["data", "image"])))
+      
+                     const promisedImage = getSingleCMSImagePromise({
+                        selectedImageString: imageData?.getIn(["data", "image"]),
+                        imgSrc: imgSrc,
+                        imgAlt: imageData?.getIn(["data", "image_alt"]),
+                        // getAsset: getAsset
+                     })
+
+                     
+
+                     // const image_alt = imageAlt 
+                     //                   ? imageAlt
+                     //                   : imageData?.getIn(["data", "image_alt"]) ??
+                     //                   ""
+                  
+                     // const img = new Image();
+            
+                     // // change img.src based on whether incoming data is already a string
+                     // if (typeof imageData === "string") {
+                     //    img.src = getAsset(imageData);
+                     // } else {
+                        
+         
+                     //    img.src = getAsset(imageData.getIn(["data", "image"])).toString();
+                     // }
+            
+                     // // need to await the async nature of decoding
+                     // await img.decode();
+            
+                     return promisedImage;
+            
+                  } catch (err) {
+                     console.error(err)
+                  }
+               // } else {
+
+               //    return [];
+               // }
+         
+               // Finally, shallow convert to native JS Array
+               // For performance reasons
+            });
+         }
+
+   
+      
+
+   } else {
+      console.warn("NOTHING")
+
+      // return empty array for images 
+      // if nothing is selected
+      // ...like if you just opened up a new entry
+      // in the CMS and nothing is filled out
+      return [];
+   }
+}
+
+function getAdditionalCMSImagePromises({
+   selectedImageString,
+   immutableData,
+}) {
+
+   if (immutableData.get("data")) {
+
+      // Check whether the immutable data 
+      // is a Map of Lists or just a Map. 
+      // If it is just a Map, throw a new error
+      throw new Error('Unsupported data type, please pass in an array');
+
+   } else {
+
+      return immutableData.map((imageData) => {
+
+         // get the `getAsset` function from each data object
+         const getAssetFunc = imageData.getIn(["widgets", "image"]).props.children.props.getAsset;
+         
+         // get the promisedImage for each element
+         // in the image array with this helper function
+         const promisedImage = getSingleCMSImagePromise({
+            selectedImageString: imageData.getIn(["data", "image"]),
+            imageSrc: getAssetFunc(imageData.getIn(["data", "image"])),
+            imageAlt: imageData.getIn(["data", "image_alt"]),
+         })
+
+         return promisedImage;
+         
       // Finally, shallow convert to native JS Array
       // For performance reasons
-   }).toArray();
+      }).toArray(); 
+   }
 }
 
 // Resolve array of promises and set state with resolved data
 function resolveAndSetState({data, setStateFunction}) {
-
+   
+   console.log("EMPTY DATA", data)
    // Promise the array then resolve it
    Promise.all(data).then((resolvedData) => {
       
@@ -125,18 +275,25 @@ function restructureTagsFieldsMetaData(tags) {
 // being selected. For some reason, the fieldsMetaData 
 // does NOT update with currently selected tags
 function restructureTags(tags) {
-   return tags.map((tag) => {
+   
+   if (tags) { // deal w/empty arrays
 
-      // must replace title with unslugified version
-      // so that it is human readable
-      return {
-         id: tag,
-         data: {
-            title: tag.replace("-", " ")
+      return tags.map((tag) => {
+
+         // must replace title with unslugified version
+         // so that it is human readable
+         return {
+            id: tag,
+            data: {
+               title: tag.replace("-", " ")
+            }
          }
-      }
 
-   }).toArray(); // shallow convert to regular JS
+      }).toArray(); // shallow convert to regular JS
+   
+   } else {
+      return [];
+   }
 }
 
 
@@ -144,7 +301,9 @@ export {
    convertToArray, 
    getPrevAndNextEntry, 
    moveToFirst, 
+   getSingleCMSImagePromise,
    promiseCMSImages, 
+   getAdditionalCMSImagePromises,
    resolveAndSetState,
    restructureTagsFieldsMetaData,
    restructureTags
