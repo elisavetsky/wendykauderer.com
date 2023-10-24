@@ -21,7 +21,7 @@ import Flex2ColLayout from "../components/layouts/Flex2ColLayout.jsx";
 
 // import components
 import SectionTitle from "../components/SectionTitle.jsx";
-import BioContent from "../components/BioContent.jsx";
+import MarkdownContent from "../components/MarkdownContent.jsx";
 import InlineLightboxGallery from "../components/InlineLightboxGallery.jsx";
 ---
 
@@ -32,9 +32,9 @@ import InlineLightboxGallery from "../components/InlineLightboxGallery.jsx";
    <article transition:animate="fade">
       <SectionTitle title="Bio" />
       <Flex2ColLayout>
-         <BioContent heading={heading}>
+         <MarkdownContent heading={heading}>
             <Content />
-         </BioContent>
+         </MarkdownContent>
          <InlineLightboxGallery
             ariaLabel="Some of my photos"
             client:visible 

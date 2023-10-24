@@ -1,7 +1,12 @@
 ---
 // import layout
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Flex2ColLayout from "../components/layouts/Flex2ColLayout.jsx";
+
+// import components
+import SectionTitle from "../components/SectionTitle.jsx";
 import Link from "../components/Link.jsx";
+import MarkdownContent from "../components/MarkdownContent.jsx";
 ---
 
 <BaseLayout 
@@ -9,17 +14,18 @@ import Link from "../components/Link.jsx";
    ogTitle="This page does not exist on Wendy's website."
    ogDescription="Welcome to a page that does not exist!"
 >
-   <section class="px-4 m-auto">
-      <div class="prose prose-lg prose-zinc mb-8 dark:prose-invert">
-         <h1>404</h1>
-         <h2>Oops! That page doesn't exist!</h2>
-      </div>
-      <Link 
-         inline 
-         href="/"
-         classes="decoration-0 hover:text-slate-400 underline underline-offset-4"
-      >
-         Go back home
-      </Link>
+   <section class="">
+      <SectionTitle title="404" />
+      <Flex2ColLayout>
+         <MarkdownContent heading="Oops! That page doesn't exist!">
+               <Link 
+                  inline 
+                  href="/"
+                  classes="decoration-transparent underline underline-offset-4 hover:decoration-primary-text"
+               >
+                  Go back home
+               </Link>
+         </MarkdownContent>
+      </Flex2ColLayout>
    </section>
 </BaseLayout>
