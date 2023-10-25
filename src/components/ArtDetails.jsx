@@ -11,13 +11,6 @@ export default function ArtDetails({ isCMS, artType, sold, artTitle, artTags, de
                data-pagefind-ignore
                className="flex gap-2 transition-colors items-center text-xs uppercase font-medium mr-4 mb-4"
             >
-               {/* <time 
-                  data-pagefind-meta={`date:${humanDate(date)}`}
-                  dateTime={date} 
-                  className="text-center flex-shrink-0"
-               >
-                  {humanDate(date)}
-               </time> */}
                <Link
                   href={isCMS ? null : `/${artType}`}
                   inline

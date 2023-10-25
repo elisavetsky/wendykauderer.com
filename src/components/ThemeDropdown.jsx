@@ -59,8 +59,6 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
    }
 
    function handleSelection(value, event) {
-      console.log(event)
-      
       
       switch (value) {
          case "Light": 
@@ -97,19 +95,10 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
    useEffect(() => {
       if (theme === "dark") {
          document.documentElement.classList.add("dark");
-         // if (localStorage.theme === "dark" || window.matchMedia("(prefers-color-scheme: dark)").matches) {
-         //    document.documentElement.classList.add("dark");
-   
-         //    // set theme state to dark
-         //    setTheme("dark");
-         // } else {
-         //    console.log("NO DARK")
-         //    document.documentElement.classList.remove("dark");
-         //    localStorage.setItem("theme", "light")
-         // }
+
       } else if (theme === "light") {
          document.documentElement.classList.remove("dark");
-         // localStorage.removeItem("theme");
+
       } else if (theme === "system") {
 			if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 				document.documentElement.classList.add("dark");
@@ -137,66 +126,5 @@ export default function Dropdown({children, CustomButton, buttonTitle}) {
 				<ul className="flex flex-col leading-loose">{menuItems}</ul>
 			</Menu>
 		</Wrapper>
-
-		// <>
-		// 	<button type="button" ref={ref} {...anchorProps}>
-		// 		Menu
-		// 	</button>
-
-		// 	<ControlledMenu
-		// 		{...menuState}
-		// 		aria-label="Toggle theme menu"
-		// 		anchorRef={ref}
-		// 		initialMounted={true}
-		// 		onClose={({ reason }) => {
-		// 			if (reason === "blur") {
-      //             console.log("blur")
-                  
-		// 				// skipOpen.current = true;
-		// 				// setTimeout(() => (skipOpen.current = false), 300);
-		// 			}
-		// 			toggleMenu(false)
-		// 		}}
-		// 	>
-		// 		<MenuItem>Cut</MenuItem>
-		// 		<MenuItem>Copy</MenuItem>
-		// 		<MenuItem>Paste</MenuItem>
-		// 	</ControlledMenu>
-		// </>
-		// <Menu
-		//    menuButton={({open}) => <ThemeToggle open={open} />}
-		//    onItemClick={(e) => {
-		//       e.stopPropagation = true;
-		//       e.keepOpen = false;
-		//    }}
-		//    gap={8}
-		//    direction="bottom"
-		//    position="anchor"
-		//    menuClassName="text-md bg-white shadow-lg rounded-lg py-2 min-w-[10rem] z-30 dark:bg-slate-800"
-		// >
-		//    <MenuItem
-		//       onClick={(e) => {
-		//          setTheme("light");
-		//       }}
-		//       className="cursor-pointer text-md px-2 p-1 transition-all hover:bg-gray-100 dark:hover:bg-slate-700">
-		//       Light
-		//    </MenuItem>
-		//    <MenuItem
-		//       onClick={(e) => {
-		//          setTheme("dark");
-		//       }}
-		//       className="cursor-pointer text-md px-2 p-1 transition-all hover:bg-gray-100 dark:hover:bg-slate-700">
-		//       Dark
-		//    </MenuItem>
-		//    <MenuDivider className="border-slate-100 border dark:border-slate-700" />
-		//    <MenuItem
-		//       onClick={(e) => {
-		//          localStorage.removeItem("theme");
-		//          setTheme("");
-		//       }}
-		//       className="cursor-pointer text-md px-2 p-1 transition-all hover:bg-gray-100 dark:hover:bg-slate-700">
-		//       System
-		//    </MenuItem>
-		// </Menu>
 	);
 }

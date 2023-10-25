@@ -5,7 +5,7 @@ export default function GridNav({children}) {
 
    function handleChange(e) {
       setExpanded(e.target.checked);
-      console.log(e.target.labels)
+   
    }
 
    useEffect(() => {

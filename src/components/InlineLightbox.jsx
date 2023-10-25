@@ -65,10 +65,7 @@ export default function InlineLightbox({data, classes, children}) {
 				// 				: []
 			}
 
-			console.log(slideObject)
-
 			return slideObject;
-		
 		
 	})
 

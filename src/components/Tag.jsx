@@ -6,8 +6,7 @@ export default function Tag({isCMS, title, slug, urlPath}) {
    const commonClasses = "transition-colors h-fit px-2 py-0.5 last-of-type:mr-0 flex w-max items-center rounded-lg font-medium"
 
    const isCurrentPage = urlPath && urlPath.split("/")[2] === slug;
-   // console.log(urlPath.split("/")[2])
-   // const isCurrentPage = "";
+
 
    return (
       
