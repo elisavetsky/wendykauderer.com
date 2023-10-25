@@ -38,8 +38,8 @@ const { pathname } = Astro.url;
 <html lang="en" class="">
 	<head>
 		
-		{pathname === "/" || pathname.includes("/admin") &&
-			// Netlify Identity only on the homepage
+		{pathname === "/" &&
+			// Netlify Identity
 			<script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 		}
 
@@ -183,8 +183,8 @@ const { pathname } = Astro.url;
 		</MainFlexLayout>
 
 
-		<!-- Netlify Identity helper on root & /admin routes -->
-		{pathname === "/" || pathname.includes("/admin") &&
+		<!-- Netlify Identity helper on root -->
+		{pathname === "/" &&
 			<script is:inline>
 				if (window.netlifyIdentity) {
 					window.netlifyIdentity.on("init", (user) => {
