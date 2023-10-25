@@ -40,10 +40,10 @@ const { pathname } = Astro.url;
 <html lang="en" class="">
 	<head>
 		
-		{pathname === "/" &&
+		<!-- {pathname === "/" &&
 			// Netlify Identity
 			<script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-		}
+		} -->
 
 		<!-- // /////////////////////////////////////////////////
    		// WHENEVER VIEW TRANSITIONS API IS WIDELY AVAILABLE, TRY SPA Mode
@@ -186,7 +186,7 @@ const { pathname } = Astro.url;
 
 
 		<!-- Netlify Identity helper on root -->
-		{pathname === "/" &&
+		<!-- {pathname === "/" &&
 			<script is:inline>
 				if (window.netlifyIdentity) {
 					window.netlifyIdentity.on("init", (user) => {
@@ -202,6 +202,6 @@ const { pathname } = Astro.url;
 					});
 				}
 			</script>
-		}
+		} -->
 	</body>
 </html>
