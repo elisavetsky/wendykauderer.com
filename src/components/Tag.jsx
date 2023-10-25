@@ -19,7 +19,7 @@ export default function Tag({isCMS, title, slug, urlPath}) {
          >
             <span 
                title={title}
-               data-pagefind-index-attrs="title"
+               // data-pagefind-index-attrs="title"
                className={`${commonClasses} ${isCurrentPage ? "bg-primary-tag-active-bg dark:bg-primary-dark-tag-active-bg/70 border-primary-tag-active-border/50 dark:border-primary-dark-tag-active-border/70" : "bg-gray-300/40 hover:bg-gray-500/40 dark:bg-gray-700/40 dark:hover:bg-gray-500/40 border-black/10 dark:border-white/10" } border`}
             >
                {title}
