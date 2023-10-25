@@ -1,6 +1,9 @@
 ---
 import { getEntry } from "astro:content";
 
+// get sitewide config
+import * as SitewideConfig from "../../configuration/SitewideConfig.md";
+
 // import layouts
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Flex2ColLayout from "../../components/layouts/Flex2ColLayout.jsx";
@@ -42,3 +45,4 @@ const { title } = contactMe.data;
       </Flex2ColLayout>
    </div>
 </BaseLayout>
+
