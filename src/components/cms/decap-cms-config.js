@@ -450,7 +450,7 @@ export default function DecapCMS() {
 
    // Register preview styles from minified css output from astro build
    // Not a permanent solution, wish I knew how to directly import @tailwind
-	CMS.registerPreviewStyle("./admin/admin.css");
+	CMS.registerPreviewStyle("/admin/admin.css");
 
 	// Register preview templates
 	CMS.registerPreviewTemplate("homepage", HomepagePreview);
