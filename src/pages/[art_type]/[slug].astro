@@ -69,12 +69,13 @@ const { Content } = await entry.render();
 // Transition
 import { fade } from 'astro:transitions';
 ---
-
+{console.log(entry.data.image)}
 <BaseLayout 
    pageTitle={entry.data.title}
+   pageSlug={entry.slug}
    ogTitle={`${entry.data.title} by ${SitewideConfig.frontmatter.site_name}`}
    ogDescription={entry.body}
-   ogImage={entry.data.image.src}
+   ogImage={entry.data.image}
    blurredBg={entry.data.image}
 > 
    <ArtworkArticleLayout bodyLength={entry.body.length}>

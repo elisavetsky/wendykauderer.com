@@ -2,6 +2,9 @@
 // Astro
 import { getEntry } from 'astro:content';
 
+// get sitewide config
+import * as SitewideConfig from "../configuration/SitewideConfig.md";
+
 // import layout
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FeaturedArtworkLayout from '../components/layouts/FeaturedArtworkLayout.jsx';
@@ -19,7 +22,8 @@ import { NetlifyIdentity } from '../components/NetlifyIdentity.jsx'
 ---
 
 <BaseLayout 
-	pageTitle="Artist" 
+	pageTitle="Artist"
+	ogTitle={`${SitewideConfig.frontmatter.site_name} - Artist`}
 	blurredBg={featuredArtwork.data.image}
 >
 	
