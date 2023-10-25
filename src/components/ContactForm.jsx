@@ -1,16 +1,27 @@
+import React, { useState } from "react";
+
 // import components
-import React from "react";
 import * as Form from '@radix-ui/react-form';
 
 // import custom icons
 import { 
 	UserIcon, 
-   EnvelopeIcon, 
+   EnvelopeIcon,
+   ArrowPathIcon
 } from '@heroicons/react/24/solid';
 
 export default function ContactForm() {
+   const [ submit, setSubmit ] = useState(false);
+
 	return (
-      <Form.Root name="contact" method="POST" data-netlify="true" className="px-4">
+      <Form.Root 
+         name="contact" 
+         method="POST" 
+         action="/contact/success"
+         data-netlify="true" 
+         className="px-4"
+         onSubmit={() => setSubmit(true)}
+      >
          <input type="hidden" name="form-name" value="contact" />
          <Form.Field className="group relative max-w-[24rem]" name="name">
             <Form.Label className="text-sm inline-block mb-1 mt-8">Name</Form.Label>
@@ -19,6 +30,7 @@ export default function ContactForm() {
                <input 
                   type="text" 
                   required
+                  autoComplete="name"
                   minLength={2}
                   maxLength={911}
                   className="indent-6 border-0 text-md px-2 my-1 h-8 rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full dark:border-zinc-200 data-[invalid=true]:border-rose-700 dark:data-[invalid=true]:border-rose-400"
@@ -46,7 +58,12 @@ export default function ContactForm() {
             <Form.Label className="text-sm inline-block mb-1 mt-8">Email</Form.Label>
             <EnvelopeIcon className="absolute h-5 w-5 pl-1 pt-0.5 ml-1 mt-2"/>
             <Form.Control asChild className="peer">
-               <input className="indent-6 border-0 text-md px-2 my-1 h-8 rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full dark:border-zinc-200  data-[invalid=true]:border-rose-700 dark:data-[invalid=true]:border-rose-400" type="email" required />
+               <input 
+                  type="email" 
+                  required 
+                  autoComplete="email"
+                  className="indent-6 border-0 text-md px-2 my-1 h-8 rounded-none border-b-2 border-l-4 bg-inherit border-gray-800 w-full dark:border-zinc-200  data-[invalid=true]:border-rose-700 dark:data-[invalid=true]:border-rose-400" 
+               />
             </Form.Control>
 
             <div className="mt-1.5 invisible text-xs h-5 text-rose-700 dark:text-rose-400 peer-invalid:visible">
@@ -57,7 +74,7 @@ export default function ContactForm() {
                   <p><span aria-hidden="true">➔ </span>Please provide a valid email</p>
                </Form.Message>
             </div>
-            {/* <Form.ValidityState /> */}
+
          </Form.Field>
 
          <Form.Field className="w-full" name="message">
@@ -77,9 +94,6 @@ export default function ContactForm() {
                <Form.Message name="message" asChild match="tooShort">
                   <p><span aria-hidden="true">➔ </span>Your message should be longer than that</p>
                </Form.Message>
-               {/* <Form.Message asChild match="valueMissing">
-                  <p><span aria-hidden="true">➔ </span>Your message must not contain any strange characters</p>
-               </Form.Message> */}
             </div>
          </Form.Field>
 
@@ -87,10 +101,11 @@ export default function ContactForm() {
 
          <Form.Submit asChild className="max-w-[24rem]">
             <button 
+               disabled={submit ? true : false}
                type="submit" 
                className="transition-colors w-full py-2 px-4 mt-6 border text-gray-100 bg-zinc-700 border-zinc-500 rounded-lg hover:bg-zinc-500"
             >
-               Send
+               {submit ? <ArrowPathIcon className="m-auto p-1 h-6 w-6 animate-spin"/> : "Send"}
             </button>
          </Form.Submit>
 
