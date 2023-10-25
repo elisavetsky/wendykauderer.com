@@ -35,10 +35,10 @@ const { pathname } = Astro.url;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class=""  >
+<html lang="en" class="">
 	<head>
 		
-		{pathname === "/" &&
+		{pathname === "/" || pathname.includes("/admin") &&
 			// Netlify Identity only on the homepage
 			<script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 		}
@@ -173,7 +173,7 @@ const { pathname } = Astro.url;
 		
 	</head>
 	<body class="flex flex-col min-h-screen relative bg-primary dark:bg-primary-dark">
-		
+
 		{blurredBg &&
 			<Image src={blurredBg} quality={1} width={50} height={100}  alt="" role="presentation" class="hidden pointer-events-none supports-filter:block absolute overflow-hidden object-cover w-full h-full [filter:blur(45px)contrast(0.3)saturate(6)]  animate-bgFadeIn dark:animate-bgFadeIn-dark"/>
 		}
@@ -182,6 +182,24 @@ const { pathname } = Astro.url;
 			<slot />
 		</MainFlexLayout>
 
-		
+
+		<!-- Netlify Identity helper on root & /admin routes -->
+		{pathname === "/" || pathname.includes("/admin") &&
+			<script is:inline>
+				if (window.netlifyIdentity) {
+					window.netlifyIdentity.on("init", (user) => {
+						if (!user) {
+							window.netlifyIdentity.on("login", () => {
+								document.location.href = "/admin/";
+							});
+						} else { 
+							window.netlifyIdentity.on("logout", () => {
+								document.location.href = "/admin/";
+							});
+						}
+					});
+				}
+			</script>
+		}
 	</body>
 </html>
