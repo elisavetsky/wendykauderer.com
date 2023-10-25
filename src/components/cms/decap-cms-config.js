@@ -31,7 +31,7 @@ const lettersAndSpacesPattern = ["^[\p{L}\p{Zs}.-]+$/u", "Only letters, spaces, 
 export default function DecapCMS() {
 	init({
 		config: {
-			local_backend: true, // # when using the default proxy server port
+			// local_backend: true, // # when using the default proxy server port
 			load_config_file: false,
 			site_url: "https://wendykauderer.com",
 			logo_url: "/public/favicon.svg",
