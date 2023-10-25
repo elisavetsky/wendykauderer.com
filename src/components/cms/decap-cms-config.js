@@ -34,7 +34,7 @@ export default function DecapCMS() {
 			// local_backend: true, // # when using the default proxy server port
 			load_config_file: false,
 			site_url: "https://wendykauderer.com",
-			logo_url: "/public/favicon.svg",
+			logo_url: "/favicon.svg",
 			backend: {
 				name: "git-gateway",
 				branch: "main",
