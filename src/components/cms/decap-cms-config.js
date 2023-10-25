@@ -4,6 +4,11 @@ window.CMS_MANUAL_INIT = true;
 // Usage with import from npm package
 import CMS, { init } from "decap-cms-app";
 
+// import my custom Netlify Identity init function
+import { NetlifyIdentity } from "../NetlifyIdentity.jsx";
+
+NetlifyIdentity(); // execute function
+
 /*
 // Initialize the CMS object 
 // NEED TO WAIT UNTIL DECAPCMS OFFICIALLY SUPPORTS REACT 18

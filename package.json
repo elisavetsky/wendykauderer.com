@@ -29,6 +29,7 @@
     "astro": "^3.3.0",
     "decap-cms-app": "^3.0.7",
     "inter-ui": "^3.19.3",
+    "netlify-identity-widget": "^1.9.2",
     "react": "^18.2.0",
     "react-aria-menubutton": "^7.0.3",
     "react-dom": "^18.2.0",

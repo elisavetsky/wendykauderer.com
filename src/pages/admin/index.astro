@@ -1,6 +1,9 @@
 ---
 import DecapCMS from "../../components/cms/decap-cms-config.js";
 
+// Astro
+import { ViewTransitions } from 'astro:transitions';
+
 // import admin dashboard css
 // import "../../../public/admin/admin-dashboard.css"
 ---
@@ -17,6 +20,8 @@ import DecapCMS from "../../components/cms/decap-cms-config.js";
 
       <title>Wendy Kauderer - Admin</title>
 
+      <ViewTransitions />
+
       <!-- Admin Dashboard Styles -->
       <link rel="stylesheet" href="/admin/admin-dashboard.css">
 
@@ -27,33 +32,16 @@ import DecapCMS from "../../components/cms/decap-cms-config.js";
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css"> 
 
       <!-- Netlify Identity -->
-      <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      <!-- <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> -->
    </head>
 
    <body>
 
       <!-- Include the script that builds the page and powers Decap CMS -->
-      <!-- <script is:inline src="/admin/decap-cms-config.js" type="module"></script> -->
+      <!-- <script is:inline src="/admin/decap-cms-config.js"></script> -->
       <DecapCMS client:only="react" />
       <!-- <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script> -->
-
-      <!-- Netlify Identity helper on admin-->
-      <script is:inline>
-         if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", (user) => {
-               if (!user) {
-                  window.netlifyIdentity.on("login", () => {
-                     document.location.href = "/admin/";
-                  });
-               } else { 
-                  window.netlifyIdentity.on("logout", () => {
-                     document.location.href = "/admin/";
-                  });
-               }
-            });
-         }
-      </script>
-
+      
    </body>
 </html>
 
