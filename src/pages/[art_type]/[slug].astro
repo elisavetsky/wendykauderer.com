@@ -8,21 +8,17 @@ import * as SitewideConfig from "../../configuration/SitewideConfig.md";
 
 // import tools
 import { convertToArray, getPrevAndNextEntry } from "../../utils/arrayTools.js"
-import { getAspectRatio } from "../../utils/imageTools.js"
 import slugify from '@sindresorhus/slugify';
 
 // import layout
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import MainLayout from '../../layouts/MainLayout.astro';
 
 // import components
 import FullArtwork from '../../components/FullArtwork.astro';
 import ArtDetails from '../../components/ArtDetails.jsx';
-import ArtTags from '../../components/ArtTags.jsx';
-import PrevNextArtwork from '../../components/PrevNextArtwork';
+import PrevNextArtwork from '../../components/PrevNextArtwork.jsx';
 import LightboxWrapper from "../../components/LightboxWrapper.jsx";
 import ArtworkArticleLayout from '../../components/layouts/ArtworkArticleLayout.jsx';
-import GalleryThumbs from "../../components/GalleryThumbs.jsx";
 
 
 // Generate a new path for every collection entry
@@ -126,10 +122,12 @@ import { fade } from 'astro:transitions';
       <Content slot="content" />
 
       <PrevNextArtwork 
-         slot="prev-next-artwork" 
+         currentArtType={entry.data.art_type}
+         slot="prev-next-artwork"
          prevEntry={prevEntry}
          nextEntry={nextEntry} 
       />
+      
 
    </ArtworkArticleLayout>
 </BaseLayout>
