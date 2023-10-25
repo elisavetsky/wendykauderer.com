@@ -149,9 +149,23 @@ export default function DecapCMS() {
 							preview_path: "/contact",
 							fields: [
 								{
-									label: "Section Title",
+									label: "ℹ️ Section Title",
 									name: "title",
-									widget: "string"
+									widget: "string",
+									default: "Contact Me",
+									hint: "**ATTENTION:** This isn't the contact page itself with the form and all, this is merely the page that someone sees once they hit the **Send** button. Anyways, with this text box, you can change the section title if you want. The default is 'Contact Me'"
+								},
+								{
+									label: "✳️ Contact Success Page Heading",
+									name: "success_heading",
+									widget: "string",
+									hint: "This is the **heading** to this particular page."
+								},
+								{
+									label: "💬 Contact Success Page Message",
+									name: "success_message",
+									widget: "text",
+									hint: "This is the **message** that shows up below the heading. It should be *short and sweet*. Definitely **do not** write an essay here!"
 								}
 							]
 						},
