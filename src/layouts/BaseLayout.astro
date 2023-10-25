@@ -30,11 +30,19 @@ import '../styles/main.css'
 import { titleCase } from "../utils/textTools.js"
 
 const { pageTitle, ogTitle, ogDescription, ogImage, blurredBg } = Astro.props;
+
+const { pathname } = Astro.url;
 ---
 
 <!DOCTYPE html>
 <html lang="en" class=""  >
 	<head>
+		
+		{pathname === "/" &&
+			// Netlify Identity only on the homepage
+			<script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+		}
+
 		<!-- // /////////////////////////////////////////////////
    		// WHENEVER VIEW TRANSITIONS API IS WIDELY AVAILABLE, TRY SPA Mode
    		// ///////////////////////////////////////////////// -->
@@ -165,14 +173,7 @@ const { pageTitle, ogTitle, ogDescription, ogImage, blurredBg } = Astro.props;
 		
 	</head>
 	<body class="flex flex-col min-h-screen relative bg-primary dark:bg-primary-dark">
-		<!-- <BodyLayout>
-			<Image slot="blurredBg" src={resolve} quality={1} width={50} height={100}  alt="" role="presentation" class=""/>
-			<MainFlexLayout>
-					<Header slot="header"/>
-				
-				<slot />
-			</MainFlexLayout>
-		</BodyLayout> -->
+		
 		{blurredBg &&
 			<Image src={blurredBg} quality={1} width={50} height={100}  alt="" role="presentation" class="hidden pointer-events-none supports-filter:block absolute overflow-hidden object-cover w-full h-full [filter:blur(45px)contrast(0.3)saturate(6)]  animate-bgFadeIn dark:animate-bgFadeIn-dark"/>
 		}
