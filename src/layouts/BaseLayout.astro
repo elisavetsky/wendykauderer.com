@@ -42,7 +42,7 @@ const { pathname } = Astro.url;
 		
 		{pathname === "/" &&
 			// Netlify Identity
-			<script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+			<script is:inline defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 		}
 
 		<!-- // /////////////////////////////////////////////////
