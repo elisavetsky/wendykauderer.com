@@ -9,3 +9,4 @@ tags:
 image: /src/assets/images/apples.jpg
 main_image_alt: WRITE YOUR IMAGE ALT HERE
 ---
+Just some apples.
