@@ -24,7 +24,7 @@ export default function PrevNextArtwork({isCMS, currentArtType, prevEntry, nextE
                   className="w-full text-sm pb-4 pt-6 3xl:py-0" 
                >
                   <div 
-                     className={`uppercase px-1.5 py-1 mb-1 ml-auto w-fit text-[0.7rem] opacity-70 border-2 ${curvedEdges && "rounded-lg"} bg-white/30 backdrop-blur-lg border-black/10 dark:bg-black/30 dark:border-white/10 3xl:bg-transparent 3xl:dark:bg-transparent 3xl:border-none 3xl:dark:border-none`}
+                     className={`uppercase px-1.5 py-0.5 mb-1.5 ml-auto w-fit text-[0.7rem] text-primary-text/70 dark:text-primary-dark-text/70 border-2 ${curvedEdges && "rounded-lg"} bg-white/30 backdrop-blur-lg border-black/10 dark:bg-black/30 dark:border-white/10 3xl:bg-transparent 3xl:dark:bg-transparent 3xl:border-none 3xl:dark:border-none`}
                   >
                      In {currentArtType}s:
                   </div>
