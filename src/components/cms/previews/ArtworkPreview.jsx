@@ -105,6 +105,7 @@ export default function ArtworkPreview({entry, widgetsFor, fieldsMetaData, getAs
                prevNextArtwork={
                   <PrevNextArtwork 
                      isCMS
+                     currentArtType={artType}
                      prevEntry={{
                         data: {
                            title: "Previous",
