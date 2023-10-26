@@ -5,6 +5,7 @@ title: Tom
 date: 2020-05-26
 art_type: drawing
 tags:
+  - charcoal
   - pencil
 image: /src/assets/images/tom.jpg
 main_image_alt: IMAGE DESCRIPTION REQUIRED
