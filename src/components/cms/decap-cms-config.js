@@ -26,17 +26,17 @@ import BioPreview from "./previews/BioPreview.jsx";
 import ContactSuccessPreview from "./previews/ContactSuccessPreview.jsx";
 
 // create alt text pattern variable for easier tweaking
-const altTextPattern = [".{20,}", "This must be at least 20 characters long. Try giving just a bit more detail."];
+const altTextPattern = [/.{20,}/, "This must be at least 20 characters long. Try giving just a bit more detail."];
 
 // create only letters and spaces pattern.
 // No spaces at the end though!
-const lettersAndSpacesPattern = ["^[\p{L}\p{Zs}.-]+$/u", "Only letters, spaces, hypens, and periods are allowed. No spaces at the end though"]
+const lettersAndSpacesPattern = [/^[a-zA-Z\u00C0-\u017F\u0400-\u04FF\u0500-\u052F\u2DE0-\u2DFF\s\.\-]+(?<!\s)$/, "Only letters, spaces, hypens, and periods are allowed. No spaces at the end though. You might have a space at the end by accident if you're scratching your head over this"]
 
 
 export default function DecapCMS() {
 	init({
 		config: {
-			// local_backend: true, // # when using the default proxy server port
+			local_backend: true, // # when using the default proxy server port
 			load_config_file: false,
 			site_url: "https://wendykauderer.com",
 			logo_url: "/favicon.svg",
@@ -83,7 +83,7 @@ export default function DecapCMS() {
 									label: "📄 Sitewide Description",
 									name: "site_description",
 									widget: "string",
-									hint: "Keep this *short and simple.*",
+									hint: "Keep this **short and simple.**",
 									pattern: lettersAndSpacesPattern
 								},
 								{
@@ -198,12 +198,12 @@ export default function DecapCMS() {
 							pattern: true,
 						},
 						{
-							label: "🟢 Available (Unsold, etc.)",
+							label: "✅ Available (Unsold, etc.)",
 							field: "sold",
 							pattern: false,
 						},
 						{
-							label: "🔴 Not Available (Sold, etc.)",
+							label: "🚫 Not Available (Sold, etc.)",
 							field: "sold",
 							pattern: true,
 						},
@@ -229,7 +229,7 @@ export default function DecapCMS() {
 							field: "draft",
 						},
 						{
-							label: "🟢 Available",
+							label: "✅ Available",
 							field: "sold",
 							
 						},
