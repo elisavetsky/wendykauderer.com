@@ -4,13 +4,14 @@ import slugify from '@sindresorhus/slugify';
 
 // Expose site configuration for CMS
 import { frontmatter } from "../configuration/SitewideConfig.md";
-const sections = frontmatter.sections;
+import { navArtTypes, navLinks, additionalNavLinks } from './NavigationLinks.jsx';
 
 // import components
 import PageFind from './PageFind.astro';
 import ThemeDropdown from './ThemeDropdown.jsx';
 import Link from './Link.jsx';
 import ArtTypes from './ArtTypes.astro';
+import { titleCase } from '../utils/textTools';
 ---
 
 <nav aria-label="Main menu" id="main-menu" class="hidden text-md font-normal md:active md:transition-none md:duration-0 md:m-0 md:flex md:flex-col md:pr-2">
@@ -20,26 +21,15 @@ import ArtTypes from './ArtTypes.astro';
       <PageFind />
 
       <ul class="flex flex-col gap-1">
-      {sections?.map(({title, dropdown_items}) => {
+         <li class={`text-md inline-flex flex-col items-start`}>
+            <ul class={`dropdown-menu transition-colors relative gap-2 z-10 left-0 rounded-lg bottom-0 w-full md:left-[unset] flex flex-wrap px-1 py-2 mb-4 items-center`}>
+               <ArtTypes />
+            </ul>
+         </li>
+
+      {navLinks?.map(({title, href}) => {
          return (
-            <li
-               
-               class={`${dropdown_items ? "dropdown-container" : "" } text-md inline-flex flex-col items-start `}
-            >
-               
-               {dropdown_items ?
-               // <button 
-               //    aria-haspopup="true"
-               //    class={`dropdown-trigger py-1 px-4 transition-colors hover:text-slate-800 dark:hover:text-slate-100`}
-               // >
-               //    {title}
-               // </button>
-               <ul 
-                  class={`dropdown-menu transition-colors relative gap-2 z-10 left-0 rounded-lg bottom-0 w-full md:left-[unset] flex flex-wrap px-1 py-2 mb-4 items-center`}>
-                  <ArtTypes />
-               </ul>
-               // <Dropdown items={dropdown_items} />
-               :
+            <li class={`inline-flex flex-col items-start`}>
                <Link
                   href={`/${slugify(title)}`}
                   size="md"
@@ -50,14 +40,33 @@ import ArtTypes from './ArtTypes.astro';
                >
                   {title}
                </Link>
-               }
-               
-            </li>
+            </li>      
          )
       })}
-      <li class="mt-2">
-         <ThemeDropdown client:only="react" transition:persist />
-      </li>
+         <li class="mt-4">
+            <ul class="flex flex-col gap-1">
+               {additionalNavLinks?.map(({title, href}) => {
+                  return (
+                     <li class={`text-sm inline-flex flex-col items-start `}>
+                        <Link
+                           href={href}
+                           size="sm"
+                           transition="transition"
+                           classes={
+                              `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline underline-offset-4 decoration-2 decoration-inherit" : "decoration-transparent"} hover:decoration-inherit`
+                           }
+                        >
+                           {title}
+                        </Link>
+                     </li>
+                  )
+               })}
+            </ul>
+         </li>
+         
+         <li class="mt-2">
+            <ThemeDropdown client:only="react" transition:persist />
+         </li>
       </ul>
    </div>
    

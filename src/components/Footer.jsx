@@ -6,7 +6,8 @@ import Logo from "./Logo.jsx";
 import Link from "./Link.jsx";
 
 
-export default function Footer({footerNav}) {
+export default function Footer({links}) {
+
    return (
       <footer className="mt-auto sm:w-full">
          <div className="h-full w-full px-4 pt-48 pb-7 flex flex-col gap-20 mx-auto mr-auto justify-between sm:text-right md:items-center md:px-4 lg:flex-row lg:items-end xl:gap-64">
@@ -20,43 +21,26 @@ export default function Footer({footerNav}) {
                   {SitewideConfig.frontmatter.site_name}
                </Link>
                <ul className="text-md mt-4 border-b-gray-800 border-b-2 dark:border-b-zinc-100 lg:border-b-0">
-                  {footerNav.map(({title, href, dropdown_items}) => {
-                     if (dropdown_items) {
-                        return dropdown_items.map(({title, href}) => {
-                           return (
-                              <li 
-                                 key={title} 
-                                 className="mb-2 last-of-type:mb-0"
-                              >
-                                 <Link
-                                    href={href}
-                                    inline
-                                    transition="transition"
-                                    classes="motion-safe:hover:-translate-y-[2px] motion-safe:hover:translate-x-[2px]"
-                                 >
-                                    {title}
-                                 </Link>
-                              </li>
-                           );
-                        })
-                     } else {
-                        return (
-                           <li
-                              key={title} 
-                              className="mb-2 last-of-type:mb-6 lg:last-of-type:mb-0"
+
+                  {links?.map(({title, href}) => {
+                     return (
+                        <li 
+                           key={title} 
+                           className="mb-2 last-of-type:mb-6 lg:last-of-type:mb-0"
+                        >
+                           <Link
+                              href={href}
+                              inline
+                              transition="transition"
+                              classes="motion-safe:hover:-translate-y-[2px] motion-safe:hover:translate-x-[2px]"
                            >
-                              <Link
-                                 href={href}
-                                 inline
-                                 transition="transition"
-                                 classes="motion-safe:hover:-translate-y-[2px] motion-safe:hover:translate-x-[2px]"
-                              >
-                                 {title}
-                              </Link>
-                           </li>
-                        )
-                     }
+                              {title}
+                           </Link>
+                        </li>
+                     )
+                     
                   })}
+
                </ul>
             </div>
             <div className="flex flex-col w-full sm:w-fit sm:h-fit sm:items-start sm:self-start lg:items-end lg:self-end xl:flex-row xl:flex-auto xl:justify-between">

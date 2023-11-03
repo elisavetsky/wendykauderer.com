@@ -2,6 +2,10 @@
 import { frontmatter } from "../../configuration/SitewideConfig.md";
 const sections = frontmatter.sections;
 
+import { navArtTypes, navLinks, additionalNavLinks } from '../../components/NavigationLinks.jsx';
+
+console.log(navArtTypes)
+
 // import components
 // import Header from "../components/Header.astro"
 import Footer from "../../components/Footer.jsx";
@@ -17,7 +21,9 @@ export default function MainFlexLayout({ header, children }) {
                {children}
                
             </main>
-            <Footer footerNav={sections} />
+            <Footer 
+               links={[...navArtTypes, ...navLinks]} 
+            />
          </div>
       </div> 
    )
