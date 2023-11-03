@@ -90,8 +90,15 @@ export default function DecapCMS() {
 									label: "📩 Contact Email",
 									name: "contact_email",
 									widget: "string",
-									pattern: ["^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$", "You must use a correct email format"],
+									pattern: [/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/, "You must use a correct email format"],
 									hint: "Your email which will be used for people to **contact you on your site.**"
+								},
+								{
+									label: "📸 Instagram Username",
+									name: "instagram_handle",
+									widget: "string",
+									pattern: [/^(?!www\.|http:\/\/)[^\/]+(?<!\.com)$/, "This must not be a url"],
+									hint: "Please put your Instagram **username** here. You'll see that it has **no spaces** inside it. **Do not include the @ sign or anything else.**"
 								},
 								{
 									label: "⏹️ Curved Image Edges",
