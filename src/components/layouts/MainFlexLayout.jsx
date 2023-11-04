@@ -4,8 +4,6 @@ const sections = frontmatter.sections;
 
 import { navArtTypes, navLinks, additionalNavLinks } from '../../components/NavigationLinks.jsx';
 
-console.log(navArtTypes)
-
 // import components
 // import Header from "../components/Header.astro"
 import Footer from "../../components/Footer.jsx";

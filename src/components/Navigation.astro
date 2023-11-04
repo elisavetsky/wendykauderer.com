@@ -14,13 +14,13 @@ import ArtTypes from './ArtTypes.astro';
 import { titleCase } from '../utils/textTools';
 ---
 
-<nav aria-label="Main menu" id="main-menu" class="hidden text-md font-normal md:active md:transition-none md:duration-0 md:m-0 md:flex md:flex-col md:pr-2">
+<nav aria-label="Main menu" id="main-menu" class="hidden text-base font-normal md:active md:transition-none md:duration-0 md:m-0 md:flex md:flex-col md:flex-auto md:pr-2">
    
-   <div class="flex flex-col justify-between leading-loose mb-4 w-full md:gap-0 md:mb-8">
+   <div class="flex flex-col justify-between leading-loose mb-4 w-full md:flex-auto md:gap-0 md:mb-7">
 
       <PageFind />
 
-      <ul class="flex flex-col gap-1">
+      <ul class="flex flex-col gap-1 md:flex-auto">
          <li class={`text-md inline-flex flex-col items-start`}>
             <ul class={`dropdown-menu transition-colors relative gap-2 z-10 left-0 rounded-lg bottom-0 w-full md:left-[unset] flex flex-wrap px-1 py-2 mb-4 items-center`}>
                <ArtTypes />
@@ -33,9 +33,10 @@ import { titleCase } from '../utils/textTools';
                <Link
                   href={`/${slugify(title)}`}
                   size="md"
+                  inline={true}
                   transition="transition"
                   classes={
-                     `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline underline-offset-4 decoration-2 decoration-inherit" : "decoration-transparent"} hover:decoration-inherit`
+                     `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline underline-offset-4 decoration-2 decoration-inherit" : "decoration-transparent"} px-3 hover:decoration-inherit`
                   }
                >
                   {title}
@@ -43,17 +44,18 @@ import { titleCase } from '../utils/textTools';
             </li>      
          )
       })}
-         <li class="mt-4">
-            <ul class="flex flex-col gap-1">
+         <li class="mt-auto">
+            <ul class="flex flex-col gap-1 mt-10">
                {additionalNavLinks?.map(({title, href}) => {
                   return (
-                     <li class={`text-sm inline-flex flex-col items-start `}>
+                     <li class={`inline-flex flex-col items-start `}>
                         <Link
                            href={href}
-                           size="sm"
+                           size="md"
+                           inline={true}
                            transition="transition"
                            classes={
-                              `${Astro.url.pathname.split("/")[1] === slugify(title) ? "underline underline-offset-4 decoration-2 decoration-inherit" : "decoration-transparent"} hover:decoration-inherit`
+                              `decoration-transparent px-3 hover:decoration-inherit`
                            }
                         >
                            {title}
@@ -64,7 +66,7 @@ import { titleCase } from '../utils/textTools';
             </ul>
          </li>
          
-         <li class="mt-2">
+         <li class="mt-2 h-10">
             <ThemeDropdown client:only="react" transition:persist />
          </li>
       </ul>
