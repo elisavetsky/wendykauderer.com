@@ -73,7 +73,7 @@
    }
 
    #main-menu.active {
-      @apply block opacity-100 md:opacity-100
+      @apply flex opacity-100 md:opacity-100
    }
 
    .navbar-container {
