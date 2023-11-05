@@ -6,7 +6,7 @@ import { moveToFirst } from "../utils/arrayTools.js";
 
 export default function ArtTags({isCMS, inline, tags, dependencyArray, urlPath, classes, listClasses}) {
 
-   // create a string for the search index to crawl through
+   // create a string for the PageFind search index to crawl through
    const commaSeparatedTags = tags?.map((tag) => tag.data.title).join(", ");
 
    // move the current tag that is present in the url path to the front of the array for better UX
@@ -25,7 +25,7 @@ export default function ArtTags({isCMS, inline, tags, dependencyArray, urlPath, 
             className={`flex flex-wrap py-2 gap-1.5 ${listClasses || ""}`}
          >
             
-            {tags?.map((tag) => {
+            {orderedTags?.map((tag) => {
                return (
                   <Tag
                      isCMS={isCMS}
