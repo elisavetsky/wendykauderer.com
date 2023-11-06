@@ -8,11 +8,12 @@ module.exports = {
    root: true,
    extends: [
       // ...
+      "eslint:recommended",
       "plugin:astro/recommended",
       "plugin:astro/jsx-a11y-strict",
       "plugin:jsx-a11y/strict",
       "plugin:mdx/recommended",
-      // "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended",
    ],
    // ...
    overrides: [
