@@ -16,15 +16,15 @@ export default function PrevNextArtwork({isCMS, currentArtType, prevEntry, nextE
          // <div>
             
             <div
-               className={`flex z-[30] sticky bottom-0 left-0 w-full gap-4 h-fit sm:left-[unset] sm:min-w-full sm:w-[inherit] sm:pl-0 md:px-0 lg:w-full 3xl:flex-1 3xl:min-w-[unset] 3xl:max-w-[10rem] 3xl:top-8`}
+               className={`flex z-[130] sticky bottom-0 left-0 w-full gap-4 h-fit sm:left-[unset] sm:min-w-full sm:w-[inherit] sm:pl-0 md:px-0 lg:w-full 3xl:flex-1 3xl:min-w-[unset] 3xl:max-w-[10rem] 3xl:top-8`}
             >
                {/* <span className='hidden md:px-6 md:block md:min-w-[16rem] md:w-3/12'></span> */}
                <nav 
                   aria-label={`previous ${currentArtType} and next ${currentArtType}`}
-                  className="w-full text-sm pb-4 pt-6 3xl:py-0" 
+                  className="relative w-full text-sm pb-4 3xl:py-0" 
                >
                   <div 
-                     className={`uppercase px-1.5 py-0.5 mb-1.5 ${nextEntry ? "ml-auto 3xl:m-0" : ""} w-fit text-[0.7rem] text-primary-text/70 dark:text-primary-dark-text/70 border-2 ${curvedEdges && "rounded-lg"} bg-white/30 backdrop-blur-lg border-black/10 dark:bg-black/30 dark:border-white/10 3xl:bg-transparent 3xl:dark:bg-transparent 3xl:border-none 3xl:dark:border-none`}
+                     className={`absolute uppercase px-1.5 py-0.5 mb-1.5 ${nextEntry ? "right-0" : "left-0 "} -top-9 w-fit text-[0.7rem] text-primary-text/70 dark:text-primary-dark-text/70 border-2 ${curvedEdges && "rounded-lg"} bg-white/30 backdrop-blur-lg border-black/10 dark:bg-black/30 dark:border-white/10 3xl:right-auto 3xl:left-0 3xl:static 3xl:bg-transparent 3xl:dark:bg-transparent 3xl:border-none 3xl:dark:border-none`}
                   >
                      In {currentArtType}s:
                   </div>
