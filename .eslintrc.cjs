@@ -1,14 +1,19 @@
 module.exports = {
    // ...
    // parser: "@typescript-eslint/parser",
-   // plugins: ["@typescript-eslint"],
+   plugins: [
+      "@typescript-eslint",
+      "jsx-a11y"
+   ],
    root: true,
    extends: [
       // ...
+      "eslint:recommended",
       "plugin:astro/recommended",
       "plugin:astro/jsx-a11y-strict",
+      "plugin:jsx-a11y/strict",
       "plugin:mdx/recommended",
-      // "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended",
    ],
    // ...
    overrides: [

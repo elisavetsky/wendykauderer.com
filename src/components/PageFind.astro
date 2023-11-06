@@ -1,20 +1,26 @@
 ---
 ---
 
-<div id="search" class="px-2 mb-8 min-h-[3rem]"></div>
+<div id="search" transition:persist="pagefind" class="px-2 mb-8 min-h-[3rem]"></div>
 
-<script>
+<script is:inline>
+   // Make script inline so that Astro leaves it as is 
+   // and we can access normal DOM lifecycles
+
    ///////////////
    // PAGEFIND //
    //////////////
-   document.addEventListener('astro:page-load', () => {
+
+   // attach DOM loading event to document so Pagefind is created right then and there
+   // and then is able to be tracked by Astro using the `transition:persist` directive
+   document.addEventListener('DOMContentLoaded', () => {
 
       new PagefindUI({
          element: "#search",
          showSubResults: false
       });
-      
-   }, { once: false });
+   });
+
 </script>
 
 <style is:global>
