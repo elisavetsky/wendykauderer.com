@@ -53,9 +53,8 @@ export default function BioPreview({entry, widgetsFor, getAsset}) {
          }>
 
             <article>
-               <SectionTitle title="Bio" />
                <Flex2ColLayout>
-                  <MarkdownContent heading={heading}>
+                  <MarkdownContent heading={heading || "Bio"}>
                      <Markdown>{body}</Markdown>
                   </MarkdownContent>
                   
@@ -66,7 +65,7 @@ export default function BioPreview({entry, widgetsFor, getAsset}) {
                         images: promisedImages || [],
                         imagesWithAlts: promisedImages || []
                      }} 
-                     classes="flex-1 m-auto md:px-4 w-screen md:w-full md:max-w-[60rem]" 
+                     classes="flex-1 sm:px-4 w-screen md:w-full" 
                   />
                </Flex2ColLayout>
             </article>

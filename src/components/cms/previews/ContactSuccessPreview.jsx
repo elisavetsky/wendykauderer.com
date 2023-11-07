@@ -70,20 +70,17 @@ export default function ContactSuccessPreview({entry, widgetsFor, getAsset}) {
             </header>
          }>
             <div className="max-w-xl md:max-w-none">
-               <SectionTitle title={sectionTitle} />
-               
                <Flex2ColLayout>
-                  <div className="flex-auto w-full min-w-min md:max-w-[24rem] xl:max-w-[35rem] mr-auto xl:ml-auto">
-                     <MarkdownContent heading={successHeading}>
-                        <p>{successMessage}</p>
-                        <Link 
-                           inline 
-                           classes="decoration-transparent underline underline-offset-4 hover:decoration-primary-text"
-                        >
-                           Go back home
-                        </Link>
-                     </MarkdownContent>
-                  </div>
+                  <MarkdownContent heading={successHeading}>
+                     <p>{successMessage}</p>
+                     <Link 
+                        inline 
+                        classes="decoration-transparent underline underline-offset-4 hover:decoration-primary-text"
+                     >
+                        Go back home
+                     </Link>
+                  </MarkdownContent>
+                  
                   <ImageColumn>
                      <SingleImage image={image} />
                   </ImageColumn>

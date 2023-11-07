@@ -100,7 +100,13 @@ export default function InlineLightboxGallery({ariaLabel, isCMS, data, classes})
 				slides={slides}
 				carousel={{
 					imageFit: "cover",
-					spacing: 10
+					spacing: 10,
+					imageProps: {
+						style:{ 
+							maxWidth: "initial",
+							maxHeight: "initial"
+						}
+					}
 				}}
 				render={{
                // slide: ({ slide, offset, rect }) => {
@@ -124,9 +130,12 @@ export default function InlineLightboxGallery({ariaLabel, isCMS, data, classes})
 				styles={{
 					root: { 
 						visibility: isLoaded ? "visible" : "hidden",
+						position: "relative",
+						paddingBottom: `${(slides[0]?.height / slides[0]?.width) * 100}%`,
+						height: 0,
 					},
-					container: { borderRadius: "0.5rem", position: "relative", aspectRatio: imageAspectRatio },
-					slide: { padding: "0" }
+					container: { borderRadius: "0.5rem", position: "absolute", aspectRatio: imageAspectRatio  },
+					slide: { padding: "0" },
 				}}
 			/>
 		</div>

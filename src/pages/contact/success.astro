@@ -1,5 +1,9 @@
 ---
+// Astro
 import { getEntry } from "astro:content";
+
+// import utils
+import slugify from "@sindresorhus/slugify";
 
 // import layouts
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -25,20 +29,18 @@ const { title, success_heading, success_message } = contactMe.data;
    pageTitle="Contact Success"
 >  
    <div transition:animate="fade" class="max-w-xl md:max-w-none">
-      <SectionTitle title={title} />
       <Flex2ColLayout>
-         <div class="flex-auto w-full md:max-w-[24rem] xl:max-w-[35rem] mr-auto xl:ml-auto">
-            <MarkdownContent heading={success_heading}>
-               <p>{success_message}</p>
-               <Link 
-                  inline 
-                  href="/"
-                  classes="decoration-transparent underline underline-offset-4 hover:decoration-primary-text"
-               >
-                  Go back home
-               </Link>
-            </MarkdownContent>
-         </div>
+         <MarkdownContent heading={success_heading}>
+            <p>{success_message}</p>
+            <Link 
+               inline 
+               href="/"
+               classes="decoration-transparent underline underline-offset-4 hover:decoration-primary-text"
+            >
+               Go back home
+            </Link>
+         </MarkdownContent>
+         
          <ImageColumn>
             <ImageWrapper 
                src={image} 
@@ -46,7 +48,9 @@ const { title, success_heading, success_message } = contactMe.data;
                width={768}
                quality={50}
                loading="eager"
-               classes="md:max-w-xl lg:max-w-lg xl:mr-auto"
+               classes=""
+               transition:animate="fade"
+               transition:name={`${slugify(image.src)}`} 
             />
          </ImageColumn>
       </Flex2ColLayout>

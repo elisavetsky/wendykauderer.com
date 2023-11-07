@@ -1,5 +1,9 @@
 ---
+// Astro
 import { getEntry } from "astro:content";
+
+// import utils
+import slugify from "@sindresorhus/slugify";
 
 // get sitewide config
 import * as SitewideConfig from "../../configuration/SitewideConfig.md";
@@ -29,7 +33,7 @@ const { title } = contactMe.data;
    <div transition:animate="fade" class="max-w-xl md:max-w-none">
       <SectionTitle title={title} />
       <Flex2ColLayout>
-         <div class="flex-auto w-full md:max-w-[24rem] xl:max-w-[35rem] mr-auto xl:ml-auto">
+         <div class="flex-auto w-full md:max-w-[50rem] mr-auto xl:ml-auto">
             <ContactForm client:load />
          </div>
          <ImageColumn>
@@ -39,7 +43,9 @@ const { title } = contactMe.data;
                width={768}
                quality={50}
                loading="eager"
-               classes="md:max-w-xl lg:max-w-lg xl:mr-auto"
+               classes=""
+               transition:animate="fade"
+               transition:name={`${slugify(image.src)}`} 
             />
          </ImageColumn>
       </Flex2ColLayout>
