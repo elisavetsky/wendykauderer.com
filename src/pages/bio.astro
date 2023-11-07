@@ -30,9 +30,9 @@ import InlineLightboxGallery from "../components/InlineLightboxGallery.jsx";
    blurredBg={images[0].image}
 >
    <article transition:animate="fade">
-      <SectionTitle title="Bio" />
+      
       <Flex2ColLayout>
-         <MarkdownContent heading={heading}>
+         <MarkdownContent heading={heading || "Bio"}>
             <Content />
          </MarkdownContent>
          <InlineLightboxGallery
@@ -42,7 +42,7 @@ import InlineLightboxGallery from "../components/InlineLightboxGallery.jsx";
                images: optimizedImages || [],
                imagesWithAlts: images || []
             }} 
-            classes="flex-1 m-auto md:px-4 w-screen md:w-full md:max-w-[60rem]" 
+            classes="flex-1 sm:px-4 w-screen md:w-full" 
          />
       </Flex2ColLayout>
    </article>
