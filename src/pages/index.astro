@@ -5,6 +5,9 @@ import { getEntry } from 'astro:content';
 // get sitewide config
 import * as SitewideConfig from "../configuration/SitewideConfig.md";
 
+// import utils
+import slugify from '@sindresorhus/slugify';
+
 // import layout
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FeaturedArtworkLayout from '../components/layouts/FeaturedArtworkLayout.jsx';
@@ -38,6 +41,8 @@ import { NetlifyIdentity } from '../components/NetlifyIdentity.jsx'
 				quality="low"
 				loading="eager"
 				noWidth
+				transition:animate="fade"
+				transition:name={`${slugify(featuredArtwork.data.image.src)}`} 
 			/>
 		</div>
 		<ImageCTA>
