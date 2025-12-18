@@ -19,7 +19,7 @@ html {
 
 /* COLLECTION TOP CONTAINER */
 .ei8nkzc0 {
-	max-width: 100% !important;
+	width: 100% !important;
 }
 
 /* COLLECTION TOP DESCRIPTION */
@@ -49,7 +49,7 @@ html {
 /* CARD CONTAINER */
 .effeus42 {
 	height: 100% !important;
-	flex: 1 0 236px;	/* max: 6 cards per row (+1920px screens) */
+	flex: 1 0 236px !important;	/* max: 6 cards per row (+1920px screens) */
 }
 
 /* CARD IMAGE */
