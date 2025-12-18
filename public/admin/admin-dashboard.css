@@ -5,15 +5,51 @@ html {
 	background: unset;
 }
 
+/* APP HEADER CONTENT */
+.e1rbzf6g0,
+/* APP MAIN CONTAINER */
+.eh2m33j0 {
+	max-width: 1920px !important;
+}
+
 /* SIDEBAR ICONS */
 .e1t18l342 .e1jeq5dr1 {
 	display: none !important;
+}
+
+/* COLLECTION TOP CONTAINER */
+.ei8nkzc0 {
+	width: 100% !important;
+}
+
+/* COLLECTION TOP DESCRIPTION */
+.ei8nkzc4 {
+	max-width: 80ch !important;
+}
+
+/* COLLECTION TOP NEW BUTTON */
+.ei8nkzc3 {
+	background-color: hsl(220, 62%, 32%) !important;
+}
+.ei8nkzc3:hover {
+	background-color: hsl(220, 62%, 22%) !important;
+}
+
+/* COLLECTION CONTROLS CONTAINER */
+.emfmed70 {
+	width: 100% !important;
+}
+
+/* LIST CARD (list layout) */
+.effeus40 {
+	width: 100% !important;
 }
 
 /* Increase the height of grid items to reveal more of the artwork image */
 /* CARD CONTAINER */
 .effeus42 {
 	height: 100% !important;
+	flex: 1 0 236px !important;	/* max: 6 cards per row (+1920px screens) */
 }
 
 /* CARD IMAGE */
@@ -31,4 +67,22 @@ html {
 /* DROPDOWN */
 .efqlgsg2 {
 	min-width: 225px !important;
+}
+
+/* CONTROL HINT */
+.ec1nk3l2 {
+	font-size: 14px !important;
+}
+
+/* ADD BUTTON */
+.ekazr9y3 {
+   padding: 0.7rem 0.9rem !important;
+   font-size: 14px !important;
+}
+
+/* FILE WIDGET CHOOSE BUTTON */
+.e1hax4ql6, 
+/* FILE WIDGET REMOVE BUTTON */
+.e1hax4ql7 {
+   padding: 0.5rem 0.8rem !important;
 }
